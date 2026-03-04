@@ -2,10 +2,17 @@ const express = require('express');
 const Database = require('better-sqlite3');
 const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Admin password - change this or set via environment variable
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Digiwaxx2024!';
+
+// Store active admin tokens (in-memory, clears on restart)
+const adminTokens = new Set();
 
 // Middleware
 app.use(cors());
@@ -83,7 +90,33 @@ const insertPageView = db.prepare(`
   VALUES (?, ?, ?, ?)
 `);
 
-// ============ API ROUTES ============
+// ============ AUTH MIDDLEWARE ============
+
+function requireAdmin(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  const token = authHeader.slice(7);
+  if (!adminTokens.has(token)) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+  next();
+}
+
+// Admin login
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body;
+  if (password === ADMIN_PASSWORD) {
+    const token = crypto.randomBytes(32).toString('hex');
+    adminTokens.add(token);
+    res.json({ ok: true, token });
+  } else {
+    res.status(401).json({ error: 'Invalid password' });
+  }
+});
+
+// ============ PUBLIC API ROUTES ============
 
 // Track page view
 app.post('/api/pageview', (req, res) => {
@@ -136,7 +169,7 @@ app.post('/api/purchases', (req, res) => {
 });
 
 // Update purchase status
-app.patch('/api/purchases/:id', (req, res) => {
+app.patch('/api/purchases/:id', requireAdmin, (req, res) => {
   const { status, paypal_transaction_id } = req.body;
   const stmt = db.prepare(`
     UPDATE purchases SET status = ?, paypal_transaction_id = COALESCE(?, paypal_transaction_id), updated_at = datetime('now')
@@ -147,10 +180,10 @@ app.patch('/api/purchases/:id', (req, res) => {
   res.json({ ok: true });
 });
 
-// ============ ADMIN API ROUTES ============
+// ============ ADMIN API ROUTES (Protected) ============
 
 // Get all leads
-app.get('/api/admin/leads', (req, res) => {
+app.get('/api/admin/leads', requireAdmin, (req, res) => {
   const { status, search, limit, offset } = req.query;
   let query = 'SELECT * FROM leads WHERE 1=1';
   const params = [];
@@ -175,7 +208,7 @@ app.get('/api/admin/leads', (req, res) => {
 });
 
 // Update lead status
-app.patch('/api/admin/leads/:id', (req, res) => {
+app.patch('/api/admin/leads/:id', requireAdmin, (req, res) => {
   const { status } = req.body;
   const stmt = db.prepare('UPDATE leads SET status = ? WHERE id = ?');
   const result = stmt.run(status, req.params.id);
@@ -184,7 +217,7 @@ app.patch('/api/admin/leads/:id', (req, res) => {
 });
 
 // Delete lead
-app.delete('/api/admin/leads/:id', (req, res) => {
+app.delete('/api/admin/leads/:id', requireAdmin, (req, res) => {
   const stmt = db.prepare('DELETE FROM leads WHERE id = ?');
   const result = stmt.run(req.params.id);
   if (result.changes === 0) return res.status(404).json({ error: 'Lead not found' });
@@ -192,19 +225,19 @@ app.delete('/api/admin/leads/:id', (req, res) => {
 });
 
 // Get all PayPal clicks
-app.get('/api/admin/clicks', (req, res) => {
+app.get('/api/admin/clicks', requireAdmin, (req, res) => {
   const clicks = db.prepare('SELECT * FROM paypal_clicks ORDER BY clicked_at DESC LIMIT 200').all();
   res.json({ clicks });
 });
 
 // Get all purchases
-app.get('/api/admin/purchases', (req, res) => {
+app.get('/api/admin/purchases', requireAdmin, (req, res) => {
   const purchases = db.prepare('SELECT * FROM purchases ORDER BY created_at DESC LIMIT 200').all();
   res.json({ purchases });
 });
 
 // Dashboard stats
-app.get('/api/admin/stats', (req, res) => {
+app.get('/api/admin/stats', requireAdmin, (req, res) => {
   const totalLeads = db.prepare('SELECT COUNT(*) as count FROM leads').get().count;
   const newLeads = db.prepare("SELECT COUNT(*) as count FROM leads WHERE status = 'new'").get().count;
   const totalClicks = db.prepare('SELECT COUNT(*) as count FROM paypal_clicks').get().count;
