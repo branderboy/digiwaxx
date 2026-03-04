@@ -22,7 +22,7 @@
             --accent-gold: #D4A017;
             --text-white: #FFFFFF;
             --text-muted: rgba(255,255,255,0.6);
-            --dot-pink: #D81B60;
+            --dot-purple: #c084fc;
             --font-head: 'Barlow Condensed', sans-serif;
             --font-body: 'DM Sans', sans-serif;
             --card-bg: rgba(30, 8, 25, 0.8);
@@ -1083,12 +1083,12 @@
             justify-content: center;
             align-items: center;
             gap: 15px;
-            margin: 3rem 0;
+            margin: 1.5rem 0 1rem;
         }
 
         .dot { width: 10px; height: 10px; border-radius: 50%; }
-        .dot.yellow { background-color: var(--accent-yellow); }
-        .dot.pink { background-color: var(--dot-pink); }
+        .dot.white { background-color: #FFFFFF; }
+        .dot.purple { background-color: var(--dot-purple); }
 
         /* --- FOOTER --- */
         .footer {
@@ -1199,16 +1199,52 @@
             .nav-logo span { font-size: 1.4rem; }
             .nav-links .nav-link { display: none; }
             .nav-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
-            section { padding: 3.5rem 0; }
-            .hero { padding-top: 90px; }
+            section { padding: 3rem 0; }
+            .container, .container-wide { padding: 0 1.2rem; }
+            .hero { padding-top: 100px; padding-bottom: 3rem; }
+            .hero h1 { font-size: clamp(3rem, 12vw, 4.5rem); }
+            .hero h3 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); }
+            .hero-subtitle { font-size: 1rem; }
             .funnel-box { padding: 2rem 1.5rem; }
-            .hero-glass-card { padding: 1.5rem; }
-            .btn { font-size: 1.4rem; padding: 1rem 1.5rem; }
-            ul.custom-bullets li { font-size: 1.05rem; }
-            .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
-            .proof-bar-inner { gap: 1.5rem; }
-            .trust-stats { gap: 2rem; }
+            .btn { font-size: 1.2rem; padding: 1rem 1.5rem; }
+            ul.custom-bullets li { font-size: 1rem; padding-left: 2rem; }
+            ul.custom-bullets li::before { font-size: 1.2rem; }
+            .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+            .hero-stat .number { font-size: 2rem; }
+            .proof-bar-inner { gap: 1rem; font-size: 0.85rem; }
+            .proof-item { font-size: 0.8rem; gap: 6px; }
+            .proof-item .icon { font-size: 1.1rem; }
+            .trust-badge { padding: 2rem 1.5rem; }
+            .trust-badge p { font-size: 1rem; }
+            .trust-stats { gap: 1.5rem; }
+            .trust-stat .number { font-size: 2.2rem; }
             .tier-selector { grid-template-columns: 1fr; }
+            .video-wrapper { border-radius: 12px; }
+            .play-btn-circle { width: 60px; height: 60px; }
+            .final-cta h2 { font-size: clamp(2rem, 8vw, 3.5rem); }
+            .opt-in-box { margin: 0 -0.5rem; }
+            .opt-in-inner { padding: 2rem 1.5rem; }
+            .form-row { flex-direction: column; }
+            .step-number { font-size: 3rem; }
+            .pricing-card .card-header { padding: 1.5rem; }
+            .pricing-card .card-body { padding: 1.5rem; }
+            .pricing-card .btn-buy { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .container, .container-wide { padding: 0 1rem; }
+            .hero { padding-top: 85px; }
+            .hero h1 { font-size: clamp(2.5rem, 14vw, 3.5rem); }
+            .hero-stats { gap: 1rem; }
+            .hero-stat .number { font-size: 1.8rem; }
+            .hero-stat .label { font-size: 0.75rem; }
+            .btn { font-size: 1.1rem; padding: 0.9rem 1.2rem; }
+            .btn-subtext { font-size: 0.8rem; }
+            .funnel-box { padding: 1.5rem 1.2rem; }
+            .box-header { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+            .proof-bar { padding: 1rem 0; }
+            .proof-bar-inner { gap: 0.8rem; }
+            .opt-in-inner { padding: 1.5rem 1rem; }
         }
     </style>
 </head>
@@ -1488,13 +1524,12 @@
         <!-- FINAL CTA & OPT-IN FORM -->
         <section class="final-cta text-center container" id="optin">
             <div class="dot-divider">
-                <span class="dot yellow"></span>
-                <span class="dot pink"></span>
-                <span class="dot yellow"></span>
-                <span class="dot pink"></span>
-                <span class="dot yellow"></span>
+                <span class="dot white"></span>
+                <span class="dot purple"></span>
+                <span class="dot white"></span>
+                <span class="dot purple"></span>
+                <span class="dot white"></span>
             </div>
-
             <h2 class="text-yellow">PUT YOUR RECORD IN THE RIGHT ROOM</h2>
             <p class="bold">
                 If your song is ready, it deserves to reach the DJs who matter.<br>

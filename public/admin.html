@@ -6,63 +6,242 @@
     <title>DIGIWAXX Admin Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0f0f13;
-            --bg-card: #1a1a22;
-            --bg-card-hover: #22222e;
-            --border: #2a2a35;
+            --bg-dark: #1a0a1a;
+            --bg-mid: #3d0f2b;
+            --bg-card: rgba(30, 8, 25, 0.8);
             --accent: #FFB800;
             --accent-hover: #FFD54F;
-            --text: #e4e4e7;
-            --text-muted: #71717a;
+            --text: #FFFFFF;
+            --text-muted: rgba(255,255,255,0.6);
+            --border: rgba(255,255,255,0.08);
+            --border-glow: rgba(255, 184, 0, 0.3);
             --green: #22c55e;
             --red: #ef4444;
             --blue: #3b82f6;
-            --purple: #a855f7;
+            --purple: #c084fc;
             --font-head: 'Barlow Condensed', sans-serif;
             --font-body: 'DM Sans', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            background: var(--bg);
+            background: var(--bg-dark);
             color: var(--text);
             font-family: var(--font-body);
-            line-height: 1.5;
+            line-height: 1.6;
             min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Layout */
-        .admin-header {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 30% -10%, rgba(180, 40, 120, 0.7) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% -5%, rgba(140, 30, 90, 0.6) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 0%, rgba(200, 50, 140, 0.5) 0%, transparent 40%),
+                radial-gradient(ellipse at 20% 40%, rgba(120, 20, 80, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(100, 15, 70, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 30%, rgba(160, 30, 100, 0.4) 0%, transparent 60%),
+                linear-gradient(180deg,
+                    rgba(100, 20, 65, 0.9) 0%,
+                    rgba(70, 15, 50, 0.95) 30%,
+                    rgba(40, 10, 35, 1) 60%,
+                    rgba(20, 5, 20, 1) 100%
+                );
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        a { text-decoration: none; color: var(--accent); }
+        a:hover { color: var(--accent-hover); }
+
+        /* --- LOGIN SCREEN --- */
+        .login-screen {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .login-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .login-box h1 {
+            font-size: 2rem;
+            color: var(--accent);
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .login-box input[type="password"] {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.9rem 1.2rem;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .login-box input[type="password"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .login-box .login-btn {
+            width: 100%;
+            background: linear-gradient(180deg, #FFE066 0%, var(--accent) 100%);
+            color: var(--bg-dark);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+        }
+
+        .login-box .login-btn:hover {
+            background: linear-gradient(180deg, #FFF0B3, #FFE066);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 184, 0, 0.3);
+        }
+
+        .login-error {
+            color: var(--red);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* --- ADMIN LAYOUT --- */
+        .admin-wrapper { display: none; }
+
+        .admin-header {
+            background: rgba(26, 10, 26, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 0 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .admin-header h1 {
-            font-family: var(--font-head);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
+        .admin-header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
         }
 
-        .admin-header a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
+        .admin-header h1 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            letter-spacing: 2px;
         }
-        .admin-header a:hover { color: var(--text); }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .header-actions a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .header-actions a:hover { color: var(--text); }
+
+        .refresh-btn {
+            background: linear-gradient(180deg, #FFE066, var(--accent));
+            color: var(--bg-dark);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .refresh-btn:hover {
+            background: linear-gradient(180deg, #FFF0B3, #FFE066);
+            transform: translateY(-1px);
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
 
         .dashboard {
             max-width: 1200px;
@@ -70,10 +249,10 @@
             padding: 2rem;
         }
 
-        /* Stats Cards */
+        /* --- STAT CARDS --- */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
             gap: 1rem;
             margin-bottom: 2rem;
         }
@@ -81,17 +260,30 @@
         .stat-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 1.5rem;
-            transition: border-color 0.2s;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .stat-card:hover { border-color: var(--accent); }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .stat-card:hover::before { opacity: 1; }
+        .stat-card:hover { border-color: rgba(255, 184, 0, 0.2); }
 
         .stat-card .label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--text-muted);
             margin-bottom: 0.5rem;
         }
@@ -109,7 +301,7 @@
         .stat-card .value.blue { color: var(--blue); }
         .stat-card .value.purple { color: var(--purple); }
 
-        /* Tabs */
+        /* --- TABS --- */
         .tabs {
             display: flex;
             gap: 0;
@@ -135,7 +327,7 @@
             border-bottom-color: var(--accent);
         }
 
-        /* Table */
+        /* --- TABLE --- */
         .panel { display: none; }
         .panel.active { display: block; }
 
@@ -148,31 +340,22 @@
             flex-wrap: wrap;
         }
 
-        .search-input {
-            background: var(--bg-card);
+        .search-input, .filter-select {
+            background: rgba(0,0,0,0.3);
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 0.6rem 1rem;
             color: var(--text);
             font-family: var(--font-body);
             font-size: 0.9rem;
-            width: 300px;
-            max-width: 100%;
+            transition: border-color 0.3s;
         }
 
-        .search-input:focus {
+        .search-input { width: 300px; max-width: 100%; }
+
+        .search-input:focus, .filter-select:focus {
             outline: none;
             border-color: var(--accent);
-        }
-
-        .filter-select {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.6rem 1rem;
-            color: var(--text);
-            font-family: var(--font-body);
-            font-size: 0.9rem;
         }
 
         .data-table {
@@ -209,7 +392,7 @@
             white-space: nowrap;
         }
 
-        /* Badges */
+        /* --- BADGES --- */
         .badge {
             display: inline-block;
             padding: 3px 10px;
@@ -221,15 +404,15 @@
         }
 
         .badge-new { background: rgba(59, 130, 246, 0.15); color: var(--blue); }
-        .badge-contacted { background: rgba(168, 85, 247, 0.15); color: var(--purple); }
+        .badge-contacted { background: rgba(192, 132, 252, 0.15); color: var(--purple); }
         .badge-converted { background: rgba(34, 197, 94, 0.15); color: var(--green); }
         .badge-pending { background: rgba(255, 184, 0, 0.15); color: var(--accent); }
         .badge-completed { background: rgba(34, 197, 94, 0.15); color: var(--green); }
         .badge-starter { background: rgba(255,255,255,0.08); color: var(--text-muted); }
         .badge-pro { background: rgba(255, 184, 0, 0.15); color: var(--accent); }
-        .badge-elite { background: rgba(168, 85, 247, 0.15); color: var(--purple); }
+        .badge-elite { background: rgba(192, 132, 252, 0.15); color: var(--purple); }
 
-        /* Action buttons */
+        /* --- ACTION BUTTONS --- */
         .action-btn {
             background: none;
             border: 1px solid var(--border);
@@ -252,10 +435,8 @@
             color: var(--red);
         }
 
-        /* Click chart */
-        .chart-section {
-            margin-top: 1.5rem;
-        }
+        /* --- CHART --- */
+        .chart-section { margin-top: 1.5rem; }
 
         .chart-section h3 {
             font-family: var(--font-head);
@@ -314,148 +495,225 @@
             color: var(--text-muted);
         }
 
-        .refresh-btn {
-            background: var(--accent);
-            color: #000;
-            border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .refresh-btn:hover { background: var(--accent-hover); }
-
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
+            .admin-header { padding: 0 1rem; }
+            .admin-header-inner { height: 60px; }
+            .admin-header h1 { font-size: 1.2rem; }
+            .header-actions { gap: 0.8rem; }
+            .header-actions a { display: none; }
             .dashboard { padding: 1rem; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .stat-card { padding: 1.2rem; }
+            .stat-card .value { font-size: 1.8rem; }
+            .tabs { overflow-x: auto; }
+            .tab { padding: 0.7rem 1rem; font-size: 0.8rem; white-space: nowrap; }
             .data-table { font-size: 0.8rem; }
             .data-table td, .data-table th { padding: 0.6rem 0.5rem; }
+            .data-table .truncate { max-width: 120px; }
             .search-input { width: 100%; }
+            .table-controls { flex-direction: column; align-items: stretch; }
+            .login-box { padding: 2rem 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat-card .value { font-size: 1.5rem; }
+            .stat-card .label { font-size: 0.7rem; }
+            .action-btn { padding: 3px 6px; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
-    <header class="admin-header">
-        <h1>Digiwaxx Admin</h1>
-        <div>
-            <a href="/">View Landing Page</a>
-            &nbsp;&nbsp;
-            <button class="refresh-btn" onclick="loadAll()">Refresh</button>
+    <!-- LOGIN SCREEN -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <h1>DIGIWAXX</h1>
+            <p>Admin Dashboard</p>
+            <form onsubmit="handleLogin(event)">
+                <input type="password" id="passwordInput" placeholder="Enter admin password" autocomplete="current-password">
+                <button type="submit" class="login-btn">LOG IN</button>
+            </form>
+            <div class="login-error" id="loginError">Invalid password. Try again.</div>
         </div>
-    </header>
+    </div>
 
-    <div class="dashboard">
-        <!-- Stats -->
-        <div class="stats-grid" id="statsGrid">
-            <div class="stat-card">
-                <div class="label">Total Leads</div>
-                <div class="value accent" id="statLeads">--</div>
+    <!-- ADMIN DASHBOARD -->
+    <div class="admin-wrapper" id="adminWrapper">
+        <header class="admin-header">
+            <div class="admin-header-inner">
+                <h1>Digiwaxx Admin</h1>
+                <div class="header-actions">
+                    <a href="/">View Landing Page</a>
+                    <button class="refresh-btn" onclick="loadAll()">Refresh</button>
+                    <button class="logout-btn" onclick="handleLogout()">Logout</button>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="label">New Leads</div>
-                <div class="value blue" id="statNewLeads">--</div>
-            </div>
-            <div class="stat-card">
-                <div class="label">PayPal Clicks</div>
-                <div class="value purple" id="statClicks">--</div>
-            </div>
-            <div class="stat-card">
-                <div class="label">Purchases</div>
-                <div class="value green" id="statPurchases">--</div>
-            </div>
-            <div class="stat-card">
-                <div class="label">Revenue</div>
-                <div class="value accent" id="statRevenue">--</div>
-            </div>
-            <div class="stat-card">
-                <div class="label">Page Views</div>
-                <div class="value" id="statPageViews">--</div>
-            </div>
-        </div>
+        </header>
 
-        <!-- Tabs -->
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('leads')">Leads</div>
-            <div class="tab" onclick="switchTab('clicks')">PayPal Clicks</div>
-            <div class="tab" onclick="switchTab('purchases')">Purchases</div>
-        </div>
+        <div class="dashboard">
+            <!-- Stats -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="label">Total Leads</div>
+                    <div class="value accent" id="statLeads">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">New Leads</div>
+                    <div class="value blue" id="statNewLeads">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">PayPal Clicks</div>
+                    <div class="value purple" id="statClicks">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Purchases</div>
+                    <div class="value green" id="statPurchases">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Revenue</div>
+                    <div class="value accent" id="statRevenue">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Page Views</div>
+                    <div class="value" id="statPageViews">--</div>
+                </div>
+            </div>
 
-        <!-- Leads Panel -->
-        <div class="panel active" id="panel-leads">
-            <div class="table-controls">
-                <input type="text" class="search-input" placeholder="Search leads..." id="leadSearch" oninput="debounceLoadLeads()">
-                <select class="filter-select" id="leadFilter" onchange="loadLeads()">
-                    <option value="">All Statuses</option>
-                    <option value="new">New</option>
-                    <option value="contacted">Contacted</option>
-                    <option value="converted">Converted</option>
-                </select>
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('leads')">Leads</div>
+                <div class="tab" onclick="switchTab('clicks')">PayPal Clicks</div>
+                <div class="tab" onclick="switchTab('purchases')">Purchases</div>
             </div>
-            <div style="overflow-x: auto;">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Artist</th>
-                            <th>Song</th>
-                            <th>Email</th>
-                            <th>Link</th>
-                            <th>Tier</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leadsBody"></tbody>
-                </table>
-            </div>
-        </div>
 
-        <!-- Clicks Panel -->
-        <div class="panel" id="panel-clicks">
-            <div class="chart-section">
-                <h3>Clicks by Tier</h3>
-                <div class="bar-chart" id="clicksChart"></div>
+            <!-- Leads Panel -->
+            <div class="panel active" id="panel-leads">
+                <div class="table-controls">
+                    <input type="text" class="search-input" placeholder="Search leads..." id="leadSearch" oninput="debounceLoadLeads()">
+                    <select class="filter-select" id="leadFilter" onchange="loadLeads()">
+                        <option value="">All Statuses</option>
+                        <option value="new">New</option>
+                        <option value="contacted">Contacted</option>
+                        <option value="converted">Converted</option>
+                    </select>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Artist</th>
+                                <th>Song</th>
+                                <th>Email</th>
+                                <th>Link</th>
+                                <th>Tier</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leadsBody"></tbody>
+                    </table>
+                </div>
             </div>
-            <div style="overflow-x: auto; margin-top: 2rem;">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Tier</th>
-                            <th>Price</th>
-                            <th>Lead ID</th>
-                        </tr>
-                    </thead>
-                    <tbody id="clicksBody"></tbody>
-                </table>
-            </div>
-        </div>
 
-        <!-- Purchases Panel -->
-        <div class="panel" id="panel-purchases">
-            <div style="overflow-x: auto;">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Tier</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th>PayPal TX</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="purchasesBody"></tbody>
-                </table>
+            <!-- Clicks Panel -->
+            <div class="panel" id="panel-clicks">
+                <div class="chart-section">
+                    <h3>Clicks by Tier</h3>
+                    <div class="bar-chart" id="clicksChart"></div>
+                </div>
+                <div style="overflow-x: auto; margin-top: 2rem;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Tier</th>
+                                <th>Price</th>
+                                <th>Lead ID</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clicksBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Purchases Panel -->
+            <div class="panel" id="panel-purchases">
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Tier</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>PayPal TX</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="purchasesBody"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        const ADMIN_TOKEN_KEY = 'digiwaxx_admin_token';
         let debounceTimer;
+
+        // ========== AUTH ==========
+        function handleLogin(e) {
+            e.preventDefault();
+            const password = document.getElementById('passwordInput').value;
+            fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.ok && data.token) {
+                    sessionStorage.setItem(ADMIN_TOKEN_KEY, data.token);
+                    showDashboard();
+                } else {
+                    document.getElementById('loginError').style.display = 'block';
+                }
+            })
+            .catch(() => {
+                document.getElementById('loginError').style.display = 'block';
+            });
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem(ADMIN_TOKEN_KEY);
+            document.getElementById('adminWrapper').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('loginError').style.display = 'none';
+        }
+
+        function getToken() {
+            return sessionStorage.getItem(ADMIN_TOKEN_KEY);
+        }
+
+        function authHeaders() {
+            return { 'Authorization': 'Bearer ' + getToken(), 'Content-Type': 'application/json' };
+        }
+
+        function showDashboard() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminWrapper').style.display = 'block';
+            loadAll();
+        }
+
+        // Check session on load
+        if (getToken()) {
+            fetch('/api/admin/stats', { headers: { 'Authorization': 'Bearer ' + getToken() } })
+            .then(r => { if (r.ok) showDashboard(); })
+            .catch(() => {});
+        }
 
         // ========== TAB SWITCHING ==========
         function switchTab(tab) {
@@ -468,7 +726,8 @@
         // ========== LOAD STATS ==========
         async function loadStats() {
             try {
-                const res = await fetch('/api/admin/stats');
+                const res = await fetch('/api/admin/stats', { headers: authHeaders() });
+                if (res.status === 401) return handleLogout();
                 const data = await res.json();
 
                 document.getElementById('statLeads').textContent = data.totalLeads;
@@ -498,7 +757,8 @@
             if (status) params.set('status', status);
 
             try {
-                const res = await fetch('/api/admin/leads?' + params.toString());
+                const res = await fetch('/api/admin/leads?' + params.toString(), { headers: authHeaders() });
+                if (res.status === 401) return handleLogout();
                 const data = await res.json();
                 const tbody = document.getElementById('leadsBody');
 
@@ -513,7 +773,7 @@
                         <td><strong>${esc(lead.artist_name)}</strong></td>
                         <td class="truncate">${esc(lead.song_title)}</td>
                         <td>${esc(lead.email)}</td>
-                        <td class="truncate"><a href="${esc(lead.record_link)}" target="_blank" style="color: var(--accent);">Link</a></td>
+                        <td class="truncate"><a href="${esc(lead.record_link)}" target="_blank">Link</a></td>
                         <td>${lead.selected_tier ? `<span class="badge badge-${lead.selected_tier}">${lead.selected_tier}</span>` : '—'}</td>
                         <td><span class="badge badge-${lead.status}">${lead.status}</span></td>
                         <td>
@@ -531,7 +791,7 @@
         async function updateLeadStatus(id, status) {
             await fetch('/api/admin/leads/' + id, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+                headers: authHeaders(),
                 body: JSON.stringify({ status })
             });
             loadLeads();
@@ -540,7 +800,7 @@
 
         async function deleteLead(id) {
             if (!confirm('Delete this lead? This cannot be undone.')) return;
-            await fetch('/api/admin/leads/' + id, { method: 'DELETE' });
+            await fetch('/api/admin/leads/' + id, { method: 'DELETE', headers: authHeaders() });
             loadLeads();
             loadStats();
         }
@@ -548,7 +808,8 @@
         // ========== LOAD CLICKS ==========
         async function loadClicks() {
             try {
-                const res = await fetch('/api/admin/clicks');
+                const res = await fetch('/api/admin/clicks', { headers: authHeaders() });
+                if (res.status === 401) return handleLogout();
                 const data = await res.json();
                 const tbody = document.getElementById('clicksBody');
 
@@ -573,7 +834,8 @@
         // ========== LOAD PURCHASES ==========
         async function loadPurchases() {
             try {
-                const res = await fetch('/api/admin/purchases');
+                const res = await fetch('/api/admin/purchases', { headers: authHeaders() });
+                if (res.status === 401) return handleLogout();
                 const data = await res.json();
                 const tbody = document.getElementById('purchasesBody');
 
@@ -603,7 +865,7 @@
         async function updatePurchase(id, status) {
             await fetch('/api/purchases/' + id, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+                headers: authHeaders(),
                 body: JSON.stringify({ status })
             });
             loadPurchases();
@@ -646,8 +908,6 @@
             loadClicks();
             loadPurchases();
         }
-
-        loadAll();
     </script>
 </body>
 </html>
