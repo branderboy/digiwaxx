@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGIWAXX Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f0f13;
+            --bg-card: #1a1a22;
+            --bg-card-hover: #22222e;
+            --border: #2a2a35;
+            --accent: #FFB800;
+            --accent-hover: #FFD54F;
+            --text: #e4e4e7;
+            --text-muted: #71717a;
+            --green: #22c55e;
+            --red: #ef4444;
+            --blue: #3b82f6;
+            --purple: #a855f7;
+            --font-head: 'Barlow Condensed', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Layout */
+        .admin-header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-header h1 {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+
+        .admin-header a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .admin-header a:hover { color: var(--text); }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: border-color 0.2s;
+        }
+
+        .stat-card:hover { border-color: var(--accent); }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .value {
+            font-family: var(--font-head);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1;
+        }
+
+        .stat-card .value.accent { color: var(--accent); }
+        .stat-card .value.green { color: var(--green); }
+        .stat-card .value.blue { color: var(--blue); }
+        .stat-card .value.purple { color: var(--purple); }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab:hover { color: var(--text); }
+        .tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Table */
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        .table-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            width: 300px;
+            max-width: 100%;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .filter-select {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 0.8rem 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            vertical-align: middle;
+        }
+
+        .data-table tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .data-table .truncate {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-new { background: rgba(59, 130, 246, 0.15); color: var(--blue); }
+        .badge-contacted { background: rgba(168, 85, 247, 0.15); color: var(--purple); }
+        .badge-converted { background: rgba(34, 197, 94, 0.15); color: var(--green); }
+        .badge-pending { background: rgba(255, 184, 0, 0.15); color: var(--accent); }
+        .badge-completed { background: rgba(34, 197, 94, 0.15); color: var(--green); }
+        .badge-starter { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+        .badge-pro { background: rgba(255, 184, 0, 0.15); color: var(--accent); }
+        .badge-elite { background: rgba(168, 85, 247, 0.15); color: var(--purple); }
+
+        /* Action buttons */
+        .action-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-right: 4px;
+        }
+
+        .action-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .action-btn.danger:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        /* Click chart */
+        .chart-section {
+            margin-top: 1.5rem;
+        }
+
+        .chart-section h3 {
+            font-family: var(--font-head);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-end;
+            height: 120px;
+            padding: 0 1rem;
+        }
+
+        .bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bar {
+            width: 100%;
+            max-width: 100px;
+            border-radius: 6px 6px 0 0;
+            min-height: 4px;
+            transition: height 0.5s ease;
+        }
+
+        .bar.starter { background: rgba(255,255,255,0.2); }
+        .bar.pro { background: var(--accent); }
+        .bar.elite { background: var(--purple); }
+
+        .bar-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bar-value {
+            font-family: var(--font-head);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+
+        .refresh-btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .refresh-btn:hover { background: var(--accent-hover); }
+
+        @media (max-width: 768px) {
+            .dashboard { padding: 1rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .data-table { font-size: 0.8rem; }
+            .data-table td, .data-table th { padding: 0.6rem 0.5rem; }
+            .search-input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <h1>Digiwaxx Admin</h1>
+        <div>
+            <a href="/">View Landing Page</a>
+            &nbsp;&nbsp;
+            <button class="refresh-btn" onclick="loadAll()">Refresh</button>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <!-- Stats -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="label">Total Leads</div>
+                <div class="value accent" id="statLeads">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">New Leads</div>
+                <div class="value blue" id="statNewLeads">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">PayPal Clicks</div>
+                <div class="value purple" id="statClicks">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Purchases</div>
+                <div class="value green" id="statPurchases">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Revenue</div>
+                <div class="value accent" id="statRevenue">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Page Views</div>
+                <div class="value" id="statPageViews">--</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('leads')">Leads</div>
+            <div class="tab" onclick="switchTab('clicks')">PayPal Clicks</div>
+            <div class="tab" onclick="switchTab('purchases')">Purchases</div>
+        </div>
+
+        <!-- Leads Panel -->
+        <div class="panel active" id="panel-leads">
+            <div class="table-controls">
+                <input type="text" class="search-input" placeholder="Search leads..." id="leadSearch" oninput="debounceLoadLeads()">
+                <select class="filter-select" id="leadFilter" onchange="loadLeads()">
+                    <option value="">All Statuses</option>
+                    <option value="new">New</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="converted">Converted</option>
+                </select>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Artist</th>
+                            <th>Song</th>
+                            <th>Email</th>
+                            <th>Link</th>
+                            <th>Tier</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadsBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Clicks Panel -->
+        <div class="panel" id="panel-clicks">
+            <div class="chart-section">
+                <h3>Clicks by Tier</h3>
+                <div class="bar-chart" id="clicksChart"></div>
+            </div>
+            <div style="overflow-x: auto; margin-top: 2rem;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Tier</th>
+                            <th>Price</th>
+                            <th>Lead ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clicksBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Purchases Panel -->
+        <div class="panel" id="panel-purchases">
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Tier</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>PayPal TX</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="purchasesBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let debounceTimer;
+
+        // ========== TAB SWITCHING ==========
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelector(`.tab[onclick*="${tab}"]`).classList.add('active');
+            document.getElementById('panel-' + tab).classList.add('active');
+        }
+
+        // ========== LOAD STATS ==========
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/admin/stats');
+                const data = await res.json();
+
+                document.getElementById('statLeads').textContent = data.totalLeads;
+                document.getElementById('statNewLeads').textContent = data.newLeads;
+                document.getElementById('statClicks').textContent = data.totalClicks;
+                document.getElementById('statPurchases').textContent = data.completedPurchases + '/' + data.totalPurchases;
+                document.getElementById('statRevenue').textContent = '$' + data.revenue.toLocaleString();
+                document.getElementById('statPageViews').textContent = data.pageViews;
+
+                renderClicksChart(data.clicksByTier);
+            } catch (e) {
+                console.error('Failed to load stats:', e);
+            }
+        }
+
+        // ========== LOAD LEADS ==========
+        function debounceLoadLeads() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(loadLeads, 300);
+        }
+
+        async function loadLeads() {
+            const search = document.getElementById('leadSearch').value;
+            const status = document.getElementById('leadFilter').value;
+            const params = new URLSearchParams();
+            if (search) params.set('search', search);
+            if (status) params.set('status', status);
+
+            try {
+                const res = await fetch('/api/admin/leads?' + params.toString());
+                const data = await res.json();
+                const tbody = document.getElementById('leadsBody');
+
+                if (data.leads.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No leads found.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.leads.map(lead => `
+                    <tr>
+                        <td>${new Date(lead.created_at + 'Z').toLocaleDateString()}</td>
+                        <td><strong>${esc(lead.artist_name)}</strong></td>
+                        <td class="truncate">${esc(lead.song_title)}</td>
+                        <td>${esc(lead.email)}</td>
+                        <td class="truncate"><a href="${esc(lead.record_link)}" target="_blank" style="color: var(--accent);">Link</a></td>
+                        <td>${lead.selected_tier ? `<span class="badge badge-${lead.selected_tier}">${lead.selected_tier}</span>` : '—'}</td>
+                        <td><span class="badge badge-${lead.status}">${lead.status}</span></td>
+                        <td>
+                            <button class="action-btn" onclick="updateLeadStatus('${lead.id}', 'contacted')">Contact</button>
+                            <button class="action-btn" onclick="updateLeadStatus('${lead.id}', 'converted')">Convert</button>
+                            <button class="action-btn danger" onclick="deleteLead('${lead.id}')">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                console.error('Failed to load leads:', e);
+            }
+        }
+
+        async function updateLeadStatus(id, status) {
+            await fetch('/api/admin/leads/' + id, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status })
+            });
+            loadLeads();
+            loadStats();
+        }
+
+        async function deleteLead(id) {
+            if (!confirm('Delete this lead? This cannot be undone.')) return;
+            await fetch('/api/admin/leads/' + id, { method: 'DELETE' });
+            loadLeads();
+            loadStats();
+        }
+
+        // ========== LOAD CLICKS ==========
+        async function loadClicks() {
+            try {
+                const res = await fetch('/api/admin/clicks');
+                const data = await res.json();
+                const tbody = document.getElementById('clicksBody');
+
+                if (data.clicks.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No clicks recorded yet.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.clicks.map(click => `
+                    <tr>
+                        <td>${new Date(click.clicked_at + 'Z').toLocaleString()}</td>
+                        <td><span class="badge badge-${click.tier}">${click.tier}</span></td>
+                        <td>$${click.price}</td>
+                        <td class="truncate" style="color: var(--text-muted); font-size: 0.8rem;">${click.lead_id || '—'}</td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                console.error('Failed to load clicks:', e);
+            }
+        }
+
+        // ========== LOAD PURCHASES ==========
+        async function loadPurchases() {
+            try {
+                const res = await fetch('/api/admin/purchases');
+                const data = await res.json();
+                const tbody = document.getElementById('purchasesBody');
+
+                if (data.purchases.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No purchases recorded yet.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.purchases.map(p => `
+                    <tr>
+                        <td>${new Date(p.created_at + 'Z').toLocaleString()}</td>
+                        <td><span class="badge badge-${p.tier}">${p.tier}</span></td>
+                        <td>$${p.price}</td>
+                        <td><span class="badge badge-${p.status}">${p.status}</span></td>
+                        <td class="truncate" style="font-size: 0.8rem;">${p.paypal_transaction_id || '—'}</td>
+                        <td>
+                            <button class="action-btn" onclick="updatePurchase('${p.id}', 'completed')">Complete</button>
+                            <button class="action-btn danger" onclick="updatePurchase('${p.id}', 'refunded')">Refund</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                console.error('Failed to load purchases:', e);
+            }
+        }
+
+        async function updatePurchase(id, status) {
+            await fetch('/api/purchases/' + id, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status })
+            });
+            loadPurchases();
+            loadStats();
+        }
+
+        // ========== CLICKS CHART ==========
+        function renderClicksChart(clicksByTier) {
+            const chart = document.getElementById('clicksChart');
+            const tierMap = {};
+            clicksByTier.forEach(t => tierMap[t.tier] = t.count);
+
+            const tiers = ['starter', 'pro', 'elite'];
+            const max = Math.max(1, ...tiers.map(t => tierMap[t] || 0));
+
+            chart.innerHTML = tiers.map(tier => {
+                const count = tierMap[tier] || 0;
+                const height = Math.max(4, (count / max) * 100);
+                return `
+                    <div class="bar-group">
+                        <div class="bar-value">${count}</div>
+                        <div class="bar ${tier}" style="height: ${height}px;"></div>
+                        <div class="bar-label">${tier}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ========== HELPERS ==========
+        function esc(str) {
+            const div = document.createElement('div');
+            div.textContent = str || '';
+            return div.innerHTML;
+        }
+
+        // ========== INIT ==========
+        function loadAll() {
+            loadStats();
+            loadLeads();
+            loadClicks();
+            loadPurchases();
+        }
+
+        loadAll();
+    </script>
+</body>
+</html>
