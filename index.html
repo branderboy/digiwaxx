@@ -262,35 +262,33 @@
             transform: translateY(-1px);
         }
 
-        /* --- HERO --- */
+        /* --- HERO (Traditional Centered) --- */
         .hero {
-            padding-top: 120px;
-            padding-bottom: 5rem;
+            padding-top: 140px;
+            padding-bottom: 4rem;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255, 184, 0, 0.06) 0%, transparent 70%);
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(255, 184, 0, 0.06) 0%, transparent 60%);
             border-radius: 50%;
             pointer-events: none;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 4rem;
-            align-items: center;
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease forwards;
         }
-
-        .hero-content { animation: slideInLeft 0.8s ease forwards; }
-        .hero-visual { animation: slideInRight 0.8s ease 0.2s forwards; opacity: 0; }
 
         .eyebrow-badge {
             display: inline-flex;
@@ -327,31 +325,32 @@
         }
 
         .hero h1 {
-            font-size: clamp(4rem, 7.5vw, 6.5rem);
-            margin-bottom: 1rem;
+            font-size: clamp(4rem, 8vw, 7rem);
+            margin-bottom: 1.2rem;
             line-height: 0.9;
             text-shadow: 0 4px 30px rgba(255, 184, 0, 0.3);
             font-weight: 800;
         }
 
         .hero-subtitle {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 480px;
+            margin: 0 auto 2.5rem;
+            max-width: 600px;
             line-height: 1.7;
         }
 
         .hero-stats {
             display: flex;
-            gap: 2.5rem;
+            justify-content: center;
+            gap: 3rem;
             margin-top: 2.5rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.08);
         }
 
         .hero-stat {
-            text-align: left;
+            text-align: center;
         }
 
         .hero-stat .number {
@@ -370,27 +369,6 @@
             margin-top: 4px;
         }
 
-        .hero-glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-left: 4px solid var(--accent-yellow);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-            animation: glowPulse 4s ease infinite;
-        }
-
-        .sales-letter-text {
-            font-size: 1.1rem;
-            text-align: left;
-            line-height: 1.8;
-        }
-
-        .sales-letter-text p { margin-bottom: 1rem; }
-        .sales-letter-text p:last-child { margin-bottom: 0; }
-
         /* --- CTA BUTTONS --- */
         .btn-wrapper {
             margin: 2.5rem 0;
@@ -398,7 +376,7 @@
         }
 
         .btn-wrapper.left {
-            text-align: left;
+            text-align: center;
             margin: 2rem 0;
         }
 
@@ -587,7 +565,7 @@
             font-family: var(--font-head);
             font-size: 4rem;
             font-weight: 800;
-            color: rgba(255, 184, 0, 0.15);
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1;
             margin-bottom: 1rem;
         }
@@ -941,88 +919,6 @@
             border: none;
         }
 
-        /* --- IMAGE GALLERY --- */
-        .gallery-section {
-            padding: 5rem 0;
-        }
-
-        .gallery-section h2 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .gallery-item {
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-            aspect-ratio: 4 / 3;
-            background:
-                radial-gradient(ellipse at center, rgba(100, 20, 70, 0.2) 0%, transparent 70%),
-                rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .gallery-item:hover {
-            border-color: rgba(255, 184, 0, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .gallery-item .placeholder-icon {
-            font-size: 3rem;
-            opacity: 0.3;
-        }
-
-        .gallery-item .placeholder-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 0.8rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        .gallery-item.featured-img {
-            grid-column: span 2;
-            grid-row: span 2;
-            aspect-ratio: auto;
-        }
-
-        @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .gallery-item.featured-img {
-                grid-column: span 2;
-                grid-row: span 1;
-                aspect-ratio: 16 / 9;
-            }
-        }
-
         /* --- FINAL CTA & OPT-IN --- */
         .final-cta {
             padding: 5rem 0 6rem;
@@ -1284,15 +1180,7 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2.5rem;
-            }
-            .hero-subtitle { margin: 0 auto 2rem; }
-            .hero-stats { justify-content: center; }
-            .btn-wrapper.left { text-align: center; }
-            .hero-glass-card { text-align: left; }
+            .hero-stats { flex-wrap: wrap; }
             .pricing-grid {
                 grid-template-columns: 1fr;
                 max-width: 450px;
@@ -1348,7 +1236,7 @@
     <main>
         <!-- HERO -->
         <section class="hero">
-            <div class="container-wide hero-grid">
+            <div class="container-wide">
                 <div class="hero-content">
                     <div class="eyebrow-badge">
                         <span class="pulse-dot"></span>
@@ -1360,7 +1248,7 @@
                         Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.
                     </p>
 
-                    <div class="btn-wrapper left">
+                    <div class="btn-wrapper">
                         <a href="#optin" class="btn">DROP YOUR RECORD NOW</a>
                         <span class="btn-subtext">Limited slots available &mdash; serious artists only</span>
                     </div>
@@ -1380,22 +1268,21 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="hero-visual">
-                    <div class="hero-glass-card sales-letter-text">
-                        <p>
-                            For most artists, the problem isn't making music.<br>
-                            It's getting the music into the rooms where records actually break.
-                        </p>
-                        <p>
-                            With thousands of new releases dropping every day and everyone promoting on social media, the noise is overwhelming. <strong>We filter through the madness.</strong> We distill it down into a curated "playlist" of real-world impact: <span class="text-yellow">club play, mix shows, pop-up events, DJ recommendations, and more.</span>
-                        </p>
-                        <p>
-                            <span class="highlight">Streams alone don't build culture. DJs do.</span>
-                        </p>
-                        <p>
-                            Digiwaxx connects your record to the DJs, platforms, and communities that still move music.
-                        </p>
+        <!-- VIDEO SECTION (Right under hero) -->
+        <section class="video-section" id="video">
+            <div class="container">
+                <h2 class="text-yellow">SEE DIGIWAXX IN ACTION</h2>
+                <p class="video-subtitle">Watch how we connect independent artists with the DJs who break records.</p>
+                <div class="video-wrapper">
+                    <!-- Replace with: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+                    <div class="video-placeholder" id="videoPlaceholder">
+                        <div class="play-btn-circle">
+                            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        </div>
+                        <p>Video Coming Soon</p>
                     </div>
                 </div>
             </div>
@@ -1477,24 +1364,6 @@
                         <div class="step-icon">&#127911;</div>
                         <h3>DJs SPIN YOUR TRACK</h3>
                         <p>Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- VIDEO SECTION -->
-        <section class="video-section" id="video">
-            <div class="container">
-                <h2 class="text-yellow">SEE DIGIWAXX IN ACTION</h2>
-                <p class="video-subtitle">Watch how we connect independent artists with the DJs who break records.</p>
-                <div class="video-wrapper">
-                    <!-- Replace the placeholder below with your YouTube/Vimeo embed -->
-                    <!-- Example: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
-                    <div class="video-placeholder" id="videoPlaceholder">
-                        <div class="play-btn-circle">
-                            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                        </div>
-                        <p>Video Coming Soon</p>
                     </div>
                 </div>
             </div>
@@ -1584,40 +1453,6 @@
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </section>
-
-        <!-- IMAGE GALLERY -->
-        <section class="gallery-section">
-            <div class="container-wide">
-                <h2 class="text-yellow text-center">THE DIGIWAXX NETWORK</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item featured-img animate-in">
-                        <!-- Replace with: <img src="images/dj-booth.jpg" alt="DJ spinning at event"> -->
-                        <span class="placeholder-icon">&#127911;</span>
-                        <span class="placeholder-label">DJ Booth / Live Event</span>
-                    </div>
-                    <div class="gallery-item animate-in">
-                        <!-- Replace with: <img src="images/studio.jpg" alt="Studio session"> -->
-                        <span class="placeholder-icon">&#127908;</span>
-                        <span class="placeholder-label">Studio Session</span>
-                    </div>
-                    <div class="gallery-item animate-in">
-                        <!-- Replace with: <img src="images/radio.jpg" alt="Radio station"> -->
-                        <span class="placeholder-icon">&#128251;</span>
-                        <span class="placeholder-label">Radio Rotation</span>
-                    </div>
-                    <div class="gallery-item animate-in">
-                        <!-- Replace with: <img src="images/club.jpg" alt="Club night"> -->
-                        <span class="placeholder-icon">&#127926;</span>
-                        <span class="placeholder-label">Club Night</span>
-                    </div>
-                    <div class="gallery-item animate-in">
-                        <!-- Replace with: <img src="images/community.jpg" alt="DJ community"> -->
-                        <span class="placeholder-icon">&#127775;</span>
-                        <span class="placeholder-label">DJ Community</span>
-                    </div>
                 </div>
             </div>
         </section>
