@@ -3,61 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGIWAXX | New Music Boost Funnel</title>
-    
+    <title>DIGIWAXX | New Music Boost — Get Your Record to DJs</title>
+    <meta name="description" content="Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Spotify playlists, radio rotation, and more.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,700&family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
     <style>
         /* --- CSS VARIABLES & THEME --- */
         :root {
-            --bg-dark: #12000e;
-            --bg-light: #3a0025;
+            --bg-dark: #1a0a1a;
+            --bg-mid: #3d0f2b;
+            --bg-light: #6b1845;
             --accent-yellow: #FFB800;
-            --accent-yellow-hover: #e6a600;
+            --accent-yellow-hover: #FFD54F;
+            --accent-gold: #D4A017;
             --text-white: #FFFFFF;
+            --text-muted: rgba(255,255,255,0.6);
             --dot-pink: #D81B60;
             --font-head: 'Barlow Condensed', sans-serif;
             --font-body: 'DM Sans', sans-serif;
-            --card-bg: rgba(20, 0, 15, 0.85);
-            --border-glow: rgba(255, 184, 0, 0.5);
-            --funnel-width: 900px; 
+            --card-bg: rgba(30, 8, 25, 0.8);
+            --border-glow: rgba(255, 184, 0, 0.4);
             --max-width: 1200px;
+            --funnel-width: 900px;
         }
 
-        /* --- GLOBAL RESETS & TYPOGRAPHY --- */
-        * {
+        /* --- GLOBAL RESETS --- */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background: #1A0015;
-            background-image: radial-gradient(circle at top center, var(--bg-light) 0%, var(--bg-dark) 100%);
-            background-attachment: fixed;
+            background: var(--bg-dark);
             color: var(--text-white);
             font-family: var(--font-body);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Rich magenta/purple cityscape background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                /* Top purple/magenta light streaks */
+                radial-gradient(ellipse at 30% -10%, rgba(180, 40, 120, 0.7) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% -5%, rgba(140, 30, 90, 0.6) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 0%, rgba(200, 50, 140, 0.5) 0%, transparent 40%),
+                /* Mid-section warm purple glow */
+                radial-gradient(ellipse at 20% 40%, rgba(120, 20, 80, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(100, 15, 70, 0.5) 0%, transparent 50%),
+                /* Center bright magenta wash */
+                radial-gradient(ellipse at 50% 30%, rgba(160, 30, 100, 0.4) 0%, transparent 60%),
+                /* Bottom darker gradient for depth */
+                linear-gradient(180deg,
+                    rgba(100, 20, 65, 0.9) 0%,
+                    rgba(70, 15, 50, 0.95) 30%,
+                    rgba(40, 10, 35, 1) 60%,
+                    rgba(20, 5, 20, 1) 100%
+                );
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Animated light streak overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 80%;
+            background:
+                radial-gradient(ellipse at 40% 50%, rgba(200, 60, 150, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 65% 40%, rgba(180, 40, 130, 0.12) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 60%, rgba(220, 80, 160, 0.08) 0%, transparent 55%);
+            z-index: -1;
+            pointer-events: none;
+            animation: bgShimmer 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgShimmer {
+            0% { opacity: 0.6; transform: translateY(0) scale(1); }
+            100% { opacity: 1; transform: translateY(20px) scale(1.02); }
         }
 
         h1, h2, h3, h4, .font-head {
             font-family: var(--font-head);
             text-transform: uppercase;
             font-weight: 700;
-            line-height: 1.1;
+            line-height: 1.05;
         }
+
+        a { text-decoration: none; }
 
         .text-yellow { color: var(--accent-yellow); }
         .text-white { color: var(--text-white); }
+        .text-muted { color: var(--text-muted); }
         .italic { font-style: italic; }
         .bold { font-weight: 700; }
         .text-center { text-align: center; }
-        .highlight { background-color: var(--accent-yellow); color: var(--bg-dark); padding: 0 10px; display: inline-block; }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--accent-yellow), #FFD54F);
+            color: var(--bg-dark);
+            padding: 2px 12px;
+            display: inline-block;
+            font-weight: 700;
+        }
 
         .container {
             max-width: var(--funnel-width);
@@ -71,9 +136,7 @@
             padding: 0 2rem;
         }
 
-        section {
-            padding: 4rem 0;
-        }
+        section { padding: 5rem 0; }
 
         /* --- ANIMATIONS --- */
         @keyframes pulse {
@@ -82,17 +145,70 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 184, 0, 0); }
         }
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 184, 0, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(255, 184, 0, 0.4); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- NAVBAR --- */
         .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(26, 10, 26, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0 2rem;
+            background: rgba(26, 10, 26, 0.95);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+
+        .navbar-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 100;
+            height: 72px;
         }
 
         .nav-logo {
@@ -102,83 +218,223 @@
             text-decoration: none;
         }
 
-        .nav-logo svg {
-            width: 45px;
-            height: auto;
-        }
+        .nav-logo svg { width: 42px; height: auto; }
 
         .nav-logo span {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--text-white);
-            letter-spacing: 1px;
-            margin-top: 4px;
+            letter-spacing: 2px;
+            margin-top: 2px;
         }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: var(--text-white); }
 
         .nav-btn {
             font-family: var(--font-body);
             font-weight: 700;
-            color: var(--accent-yellow);
-            border: 2px solid var(--accent-yellow);
+            color: var(--bg-dark);
+            background: var(--accent-yellow);
             padding: 0.6rem 1.5rem;
             border-radius: 6px;
-            text-decoration: none;
             text-transform: uppercase;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
         }
 
         .nav-btn:hover {
-            background: var(--accent-yellow);
-            color: var(--bg-dark);
-            box-shadow: 0 0 15px rgba(255, 184, 0, 0.4);
+            background: var(--accent-yellow-hover);
+            box-shadow: 0 0 20px rgba(255, 184, 0, 0.4);
+            transform: translateY(-1px);
         }
 
-        /* --- BUTTONS (FUNNEL STYLE) --- */
+        /* --- HERO --- */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 184, 0, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content { animation: slideInLeft 0.8s ease forwards; }
+        .hero-visual { animation: slideInRight 0.8s ease 0.2s forwards; opacity: 0; }
+
+        .eyebrow-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 184, 0, 0.08);
+            border: 1px solid rgba(255, 184, 0, 0.25);
+            color: var(--accent-yellow);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .eyebrow-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h3 {
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            margin-bottom: 0.5rem;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 7.5vw, 6.5rem);
+            margin-bottom: 1rem;
+            line-height: 0.9;
+            text-shadow: 0 4px 30px rgba(255, 184, 0, 0.3);
+            font-weight: 800;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 480px;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat .number {
+            font-family: var(--font-head);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            line-height: 1;
+        }
+
+        .hero-stat .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .hero-glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 4px solid var(--accent-yellow);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            animation: glowPulse 4s ease infinite;
+        }
+
+        .sales-letter-text {
+            font-size: 1.1rem;
+            text-align: left;
+            line-height: 1.8;
+        }
+
+        .sales-letter-text p { margin-bottom: 1rem; }
+        .sales-letter-text p:last-child { margin-bottom: 0; }
+
+        /* --- CTA BUTTONS --- */
         .btn-wrapper {
-            margin: 3rem 0;
+            margin: 2.5rem 0;
             text-align: center;
         }
-        
+
         .btn-wrapper.left {
             text-align: left;
-            margin: 2.5rem 0;
+            margin: 2rem 0;
         }
 
         .btn {
             display: inline-block;
-            background: linear-gradient(to bottom, #FFE066, var(--accent-yellow));
+            background: linear-gradient(180deg, #FFE066 0%, var(--accent-yellow) 100%);
             color: var(--bg-dark);
             font-family: var(--font-head);
-            font-weight: 700;
-            font-size: 2rem;
+            font-weight: 800;
+            font-size: 1.8rem;
             text-transform: uppercase;
-            padding: 1.2rem 3rem;
-            border: 2px solid #FFF;
+            padding: 1.1rem 2.5rem;
+            border: 2px solid rgba(255,255,255,0.3);
             border-radius: 8px;
             cursor: pointer;
-            text-decoration: none;
             transition: all 0.2s ease;
             text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 -3px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4), inset 0 -3px 0 rgba(0,0,0,0.15);
             animation: pulse 2.5s infinite;
-            width: 100%;
-            max-width: 600px;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
-            background: linear-gradient(to bottom, #FFF0B3, #FFE066);
+            background: linear-gradient(180deg, #FFF0B3, #FFE066);
             transform: translateY(-2px) scale(1.02);
             animation: none;
+            box-shadow: 0 12px 35px rgba(255, 184, 0, 0.3);
         }
 
         .btn-subtext {
             display: block;
             font-family: var(--font-body);
-            font-size: 1rem;
-            font-weight: 700;
-            margin-top: 0.5rem;
-            color: var(--text-white);
-            text-shadow: 1px 1px 2px #000;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 0.6rem;
+            color: var(--text-muted);
         }
 
         /* --- CUSTOM BULLETS --- */
@@ -186,353 +442,743 @@
             list-style: none;
             margin-bottom: 1.5rem;
         }
-        
+
         ul.custom-bullets li {
             position: relative;
             padding-left: 2.5rem;
             margin-bottom: 1rem;
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
         }
-        
+
         ul.custom-bullets li::before {
             content: '✔';
             color: var(--accent-yellow);
             position: absolute;
             left: 0;
             top: -2px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             line-height: 1.2;
         }
 
-        /* --- HERO (MODERN SPLIT VSL STYLE) --- */
-        .hero {
-            padding-top: 4rem;
-            padding-bottom: 4rem;
+        /* --- SOCIAL PROOF BAR --- */
+        .proof-bar {
+            background: rgba(100, 20, 70, 0.2);
+            border-top: 1px solid rgba(200, 50, 140, 0.15);
+            border-bottom: 1px solid rgba(200, 50, 140, 0.15);
+            padding: 1.5rem 0;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 4rem;
+        .proof-bar-inner {
+            display: flex;
+            justify-content: center;
             align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
         }
 
-        .eyebrow-badge {
-            display: inline-flex;
+        .proof-item {
+            display: flex;
             align-items: center;
-            background: rgba(255, 184, 0, 0.1);
-            border: 1px solid rgba(255, 184, 0, 0.3);
-            color: var(--accent-yellow);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-family: var(--font-body);
+            gap: 10px;
+            font-size: 0.95rem;
             font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .hero h3 {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            color: rgba(255,255,255,0.7);
             letter-spacing: 0.5px;
         }
 
-        .hero h1 {
-            font-size: clamp(4rem, 8vw, 6.5rem);
-            margin-bottom: 1.5rem;
-            line-height: 0.9;
-            text-shadow: 0 4px 30px rgba(255, 184, 0, 0.3);
+        .proof-item .icon {
+            font-size: 1.4rem;
         }
 
-        .hero-glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-left: 4px solid var(--accent-yellow);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        .sales-letter-text {
-            font-size: 1.2rem;
-            text-align: left;
-            line-height: 1.7;
-        }
-
-        .sales-letter-text p {
-            margin-bottom: 1rem;
-        }
-
-        .sales-letter-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* --- PROBLEM & SOLUTION BOXES --- */
+        /* --- PROBLEM / SOLUTION SECTIONS --- */
         .funnel-box {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             border: 2px solid;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 3rem;
             margin-bottom: 3rem;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.6);
             position: relative;
+            overflow: hidden;
+        }
+
+        .funnel-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
         }
 
         .funnel-box.problem {
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .funnel-box.problem::before {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
         }
 
         .funnel-box.solution {
-            border-color: var(--accent-yellow);
-            box-shadow: 0 15px 40px var(--border-glow);
+            border-color: rgba(255, 184, 0, 0.4);
+        }
+
+        .funnel-box.solution::before {
+            background: linear-gradient(90deg, transparent, var(--accent-yellow), transparent);
         }
 
         .box-header {
             font-size: 3.5rem;
             text-align: center;
             margin-bottom: 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
             padding-bottom: 1rem;
         }
 
         .intro-line {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 2rem;
             text-align: center;
+            line-height: 1.6;
         }
 
         .closing-line {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-top: 2rem;
             text-align: center;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.08);
         }
 
-        /* --- PRICING TABLES (FUNNEL STACK) --- */
-        .pricing-section {
-            background: rgba(0,0,0,0.4);
+        /* --- HOW IT WORKS --- */
+        .how-it-works {
             padding: 5rem 0;
-            margin: 2rem 0;
-            border-top: 2px dashed rgba(255,184,0,0.3);
-            border-bottom: 2px dashed rgba(255,184,0,0.3);
+        }
+
+        .how-it-works h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 184, 0, 0.3);
+        }
+
+        .step-number {
+            font-family: var(--font-head);
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255, 184, 0, 0.15);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-yellow);
+        }
+
+        .step-card p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- PRICING --- */
+        .pricing-section {
+            background: linear-gradient(180deg, rgba(40, 10, 30, 0.6) 0%, rgba(20, 5, 18, 0.5) 100%);
+            padding: 5rem 0;
+            border-top: 1px solid rgba(255, 184, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 184, 0, 0.15);
+            position: relative;
         }
 
         .pricing-section h2 {
-            font-size: clamp(3rem, 6vw, 4.5rem);
-            margin-bottom: 3rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .pricing-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
         }
 
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
+            align-items: stretch;
         }
 
         .pricing-card {
-            background-color: #ffffff10;
-            border: 2px solid rgba(255, 184, 0, 0.3);
-            border-radius: 8px;
-            padding: 2rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        /* Highlight the middle tier for conversions */
-        .pricing-card:nth-child(2) {
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 184, 0, 0.3);
+        }
+
+        .pricing-card.featured {
             border-color: var(--accent-yellow);
-            background-color: rgba(255, 184, 0, 0.05);
+            background: rgba(255, 184, 0, 0.04);
             transform: scale(1.05);
-            box-shadow: 0 10px 30px var(--border-glow);
+            box-shadow: 0 15px 40px rgba(255, 184, 0, 0.15);
             z-index: 2;
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-4px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent-yellow), #FFD54F);
+            color: var(--bg-dark);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 6px 20px;
+            border-radius: 50px;
+            letter-spacing: 1.5px;
         }
 
         .card-header {
             text-align: center;
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 1rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .card-header h3 {
-            font-size: 3rem;
-            margin-bottom: 0;
-            line-height: 1;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 3px;
+            font-weight: 600;
         }
 
         .card-header .price {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-family: var(--font-head);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-weight: 800;
             color: #FFF;
+            line-height: 1;
+        }
+
+        .card-header .price-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
         .card-header .tagline {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             background: var(--accent-yellow);
             color: #000;
             display: inline-block;
-            padding: 2px 10px;
+            padding: 3px 14px;
             border-radius: 4px;
-            margin-top: 10px;
+            margin-top: 12px;
+            font-weight: 700;
         }
 
         .card-body p {
             margin-bottom: 1.5rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-align: center;
-            font-weight: 700;
-            min-height: 48px;
+            font-weight: 500;
+            color: var(--text-muted);
+            min-height: 44px;
         }
 
         .pricing-card ul.custom-bullets li {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             padding-left: 1.8rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.7rem;
+            font-weight: 500;
         }
 
         .pricing-card ul.custom-bullets li::before {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             top: -1px;
         }
 
-        .pricing-card .btn-small {
-            background: var(--accent-yellow);
-            color: #000;
+        .pricing-card .btn-buy {
+            background: linear-gradient(180deg, #FFE066 0%, var(--accent-yellow) 100%);
+            color: var(--bg-dark);
             font-family: var(--font-head);
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             text-transform: uppercase;
-            padding: 0.8rem;
+            padding: 0.9rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             text-align: center;
             text-decoration: none;
             margin-top: auto;
             display: block;
             width: 100%;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .pricing-card:nth-child(2) .btn-small {
-            animation: pulse 2s infinite;
+        .pricing-card .btn-buy:hover {
+            background: linear-gradient(180deg, #FFF0B3, #FFE066);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 184, 0, 0.3);
         }
 
-        /* --- SOCIAL PROOF BADGE --- */
+        .pricing-card.featured .btn-buy {
+            animation: pulse 2.5s infinite;
+        }
+
+        .pricing-card.featured .btn-buy:hover {
+            animation: none;
+        }
+
+        .paypal-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .paypal-note svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* --- TRUST / SOCIAL PROOF SECTION --- */
+        .trust-section {
+            padding: 5rem 0;
+        }
+
         .trust-badge {
-            background: linear-gradient(135deg, #111, #222);
-            border: 1px solid #444;
-            border-radius: 10px;
-            padding: 3rem;
-            margin: 2rem auto;
-            max-width: 800px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            background: linear-gradient(135deg, rgba(20,0,15,0.9), rgba(30,5,20,0.9));
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            border-radius: 16px;
+            padding: 3.5rem;
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-badge::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-yellow), transparent);
         }
 
         .trust-badge h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
             color: var(--accent-yellow);
         }
 
         .trust-badge p {
-            font-size: 1.35rem;
-            font-weight: 700;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .trust-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            flex-wrap: wrap;
+        }
+
+        .trust-stat {
+            text-align: center;
+        }
+
+        .trust-stat .number {
+            font-family: var(--font-head);
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            line-height: 1;
+        }
+
+        .trust-stat .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+
+        /* --- VIDEO SECTION --- */
+        .video-section {
+            padding: 5rem 0;
+        }
+
+        .video-section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .video-section .video-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .video-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 184, 0, 0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(200, 50, 140, 0.1);
+            position: relative;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .video-placeholder {
+            aspect-ratio: 16 / 9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            background:
+                radial-gradient(ellipse at center, rgba(100, 20, 70, 0.3) 0%, transparent 70%),
+                rgba(0,0,0,0.6);
+        }
+
+        .play-btn-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 184, 0, 0.15);
+            border: 2px solid var(--accent-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: pulse 3s infinite;
+        }
+
+        .play-btn-circle:hover {
+            background: rgba(255, 184, 0, 0.3);
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        .play-btn-circle svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--accent-yellow);
+            margin-left: 4px;
+        }
+
+        .video-placeholder p {
+            font-family: var(--font-head);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        /* When video is embedded */
+        .video-wrapper iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: block;
+            border: none;
+        }
+
+        /* --- IMAGE GALLERY --- */
+        .gallery-section {
+            padding: 5rem 0;
+        }
+
+        .gallery-section h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            aspect-ratio: 4 / 3;
+            background:
+                radial-gradient(ellipse at center, rgba(100, 20, 70, 0.2) 0%, transparent 70%),
+                rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            border-color: rgba(255, 184, 0, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item .placeholder-icon {
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        .gallery-item .placeholder-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.8rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .gallery-item.featured-img {
+            grid-column: span 2;
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-item.featured-img {
+                grid-column: span 2;
+                grid-row: span 1;
+                aspect-ratio: 16 / 9;
+            }
         }
 
         /* --- FINAL CTA & OPT-IN --- */
         .final-cta {
-            padding-bottom: 6rem;
+            padding: 5rem 0 6rem;
         }
 
         .final-cta h2 {
-            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-size: clamp(3rem, 7vw, 5rem);
             margin-bottom: 1rem;
-            line-height: 0.9;
+            line-height: 0.95;
         }
 
         .final-cta p {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
+            color: rgba(255,255,255,0.85);
         }
 
-        /* Order Bump / Opt-in Form Style */
         .opt-in-box {
             max-width: 600px;
             margin: 3rem auto 0;
-            background: #FFF;
+            background: linear-gradient(135deg, var(--accent-yellow), #FFD54F);
             padding: 3px;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(255, 184, 0, 0.1);
         }
 
         .opt-in-inner {
             background: var(--bg-dark);
             padding: 3rem 2rem;
-            border-radius: 10px;
-            border: 1px dashed rgba(255,255,255,0.3);
+            border-radius: 14px;
             text-align: left;
         }
 
-        .opt-in-inner p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+        .opt-in-inner .form-header {
             text-align: center;
+            margin-bottom: 1.5rem;
         }
 
-        .form-group {
-            margin-bottom: 1.2rem;
+        .opt-in-inner .form-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-yellow);
         }
+
+        .opt-in-inner .form-header p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .form-group { margin-bottom: 1rem; }
 
         .form-control {
             width: 100%;
-            padding: 1.2rem;
-            background: #FFF;
-            border: none;
-            border-radius: 4px;
+            padding: 1rem 1.2rem;
+            background: rgba(255,255,255,0.95);
+            border: 2px solid transparent;
+            border-radius: 8px;
             color: #000;
             font-family: var(--font-body);
-            font-size: 1.1rem;
-            font-weight: 700;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
         }
 
         .form-control::placeholder {
-            color: #888;
+            color: #999;
             font-weight: 400;
         }
 
+        /* Tier selector in form */
+        .tier-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tier-option {
+            position: relative;
+        }
+
+        .tier-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .tier-option label {
+            display: block;
+            text-align: center;
+            padding: 0.7rem 0.5rem;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+            color: var(--text-muted);
+        }
+
+        .tier-option label span {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            margin-top: 2px;
+            color: var(--text-muted);
+        }
+
+        .tier-option input:checked + label {
+            border-color: var(--accent-yellow);
+            background: rgba(255, 184, 0, 0.1);
+            color: var(--accent-yellow);
+        }
+
         .submit-btn {
-            background: linear-gradient(to bottom, #FFE066, var(--accent-yellow));
+            background: linear-gradient(180deg, #FFE066, var(--accent-yellow));
             color: #000;
             font-family: var(--font-head);
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             text-transform: uppercase;
             padding: 1rem;
             width: 100%;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 4px 0 #CC9200;
-            margin-top: 1rem;
-            transition: transform 0.1s;
+            box-shadow: 0 4px 0 #CC9200, 0 8px 20px rgba(0,0,0,0.3);
+            margin-top: 0.5rem;
+            transition: all 0.15s;
+            letter-spacing: 1px;
         }
-        
+
+        .submit-btn:hover {
+            background: linear-gradient(180deg, #FFF0B3, #FFE066);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #CC9200, 0 12px 25px rgba(0,0,0,0.3);
+        }
+
         .submit-btn:active {
             transform: translateY(4px);
             box-shadow: 0 0 0 #CC9200;
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
         }
 
         /* --- DOT DIVIDER --- */
@@ -541,76 +1187,148 @@
             justify-content: center;
             align-items: center;
             gap: 15px;
-            margin: 4rem 0;
+            margin: 3rem 0;
         }
 
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
         .dot.yellow { background-color: var(--accent-yellow); }
         .dot.pink { background-color: var(--dot-pink); }
 
-        /* --- RESPONSIVE DESIGN --- */
+        /* --- FOOTER --- */
+        .footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(200, 50, 140, 0.15);
+            background: rgba(20, 5, 18, 0.6);
+        }
+
+        .footer p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- SUCCESS MODAL --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background: var(--bg-dark);
+            border: 2px solid var(--accent-yellow);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .modal-content h2 {
+            font-size: 2.5rem;
+            color: var(--accent-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal-close {
+            background: var(--accent-yellow);
+            color: var(--bg-dark);
+            border: none;
+            font-family: var(--font-head);
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--accent-yellow-hover);
+        }
+
+        /* --- TOAST NOTIFICATION --- */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-yellow);
+            color: var(--bg-dark);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            z-index: 3000;
+            transform: translateY(120%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .toast.show { transform: translateY(0); }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             .hero-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
-                gap: 2rem;
+                gap: 2.5rem;
             }
-            .btn-wrapper.left {
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero-glass-card {
-                text-align: left;
-            }
+            .hero-subtitle { margin: 0 auto 2rem; }
+            .hero-stats { justify-content: center; }
+            .btn-wrapper.left { text-align: center; }
+            .hero-glass-card { text-align: left; }
             .pricing-grid {
                 grid-template-columns: 1fr;
-                max-width: 500px;
+                max-width: 450px;
                 margin: 0 auto;
                 gap: 2rem;
             }
-            .pricing-card:nth-child(2) {
-                transform: scale(1);
-            }
+            .pricing-card.featured { transform: scale(1); }
+            .pricing-card.featured:hover { transform: translateY(-4px); }
+            .steps-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
         }
 
         @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-            .nav-logo svg {
-                width: 35px;
-            }
-            .nav-logo span {
-                font-size: 1.5rem;
-            }
-            .nav-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.85rem;
-            }
-            .funnel-box {
-                padding: 2rem 1.5rem;
-            }
-            .hero-glass-card {
-                padding: 1.5rem;
-                font-size: 1.1rem;
-            }
-            .btn {
-                font-size: 1.5rem;
-                padding: 1rem 1.5rem;
-            }
-            ul.custom-bullets li {
-                font-size: 1.1rem;
-            }
+            .navbar { padding: 0 1rem; }
+            .navbar-inner { height: 60px; }
+            .nav-logo svg { width: 32px; }
+            .nav-logo span { font-size: 1.4rem; }
+            .nav-links .nav-link { display: none; }
+            .nav-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+            section { padding: 3.5rem 0; }
+            .hero { padding-top: 90px; }
+            .funnel-box { padding: 2rem 1.5rem; }
+            .hero-glass-card { padding: 1.5rem; }
+            .btn { font-size: 1.4rem; padding: 1rem 1.5rem; }
+            ul.custom-bullets li { font-size: 1.05rem; }
+            .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+            .proof-bar-inner { gap: 1.5rem; }
+            .trust-stats { gap: 2rem; }
+            .tier-selector { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- GLOBAL NAVBAR -->
-    <header class="navbar">
-        <div class="container-wide" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <!-- NAVBAR (Fixed) -->
+    <header class="navbar" id="navbar">
+        <div class="navbar-inner">
             <a href="#" class="nav-logo">
                 <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
                     <path d="M 40 85 A 60 60 0 0 1 160 85" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
@@ -621,29 +1339,48 @@
                 <span class="font-head italic">DIGIWAXX</span>
             </a>
             <div class="nav-links">
-                <a href="#optin" class="nav-btn">Join The Network</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#optin" class="nav-btn">Get Started</a>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- SECTION 1: HERO (MODERN SPLIT LAYOUT) -->
+        <!-- HERO -->
         <section class="hero">
             <div class="container-wide hero-grid">
-                
-                <!-- Left Column: Headlines & CTA -->
                 <div class="hero-content">
-                    <div class="eyebrow-badge">🔥 The New Music Boost</div>
-                    <h3 class="text-white bold">YOUR RECORD DESERVES MORE THAN STREAMS.</h3>
-                    <h1 class="text-yellow">IT DESERVES DJs.</h1>
-                    
+                    <div class="eyebrow-badge">
+                        <span class="pulse-dot"></span>
+                        The New Music Boost
+                    </div>
+                    <h3 class="text-white">YOUR RECORD DESERVES MORE THAN STREAMS.</h3>
+                    <h1 class="text-yellow">IT DESERVES<br>DJs.</h1>
+                    <p class="hero-subtitle">
+                        Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.
+                    </p>
+
                     <div class="btn-wrapper left">
                         <a href="#optin" class="btn">DROP YOUR RECORD NOW</a>
-                        <span class="btn-subtext">Click here to secure your spot today</span>
+                        <span class="btn-subtext">Limited slots available &mdash; serious artists only</span>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="number">30K+</div>
+                            <div class="label">DJs Worldwide</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="number">1998</div>
+                            <div class="label">Est. Year</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="number">500+</div>
+                            <div class="label">Records Pushed</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Right Column: Glass Card Sales Copy -->
                 <div class="hero-visual">
                     <div class="hero-glass-card sales-letter-text">
                         <p>
@@ -651,7 +1388,7 @@
                             It's getting the music into the rooms where records actually break.
                         </p>
                         <p>
-                            With thousands of new releases dropping every day and everyone constantly promoting on social media, the noise is overwhelming. <strong>We filter through the madness.</strong> We distill it down into a highly curated, small "playlist" of real-world impact in the form of <span class="text-yellow">club play, mix shows, pop-up events, DJ recommendations, and more.</span>
+                            With thousands of new releases dropping every day and everyone promoting on social media, the noise is overwhelming. <strong>We filter through the madness.</strong> We distill it down into a curated "playlist" of real-world impact: <span class="text-yellow">club play, mix shows, pop-up events, DJ recommendations, and more.</span>
                         </p>
                         <p>
                             <span class="highlight">Streams alone don't build culture. DJs do.</span>
@@ -661,16 +1398,25 @@
                         </p>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- SECTIONS 2: THE PROBLEM -->
+        <!-- SOCIAL PROOF BAR -->
+        <div class="proof-bar">
+            <div class="container-wide proof-bar-inner">
+                <div class="proof-item"><span class="icon">&#127911;</span> Record Pool Distribution</div>
+                <div class="proof-item"><span class="icon">&#128251;</span> Radio Rotation</div>
+                <div class="proof-item"><span class="icon">&#127926;</span> Spotify Playlists</div>
+                <div class="proof-item"><span class="icon">&#127775;</span> DJ Network Access</div>
+            </div>
+        </div>
+
+        <!-- THE PROBLEM -->
         <section class="container">
-            <div class="funnel-box problem">
+            <div class="funnel-box problem animate-in">
                 <h2 class="text-yellow box-header">THE PROBLEM</h2>
                 <p class="text-white bold intro-line">Most independent releases die before they ever reach the people who break records.</p>
-                
+
                 <ul class="custom-bullets text-white">
                     <li>No reposts</li>
                     <li>No real community</li>
@@ -678,18 +1424,18 @@
                     <li>No access to DJs and curators</li>
                     <li>No industry co-sign or validation</li>
                 </ul>
-                
+
                 <p class="text-white italic closing-line">
                     You upload your song.<br>
                     <span class="text-yellow bold">Then it sits.</span>
                 </p>
             </div>
 
-            <!-- SECTIONS 3: THE SOLUTION -->
-            <div class="funnel-box solution">
+            <!-- THE SOLUTION -->
+            <div class="funnel-box solution animate-in">
                 <h2 class="text-yellow box-header">THE SOLUTION</h2>
                 <p class="text-white bold intro-line">Digiwaxx puts your record in front of DJs who actually break music.</p>
-                
+
                 <ul class="custom-bullets text-white">
                     <li>DJs that still move records</li>
                     <li>30,000+ Digiwaxx DJs worldwide</li>
@@ -697,7 +1443,7 @@
                     <li>Spotify playlist placement</li>
                     <li>Radio rotation opportunities</li>
                 </ul>
-                
+
                 <p class="text-white italic closing-line">
                     This isn't just promo.<br>
                     <span class="highlight bold">It's access to the ecosystem that launches records.</span>
@@ -705,25 +1451,72 @@
             </div>
 
             <div class="btn-wrapper">
-                <a href="#optin" class="btn">GET YOUR MUSIC HEARD NOW</a>
+                <a href="#pricing" class="btn">GET YOUR MUSIC HEARD NOW</a>
             </div>
         </section>
 
-        <!-- SECTION 4: PRICING (THE STACK) -->
-        <section class="pricing-section">
+        <!-- HOW IT WORKS -->
+        <section class="how-it-works">
+            <div class="container-wide">
+                <h2 class="text-yellow text-center">HOW IT WORKS</h2>
+                <div class="steps-grid">
+                    <div class="step-card animate-in">
+                        <div class="step-number">01</div>
+                        <div class="step-icon">&#127925;</div>
+                        <h3>SUBMIT YOUR RECORD</h3>
+                        <p>Fill out the form with your artist info and a link to your track. Choose your boost tier.</p>
+                    </div>
+                    <div class="step-card animate-in">
+                        <div class="step-number">02</div>
+                        <div class="step-icon">&#128640;</div>
+                        <h3>WE PUSH IT OUT</h3>
+                        <p>Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation.</p>
+                    </div>
+                    <div class="step-card animate-in">
+                        <div class="step-number">03</div>
+                        <div class="step-icon">&#127911;</div>
+                        <h3>DJs SPIN YOUR TRACK</h3>
+                        <p>Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO SECTION -->
+        <section class="video-section" id="video">
+            <div class="container">
+                <h2 class="text-yellow">SEE DIGIWAXX IN ACTION</h2>
+                <p class="video-subtitle">Watch how we connect independent artists with the DJs who break records.</p>
+                <div class="video-wrapper">
+                    <!-- Replace the placeholder below with your YouTube/Vimeo embed -->
+                    <!-- Example: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+                    <div class="video-placeholder" id="videoPlaceholder">
+                        <div class="play-btn-circle">
+                            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        </div>
+                        <p>Video Coming Soon</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section class="pricing-section" id="pricing">
             <div class="container-wide">
                 <h2 class="text-yellow text-center">CHOOSE YOUR BOOST</h2>
+                <p class="text-center pricing-subtitle">Select the tier that fits your goals. Every plan includes DJ network access.</p>
                 <div class="pricing-grid">
-                    
-                    <!-- Card 1: STARTER -->
-                    <div class="pricing-card">
+
+                    <!-- STARTER -->
+                    <div class="pricing-card animate-in">
                         <div class="card-header">
                             <h3 class="text-yellow">STARTER</h3>
                             <div class="price">$99</div>
+                            <div class="price-label">One-time payment</div>
                             <div class="tagline italic bold">Get In The System</div>
                         </div>
                         <div class="card-body">
-                            <p class="text-white">Perfect for artists who need their first real DJ push.</p>
+                            <p>Perfect for artists who need their first real DJ push.</p>
                             <ul class="custom-bullets text-white">
                                 <li>Record pool placement</li>
                                 <li>Spotify playlist placement</li>
@@ -732,45 +1525,62 @@
                                 <li>Official Digiwaxx.com artist coverage</li>
                                 <li>Artist spotlight write-up (SEO indexed)</li>
                             </ul>
-                            <a href="#optin" class="btn-small">Get Started</a>
+                            <a href="#" class="btn-buy" data-tier="starter" data-price="99" onclick="handlePayPalClick(event, 'Starter', 99)">PAY WITH PAYPAL &rarr;</a>
+                            <div class="paypal-note">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm0-8h2v6h-2V9z"/></svg>
+                                Secure PayPal checkout
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Card 2: PRO (HIGHLIGHTED) -->
-                    <div class="pricing-card">
+                    <!-- PRO (Featured) -->
+                    <div class="pricing-card featured animate-in">
+                        <div class="popular-badge">Most Popular</div>
                         <div class="card-header">
                             <h3 class="text-yellow">PRO</h3>
                             <div class="price">$149</div>
+                            <div class="price-label">One-time payment</div>
                             <div class="tagline italic bold">Turn The Lights On</div>
                         </div>
                         <div class="card-body">
-                            <p class="text-white">Everything in Starter, plus stronger visibility.</p>
+                            <p>Everything in Starter, plus stronger visibility.</p>
                             <ul class="custom-bullets text-white">
+                                <li>Everything in Starter</li>
                                 <li>IG feed post on Digiwaxx</li>
                                 <li>2 Instagram story placements</li>
                                 <li>Featured spin on DJ Call</li>
                                 <li>Live DJ mention</li>
                             </ul>
-                            <a href="#optin" class="btn-small">Get Started</a>
+                            <a href="#" class="btn-buy" data-tier="pro" data-price="149" onclick="handlePayPalClick(event, 'Pro', 149)">PAY WITH PAYPAL &rarr;</a>
+                            <div class="paypal-note">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm0-8h2v6h-2V9z"/></svg>
+                                Secure PayPal checkout
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Card 3: ELITE -->
-                    <div class="pricing-card">
+                    <!-- ELITE -->
+                    <div class="pricing-card animate-in">
                         <div class="card-header">
                             <h3 class="text-yellow">ELITE</h3>
                             <div class="price">$199</div>
+                            <div class="price-label">One-time payment</div>
                             <div class="tagline italic bold">Heavy Rotation Energy</div>
                         </div>
                         <div class="card-body">
-                            <p class="text-white">Everything in Pro, plus deeper industry exposure.</p>
+                            <p>Everything in Pro, plus deeper industry exposure.</p>
                             <ul class="custom-bullets text-white">
+                                <li>Everything in Pro</li>
                                 <li>One-on-one Zoom interview</li>
                                 <li>TikTok post on Digiwaxx</li>
                                 <li>Performance snapshot report</li>
                                 <li>Priority DJ call placement</li>
                             </ul>
-                            <a href="#optin" class="btn-small">Get Started</a>
+                            <a href="#" class="btn-buy" data-tier="elite" data-price="199" onclick="handlePayPalClick(event, 'Elite', 199)">PAY WITH PAYPAL &rarr;</a>
+                            <div class="paypal-note">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm0-8h2v6h-2V9z"/></svg>
+                                Secure PayPal checkout
+                            </div>
                         </div>
                     </div>
 
@@ -778,24 +1588,71 @@
             </div>
         </section>
 
-        <!-- SECTION 5: SOCIAL PROOF BADGE -->
-        <section class="text-center container">
-            <div class="trust-badge">
-                <h2 class="font-head">TRUSTED BY DJs SINCE 1998</h2>
-                <p class="text-white">
-                    Digiwaxx serves 30,000+ DJs worldwide across radio, clubs, and culture.<br>
-                    This isn't a random promo service.<br>
-                    <span class="text-yellow">It's a DJ ecosystem built for breaking records.</span>
-                </p>
+        <!-- IMAGE GALLERY -->
+        <section class="gallery-section">
+            <div class="container-wide">
+                <h2 class="text-yellow text-center">THE DIGIWAXX NETWORK</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item featured-img animate-in">
+                        <!-- Replace with: <img src="images/dj-booth.jpg" alt="DJ spinning at event"> -->
+                        <span class="placeholder-icon">&#127911;</span>
+                        <span class="placeholder-label">DJ Booth / Live Event</span>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <!-- Replace with: <img src="images/studio.jpg" alt="Studio session"> -->
+                        <span class="placeholder-icon">&#127908;</span>
+                        <span class="placeholder-label">Studio Session</span>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <!-- Replace with: <img src="images/radio.jpg" alt="Radio station"> -->
+                        <span class="placeholder-icon">&#128251;</span>
+                        <span class="placeholder-label">Radio Rotation</span>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <!-- Replace with: <img src="images/club.jpg" alt="Club night"> -->
+                        <span class="placeholder-icon">&#127926;</span>
+                        <span class="placeholder-label">Club Night</span>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <!-- Replace with: <img src="images/community.jpg" alt="DJ community"> -->
+                        <span class="placeholder-icon">&#127775;</span>
+                        <span class="placeholder-label">DJ Community</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- SECTION 6: FINAL CTA & OPT-IN FORM -->
+        <!-- TRUST SECTION -->
+        <section class="trust-section text-center">
+            <div class="container">
+                <div class="trust-badge animate-in">
+                    <h2 class="font-head">TRUSTED BY DJs SINCE 1998</h2>
+                    <p>
+                        Digiwaxx serves 30,000+ DJs worldwide across radio, clubs, and culture.<br>
+                        This isn't a random promo service.<br>
+                        <span class="text-yellow bold">It's a DJ ecosystem built for breaking records.</span>
+                    </p>
+                    <div class="trust-stats">
+                        <div class="trust-stat">
+                            <div class="number">30K+</div>
+                            <div class="label">Active DJs</div>
+                        </div>
+                        <div class="trust-stat">
+                            <div class="number">25+</div>
+                            <div class="label">Years Running</div>
+                        </div>
+                        <div class="trust-stat">
+                            <div class="number">100+</div>
+                            <div class="label">Radio Partners</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA & OPT-IN FORM -->
         <section class="final-cta text-center container" id="optin">
-            
             <div class="dot-divider">
-                <span class="dot yellow"></span>
-                <span class="dot pink"></span>
                 <span class="dot yellow"></span>
                 <span class="dot pink"></span>
                 <span class="dot yellow"></span>
@@ -804,39 +1661,208 @@
             </div>
 
             <h2 class="text-yellow">PUT YOUR RECORD IN THE RIGHT ROOM</h2>
-            <p class="text-white bold">
+            <p class="bold">
                 If your song is ready, it deserves to reach the DJs who matter.<br>
-                <span class="highlight">Limited slots are available. Serious artists only.</span>
+                <span class="highlight">Limited slots available. Serious artists only.</span>
             </p>
-            
+
             <div class="opt-in-box">
                 <div class="opt-in-inner">
-                    <p class="text-white">
-                        <span class="bold" style="font-size: 1.35rem; display: block; margin-bottom: 0.5rem;">Not ready to get started but you need honest feedback?</span>
-                        Or submit your record below and get your music into the Digiwaxx DJ network today.
-                    </p>
+                    <div class="form-header">
+                        <h3>SUBMIT YOUR RECORD</h3>
+                        <p>Get your music into the Digiwaxx DJ network today.</p>
+                    </div>
 
-                    <form onsubmit="event.preventDefault(); alert('Your record has been submitted!');">
+                    <form id="leadForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Artist Name" required>
+                            <input type="text" class="form-control" id="artistName" placeholder="Artist Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Song Title" required>
+                            <input type="text" class="form-control" id="songTitle" placeholder="Song Title" required>
                         </div>
                         <div class="form-group">
-                            <input type="url" class="form-control" placeholder="Link to the Record (Spotify, Apple, Soundcloud, etc.)" required>
+                            <input type="url" class="form-control" id="recordLink" placeholder="Link to the Record (Spotify, Apple, Soundcloud, etc.)" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email Address" required>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email Address" required>
                         </div>
+
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; text-align: center;">Select a tier (optional):</p>
+                        <div class="tier-selector">
+                            <div class="tier-option">
+                                <input type="radio" name="tier" id="tier-starter" value="starter">
+                                <label for="tier-starter">Starter <span>$99</span></label>
+                            </div>
+                            <div class="tier-option">
+                                <input type="radio" name="tier" id="tier-pro" value="pro" checked>
+                                <label for="tier-pro">Pro <span>$149</span></label>
+                            </div>
+                            <div class="tier-option">
+                                <input type="radio" name="tier" id="tier-elite" value="elite">
+                                <label for="tier-elite">Elite <span>$199</span></label>
+                            </div>
+                        </div>
+
                         <button type="submit" class="submit-btn">SUBMIT MY RECORD</button>
+                        <p class="form-note">We'll review your submission and follow up within 24 hours.</p>
                     </form>
                 </div>
             </div>
-            
         </section>
-
     </main>
 
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container-wide">
+            <p>&copy; 2026 Digiwaxx Media Group. All rights reserved. Trusted by DJs since 1998.</p>
+        </div>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <h2>RECORD SUBMITTED</h2>
+            <p>Your submission has been received. Our team will review your record and reach out within 24 hours.</p>
+            <p class="text-yellow bold">Ready to boost now? Choose a tier above to pay via PayPal and skip the line.</p>
+            <button class="modal-close" onclick="closeModal()">GOT IT</button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ============ NAVBAR SCROLL EFFECT ============
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ============ SCROLL ANIMATIONS ============
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+        // ============ TRACK PAGE VIEW ============
+        fetch('/api/pageview', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                page: window.location.pathname,
+                referrer: document.referrer || null
+            })
+        }).catch(() => {});
+
+        // ============ LEAD FORM SUBMISSION ============
+        let currentLeadId = null;
+
+        document.getElementById('leadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const data = {
+                artist_name: document.getElementById('artistName').value.trim(),
+                song_title: document.getElementById('songTitle').value.trim(),
+                record_link: document.getElementById('recordLink').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                selected_tier: document.querySelector('input[name="tier"]:checked')?.value || null
+            };
+
+            try {
+                const res = await fetch('/api/leads', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await res.json();
+
+                if (result.ok) {
+                    currentLeadId = result.lead_id;
+                    document.getElementById('leadForm').reset();
+                    document.getElementById('successModal').classList.add('active');
+                } else {
+                    showToast('Something went wrong. Please try again.');
+                }
+            } catch {
+                showToast('Network error. Please check your connection.');
+            }
+        });
+
+        // ============ PAYPAL CLICK HANDLER ============
+        function handlePayPalClick(event, tier, price) {
+            event.preventDefault();
+
+            // Track the click
+            fetch('/api/paypal-click', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    tier: tier.toLowerCase(),
+                    price: price,
+                    lead_id: currentLeadId
+                })
+            }).catch(() => {});
+
+            // Build PayPal invoice / payment link
+            const itemName = encodeURIComponent('Digiwaxx New Music Boost - ' + tier);
+            const paypalUrl = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick'
+                + '&business=' + encodeURIComponent('paypal@digiwaxx.com')
+                + '&amount=' + price
+                + '&item_name=' + itemName
+                + '&currency_code=USD'
+                + '&no_shipping=1'
+                + '&return=' + encodeURIComponent(window.location.origin + '?purchase=success&tier=' + tier.toLowerCase())
+                + '&cancel_return=' + encodeURIComponent(window.location.origin + '?purchase=cancelled');
+
+            window.open(paypalUrl, '_blank');
+            showToast('Redirecting to PayPal...');
+        }
+
+        // ============ CHECK FOR PURCHASE RETURN ============
+        (function checkPurchaseReturn() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('purchase') === 'success') {
+                const tier = params.get('tier') || 'unknown';
+                // Record the purchase
+                fetch('/api/purchases', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        lead_id: currentLeadId,
+                        tier: tier,
+                        price: tier === 'starter' ? 99 : tier === 'pro' ? 149 : tier === 'elite' ? 199 : 0,
+                        status: 'completed'
+                    })
+                }).catch(() => {});
+
+                showToast('Payment received! Thank you for choosing Digiwaxx.');
+                // Clean URL
+                window.history.replaceState({}, '', window.location.pathname);
+            }
+        })();
+
+        // ============ HELPERS ============
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        // Close modal on overlay click
+        document.getElementById('successModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+    </script>
 </body>
 </html>
