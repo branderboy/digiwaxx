@@ -186,7 +186,7 @@
 
         .admin-header h1 {
             font-size: 1.5rem;
-            color: var(--accent);
+            color: #fff;
             letter-spacing: 2px;
         }
 
@@ -708,31 +708,31 @@
 
             <!-- Design Panel -->
             <div class="panel" id="panel-design">
-                <h3 style="margin-bottom: 1rem; color: #ffd700;">Branding & Design</h3>
+                <h3 style="margin-bottom: 1rem; color: #fff;">Branding & Design</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">Control the look and feel of your landing page.</p>
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 700px;">
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Logo Image URL</label>
+                        <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Logo Image URL</label>
                         <input type="text" id="set-logo_url" class="settings-input" style="width: 100%;" placeholder="https://example.com/logo.png (leave empty for default SVG)">
                         <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Paste a URL to your logo image. Recommended: PNG with transparent background, at least 200px wide.</p>
                         <div id="logoPreview" style="margin-top: 0.5rem;"></div>
                     </div>
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Video URL (YouTube Embed)</label>
+                        <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Video URL (YouTube Embed)</label>
                         <input type="text" id="set-video_url" class="settings-input" style="width: 100%;" placeholder="https://www.youtube.com/embed/VIDEO_ID">
                         <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">YouTube embed URL. Right-click video → Copy embed code → paste just the URL from src="..."</p>
                     </div>
                     <hr style="border-color: #333;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Accent Color</label>
+                            <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Accent Color</label>
                             <div style="display: flex; align-items: center; gap: 0.5rem;">
                                 <input type="color" id="colorpicker-accent" value="#FFB800" style="width: 50px; height: 40px; border: none; cursor: pointer; background: none;">
                                 <input type="text" id="set-accent_color" class="settings-input" style="width: 120px;" value="#FFB800">
                             </div>
                         </div>
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Background Color</label>
+                            <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Background Color</label>
                             <div style="display: flex; align-items: center; gap: 0.5rem;">
                                 <input type="color" id="colorpicker-bg" value="#1a0a18" style="width: 50px; height: 40px; border: none; cursor: pointer; background: none;">
                                 <input type="text" id="set-bg_color" class="settings-input" style="width: 120px;" value="#1a0a18">
@@ -742,12 +742,12 @@
                     <hr style="border-color: #333;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Heading Font Size (%)</label>
+                            <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Heading Font Size (%)</label>
                             <input type="range" id="set-heading_font_size" min="50" max="150" value="100" style="width: 100%;" oninput="this.nextElementSibling.textContent = this.value + '%'">
                             <span style="color: #aaa; font-size: 0.85rem;">100%</span>
                         </div>
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Body Font Size (%)</label>
+                            <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Body Font Size (%)</label>
                             <input type="range" id="set-body_font_size" min="50" max="150" value="100" style="width: 100%;" oninput="this.nextElementSibling.textContent = this.value + '%'">
                             <span style="color: #aaa; font-size: 0.85rem;">100%</span>
                         </div>
@@ -758,21 +758,21 @@
 
             <!-- Meta / SEO Panel -->
             <div class="panel" id="panel-meta">
-                <h3 style="margin-bottom: 1rem; color: #ffd700;">Meta & SEO</h3>
+                <h3 style="margin-bottom: 1rem; color: #fff;">Meta & SEO</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">Control how your page appears in search results and social media shares.</p>
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 700px;">
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Page Title</label>
+                        <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Page Title</label>
                         <input type="text" id="set-meta_title" class="settings-input" style="width: 100%;" placeholder="DIGIWAXX | New Music Boost">
                         <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Shows in browser tab and search results. Keep under 60 characters.</p>
                     </div>
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Meta Description</label>
+                        <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Meta Description</label>
                         <textarea id="set-meta_description" class="settings-input" rows="3" style="width: 100%;" placeholder="Digiwaxx connects your music to 30,000+ DJs worldwide..."></textarea>
                         <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Shows in search results. Keep under 160 characters.</p>
                     </div>
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Social Share Image URL (OG Image)</label>
+                        <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Social Share Image URL (OG Image)</label>
                         <input type="text" id="set-og_image_url" class="settings-input" style="width: 100%;" placeholder="https://example.com/share-image.jpg">
                         <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Image shown when your page is shared on social media. Recommended: 1200x630px.</p>
                     </div>
@@ -782,19 +782,19 @@
 
             <!-- Pricing Panel -->
             <div class="panel" id="panel-pricing">
-                <h3 style="margin-bottom: 1rem; color: #ffd700;">Tier Pricing</h3>
+                <h3 style="margin-bottom: 1rem; color: #fff;">Tier Pricing</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">Change prices below. Updates will appear on the landing page immediately.</p>
                 <div id="pricingEditor" style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;"></div>
             </div>
 
             <!-- Content Panel -->
             <div class="panel" id="panel-content">
-                <h3 style="margin-bottom: 1rem; color: #ffd700;">Landing Page Content</h3>
+                <h3 style="margin-bottom: 1rem; color: #fff;">Landing Page Content</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">Edit every piece of text on your landing page. Changes appear immediately on save.</p>
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 100%;">
 
                     <!-- HERO -->
-                    <h4 style="color: #ffd700; margin: 0;">Hero Section</h4>
+                    <h4 style="color: #fff; margin: 0;">Hero Section</h4>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div>
                             <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Eyebrow Badge</label>
@@ -806,11 +806,11 @@
                         </div>
                     </div>
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Main Headline</label>
+                        <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Main Headline</label>
                         <input type="text" id="set-site_headline" class="settings-input" style="width: 100%;">
                     </div>
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Subtitle</label>
+                        <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Subtitle</label>
                         <textarea id="set-site_subheadline" class="settings-input" rows="2" style="width: 100%;"></textarea>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -847,7 +847,7 @@
                     <hr style="border-color: #333;">
 
                     <!-- VIDEO -->
-                    <h4 style="color: #ffd700; margin: 0;">Video Section</h4>
+                    <h4 style="color: #fff; margin: 0;">Video Section</h4>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div>
                             <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Video Heading</label>
@@ -862,7 +862,7 @@
                     <hr style="border-color: #333;">
 
                     <!-- PROBLEM / SOLUTION -->
-                    <h4 style="color: #ffd700; margin: 0;">Problem & Solution</h4>
+                    <h4 style="color: #fff; margin: 0;">Problem & Solution</h4>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                         <div>
                             <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Problem Heading</label>
@@ -887,7 +887,7 @@
                     <hr style="border-color: #333;">
 
                     <!-- HOW IT WORKS -->
-                    <h4 style="color: #ffd700; margin: 0;">How It Works (3 Steps)</h4>
+                    <h4 style="color: #fff; margin: 0;">How It Works (3 Steps)</h4>
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
                         <div>
                             <label style="display: block; color: #aaa; font-size: 0.75rem;">Step 1 Title</label>
@@ -912,7 +912,7 @@
                     <hr style="border-color: #333;">
 
                     <!-- PRICING -->
-                    <h4 style="color: #ffd700; margin: 0;">Pricing Section</h4>
+                    <h4 style="color: #fff; margin: 0;">Pricing Section</h4>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div>
                             <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Pricing Heading</label>
@@ -925,19 +925,19 @@
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">STARTER Tagline</label>
+                            <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">STARTER Tagline</label>
                             <input type="text" id="set-starter_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
                             <textarea id="set-starter_description" class="settings-input" rows="3" style="width: 100%;"></textarea>
                         </div>
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PRO Tagline</label>
+                            <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PRO Tagline</label>
                             <input type="text" id="set-pro_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
                             <textarea id="set-pro_description" class="settings-input" rows="3" style="width: 100%;"></textarea>
                         </div>
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">ELITE Tagline</label>
+                            <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">ELITE Tagline</label>
                             <input type="text" id="set-elite_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
                             <textarea id="set-elite_description" class="settings-input" rows="3" style="width: 100%;"></textarea>
@@ -947,7 +947,7 @@
                     <hr style="border-color: #333;">
 
                     <!-- BOOST CTA -->
-                    <h4 style="color: #ffd700; margin: 0;">Boost CTA Banner</h4>
+                    <h4 style="color: #fff; margin: 0;">Boost CTA Banner</h4>
                     <div>
                         <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Boost CTA Text</label>
                         <input type="text" id="set-boost_cta_text" class="settings-input" style="width: 100%;">
@@ -956,7 +956,7 @@
                     <hr style="border-color: #333;">
 
                     <!-- TRUST SECTION -->
-                    <h4 style="color: #ffd700; margin: 0;">Trust Section</h4>
+                    <h4 style="color: #fff; margin: 0;">Trust Section</h4>
                     <div>
                         <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Heading</label>
                         <input type="text" id="set-trust_heading" class="settings-input" style="width: 100%;">
@@ -999,7 +999,7 @@
                     <hr style="border-color: #333;">
 
                     <!-- FINAL CTA -->
-                    <h4 style="color: #ffd700; margin: 0;">Final CTA & Form Section</h4>
+                    <h4 style="color: #fff; margin: 0;">Final CTA & Form Section</h4>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div>
                             <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Heading</label>
@@ -1018,7 +1018,7 @@
                     <hr style="border-color: #333;">
 
                     <!-- FOOTER -->
-                    <h4 style="color: #ffd700; margin: 0;">Footer</h4>
+                    <h4 style="color: #fff; margin: 0;">Footer</h4>
                     <div>
                         <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Footer Text</label>
                         <input type="text" id="set-footer_text" class="settings-input" style="width: 100%;">
@@ -1030,11 +1030,11 @@
 
             <!-- Integrations Panel -->
             <div class="panel" id="panel-paypal">
-                <h3 style="margin-bottom: 1rem; color: #ffd700;">Integrations</h3>
+                <h3 style="margin-bottom: 1rem; color: #fff;">Integrations</h3>
 
                 <!-- PayPal -->
                 <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-                    <h4 style="color: #ffd700; margin-bottom: 0.5rem;">PayPal Connection</h4>
+                    <h4 style="color: #fff; margin-bottom: 0.5rem;">PayPal Connection</h4>
                     <p style="color: #aaa; margin-bottom: 1rem; font-size: 0.85rem;">Connect your PayPal account to accept payments. Get credentials from the <a href="https://developer.paypal.com/dashboard/applications" target="_blank" style="color: #ffd700;">PayPal Developer Dashboard</a>.</p>
                     <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 700px;">
                         <div>
@@ -1062,7 +1062,7 @@
 
                 <!-- ManyChat -->
                 <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-                    <h4 style="color: #ffd700; margin-bottom: 0.5rem;">ManyChat</h4>
+                    <h4 style="color: #fff; margin-bottom: 0.5rem;">ManyChat</h4>
                     <p style="color: #aaa; margin-bottom: 1rem; font-size: 0.85rem;">Capture leads and automate IG DM conversations. Get your widget snippet from <a href="https://manychat.com" target="_blank" style="color: #ffd700;">ManyChat</a> &rarr; Growth Tools &rarr; Widget.</p>
                     <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 700px;">
                         <div>
@@ -1084,7 +1084,7 @@
 
                 <!-- Facebook Pixel -->
                 <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem;">
-                    <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Facebook Pixel</h4>
+                    <h4 style="color: #fff; margin-bottom: 0.5rem;">Facebook Pixel</h4>
                     <p style="color: #aaa; margin-bottom: 1rem; font-size: 0.85rem;">Track visits, bounce rate, time on page, and lead conversions. Get your Pixel ID from <a href="https://business.facebook.com/events_manager" target="_blank" style="color: #ffd700;">Meta Events Manager</a>.</p>
                     <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 700px;">
                         <div>
@@ -1096,7 +1096,7 @@
                         </div>
                         <div id="pixelStatus" style="color: #aaa;"></div>
                         <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem; border: 1px solid #333;">
-                            <h4 style="color: #ffd700; font-size: 0.85rem; margin-bottom: 0.5rem;">Events Tracked Automatically:</h4>
+                            <h4 style="color: #fff; font-size: 0.85rem; margin-bottom: 0.5rem;">Events Tracked Automatically:</h4>
                             <ul style="color: #aaa; font-size: 0.8rem; list-style: disc; padding-left: 1.2rem;">
                                 <li><strong>PageView</strong> &mdash; every page load</li>
                                 <li><strong>Lead</strong> &mdash; when someone submits the record form</li>
@@ -1110,20 +1110,20 @@
 
             <!-- Emails Panel -->
             <div class="panel" id="panel-emails">
-                <h3 style="margin-bottom: 1rem; color: #ffd700;">Email Automation</h3>
+                <h3 style="margin-bottom: 1rem; color: #fff;">Email Automation</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">3-step email sequence sent to leads. Uses Resend to deliver emails.</p>
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 100%;">
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Resend API Key</label>
+                        <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Resend API Key</label>
                         <input type="password" id="set-resend_api_key" class="settings-input" style="width: 100%;">
                     </div>
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">From Address</label>
+                        <label style="display: block; color: #fff; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">From Address</label>
                         <input type="text" id="set-email_from" class="settings-input" style="width: 100%;" placeholder="Digiwaxx <noreply@digiwaxx.com>">
                     </div>
                     <hr style="border-color: #333;">
                     <div>
-                        <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Step 1 - Welcome Email</h4>
+                        <h4 style="color: #fff; margin-bottom: 0.5rem;">Step 1 - Welcome Email</h4>
                         <label style="color: #aaa; font-size: 0.75rem;">Delay (hours after signup)</label>
                         <input type="number" id="set-email1_delay_hours" class="settings-input" style="width: 80px;" min="0">
                         <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Subject</label>
@@ -1132,7 +1132,7 @@
                         <textarea id="set-email1_body" class="settings-input" rows="4" style="width: 100%;"></textarea>
                     </div>
                     <div>
-                        <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Step 2 - Follow-up</h4>
+                        <h4 style="color: #fff; margin-bottom: 0.5rem;">Step 2 - Follow-up</h4>
                         <label style="color: #aaa; font-size: 0.75rem;">Delay (hours after signup)</label>
                         <input type="number" id="set-email2_delay_hours" class="settings-input" style="width: 80px;" min="0">
                         <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Subject</label>
@@ -1141,7 +1141,7 @@
                         <textarea id="set-email2_body" class="settings-input" rows="4" style="width: 100%;"></textarea>
                     </div>
                     <div>
-                        <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Step 3 - Final Push</h4>
+                        <h4 style="color: #fff; margin-bottom: 0.5rem;">Step 3 - Final Push</h4>
                         <label style="color: #aaa; font-size: 0.75rem;">Delay (hours after signup)</label>
                         <input type="number" id="set-email3_delay_hours" class="settings-input" style="width: 80px;" min="0">
                         <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Subject</label>
