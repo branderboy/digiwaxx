@@ -22,7 +22,7 @@
             --accent-gold: #D4A017;
             --text-white: #FFFFFF;
             --text-muted: rgba(255,255,255,0.75);
-            --dot-purple: #f9a8c9;
+            --dot-purple: #d4a0a0;
             --font-head: 'Barlow Condensed', sans-serif;
             --font-body: 'DM Sans', sans-serif;
             --card-bg: rgba(30, 10, 25, 0.9);
@@ -106,7 +106,7 @@
         a { text-decoration: none; }
 
         .text-yellow { color: var(--accent-yellow); }
-        .text-pink { color: #f9a8c9; }
+        .text-pink { color: #d4a0a0; }
         .text-white { color: var(--text-white); }
         .text-muted { color: var(--text-muted); }
         .italic { font-style: italic; }
@@ -355,7 +355,7 @@
             font-family: var(--font-head);
             font-size: 2.5rem;
             font-weight: 800;
-            color: #f9a8c9;
+            color: #d4a0a0;
             line-height: 1;
         }
 
@@ -774,12 +774,13 @@
         }
 
         .boost-cta-inner {
-            max-width: 900px;
+            max-width: 750px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
             align-items: center;
+            justify-items: center;
         }
 
         .boost-cta-text {
@@ -795,7 +796,7 @@
         }
 
         .boost-cta-text h2 .boost-word {
-            color: #f9a8c9;
+            color: #d4a0a0;
             display: block;
             font-size: clamp(2.5rem, 7vw, 4.5rem);
             line-height: 1;
@@ -835,13 +836,16 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #f9a8c9, #e91e8c);
+            background: linear-gradient(135deg, #1a0a18, #2d1228);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 0.75rem;
-            color: white;
+            padding: 4px;
+        }
+
+        .ig-dm-avatar svg {
+            width: 22px;
+            height: 18px;
         }
 
         .ig-dm-name {
@@ -900,7 +904,7 @@
         }
 
         .ig-dm-input .send-icon {
-            color: #f9a8c9;
+            color: #d4a0a0;
             font-weight: 700;
         }
 
@@ -920,43 +924,36 @@
         }
 
         .trust-badge {
-            background: linear-gradient(135deg, rgba(60, 10, 40, 0.9), rgba(40, 8, 30, 0.95));
-            border: 1px solid rgba(255, 184, 0, 0.2);
-            border-radius: 16px;
-            padding: 3.5rem;
-            max-width: 850px;
+            background: none;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            max-width: 950px;
             margin: 0 auto;
             position: relative;
-            overflow: hidden;
-        }
-
-        .trust-badge::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent-yellow), transparent);
         }
 
         .trust-badge h2 {
-            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-            margin-bottom: 1rem;
-            color: #f9a8c9;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            margin-bottom: 0.5rem;
+            color: var(--accent-yellow);
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .trust-badge p {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .trust-stats {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            gap: 4rem;
+            margin-top: 3rem;
             flex-wrap: wrap;
         }
 
@@ -966,18 +963,18 @@
 
         .trust-stat .number {
             font-family: var(--font-head);
-            font-size: 2.8rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 800;
-            color: #f9a8c9;
+            color: var(--accent-yellow);
             line-height: 1;
         }
 
         .trust-stat .label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 6px;
+            letter-spacing: 2px;
+            margin-top: 8px;
         }
 
         /* --- VIDEO SECTION --- */
@@ -1712,7 +1709,7 @@
                     <div class="boost-cta-mockup">
                         <div class="ig-dm-mockup">
                             <div class="ig-dm-header">
-                                <div class="ig-dm-avatar">DW</div>
+                                <div class="ig-dm-avatar"><svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg"><path d="M 35 95 A 75 75 0 0 1 185 95" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/><circle cx="110" cy="105" r="52" fill="#FFFFFF"/><path d="M 33 90 Q 33 75 20 75 Q 7 75 7 90 L 7 120 Q 7 135 20 135 Q 33 135 33 120 Z" fill="#FFFFFF"/><path d="M 187 90 Q 187 75 200 75 Q 213 75 213 90 L 213 120 Q 213 135 200 135 Q 187 135 187 120 Z" fill="#FFFFFF"/></svg></div>
                                 <div>
                                     <div class="ig-dm-name">digiwaxx <span class="ig-dm-verified">&#10003;</span></div>
                                 </div>
@@ -1736,11 +1733,9 @@
                 <div class="trust-badge animate-in">
                     <h2 class="font-head" data-key="trust_heading">TRUSTED BY DJs SINCE 1998</h2>
                     <p data-key="trust_body">
-                        Digiwaxx Services 30,000+ DJs Worldwide across radio, clubs &amp; culture.
-                        This isn't a promo page. It's a DJ ecosystem.
+                        30,000+ DJs worldwide across radio, clubs &amp; culture.<br>
+                        Not a promo page &mdash; a DJ ecosystem.
                     </p>
-                    <h3 class="font-head text-white" style="font-size: clamp(1.3rem, 3vw, 1.8rem); margin-top: 1.2rem; line-height: 1.1;" data-key="trust_cta">DROP YOUR RECORD IN THE RIGHT ROOM.</h3>
-                    <p style="font-size: 1.05rem; margin-top: 0.8rem;" data-key="trust_subtext"><span class="bold">Limited Slots. Serious Artists Only.</span></p>
                     <div class="trust-stats">
                         <div class="trust-stat">
                             <div class="number" data-key="trust_stat1_number">30K+</div>
