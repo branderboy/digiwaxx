@@ -143,6 +143,7 @@ async function initDB() {
       ('manychat_widget_id', ''),
       ('manychat_page_id', ''),
       ('fb_pixel_id', ''),
+      ('ga_measurement_id', ''),
       ('starter_features', 'Record pool placement\nSpotify playlist placement\nDigiwaxx radio rotation\nDJ blast email feature\nOfficial Digiwaxx.com artist coverage\nArtist spotlight write-up (SEO indexed)'),
       ('pro_features', 'Everything in Starter\nIG feed post on Digiwaxx\n2 Instagram story placements\nFeatured spin on DJ Call\nLive DJ mention'),
       ('elite_features', 'Everything in Pro\nOne-on-one Zoom interview\nTikTok post on Digiwaxx\nPerformance snapshot report\nPriority DJ call placement'),
