@@ -138,7 +138,10 @@ async function initDB() {
       ('final_cta_highlight', 'Limited Slots. Serious Artists Only.'),
       ('footer_text', '© 2026 Digiwaxx Media Group. All rights reserved. Trusted by DJs since 1998.'),
       ('pricing_heading', 'CHOOSE YOUR BOOST'),
-      ('pricing_subtitle', 'Every tier gets your record into the Digiwaxx DJ network. Choose how loud you want to go.')
+      ('pricing_subtitle', 'Every tier gets your record into the Digiwaxx DJ network. Choose how loud you want to go.'),
+      ('manychat_widget_id', ''),
+      ('manychat_page_id', ''),
+      ('fb_pixel_id', '')
     ON CONFLICT (key) DO NOTHING;
     CREATE TABLE IF NOT EXISTS email_queue (
       id SERIAL PRIMARY KEY,

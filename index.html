@@ -1836,6 +1836,18 @@
 
         document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
 
+        // ============ FB PIXEL: VIEWCONTENT ON PRICING ============
+        const pricingObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && window._fbPixelLoaded) {
+                    fbq('track', 'ViewContent', { content_name: 'Pricing Section' });
+                    pricingObs.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+        const pricingEl = document.getElementById('pricing');
+        if (pricingEl) pricingObs.observe(pricingEl);
+
         // ============ TRACK PAGE VIEW ============
         fetch('/api/pageview', {
             method: 'POST',
@@ -1938,6 +1950,27 @@
                 if (!og) { og = document.createElement('meta'); og.setAttribute('property', 'og:image'); document.head.appendChild(og); }
                 og.content = c.og_image_url;
             }
+
+            // Facebook Pixel
+            if (c.fb_pixel_id) {
+                !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+                n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+                document,'script','https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', c.fb_pixel_id);
+                fbq('track', 'PageView');
+                window._fbPixelLoaded = true;
+            }
+
+            // ManyChat Widget
+            if (c.manychat_widget_id && c.manychat_page_id) {
+                window.mcWidgetJsonUrl = 'https://manychat.com/widget/' + c.manychat_widget_id + '.json';
+                var mc = document.createElement('script');
+                mc.src = 'https://widget.manychat.com/' + c.manychat_page_id + '.js';
+                mc.async = true;
+                document.head.appendChild(mc);
+            }
         }).catch(() => {});
 
         // ============ LEAD FORM SUBMISSION ============
@@ -1967,6 +2000,7 @@
                     currentLeadId = result.lead_id;
                     document.getElementById('leadForm').reset();
                     document.getElementById('successModal').classList.add('active');
+                    if (window._fbPixelLoaded) fbq('track', 'Lead', { content_name: data.song_title });
                 } else {
                     showToast('Something went wrong. Please try again.');
                 }
@@ -1989,6 +2023,9 @@
                     lead_id: currentLeadId
                 })
             }).catch(() => {});
+
+            // FB Pixel: InitiateCheckout
+            if (window._fbPixelLoaded) fbq('track', 'InitiateCheckout', { value: price, currency: 'USD', content_name: tier });
 
             // Open PayPal.me link with price
             const paypalUrl = 'https://paypal.me/' + paypalUsername + '/' + price;
