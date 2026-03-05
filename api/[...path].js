@@ -52,6 +52,7 @@ async function initDB() {
       ip_address TEXT,
       viewed_at TIMESTAMPTZ DEFAULT NOW()
     );
+    CREATE INDEX IF NOT EXISTS idx_page_views_ip_time ON page_views (ip_address, viewed_at);
     CREATE TABLE IF NOT EXISTS tier_prices (
       tier TEXT PRIMARY KEY,
       price REAL NOT NULL
@@ -142,6 +143,7 @@ async function initDB() {
       ('manychat_widget_id', ''),
       ('manychat_page_id', ''),
       ('fb_pixel_id', ''),
+      ('ga_measurement_id', ''),
       ('starter_features', 'Record pool placement\nSpotify playlist placement\nDigiwaxx radio rotation\nDJ blast email feature\nOfficial Digiwaxx.com artist coverage\nArtist spotlight write-up (SEO indexed)'),
       ('pro_features', 'Everything in Starter\nIG feed post on Digiwaxx\n2 Instagram story placements\nFeatured spin on DJ Call\nLive DJ mention'),
       ('elite_features', 'Everything in Pro\nOne-on-one Zoom interview\nTikTok post on Digiwaxx\nPerformance snapshot report\nPriority DJ call placement'),
@@ -336,11 +338,22 @@ module.exports = async (req, res) => {
 
     if (url === '/api/pageview' && req.method === 'POST') {
       const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-      const ua = req.headers['user-agent'];
-      await pool.query(
-        'INSERT INTO page_views (page, referrer, user_agent, ip_address) VALUES ($1, $2, $3, $4)',
-        [body.page || '/', body.referrer || null, ua, ip]
+      const ua = req.headers['user-agent'] || '';
+      // Skip bots
+      if (/bot|crawl|spider|slurp|lighthouse|pingdom|uptimerobot/i.test(ua)) {
+        return json(res, { ok: true });
+      }
+      // Only count one view per IP per 24 hours
+      const { rows } = await pool.query(
+        "SELECT id FROM page_views WHERE ip_address = $1 AND viewed_at >= NOW() - INTERVAL '24 hours' LIMIT 1",
+        [ip]
       );
+      if (rows.length === 0) {
+        await pool.query(
+          'INSERT INTO page_views (page, referrer, user_agent, ip_address) VALUES ($1, $2, $3, $4)',
+          [body.page || '/', body.referrer || null, ua, ip]
+        );
+      }
       return json(res, { ok: true });
     }
 

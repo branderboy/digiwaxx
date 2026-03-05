@@ -2002,6 +2002,18 @@
                 window._fbPixelLoaded = true;
             }
 
+            // Google Analytics
+            if (c.ga_measurement_id) {
+                var gs = document.createElement('script');
+                gs.async = true;
+                gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + c.ga_measurement_id;
+                document.head.appendChild(gs);
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', c.ga_measurement_id);
+            }
+
             // ManyChat Widget
             if (c.manychat_widget_id && c.manychat_page_id) {
                 window.mcWidgetJsonUrl = 'https://manychat.com/widget/' + c.manychat_widget_id + '.json';
