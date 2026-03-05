@@ -1231,7 +1231,22 @@
             <!-- Add-Ons Panel -->
             <div class="panel" id="panel-addons">
                 <h3 style="margin-bottom: 0.5rem; color: #ffd700;">Add-On Offers</h3>
-                <p style="color: #aaa; margin-bottom: 1.5rem;">Configure add-on services and email them to customers who have already purchased. Uses Resend for delivery.</p>
+                <p style="color: #aaa; margin-bottom: 1.5rem;">Configure add-on services shown on the landing page. Add-ons with a name, price, and PayPal link will appear as a section below pricing. Also sent via email to purchasers.</p>
+
+                <!-- Section Heading -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h4 style="color: #ffd700; margin-bottom: 1rem;">Landing Page Section</h4>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 700px;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Section Heading</label>
+                            <input type="text" id="set-addons_heading" class="settings-input" style="width: 100%;" placeholder="LEVEL UP YOUR CAMPAIGN">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Section Subtitle</label>
+                            <input type="text" id="set-addons_subtitle" class="settings-input" style="width: 100%;" placeholder="Add extra firepower to any tier.">
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Email Template -->
                 <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
@@ -1902,6 +1917,7 @@
         // ========== ADD-ONS ==========
         function saveAddons() {
             saveSettings([
+                'addons_heading', 'addons_subtitle',
                 'addon_email_subject', 'addon_email_intro', 'addon_email_outro',
                 'addon_1_name', 'addon_1_desc', 'addon_1_price', 'addon_1_paypal_link',
                 'addon_2_name', 'addon_2_desc', 'addon_2_price', 'addon_2_paypal_link',
