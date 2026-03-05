@@ -51,6 +51,11 @@ async function initDB() {
       ip_address TEXT,
       viewed_at TIMESTAMPTZ DEFAULT NOW()
     );
+    CREATE TABLE IF NOT EXISTS tier_prices (
+      tier TEXT PRIMARY KEY,
+      price REAL NOT NULL
+    );
+    INSERT INTO tier_prices (tier, price) VALUES ('starter', 99), ('pro', 149), ('elite', 199) ON CONFLICT (tier) DO NOTHING;
   `);
   dbInitialized = true;
 }
@@ -135,6 +140,13 @@ module.exports = async (req, res) => {
     }
 
     // ===== PUBLIC ROUTES =====
+    if (url === '/api/prices' && req.method === 'GET') {
+      const { rows } = await pool.query('SELECT tier, price FROM tier_prices ORDER BY price ASC');
+      const prices = {};
+      rows.forEach(r => prices[r.tier] = r.price);
+      return json(res, prices);
+    }
+
     if (url === '/api/pageview' && req.method === 'POST') {
       const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
       const ua = req.headers['user-agent'];
@@ -275,6 +287,20 @@ module.exports = async (req, res) => {
         completedPurchases: parseInt(completedPurchases), revenue: parseFloat(revenue),
         pageViews: parseInt(pageViews), clicksByTier, leadsByDay
       });
+    }
+
+    if (url === '/api/admin/prices' && req.method === 'GET') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const { rows } = await pool.query('SELECT tier, price FROM tier_prices ORDER BY price ASC');
+      return json(res, { prices: rows });
+    }
+
+    if (url === '/api/admin/prices' && req.method === 'POST') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const { tier, price } = body;
+      if (!tier || !price) return json(res, { error: 'Tier and price required' }, 400);
+      await pool.query('UPDATE tier_prices SET price = $1 WHERE tier = $2', [parseFloat(price), tier.toLowerCase()]);
+      return json(res, { ok: true });
     }
 
     return json(res, { error: 'Not found' }, 404);
