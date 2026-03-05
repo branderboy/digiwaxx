@@ -1204,19 +1204,24 @@
             .hero { padding-top: 100px; padding-bottom: 3rem; }
             .hero h1 { font-size: clamp(3rem, 12vw, 4.5rem); }
             .hero h3 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); }
-            .hero-subtitle { font-size: 1rem; }
+            .hero-subtitle { font-size: 1rem; max-width: 100%; }
             .funnel-box { padding: 2rem 1.5rem; }
-            .btn { font-size: 1.2rem; padding: 1rem 1.5rem; }
+            .btn { font-size: 1.2rem; padding: 1rem 1.5rem; width: 100%; max-width: 400px; }
             ul.custom-bullets li { font-size: 1rem; padding-left: 2rem; }
             ul.custom-bullets li::before { font-size: 1.2rem; }
             .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
             .hero-stat .number { font-size: 2rem; }
-            .proof-bar-inner { gap: 1rem; font-size: 0.85rem; }
-            .proof-item { font-size: 0.8rem; gap: 6px; }
+            .proof-bar-inner {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: center;
+                padding: 0 1rem;
+            }
+            .proof-item { font-size: 0.85rem; gap: 8px; }
             .proof-item .icon { font-size: 1.1rem; }
             .trust-badge { padding: 2rem 1.5rem; }
             .trust-badge p { font-size: 1rem; }
-            .trust-stats { gap: 1.5rem; }
+            .trust-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
             .trust-stat .number { font-size: 2.2rem; }
             .tier-selector { grid-template-columns: 1fr; }
             .video-wrapper { border-radius: 12px; }
@@ -1226,25 +1231,87 @@
             .opt-in-inner { padding: 2rem 1.5rem; }
             .form-row { flex-direction: column; }
             .step-number { font-size: 3rem; }
+            .step-card { padding: 2rem 1.5rem; }
+            .step-card h3 { font-size: 1.3rem; }
+            .pricing-card { padding: 2rem 1.5rem; }
             .pricing-card .card-header { padding: 1.5rem; }
             .pricing-card .card-body { padding: 1.5rem; }
-            .pricing-card .btn-buy { font-size: 1.2rem; }
+            .pricing-card .btn-buy { font-size: 1.2rem; padding: 1rem; min-height: 48px; }
+            .box-header { font-size: clamp(2rem, 7vw, 3rem); }
+            .intro-line { font-size: 1.1rem; }
+            .closing-line { font-size: 1rem; }
+            .form-control { padding: 0.9rem 1rem; font-size: 1rem; min-height: 48px; }
+            .submit-btn { font-size: 1.4rem; min-height: 52px; }
+            .modal-content { padding: 2rem 1.5rem; width: 92%; }
+            .modal-content h2 { font-size: 2rem; }
+            .modal-content p { font-size: 1rem; }
+            .toast { left: 1rem; right: 1rem; bottom: 1rem; text-align: center; }
+            .video-section h2 { font-size: clamp(2rem, 6vw, 3rem); }
+            .how-it-works h2 { font-size: clamp(2rem, 6vw, 3rem); }
+            .pricing-section h2 { font-size: clamp(2rem, 6vw, 3rem); }
         }
 
         @media (max-width: 480px) {
-            .container, .container-wide { padding: 0 1rem; }
-            .hero { padding-top: 85px; }
+            .container, .container-wide { padding: 0 0.8rem; }
+            .hero { padding-top: 80px; padding-bottom: 2rem; }
             .hero h1 { font-size: clamp(2.5rem, 14vw, 3.5rem); }
-            .hero-stats { gap: 1rem; }
-            .hero-stat .number { font-size: 1.8rem; }
-            .hero-stat .label { font-size: 0.75rem; }
-            .btn { font-size: 1.1rem; padding: 0.9rem 1.2rem; }
-            .btn-subtext { font-size: 0.8rem; }
-            .funnel-box { padding: 1.5rem 1.2rem; }
-            .box-header { font-size: clamp(1.8rem, 6vw, 2.5rem); }
-            .proof-bar { padding: 1rem 0; }
-            .proof-bar-inner { gap: 0.8rem; }
+            .hero h3 { font-size: clamp(1rem, 4vw, 1.3rem); }
+            .hero-subtitle { font-size: 0.95rem; line-height: 1.6; }
+            .eyebrow-badge { font-size: 0.7rem; padding: 6px 14px; letter-spacing: 1px; }
+            .hero-stats { gap: 0.8rem; }
+            .hero-stat { min-width: 80px; }
+            .hero-stat .number { font-size: 1.6rem; }
+            .hero-stat .label { font-size: 0.7rem; }
+            .btn { font-size: 1rem; padding: 0.9rem 1rem; letter-spacing: 0.5px; }
+            .btn-subtext { font-size: 0.75rem; }
+            .btn-wrapper { margin: 1.5rem 0; }
+            .funnel-box { padding: 1.5rem 1rem; margin-bottom: 2rem; }
+            .box-header { font-size: clamp(1.6rem, 6vw, 2.2rem); margin-bottom: 1.5rem; }
+            .intro-line { font-size: 1rem; }
+            ul.custom-bullets li { font-size: 0.95rem; padding-left: 1.8rem; margin-bottom: 0.8rem; }
+            ul.custom-bullets li::before { font-size: 1.1rem; }
+            .proof-bar { padding: 0.8rem 0; }
+            .proof-bar-inner { gap: 0.6rem; }
+            .proof-item { font-size: 0.8rem; }
+            .step-card { padding: 1.5rem 1.2rem; }
+            .step-number { font-size: 2.5rem; }
+            .step-icon { font-size: 2rem; }
+            .pricing-card { padding: 1.5rem 1.2rem; }
+            .card-header h3 { font-size: 1.3rem; letter-spacing: 2px; }
+            .card-header .price { font-size: 2.8rem; }
+            .pricing-card ul.custom-bullets li { font-size: 0.85rem; }
+            .trust-badge { padding: 1.5rem 1.2rem; border-radius: 12px; }
+            .trust-badge h2 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+            .trust-badge p { font-size: 0.9rem; line-height: 1.7; }
+            .trust-stats { gap: 1rem; }
+            .trust-stat .number { font-size: 1.8rem; }
+            .trust-stat .label { font-size: 0.75rem; }
+            .opt-in-box { margin: 2rem -0.3rem 0; }
             .opt-in-inner { padding: 1.5rem 1rem; }
+            .opt-in-inner .form-header h3 { font-size: 1.3rem; }
+            .opt-in-inner .form-header p { font-size: 0.9rem; }
+            .form-control { padding: 0.8rem 0.9rem; }
+            .tier-option label { padding: 0.6rem 0.4rem; font-size: 0.75rem; }
+            .tier-option label span { font-size: 0.65rem; }
+            .submit-btn { font-size: 1.3rem; }
+            .form-note { font-size: 0.75rem; }
+            .final-cta { padding: 1.5rem 0 4rem; }
+            .final-cta h2 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+            .final-cta p { font-size: 1rem; }
+            .video-wrapper { border-radius: 10px; border-width: 1px; }
+            .play-btn-circle { width: 50px; height: 50px; }
+            .play-btn-circle svg { width: 22px; height: 22px; }
+            .video-placeholder p { font-size: 0.9rem; letter-spacing: 1px; }
+            .modal-content { padding: 1.5rem 1.2rem; }
+            .modal-content h2 { font-size: 1.8rem; }
+            .modal-close { font-size: 1rem; padding: 0.7rem 1.5rem; }
+            .footer { padding: 1.5rem 0; }
+            .footer p { font-size: 0.75rem; }
+        }
+
+        /* Prevent horizontal scroll on all devices */
+        @media (max-width: 768px) {
+            html, body { overflow-x: hidden; }
         }
     </style>
 </head>
