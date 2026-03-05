@@ -7,7 +7,7 @@ const pool = new Pool({
 });
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
-const adminTokens = new Set();
+const TOKEN_SECRET = process.env.ADMIN_PASSWORD || 'admin123';
 
 let dbInitialized = false;
 async function initDB() {
@@ -83,10 +83,20 @@ function getBody(req) {
   });
 }
 
+function signToken() {
+  const payload = Buffer.from(JSON.stringify({ role: 'admin', iat: Date.now() })).toString('base64url');
+  const sig = crypto.createHmac('sha256', TOKEN_SECRET).update(payload).digest('base64url');
+  return payload + '.' + sig;
+}
+
 function checkAdmin(req) {
   const auth = req.headers.authorization;
   if (!auth || !auth.startsWith('Bearer ')) return false;
-  return adminTokens.has(auth.slice(7));
+  const token = auth.slice(7);
+  const [payload, sig] = token.split('.');
+  if (!payload || !sig) return false;
+  const expected = crypto.createHmac('sha256', TOKEN_SECRET).update(payload).digest('base64url');
+  return sig === expected;
 }
 
 module.exports = async (req, res) => {
@@ -118,11 +128,10 @@ module.exports = async (req, res) => {
     // ===== ADMIN LOGIN =====
     if (url === '/api/admin/login' && req.method === 'POST') {
       if (body.password === ADMIN_PASSWORD) {
-        const token = crypto.randomBytes(32).toString('hex');
-        adminTokens.add(token);
+        const token = signToken();
         return json(res, { ok: true, token });
       }
-      return json(res, { error: 'Invalid password', debug: { receivedLength: (body.password || '').length, expectedLength: ADMIN_PASSWORD.length, receivedType: typeof body.password, bodyKeys: Object.keys(body) } }, 401);
+      return json(res, { error: 'Invalid password' }, 401);
     }
 
     // ===== PUBLIC ROUTES =====
