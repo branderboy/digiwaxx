@@ -22,7 +22,7 @@
             --accent-gold: #D4A017;
             --text-white: #FFFFFF;
             --text-muted: rgba(255,255,255,0.75);
-            --dot-purple: #c084fc;
+            --dot-purple: #f9a8c9;
             --font-head: 'Barlow Condensed', sans-serif;
             --font-body: 'DM Sans', sans-serif;
             --card-bg: rgba(30, 10, 25, 0.9);
@@ -106,7 +106,7 @@
         a { text-decoration: none; }
 
         .text-yellow { color: var(--accent-yellow); }
-        .text-purple { color: #c084fc; }
+        .text-pink { color: #f9a8c9; }
         .text-white { color: var(--text-white); }
         .text-muted { color: var(--text-muted); }
         .italic { font-style: italic; }
@@ -355,7 +355,7 @@
             font-family: var(--font-head);
             font-size: 2.5rem;
             font-weight: 800;
-            color: #c084fc;
+            color: #f9a8c9;
             line-height: 1;
         }
 
@@ -783,7 +783,7 @@
         }
 
         .boost-cta-text {
-            text-align: left;
+            text-align: center;
         }
 
         .boost-cta-text h2 {
@@ -795,7 +795,7 @@
         }
 
         .boost-cta-text h2 .boost-word {
-            color: #c084fc;
+            color: #f9a8c9;
             display: block;
             font-size: clamp(2.5rem, 7vw, 4.5rem);
             line-height: 1;
@@ -812,13 +812,14 @@
         }
 
         .ig-dm-mockup {
-            background: #1a1a2e;
+            background: #ffffff;
             border-radius: 20px;
             padding: 1.5rem;
-            max-width: 280px;
+            max-width: 380px;
             width: 100%;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(0,0,0,0.08);
+            color: #000;
         }
 
         .ig-dm-header {
@@ -827,14 +828,14 @@
             gap: 10px;
             margin-bottom: 1rem;
             padding-bottom: 0.8rem;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
         }
 
         .ig-dm-avatar {
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #c084fc, #7c3aed);
+            background: linear-gradient(135deg, #f9a8c9, #e91e8c);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -846,6 +847,7 @@
         .ig-dm-name {
             font-weight: 700;
             font-size: 0.9rem;
+            color: #000;
         }
 
         .ig-dm-verified {
@@ -875,8 +877,8 @@
         }
 
         .ig-dm-bubble.received {
-            background: rgba(255,255,255,0.08);
-            color: white;
+            background: #efefef;
+            color: #000;
             align-self: flex-start;
             border-bottom-left-radius: 4px;
         }
@@ -886,29 +888,29 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255,255,255,0.06);
+            background: #f0f0f0;
             border-radius: 22px;
             padding: 0.5rem 1rem;
         }
 
         .ig-dm-input span {
-            color: rgba(255,255,255,0.4);
+            color: rgba(0,0,0,0.35);
             font-size: 0.85rem;
             flex: 1;
         }
 
         .ig-dm-input .send-icon {
-            color: #c084fc;
+            color: #f9a8c9;
             font-weight: 700;
         }
 
         @media (max-width: 768px) {
             .boost-cta-inner {
                 grid-template-columns: 1fr;
-                text-align: center;
             }
-            .boost-cta-text {
-                text-align: center;
+            .ig-dm-mockup {
+                max-width: 340px;
+                margin: 0 auto;
             }
         }
 
@@ -939,7 +941,7 @@
         .trust-badge h2 {
             font-size: clamp(1.6rem, 3.5vw, 2.2rem);
             margin-bottom: 1rem;
-            color: #c084fc;
+            color: #f9a8c9;
         }
 
         .trust-badge p {
@@ -966,7 +968,7 @@
             font-family: var(--font-head);
             font-size: 2.8rem;
             font-weight: 800;
-            color: #c084fc;
+            color: #f9a8c9;
             line-height: 1;
         }
 
@@ -1566,7 +1568,7 @@
 
             <!-- THE SOLUTION -->
             <div class="funnel-box solution animate-in">
-                <h2 class="text-purple box-header" data-key="solution_heading">THE SOLUTION</h2>
+                <h2 class="text-pink box-header" data-key="solution_heading">THE SOLUTION</h2>
                 <p class="text-white bold intro-line" data-key="solution_intro">Digiwaxx puts your record in front of DJs who actually break music.</p>
 
                 <ul class="custom-bullets text-white">
@@ -1621,7 +1623,7 @@
                     <!-- STARTER -->
                     <div class="pricing-card animate-in">
                         <div class="card-header">
-                            <h3 class="text-purple">STARTER</h3>
+                            <h3 class="text-pink">STARTER</h3>
                             <div class="price">$99</div>
                             <div class="price-label">One-time payment</div>
                             <div class="tagline italic bold">Get In The System</div>
@@ -1648,7 +1650,7 @@
                     <div class="pricing-card featured animate-in">
                         <div class="popular-badge">Most Popular</div>
                         <div class="card-header">
-                            <h3 class="text-purple">PRO</h3>
+                            <h3 class="text-pink">PRO</h3>
                             <div class="price">$149</div>
                             <div class="price-label">One-time payment</div>
                             <div class="tagline italic bold">Turn The Lights On</div>
@@ -1673,7 +1675,7 @@
                     <!-- ELITE -->
                     <div class="pricing-card animate-in">
                         <div class="card-header">
-                            <h3 class="text-purple">ELITE</h3>
+                            <h3 class="text-pink">ELITE</h3>
                             <div class="price">$199</div>
                             <div class="price-label">One-time payment</div>
                             <div class="tagline italic bold">Heavy Rotation Energy</div>
