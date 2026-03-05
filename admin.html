@@ -628,8 +628,10 @@
                 <div class="tab active" onclick="switchTab('leads')">Leads</div>
                 <div class="tab" onclick="switchTab('clicks')">PayPal Clicks</div>
                 <div class="tab" onclick="switchTab('purchases')">Purchases</div>
-                <div class="tab" onclick="switchTab('pricing')">Pricing</div>
+                <div class="tab" onclick="switchTab('design')">Design</div>
+                <div class="tab" onclick="switchTab('meta')">Meta / SEO</div>
                 <div class="tab" onclick="switchTab('content')">Content</div>
+                <div class="tab" onclick="switchTab('pricing')">Pricing</div>
                 <div class="tab" onclick="switchTab('paypal')">PayPal</div>
                 <div class="tab" onclick="switchTab('emails')">Emails</div>
             </div>
@@ -704,6 +706,80 @@
                 </div>
             </div>
 
+            <!-- Design Panel -->
+            <div class="panel" id="panel-design">
+                <h3 style="margin-bottom: 1rem; color: #ffd700;">Branding & Design</h3>
+                <p style="color: #aaa; margin-bottom: 1.5rem;">Control the look and feel of your landing page.</p>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 700px;">
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Logo Image URL</label>
+                        <input type="text" id="set-logo_url" class="settings-input" style="width: 100%;" placeholder="https://example.com/logo.png (leave empty for default SVG)">
+                        <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Paste a URL to your logo image. Recommended: PNG with transparent background, at least 200px wide.</p>
+                        <div id="logoPreview" style="margin-top: 0.5rem;"></div>
+                    </div>
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Video URL (YouTube Embed)</label>
+                        <input type="text" id="set-video_url" class="settings-input" style="width: 100%;" placeholder="https://www.youtube.com/embed/VIDEO_ID">
+                        <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">YouTube embed URL. Right-click video → Copy embed code → paste just the URL from src="..."</p>
+                    </div>
+                    <hr style="border-color: #333;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Accent Color</label>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="color" id="colorpicker-accent" value="#FFB800" style="width: 50px; height: 40px; border: none; cursor: pointer; background: none;">
+                                <input type="text" id="set-accent_color" class="settings-input" style="width: 120px;" value="#FFB800">
+                            </div>
+                        </div>
+                        <div>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Background Color</label>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="color" id="colorpicker-bg" value="#1a0a18" style="width: 50px; height: 40px; border: none; cursor: pointer; background: none;">
+                                <input type="text" id="set-bg_color" class="settings-input" style="width: 120px;" value="#1a0a18">
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border-color: #333;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Heading Font Size (%)</label>
+                            <input type="range" id="set-heading_font_size" min="50" max="150" value="100" style="width: 100%;" oninput="this.nextElementSibling.textContent = this.value + '%'">
+                            <span style="color: #aaa; font-size: 0.85rem;">100%</span>
+                        </div>
+                        <div>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Body Font Size (%)</label>
+                            <input type="range" id="set-body_font_size" min="50" max="150" value="100" style="width: 100%;" oninput="this.nextElementSibling.textContent = this.value + '%'">
+                            <span style="color: #aaa; font-size: 0.85rem;">100%</span>
+                        </div>
+                    </div>
+                    <button onclick="saveDesign()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; align-self: flex-start;">Save Design Settings</button>
+                </div>
+            </div>
+
+            <!-- Meta / SEO Panel -->
+            <div class="panel" id="panel-meta">
+                <h3 style="margin-bottom: 1rem; color: #ffd700;">Meta & SEO</h3>
+                <p style="color: #aaa; margin-bottom: 1.5rem;">Control how your page appears in search results and social media shares.</p>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 700px;">
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Page Title</label>
+                        <input type="text" id="set-meta_title" class="settings-input" style="width: 100%;" placeholder="DIGIWAXX | New Music Boost">
+                        <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Shows in browser tab and search results. Keep under 60 characters.</p>
+                    </div>
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Meta Description</label>
+                        <textarea id="set-meta_description" class="settings-input" rows="3" style="width: 100%;" placeholder="Digiwaxx connects your music to 30,000+ DJs worldwide..."></textarea>
+                        <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Shows in search results. Keep under 160 characters.</p>
+                    </div>
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Social Share Image URL (OG Image)</label>
+                        <input type="text" id="set-og_image_url" class="settings-input" style="width: 100%;" placeholder="https://example.com/share-image.jpg">
+                        <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Image shown when your page is shared on social media. Recommended: 1200x630px.</p>
+                    </div>
+                    <button onclick="saveMeta()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; align-self: flex-start;">Save Meta Settings</button>
+                </div>
+            </div>
+
             <!-- Pricing Panel -->
             <div class="panel" id="panel-pricing">
                 <h3 style="margin-bottom: 1rem; color: #ffd700;">Tier Pricing</h3>
@@ -714,38 +790,241 @@
             <!-- Content Panel -->
             <div class="panel" id="panel-content">
                 <h3 style="margin-bottom: 1rem; color: #ffd700;">Landing Page Content</h3>
-                <p style="color: #aaa; margin-bottom: 1.5rem;">Edit the text that appears on your landing page.</p>
+                <p style="color: #aaa; margin-bottom: 1.5rem;">Edit every piece of text on your landing page. Changes appear immediately on save.</p>
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 100%;">
+
+                    <!-- HERO -->
+                    <h4 style="color: #ffd700; margin: 0;">Hero Section</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Eyebrow Badge</label>
+                            <input type="text" id="set-hero_eyebrow" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Sub-heading (above main)</label>
+                            <input type="text" id="set-hero_h3" class="settings-input" style="width: 100%;">
+                        </div>
+                    </div>
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Headline</label>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Main Headline</label>
                         <input type="text" id="set-site_headline" class="settings-input" style="width: 100%;">
                     </div>
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Subheadline</label>
-                        <textarea id="set-site_subheadline" class="settings-input" rows="3" style="width: 100%;"></textarea>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Subtitle</label>
+                        <textarea id="set-site_subheadline" class="settings-input" rows="2" style="width: 100%;"></textarea>
                     </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">CTA Button Text</label>
+                            <input type="text" id="set-hero_cta_text" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">CTA Subtext</label>
+                            <input type="text" id="set-hero_cta_subtext" class="settings-input" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Stat 1 Number</label>
+                            <input type="text" id="set-hero_stat1_number" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.3rem;">Stat 1 Label</label>
+                            <input type="text" id="set-hero_stat1_label" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Stat 2 Number</label>
+                            <input type="text" id="set-hero_stat2_number" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.3rem;">Stat 2 Label</label>
+                            <input type="text" id="set-hero_stat2_label" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Stat 3 Number</label>
+                            <input type="text" id="set-hero_stat3_number" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.3rem;">Stat 3 Label</label>
+                            <input type="text" id="set-hero_stat3_label" class="settings-input" style="width: 100%;">
+                        </div>
+                    </div>
+
                     <hr style="border-color: #333;">
+
+                    <!-- VIDEO -->
+                    <h4 style="color: #ffd700; margin: 0;">Video Section</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Video Heading</label>
+                            <input type="text" id="set-video_heading" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Video Subtitle</label>
+                            <input type="text" id="set-video_subtitle" class="settings-input" style="width: 100%;">
+                        </div>
+                    </div>
+
+                    <hr style="border-color: #333;">
+
+                    <!-- PROBLEM / SOLUTION -->
+                    <h4 style="color: #ffd700; margin: 0;">Problem & Solution</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Problem Heading</label>
+                            <input type="text" id="set-problem_heading" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.5rem;">Intro Line</label>
+                            <input type="text" id="set-problem_intro" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.5rem;">Closing Line</label>
+                            <input type="text" id="set-problem_closing" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Solution Heading</label>
+                            <input type="text" id="set-solution_heading" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.5rem;">Intro Line</label>
+                            <input type="text" id="set-solution_intro" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.5rem;">Closing Line</label>
+                            <input type="text" id="set-solution_closing" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.5rem;">CTA Button Text</label>
+                            <input type="text" id="set-solution_cta" class="settings-input" style="width: 100%;">
+                        </div>
+                    </div>
+
+                    <hr style="border-color: #333;">
+
+                    <!-- HOW IT WORKS -->
+                    <h4 style="color: #ffd700; margin: 0;">How It Works (3 Steps)</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Step 1 Title</label>
+                            <input type="text" id="set-step1_title" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.3rem;">Step 1 Description</label>
+                            <textarea id="set-step1_desc" class="settings-input" rows="3" style="width: 100%;"></textarea>
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Step 2 Title</label>
+                            <input type="text" id="set-step2_title" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.3rem;">Step 2 Description</label>
+                            <textarea id="set-step2_desc" class="settings-input" rows="3" style="width: 100%;"></textarea>
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Step 3 Title</label>
+                            <input type="text" id="set-step3_title" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.3rem;">Step 3 Description</label>
+                            <textarea id="set-step3_desc" class="settings-input" rows="3" style="width: 100%;"></textarea>
+                        </div>
+                    </div>
+
+                    <hr style="border-color: #333;">
+
+                    <!-- PRICING -->
+                    <h4 style="color: #ffd700; margin: 0;">Pricing Section</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Pricing Heading</label>
+                            <input type="text" id="set-pricing_heading" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Pricing Subtitle</label>
+                            <input type="text" id="set-pricing_subtitle" class="settings-input" style="width: 100%;">
+                        </div>
+                    </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
                         <div>
                             <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">STARTER Tagline</label>
                             <input type="text" id="set-starter_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
-                            <textarea id="set-starter_description" class="settings-input" rows="4" style="width: 100%;"></textarea>
+                            <textarea id="set-starter_description" class="settings-input" rows="3" style="width: 100%;"></textarea>
                         </div>
                         <div>
                             <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PRO Tagline</label>
                             <input type="text" id="set-pro_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
-                            <textarea id="set-pro_description" class="settings-input" rows="4" style="width: 100%;"></textarea>
+                            <textarea id="set-pro_description" class="settings-input" rows="3" style="width: 100%;"></textarea>
                         </div>
                         <div>
                             <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">ELITE Tagline</label>
                             <input type="text" id="set-elite_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
-                            <textarea id="set-elite_description" class="settings-input" rows="4" style="width: 100%;"></textarea>
+                            <textarea id="set-elite_description" class="settings-input" rows="3" style="width: 100%;"></textarea>
                         </div>
                     </div>
-                    <button onclick="saveContent()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; align-self: flex-start;">Save Content</button>
+
+                    <hr style="border-color: #333;">
+
+                    <!-- BOOST CTA -->
+                    <h4 style="color: #ffd700; margin: 0;">Boost CTA Banner</h4>
+                    <div>
+                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Boost CTA Text</label>
+                        <input type="text" id="set-boost_cta_text" class="settings-input" style="width: 100%;">
+                    </div>
+
+                    <hr style="border-color: #333;">
+
+                    <!-- TRUST SECTION -->
+                    <h4 style="color: #ffd700; margin: 0;">Trust Section</h4>
+                    <div>
+                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Heading</label>
+                        <input type="text" id="set-trust_heading" class="settings-input" style="width: 100%;">
+                    </div>
+                    <div>
+                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Body Text</label>
+                        <textarea id="set-trust_body" class="settings-input" rows="3" style="width: 100%;"></textarea>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">CTA Line</label>
+                            <input type="text" id="set-trust_cta" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Subtext</label>
+                            <input type="text" id="set-trust_subtext" class="settings-input" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Stat 1 Number</label>
+                            <input type="text" id="set-trust_stat1_number" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.3rem;">Stat 1 Label</label>
+                            <input type="text" id="set-trust_stat1_label" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Stat 2 Number</label>
+                            <input type="text" id="set-trust_stat2_number" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.3rem;">Stat 2 Label</label>
+                            <input type="text" id="set-trust_stat2_label" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Stat 3 Number</label>
+                            <input type="text" id="set-trust_stat3_number" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; font-size: 0.75rem; margin-top: 0.3rem;">Stat 3 Label</label>
+                            <input type="text" id="set-trust_stat3_label" class="settings-input" style="width: 100%;">
+                        </div>
+                    </div>
+
+                    <hr style="border-color: #333;">
+
+                    <!-- FINAL CTA -->
+                    <h4 style="color: #ffd700; margin: 0;">Final CTA & Form Section</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Heading</label>
+                            <input type="text" id="set-final_cta_heading" class="settings-input" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Body Text</label>
+                            <input type="text" id="set-final_cta_body" class="settings-input" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div>
+                        <label style="display: block; color: #aaa; font-size: 0.75rem;">Highlight Text</label>
+                        <input type="text" id="set-final_cta_highlight" class="settings-input" style="width: 100%;">
+                    </div>
+
+                    <hr style="border-color: #333;">
+
+                    <!-- FOOTER -->
+                    <h4 style="color: #ffd700; margin: 0;">Footer</h4>
+                    <div>
+                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Footer Text</label>
+                        <input type="text" id="set-footer_text" class="settings-input" style="width: 100%;">
+                    </div>
+
+                    <button onclick="saveContent()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; align-self: flex-start;">Save All Content</button>
                 </div>
             </div>
 
@@ -1136,6 +1415,7 @@
                     const el = document.getElementById('set-' + key);
                     if (el) el.value = value;
                 });
+                syncDesignInputs();
             } catch (e) {
                 console.error('Failed to load settings:', e);
             }
@@ -1158,8 +1438,30 @@
             } catch (e) { alert('Failed to save settings'); }
         }
 
+        function saveDesign() {
+            saveSettings(['logo_url', 'video_url', 'accent_color', 'bg_color', 'heading_font_size', 'body_font_size']);
+        }
+
+        function saveMeta() {
+            saveSettings(['meta_title', 'meta_description', 'og_image_url']);
+        }
+
         function saveContent() {
-            saveSettings(['site_headline', 'site_subheadline', 'starter_tagline', 'starter_description', 'pro_tagline', 'pro_description', 'elite_tagline', 'elite_description']);
+            saveSettings([
+                'site_headline', 'site_subheadline', 'hero_eyebrow', 'hero_h3', 'hero_cta_text', 'hero_cta_subtext',
+                'hero_stat1_number', 'hero_stat1_label', 'hero_stat2_number', 'hero_stat2_label', 'hero_stat3_number', 'hero_stat3_label',
+                'video_heading', 'video_subtitle',
+                'problem_heading', 'problem_intro', 'problem_closing',
+                'solution_heading', 'solution_intro', 'solution_closing', 'solution_cta',
+                'step1_title', 'step1_desc', 'step2_title', 'step2_desc', 'step3_title', 'step3_desc',
+                'pricing_heading', 'pricing_subtitle',
+                'starter_tagline', 'starter_description', 'pro_tagline', 'pro_description', 'elite_tagline', 'elite_description',
+                'boost_cta_text',
+                'trust_heading', 'trust_body', 'trust_cta', 'trust_subtext',
+                'trust_stat1_number', 'trust_stat1_label', 'trust_stat2_number', 'trust_stat2_label', 'trust_stat3_number', 'trust_stat3_label',
+                'final_cta_heading', 'final_cta_body', 'final_cta_highlight',
+                'footer_text'
+            ]);
         }
 
         function savePaypal() {
@@ -1221,6 +1523,46 @@
                     </tr>
                 `).join('');
             } catch (e) { console.error('Failed to load email queue:', e); }
+        }
+
+        // ========== COLOR PICKER SYNC ==========
+        document.getElementById('colorpicker-accent')?.addEventListener('input', function() {
+            document.getElementById('set-accent_color').value = this.value;
+        });
+        document.getElementById('set-accent_color')?.addEventListener('input', function() {
+            document.getElementById('colorpicker-accent').value = this.value;
+        });
+        document.getElementById('colorpicker-bg')?.addEventListener('input', function() {
+            document.getElementById('set-bg_color').value = this.value;
+        });
+        document.getElementById('set-bg_color')?.addEventListener('input', function() {
+            document.getElementById('colorpicker-bg').value = this.value;
+        });
+
+        // ========== LOGO PREVIEW ==========
+        document.getElementById('set-logo_url')?.addEventListener('input', function() {
+            const preview = document.getElementById('logoPreview');
+            if (this.value) {
+                preview.innerHTML = '<img src="' + this.value + '" style="max-height: 60px; border-radius: 8px; background: rgba(255,255,255,0.1); padding: 8px;" onerror="this.parentElement.innerHTML=\'<span style=color:#ef4444>Invalid image URL</span>\'">';
+            } else {
+                preview.innerHTML = '';
+            }
+        });
+
+        // Sync color pickers and sliders after settings load
+        function syncDesignInputs() {
+            const accent = document.getElementById('set-accent_color');
+            const bg = document.getElementById('set-bg_color');
+            if (accent) document.getElementById('colorpicker-accent').value = accent.value || '#FFB800';
+            if (bg) document.getElementById('colorpicker-bg').value = bg.value || '#1a0a18';
+            const headSlider = document.getElementById('set-heading_font_size');
+            if (headSlider) headSlider.nextElementSibling.textContent = headSlider.value + '%';
+            const bodySlider = document.getElementById('set-body_font_size');
+            if (bodySlider) bodySlider.nextElementSibling.textContent = bodySlider.value + '%';
+            const logoUrl = document.getElementById('set-logo_url');
+            if (logoUrl && logoUrl.value) {
+                document.getElementById('logoPreview').innerHTML = '<img src="' + logoUrl.value + '" style="max-height: 60px; border-radius: 8px; background: rgba(255,255,255,0.1); padding: 8px;">';
+            }
         }
 
         // ========== INIT ==========

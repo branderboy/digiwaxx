@@ -106,6 +106,7 @@
         a { text-decoration: none; }
 
         .text-yellow { color: var(--accent-yellow); }
+        .text-purple { color: #c084fc; }
         .text-white { color: var(--text-white); }
         .text-muted { color: var(--text-muted); }
         .italic { font-style: italic; }
@@ -354,7 +355,7 @@
             font-family: var(--font-head);
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--accent-yellow);
+            color: #c084fc;
             line-height: 1;
         }
 
@@ -769,16 +770,23 @@
         /* --- BOOST CTA BANNER --- */
         .boost-cta {
             padding: 5rem 0;
-            text-align: center;
             background: radial-gradient(ellipse at center, rgba(100, 15, 65, 0.4) 0%, transparent 70%);
         }
 
         .boost-cta-inner {
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
         }
 
-        .boost-cta h2 {
+        .boost-cta-text {
+            text-align: left;
+        }
+
+        .boost-cta-text h2 {
             font-size: clamp(1.8rem, 4vw, 2.8rem);
             line-height: 1.1;
             font-weight: 800;
@@ -786,16 +794,122 @@
             margin-bottom: 0;
         }
 
-        .boost-cta h2 .boost-word {
-            color: var(--accent-yellow);
+        .boost-cta-text h2 .boost-word {
+            color: #c084fc;
             display: block;
             font-size: clamp(2.5rem, 7vw, 4.5rem);
             line-height: 1;
             text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
         }
 
-        .boost-cta .boost-quotes {
+        .boost-cta-text .boost-quotes {
             color: var(--text-white);
+        }
+
+        .boost-cta-mockup {
+            display: flex;
+            justify-content: center;
+        }
+
+        .ig-dm-mockup {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 1.5rem;
+            max-width: 280px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .ig-dm-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .ig-dm-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c084fc, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.75rem;
+            color: white;
+        }
+
+        .ig-dm-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .ig-dm-verified {
+            color: #3b82f6;
+            font-size: 0.8rem;
+        }
+
+        .ig-dm-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .ig-dm-bubble {
+            padding: 0.6rem 1rem;
+            border-radius: 18px;
+            font-size: 0.85rem;
+            max-width: 85%;
+            line-height: 1.4;
+        }
+
+        .ig-dm-bubble.sent {
+            background: #3b82f6;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ig-dm-bubble.received {
+            background: rgba(255,255,255,0.08);
+            color: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .ig-dm-input {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 22px;
+            padding: 0.5rem 1rem;
+        }
+
+        .ig-dm-input span {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+            flex: 1;
+        }
+
+        .ig-dm-input .send-icon {
+            color: #c084fc;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .boost-cta-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .boost-cta-text {
+                text-align: center;
+            }
         }
 
         /* --- TRUST / SOCIAL PROOF SECTION --- */
@@ -825,7 +939,7 @@
         .trust-badge h2 {
             font-size: clamp(1.6rem, 3.5vw, 2.2rem);
             margin-bottom: 1rem;
-            color: var(--text-white);
+            color: #c084fc;
         }
 
         .trust-badge p {
@@ -852,7 +966,7 @@
             font-family: var(--font-head);
             font-size: 2.8rem;
             font-weight: 800;
-            color: var(--accent-yellow);
+            color: #c084fc;
             line-height: 1;
         }
 
@@ -1349,13 +1463,14 @@
     <!-- NAVBAR (Fixed) -->
     <header class="navbar" id="navbar">
         <div class="navbar-inner">
-            <a href="#" class="nav-logo">
-                <svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+            <a href="#" class="nav-logo" id="navLogo">
+                <svg id="logoSvg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
                     <path d="M 35 95 A 75 75 0 0 1 185 95" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
                     <circle cx="110" cy="105" r="52" fill="#FFFFFF"/>
                     <path d="M 33 90 Q 33 75 20 75 Q 7 75 7 90 L 7 120 Q 7 135 20 135 Q 33 135 33 120 Z" fill="#FFFFFF"/>
                     <path d="M 187 90 Q 187 75 200 75 Q 213 75 213 90 L 213 120 Q 213 135 200 135 Q 187 135 187 120 Z" fill="#FFFFFF"/>
                 </svg>
+                <img id="logoImg" style="display:none; height: 42px; width: auto;" alt="Digiwaxx">
                 <span class="font-head italic">DIGIWAXX</span>
             </a>
             <div class="nav-links">
@@ -1370,33 +1485,33 @@
         <section class="hero">
             <div class="container-wide">
                 <div class="hero-content">
-                    <div class="eyebrow-badge">
+                    <div class="eyebrow-badge" data-key="hero_eyebrow">
                         <span class="pulse-dot"></span>
-                        The New Music Boost
+                        <span>The New Music Boost</span>
                     </div>
-                    <h3 class="text-white">YOUR RECORD DESERVES MORE THAN STREAMS.</h3>
-                    <h1 class="text-white">YOUR MUSIC DESERVES<br>A REAL PUSH</h1>
-                    <p class="hero-subtitle">
+                    <h3 class="text-white" data-key="hero_h3">YOUR RECORD DESERVES MORE THAN STREAMS.</h3>
+                    <h1 class="text-white" data-key="site_headline">YOUR MUSIC DESERVES<br>A REAL PUSH</h1>
+                    <p class="hero-subtitle" data-key="site_subheadline">
                         Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.
                     </p>
 
                     <div class="btn-wrapper">
-                        <a href="#optin" class="btn">DROP YOUR RECORD NOW</a>
-                        <span class="btn-subtext">Limited slots available &mdash; serious artists only</span>
+                        <a href="#optin" class="btn" data-key="hero_cta_text">DROP YOUR RECORD NOW</a>
+                        <span class="btn-subtext" data-key="hero_cta_subtext">Limited slots available &mdash; serious artists only</span>
                     </div>
 
                     <div class="hero-stats">
                         <div class="hero-stat">
-                            <div class="number">30K+</div>
-                            <div class="label">DJs Worldwide</div>
+                            <div class="number" data-key="hero_stat1_number">30K+</div>
+                            <div class="label" data-key="hero_stat1_label">DJs Worldwide</div>
                         </div>
                         <div class="hero-stat">
-                            <div class="number">1998</div>
-                            <div class="label">Est. Year</div>
+                            <div class="number" data-key="hero_stat2_number">1998</div>
+                            <div class="label" data-key="hero_stat2_label">Est. Year</div>
                         </div>
                         <div class="hero-stat">
-                            <div class="number">500+</div>
-                            <div class="label">Records Pushed</div>
+                            <div class="number" data-key="hero_stat3_number">500+</div>
+                            <div class="label" data-key="hero_stat3_label">Records Pushed</div>
                         </div>
                     </div>
                 </div>
@@ -1406,8 +1521,8 @@
         <!-- VIDEO SECTION (Right under hero) -->
         <section class="video-section" id="video">
             <div class="container">
-                <h2 class="text-yellow">SEE DIGIWAXX IN ACTION</h2>
-                <p class="video-subtitle">Watch how we connect independent artists with the DJs who break records.</p>
+                <h2 class="text-white" data-key="video_heading">SEE DIGIWAXX IN ACTION</h2>
+                <p class="video-subtitle" data-key="video_subtitle">Watch how we connect independent artists with the DJs who break records.</p>
                 <div class="video-wrapper">
                     <!-- Replace with: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
                     <div class="video-placeholder" id="videoPlaceholder">
@@ -1433,8 +1548,8 @@
         <!-- THE PROBLEM -->
         <section class="container">
             <div class="funnel-box problem animate-in">
-                <h2 class="text-yellow box-header">THE PROBLEM</h2>
-                <p class="text-white bold intro-line">Most independent releases die before they ever reach the people who break records.</p>
+                <h2 class="text-white box-header" data-key="problem_heading">THE PROBLEM</h2>
+                <p class="text-white bold intro-line" data-key="problem_intro">Most independent releases die before they ever reach the people who break records.</p>
 
                 <ul class="custom-bullets text-white">
                     <li>No reposts</li>
@@ -1444,16 +1559,15 @@
                     <li>No industry co-sign or validation</li>
                 </ul>
 
-                <p class="text-white italic closing-line">
-                    You upload your song.<br>
-                    <span class="text-yellow bold">Then it sits.</span>
+                <p class="text-white italic closing-line" data-key="problem_closing">
+                    You upload your song. Then it sits.
                 </p>
             </div>
 
             <!-- THE SOLUTION -->
             <div class="funnel-box solution animate-in">
-                <h2 class="text-yellow box-header">THE SOLUTION</h2>
-                <p class="text-white bold intro-line">Digiwaxx puts your record in front of DJs who actually break music.</p>
+                <h2 class="text-purple box-header" data-key="solution_heading">THE SOLUTION</h2>
+                <p class="text-white bold intro-line" data-key="solution_intro">Digiwaxx puts your record in front of DJs who actually break music.</p>
 
                 <ul class="custom-bullets text-white">
                     <li>DJs that still move records</li>
@@ -1463,36 +1577,35 @@
                     <li>Radio rotation opportunities</li>
                 </ul>
 
-                <p class="text-white italic closing-line">
-                    This isn't just promo.<br>
-                    <span class="highlight bold">It's access to the ecosystem that launches records.</span>
+                <p class="text-white italic closing-line" data-key="solution_closing">
+                    This isn't just promo. It's access to the ecosystem that launches records.
                 </p>
             </div>
 
             <div class="btn-wrapper">
-                <a href="#pricing" class="btn">GET YOUR MUSIC HEARD NOW</a>
+                <a href="#pricing" class="btn" data-key="solution_cta">GET YOUR MUSIC HEARD NOW</a>
             </div>
         </section>
 
         <!-- HOW IT WORKS -->
         <section class="how-it-works">
             <div class="container-wide">
-                <h2 class="text-yellow text-center">HOW IT WORKS</h2>
+                <h2 class="text-white text-center">HOW IT WORKS</h2>
                 <div class="steps-grid">
                     <div class="step-card animate-in">
                         <div class="step-number">01</div>
-                        <h3>SUBMIT YOUR RECORD</h3>
-                        <p>Fill out the form with your artist info and a link to your track. Choose your boost tier.</p>
+                        <h3 data-key="step1_title">SUBMIT YOUR RECORD</h3>
+                        <p data-key="step1_desc">Fill out the form with your artist info and a link to your track. Choose your boost tier.</p>
                     </div>
                     <div class="step-card animate-in">
                         <div class="step-number">02</div>
-                        <h3>WE PUSH IT OUT</h3>
-                        <p>Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation.</p>
+                        <h3 data-key="step2_title">WE PUSH IT OUT</h3>
+                        <p data-key="step2_desc">Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation.</p>
                     </div>
                     <div class="step-card animate-in">
                         <div class="step-number">03</div>
-                        <h3>DJs SPIN YOUR TRACK</h3>
-                        <p>Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide.</p>
+                        <h3 data-key="step3_title">DJs SPIN YOUR TRACK</h3>
+                        <p data-key="step3_desc">Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide.</p>
                     </div>
                 </div>
             </div>
@@ -1501,14 +1614,14 @@
         <!-- PRICING -->
         <section class="pricing-section" id="pricing">
             <div class="container-wide">
-                <h2 class="text-yellow text-center">CHOOSE YOUR BOOST</h2>
-                <p class="text-center pricing-subtitle">Select the tier that fits your goals. Every plan includes DJ network access.</p>
+                <h2 class="text-white text-center" data-key="pricing_heading">CHOOSE YOUR BOOST</h2>
+                <p class="text-center pricing-subtitle" data-key="pricing_subtitle">Select the tier that fits your goals. Every plan includes DJ network access.</p>
                 <div class="pricing-grid">
 
                     <!-- STARTER -->
                     <div class="pricing-card animate-in">
                         <div class="card-header">
-                            <h3 class="text-yellow">STARTER</h3>
+                            <h3 class="text-purple">STARTER</h3>
                             <div class="price">$99</div>
                             <div class="price-label">One-time payment</div>
                             <div class="tagline italic bold">Get In The System</div>
@@ -1535,7 +1648,7 @@
                     <div class="pricing-card featured animate-in">
                         <div class="popular-badge">Most Popular</div>
                         <div class="card-header">
-                            <h3 class="text-yellow">PRO</h3>
+                            <h3 class="text-purple">PRO</h3>
                             <div class="price">$149</div>
                             <div class="price-label">One-time payment</div>
                             <div class="tagline italic bold">Turn The Lights On</div>
@@ -1560,7 +1673,7 @@
                     <!-- ELITE -->
                     <div class="pricing-card animate-in">
                         <div class="card-header">
-                            <h3 class="text-yellow">ELITE</h3>
+                            <h3 class="text-purple">ELITE</h3>
                             <div class="price">$199</div>
                             <div class="price-label">One-time payment</div>
                             <div class="tagline italic bold">Heavy Rotation Energy</div>
@@ -1591,7 +1704,27 @@
         <section class="boost-cta">
             <div class="container-wide">
                 <div class="boost-cta-inner animate-in">
-                    <h2 class="font-head">DM <span class="boost-quotes">"</span><span class="boost-word">BOOST</span><span class="boost-quotes">"</span> ON IG<br>TO START NOW</h2>
+                    <div class="boost-cta-text">
+                        <h2 class="font-head">DM <span class="boost-quotes">"</span><span class="boost-word">BOOST</span><span class="boost-quotes">"</span> ON IG<br>TO START NOW</h2>
+                    </div>
+                    <div class="boost-cta-mockup">
+                        <div class="ig-dm-mockup">
+                            <div class="ig-dm-header">
+                                <div class="ig-dm-avatar">DW</div>
+                                <div>
+                                    <div class="ig-dm-name">digiwaxx <span class="ig-dm-verified">&#10003;</span></div>
+                                </div>
+                            </div>
+                            <div class="ig-dm-messages">
+                                <div class="ig-dm-bubble sent">BOOST</div>
+                                <div class="ig-dm-bubble received">Hey! Ready to push your record to 30K+ DJs? Drop your track link and let's go.</div>
+                            </div>
+                            <div class="ig-dm-input">
+                                <span>Message...</span>
+                                <span class="send-icon">&#9654;</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1599,25 +1732,25 @@
         <section class="trust-section text-center">
             <div class="container">
                 <div class="trust-badge animate-in">
-                    <h2 class="font-head">TRUSTED BY DJs SINCE 1998</h2>
-                    <p>
-                        <span class="bold">Digiwaxx Services 30,000+ DJs Worldwide across radio, clubs &amp; culture.</span><br>
+                    <h2 class="font-head" data-key="trust_heading">TRUSTED BY DJs SINCE 1998</h2>
+                    <p data-key="trust_body">
+                        Digiwaxx Services 30,000+ DJs Worldwide across radio, clubs &amp; culture.
                         This isn't a promo page. It's a DJ ecosystem.
                     </p>
-                    <h3 class="font-head text-white" style="font-size: clamp(1.3rem, 3vw, 1.8rem); margin-top: 1.2rem; line-height: 1.1;">DROP YOUR RECORD IN THE RIGHT ROOM.</h3>
-                    <p style="font-size: 1.05rem; margin-top: 0.8rem;"><span class="bold">Limited Slots. Serious Artists Only.</span></p>
+                    <h3 class="font-head text-white" style="font-size: clamp(1.3rem, 3vw, 1.8rem); margin-top: 1.2rem; line-height: 1.1;" data-key="trust_cta">DROP YOUR RECORD IN THE RIGHT ROOM.</h3>
+                    <p style="font-size: 1.05rem; margin-top: 0.8rem;" data-key="trust_subtext"><span class="bold">Limited Slots. Serious Artists Only.</span></p>
                     <div class="trust-stats">
                         <div class="trust-stat">
-                            <div class="number">30K+</div>
-                            <div class="label">Active DJs</div>
+                            <div class="number" data-key="trust_stat1_number">30K+</div>
+                            <div class="label" data-key="trust_stat1_label">Active DJs</div>
                         </div>
                         <div class="trust-stat">
-                            <div class="number">25+</div>
-                            <div class="label">Years Running</div>
+                            <div class="number" data-key="trust_stat2_number">25+</div>
+                            <div class="label" data-key="trust_stat2_label">Years Running</div>
                         </div>
                         <div class="trust-stat">
-                            <div class="number">100+</div>
-                            <div class="label">Radio Partners</div>
+                            <div class="number" data-key="trust_stat3_number">100+</div>
+                            <div class="label" data-key="trust_stat3_label">Radio Partners</div>
                         </div>
                     </div>
                 </div>
@@ -1633,11 +1766,11 @@
                 <span class="dot purple"></span>
                 <span class="dot white"></span>
             </div>
-            <h2 class="text-yellow">DROP YOUR RECORD IN THE RIGHT ROOM</h2>
-            <p class="bold">
-                If your song is ready, it deserves to reach the DJs who matter.<br>
-                <span class="highlight">Limited Slots. Serious Artists Only.</span>
+            <h2 class="text-white" data-key="final_cta_heading">DROP YOUR RECORD IN THE RIGHT ROOM</h2>
+            <p class="bold" data-key="final_cta_body">
+                If your song is ready, it deserves to reach the DJs who matter.
             </p>
+            <p><span class="highlight" data-key="final_cta_highlight">Limited Slots. Serious Artists Only.</span></p>
 
             <div class="opt-in-box">
                 <div class="opt-in-inner">
@@ -1687,7 +1820,7 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container-wide">
-            <p>&copy; 2026 Digiwaxx Media Group. All rights reserved. Trusted by DJs since 1998.</p>
+            <p data-key="footer_text">&copy; 2026 Digiwaxx Media Group. All rights reserved. Trusted by DJs since 1998.</p>
         </div>
     </footer>
 
@@ -1696,7 +1829,7 @@
         <div class="modal-content">
             <h2>RECORD SUBMITTED</h2>
             <p>Your submission has been received. Our team will review your record and reach out within 24 hours.</p>
-            <p class="text-yellow bold">Ready to boost now? Choose a tier above to pay via PayPal and skip the line.</p>
+            <p class="text-white bold">Ready to boost now? Choose a tier above to pay via PayPal and skip the line.</p>
             <button class="modal-close" onclick="closeModal()">GOT IT</button>
         </div>
     </div>
@@ -1749,8 +1882,20 @@
         // ============ LOAD SITE CONTENT ============
         fetch('/api/site-content').then(r => r.json()).then(c => {
             if (c.paypal_username) paypalUsername = c.paypal_username;
-            if (c.site_headline) { const el = document.querySelector('.hero h1'); if (el) el.textContent = c.site_headline; }
-            if (c.site_subheadline) { const el = document.querySelector('.hero p'); if (el) el.textContent = c.site_subheadline; }
+
+            // Apply all data-key elements
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                if (c[key] && !el.dataset.raw) el.textContent = c[key];
+            });
+
+            // Special: eyebrow badge (keep pulse dot)
+            if (c.hero_eyebrow) {
+                const badge = document.querySelector('[data-key="hero_eyebrow"] span:last-child');
+                if (badge) badge.textContent = c.hero_eyebrow;
+            }
+
+            // Pricing tier content
             ['starter', 'pro', 'elite'].forEach(tier => {
                 const cards = document.querySelectorAll('.pricing-card');
                 cards.forEach(card => {
@@ -1760,6 +1905,58 @@
                     if (c[tier + '_description']) { const el = card.querySelector('.card-body > p'); if (el) el.textContent = c[tier + '_description']; }
                 });
             });
+
+            // Logo: if URL provided, swap SVG for image
+            if (c.logo_url) {
+                const svg = document.getElementById('logoSvg');
+                const img = document.getElementById('logoImg');
+                if (svg && img) {
+                    svg.style.display = 'none';
+                    img.src = c.logo_url;
+                    img.style.display = 'block';
+                }
+            }
+
+            // Video: if URL provided, replace placeholder with iframe
+            if (c.video_url) {
+                const wrapper = document.querySelector('.video-wrapper');
+                if (wrapper) {
+                    wrapper.innerHTML = '<iframe src="' + c.video_url + '" allowfullscreen style="width:100%;aspect-ratio:16/9;display:block;border:none;"></iframe>';
+                }
+            }
+
+            // Colors
+            if (c.accent_color) {
+                document.documentElement.style.setProperty('--accent-yellow', c.accent_color);
+            }
+            if (c.bg_color) {
+                document.documentElement.style.setProperty('--bg-dark', c.bg_color);
+            }
+
+            // Font sizes
+            if (c.heading_font_size && c.heading_font_size !== '100') {
+                const scale = parseInt(c.heading_font_size) / 100;
+                document.querySelectorAll('h1, h2, h3').forEach(el => {
+                    const current = parseFloat(getComputedStyle(el).fontSize);
+                    el.style.fontSize = (current * scale) + 'px';
+                });
+            }
+            if (c.body_font_size && c.body_font_size !== '100') {
+                const scale = parseInt(c.body_font_size) / 100;
+                document.body.style.fontSize = scale + 'rem';
+            }
+
+            // Meta
+            if (c.meta_title) document.title = c.meta_title;
+            if (c.meta_description) {
+                const meta = document.querySelector('meta[name="description"]');
+                if (meta) meta.content = c.meta_description;
+            }
+            if (c.og_image_url) {
+                let og = document.querySelector('meta[property="og:image"]');
+                if (!og) { og = document.createElement('meta'); og.setAttribute('property', 'og:image'); document.head.appendChild(og); }
+                og.content = c.og_image_url;
+            }
         }).catch(() => {});
 
         // ============ LEAD FORM SUBMISSION ============

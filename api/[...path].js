@@ -87,7 +87,58 @@ async function initDB() {
       ('email3_delay_hours', '120'),
       ('paypal_client_id', ''),
       ('paypal_client_secret', ''),
-      ('paypal_mode', 'sandbox')
+      ('paypal_mode', 'sandbox'),
+      ('logo_url', ''),
+      ('video_url', ''),
+      ('accent_color', '#FFB800'),
+      ('bg_color', '#1a0a18'),
+      ('heading_font_size', '100'),
+      ('body_font_size', '100'),
+      ('meta_title', 'DIGIWAXX | New Music Boost — Get Your Record to DJs'),
+      ('meta_description', 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Spotify playlists, radio rotation, and more.'),
+      ('og_image_url', ''),
+      ('hero_eyebrow', 'The New Music Boost'),
+      ('hero_h3', 'YOUR RECORD DESERVES MORE THAN STREAMS.'),
+      ('hero_cta_text', 'DROP YOUR RECORD NOW'),
+      ('hero_cta_subtext', 'Limited slots available — serious artists only'),
+      ('hero_stat1_number', '30K+'),
+      ('hero_stat1_label', 'DJs Worldwide'),
+      ('hero_stat2_number', '1998'),
+      ('hero_stat2_label', 'Est. Year'),
+      ('hero_stat3_number', '500+'),
+      ('hero_stat3_label', 'Records Pushed'),
+      ('problem_heading', 'THE PROBLEM'),
+      ('problem_intro', 'You dropped your record. Now what?'),
+      ('problem_closing', 'You upload your song. Then it sits.'),
+      ('solution_heading', 'THE DIGIWAXX SOLUTION'),
+      ('solution_intro', 'What if your record landed in the right hands?'),
+      ('solution_closing', 'This isn''t just promo. It''s access to the ecosystem that launches records.'),
+      ('solution_cta', 'GET YOUR MUSIC HEARD NOW'),
+      ('step1_title', 'SUBMIT YOUR RECORD'),
+      ('step1_desc', 'Fill out the form with your artist info and a link to your track. Choose your boost tier.'),
+      ('step2_title', 'WE PUSH IT OUT'),
+      ('step2_desc', 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation.'),
+      ('step3_title', 'DJs SPIN YOUR TRACK'),
+      ('step3_desc', 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide.'),
+      ('video_heading', 'SEE DIGIWAXX IN ACTION'),
+      ('video_subtitle', 'Watch how Digiwaxx connects artists to DJs across the globe.'),
+      ('boost_cta_text', 'DM "BOOST" ON IG TO START NOW'),
+      ('trust_heading', 'TRUSTED BY DJs SINCE 1998'),
+      ('trust_body', 'Digiwaxx Services 30,000+ DJs Worldwide across radio, clubs & culture. This isn''t a promo page. It''s a DJ ecosystem.'),
+      ('trust_cta', 'DROP YOUR RECORD IN THE RIGHT ROOM.'),
+      ('trust_subtext', 'Limited Slots. Serious Artists Only.'),
+      ('trust_stat1_number', '30K+'),
+      ('trust_stat1_label', 'Active DJs'),
+      ('trust_stat2_number', '25+'),
+      ('trust_stat2_label', 'Years Running'),
+      ('trust_stat3_number', '100+'),
+      ('trust_stat3_label', 'Radio Partners'),
+      ('final_cta_heading', 'DROP YOUR RECORD IN THE RIGHT ROOM'),
+      ('final_cta_body', 'If your song is ready, it deserves to reach the DJs who matter.'),
+      ('final_cta_highlight', 'Limited Slots. Serious Artists Only.'),
+      ('footer_text', '© 2026 Digiwaxx Media Group. All rights reserved. Trusted by DJs since 1998.'),
+      ('pricing_heading', 'CHOOSE YOUR BOOST'),
+      ('pricing_subtitle', 'Every tier gets your record into the Digiwaxx DJ network. Choose how loud you want to go.')
     ON CONFLICT (key) DO NOTHING;
     CREATE TABLE IF NOT EXISTS email_queue (
       id SERIAL PRIMARY KEY,
@@ -253,7 +304,7 @@ module.exports = async (req, res) => {
     }
 
     if (url === '/api/site-content' && req.method === 'GET') {
-      const { rows } = await pool.query("SELECT key, value FROM settings WHERE key LIKE 'site_%' OR key LIKE 'starter_%' OR key LIKE 'pro_%' OR key LIKE 'elite_%' OR key = 'paypal_username'");
+      const { rows } = await pool.query("SELECT key, value FROM settings WHERE key NOT LIKE 'paypal_client%' AND key NOT LIKE 'resend_%' AND key != 'paypal_mode'");
       const content = {};
       rows.forEach(r => content[r.key] = r.value);
       return json(res, content);
