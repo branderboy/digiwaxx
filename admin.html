@@ -626,10 +626,9 @@
             <!-- Tabs -->
             <div class="tabs">
                 <div class="tab active" onclick="switchTab('leads')">Leads</div>
-                <div class="tab" onclick="switchTab('clicks')">PayPal Clicks</div>
-                <div class="tab" onclick="switchTab('purchases')">Purchases</div>
+                <div class="tab" onclick="switchTab('purchases')">Sales</div>
                 <div class="tab" onclick="switchTab('design')">Design</div>
-                <div class="tab" onclick="switchTab('meta')">Meta / SEO</div>
+                <div class="tab" onclick="switchTab('meta')">SEO</div>
                 <div class="tab" onclick="switchTab('content')">Content</div>
                 <div class="tab" onclick="switchTab('pricing')">Pricing</div>
                 <div class="tab" onclick="switchTab('paypal')">Integrations</div>
@@ -668,27 +667,7 @@
             </div>
 
             <!-- Clicks Panel -->
-            <div class="panel" id="panel-clicks">
-                <div class="chart-section">
-                    <h3>Clicks by Tier</h3>
-                    <div class="bar-chart" id="clicksChart"></div>
-                </div>
-                <div style="overflow-x: auto; margin-top: 2rem;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Tier</th>
-                                <th>Price</th>
-                                <th>Lead ID</th>
-                            </tr>
-                        </thead>
-                        <tbody id="clicksBody"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Purchases Panel -->
+            <!-- Sales Panel -->
             <div class="panel" id="panel-purchases">
                 <div style="overflow-x: auto;">
                     <table class="data-table">
@@ -1487,33 +1466,7 @@
             loadStats();
         }
 
-        // ========== LOAD CLICKS ==========
-        async function loadClicks() {
-            try {
-                const res = await fetch('/api/admin/clicks', { headers: authHeaders() });
-                if (res.status === 401) return handleLogout();
-                const data = await res.json();
-                const tbody = document.getElementById('clicksBody');
-
-                if (data.clicks.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No clicks recorded yet.</td></tr>';
-                    return;
-                }
-
-                tbody.innerHTML = data.clicks.map(click => `
-                    <tr>
-                        <td>${new Date(click.clicked_at + 'Z').toLocaleString()}</td>
-                        <td><span class="badge badge-${click.tier}">${click.tier}</span></td>
-                        <td>$${click.price}</td>
-                        <td class="truncate" style="color: var(--text-muted); font-size: 0.8rem;">${click.lead_id || '—'}</td>
-                    </tr>
-                `).join('');
-            } catch (e) {
-                console.error('Failed to load clicks:', e);
-            }
-        }
-
-        // ========== LOAD PURCHASES ==========
+        // ========== LOAD SALES ==========
         async function loadPurchases() {
             try {
                 const res = await fetch('/api/admin/purchases', { headers: authHeaders() });
@@ -1823,7 +1776,6 @@
         function loadAll() {
             loadStats();
             loadLeads();
-            loadClicks();
             loadPurchases();
             loadPricing();
             loadSettings();
