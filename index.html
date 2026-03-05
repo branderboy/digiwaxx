@@ -25,7 +25,7 @@
             --dot-purple: #d4a0a0;
             --font-head: 'Barlow Condensed', sans-serif;
             --font-body: 'DM Sans', sans-serif;
-            --card-bg: rgba(30, 10, 25, 0.9);
+            --card-bg: #140812;
             --border-glow: rgba(255, 184, 0, 0.4);
             --max-width: 1200px;
             --funnel-width: 900px;
@@ -435,10 +435,10 @@
 
         /* --- SOCIAL PROOF BAR --- */
         .proof-bar {
-            background: rgba(100, 20, 70, 0.2);
-            border-top: 1px solid rgba(200, 50, 140, 0.15);
-            border-bottom: 1px solid rgba(200, 50, 140, 0.15);
-            padding: 1.5rem 0;
+            background: rgba(0, 0, 0, 0.35);
+            border-top: 1px solid rgba(255, 184, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 184, 0, 0.2);
+            padding: 1.2rem 0;
         }
 
         .proof-bar-inner {
@@ -450,17 +450,22 @@
         }
 
         .proof-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: rgba(255,255,255,0.7);
-            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: var(--font-head);
         }
 
-        .proof-item .icon {
-            font-size: 1.4rem;
+        .proof-item + .proof-item::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            margin-right: 2rem;
         }
 
         /* --- PROBLEM / SOLUTION SECTIONS --- */
@@ -1623,10 +1628,10 @@
         <!-- SOCIAL PROOF BAR -->
         <div class="proof-bar">
             <div class="container-wide proof-bar-inner">
-                <div class="proof-item"><span class="icon">&#127911;</span> Record Pool Distribution</div>
-                <div class="proof-item"><span class="icon">&#128251;</span> Radio Rotation</div>
-                <div class="proof-item"><span class="icon">&#127926;</span> Spotify Playlists</div>
-                <div class="proof-item"><span class="icon">&#127775;</span> DJ Network Access</div>
+                <div class="proof-item">Record Pool Distribution</div>
+                <div class="proof-item">Radio Rotation</div>
+                <div class="proof-item">Spotify Playlists</div>
+                <div class="proof-item">DJ Network Access</div>
             </div>
         </div>
 
