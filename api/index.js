@@ -6,7 +6,7 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Digiwaxx2024!';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 const adminTokens = new Set();
 
 let dbInitialized = false;
