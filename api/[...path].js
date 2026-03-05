@@ -201,7 +201,8 @@ module.exports = async (req, res) => {
       let q = 'SELECT * FROM leads WHERE 1=1';
       const params = [];
       let pi = 1;
-      if (status) { q += ` AND status = $${pi++}`; params.push(status); }
+      if (status === 'recent') { q += ` AND created_at >= NOW() - INTERVAL '30 days'`; }
+      else if (status) { q += ` AND status = $${pi++}`; params.push(status); }
       if (search) {
         const s = `%${search}%`;
         q += ` AND (artist_name ILIKE $${pi} OR email ILIKE $${pi + 1} OR song_title ILIKE $${pi + 2})`;
@@ -255,7 +256,7 @@ module.exports = async (req, res) => {
         { rows: [{ count: pageViews }] },
       ] = await Promise.all([
         pool.query('SELECT COUNT(*) as count FROM leads'),
-        pool.query("SELECT COUNT(*) as count FROM leads WHERE status = 'new'"),
+        pool.query("SELECT COUNT(*) as count FROM leads WHERE created_at >= NOW() - INTERVAL '30 days'"),
         pool.query('SELECT COUNT(*) as count FROM paypal_clicks'),
         pool.query('SELECT COUNT(*) as count FROM purchases'),
         pool.query("SELECT COUNT(*) as count FROM purchases WHERE status = 'completed'"),

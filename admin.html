@@ -559,7 +559,7 @@
                     <div class="value accent" id="statLeads">--</div>
                 </div>
                 <div class="stat-card">
-                    <div class="label">New Leads</div>
+                    <div class="label">New (30 days)</div>
                     <div class="value blue" id="statNewLeads">--</div>
                 </div>
                 <div class="stat-card">
@@ -592,8 +592,8 @@
                 <div class="table-controls">
                     <input type="text" class="search-input" placeholder="Search leads..." id="leadSearch" oninput="debounceLoadLeads()">
                     <select class="filter-select" id="leadFilter" onchange="loadLeads()">
-                        <option value="">All Statuses</option>
-                        <option value="new">New</option>
+                        <option value="">All Leads</option>
+                        <option value="recent">Last 30 Days</option>
                         <option value="contacted">Contacted</option>
                         <option value="converted">Converted</option>
                     </select>
