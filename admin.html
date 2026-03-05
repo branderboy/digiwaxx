@@ -722,17 +722,28 @@
             <!-- PayPal Panel -->
             <div class="panel" id="panel-paypal">
                 <h3 style="margin-bottom: 1rem; color: #ffd700;">PayPal Connection</h3>
-                <p style="color: #aaa; margin-bottom: 1.5rem;">Configure your PayPal.me link. Customers will be sent to paypal.me/[username]/[price].</p>
-                <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+                <p style="color: #aaa; margin-bottom: 1.5rem;">Connect your PayPal account to verify payments automatically. Get your credentials from the <a href="https://developer.paypal.com/dashboard/applications" target="_blank">PayPal Developer Dashboard</a>.</p>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;">
                     <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">PayPal.me Username</label>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="color: #aaa;">paypal.me/</span>
-                            <input type="text" id="set-paypal_username" class="settings-input" style="flex: 1;">
-                        </div>
+                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Client ID</label>
+                        <input type="text" id="set-paypal_client_id" class="settings-input" style="width: 100%;" placeholder="Your PayPal Client ID">
                     </div>
-                    <div id="paypalPreview" style="color: #aaa; font-size: 0.85rem;"></div>
-                    <button onclick="savePaypal()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; align-self: flex-start;">Save PayPal Settings</button>
+                    <div>
+                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Client Secret</label>
+                        <input type="password" id="set-paypal_client_secret" class="settings-input" style="width: 100%;" placeholder="Your PayPal Client Secret">
+                    </div>
+                    <div>
+                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Mode</label>
+                        <select id="set-paypal_mode" class="settings-input">
+                            <option value="sandbox">Sandbox (Testing)</option>
+                            <option value="live">Live (Production)</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button onclick="savePaypal()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer;">Save PayPal Settings</button>
+                        <button onclick="testPaypal()" style="background: transparent; border: 1px solid #ffd700; color: #ffd700; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer;">Test Connection</button>
+                    </div>
+                    <div id="paypalStatus" style="color: #aaa;"></div>
                 </div>
             </div>
 
@@ -1095,21 +1106,10 @@
                     const el = document.getElementById('set-' + key);
                     if (el) el.value = value;
                 });
-                // PayPal preview
-                updatePaypalPreview();
             } catch (e) {
                 console.error('Failed to load settings:', e);
             }
         }
-
-        function updatePaypalPreview() {
-            const username = document.getElementById('set-paypal_username').value;
-            document.getElementById('paypalPreview').textContent = 'Preview: paypal.me/' + username + '/99';
-        }
-
-        document.addEventListener('input', (e) => {
-            if (e.target.id === 'set-paypal_username') updatePaypalPreview();
-        });
 
         async function saveSettings(keys) {
             const settings = {};
@@ -1133,7 +1133,22 @@
         }
 
         function savePaypal() {
-            saveSettings(['paypal_username']);
+            saveSettings(['paypal_client_id', 'paypal_client_secret', 'paypal_mode']);
+        }
+
+        async function testPaypal() {
+            document.getElementById('paypalStatus').textContent = 'Testing connection...';
+            try {
+                const res = await fetch('/api/admin/paypal-test', { method: 'POST', headers: authHeaders() });
+                const data = await res.json();
+                if (data.ok) {
+                    document.getElementById('paypalStatus').innerHTML = '<span style="color: #22c55e;">Connected! Token obtained successfully.</span>';
+                } else {
+                    document.getElementById('paypalStatus').innerHTML = '<span style="color: #ef4444;">Failed: ' + (data.error || 'Unknown error') + '</span>';
+                }
+            } catch (e) {
+                document.getElementById('paypalStatus').innerHTML = '<span style="color: #ef4444;">Connection failed.</span>';
+            }
         }
 
         function saveEmails() {

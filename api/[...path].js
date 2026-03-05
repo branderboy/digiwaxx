@@ -84,7 +84,10 @@ async function initDB() {
       ('email2_delay_hours', '48'),
       ('email3_subject', 'Last Chance - Boost Your Record'),
       ('email3_body', 'Hey {{artist_name}},\n\nDon''t let "{{song_title}}" sit on the shelf. Our DJ network is ready to spin it.\n\nChoose your boost tier: {{site_url}}\n\n- The Digiwaxx Team'),
-      ('email3_delay_hours', '120')
+      ('email3_delay_hours', '120'),
+      ('paypal_client_id', ''),
+      ('paypal_client_secret', ''),
+      ('paypal_mode', 'sandbox')
     ON CONFLICT (key) DO NOTHING;
     CREATE TABLE IF NOT EXISTS email_queue (
       id SERIAL PRIMARY KEY,
@@ -155,6 +158,34 @@ function sendResendEmail(apiKey, from, to, subject, html) {
       let body = '';
       res.on('data', c => body += c);
       res.on('end', () => resolve({ status: res.statusCode, body }));
+    });
+    req.on('error', reject);
+    req.write(data);
+    req.end();
+  });
+}
+
+function getPaypalToken(clientId, clientSecret, mode) {
+  const host = mode === 'live' ? 'api-m.paypal.com' : 'api-m.sandbox.paypal.com';
+  const auth = Buffer.from(clientId + ':' + clientSecret).toString('base64');
+  return new Promise((resolve, reject) => {
+    const data = 'grant_type=client_credentials';
+    const req = https.request({
+      hostname: host,
+      path: '/v1/oauth2/token',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Basic ' + auth,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(data)
+      }
+    }, (res) => {
+      let body = '';
+      res.on('data', c => body += c);
+      res.on('end', () => {
+        try { resolve({ status: res.statusCode, data: JSON.parse(body) }); }
+        catch { resolve({ status: res.statusCode, data: body }); }
+      });
     });
     req.on('error', reject);
     req.write(data);
@@ -412,6 +443,24 @@ module.exports = async (req, res) => {
         await pool.query('INSERT INTO settings (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = $2', [key, String(value)]);
       }
       return json(res, { ok: true });
+    }
+
+    // ===== PAYPAL TEST =====
+    if (url === '/api/admin/paypal-test' && req.method === 'POST') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const creds = await getSettings(['paypal_client_id', 'paypal_client_secret', 'paypal_mode']);
+      if (!creds.paypal_client_id || !creds.paypal_client_secret) {
+        return json(res, { error: 'PayPal Client ID and Secret are required. Save them first.' }, 400);
+      }
+      try {
+        const result = await getPaypalToken(creds.paypal_client_id, creds.paypal_client_secret, creds.paypal_mode || 'sandbox');
+        if (result.status === 200 && result.data.access_token) {
+          return json(res, { ok: true, app_id: result.data.app_id });
+        }
+        return json(res, { error: result.data.error_description || 'Authentication failed. Check your credentials.' }, 400);
+      } catch (e) {
+        return json(res, { error: 'Connection failed: ' + e.message }, 500);
+      }
     }
 
     // ===== EMAIL QUEUE =====
