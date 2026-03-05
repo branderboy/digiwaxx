@@ -43,13 +43,52 @@
         }
 
         body {
-            background: linear-gradient(180deg, #2a0a22 0%, #1a0a18 20%, #3a0e2a 50%, #1a0a18 80%, #2a0a22 100%);
+            background-color: #1a0a18;
+            background-image:
+                /* Purple/blue arc lines at the top */
+                radial-gradient(ellipse 120% 60% at 50% -10%, transparent 58%, rgba(100, 40, 180, 0.15) 59%, transparent 61%),
+                radial-gradient(ellipse 100% 50% at 45% -5%, transparent 55%, rgba(60, 20, 200, 0.12) 56%, transparent 58%),
+                radial-gradient(ellipse 90% 45% at 55% -8%, transparent 52%, rgba(140, 50, 200, 0.1) 53%, transparent 55%),
+                /* Soft glow behind tower area */
+                radial-gradient(ellipse 40% 25% at 55% 78%, rgba(80, 20, 60, 0.5) 0%, transparent 100%),
+                /* Highway light trail curve at bottom */
+                radial-gradient(ellipse 120% 8% at 50% 96%, rgba(180, 120, 160, 0.15) 0%, transparent 100%),
+                radial-gradient(ellipse 100% 4% at 55% 93%, rgba(200, 150, 180, 0.1) 0%, transparent 100%),
+                /* Main atmosphere gradient - deep magenta to dark */
+                linear-gradient(180deg,
+                    #3d0a2a 0%,
+                    #5c1040 8%,
+                    #6b0a3d 15%,
+                    #5a0e38 25%,
+                    #4a0c30 35%,
+                    #3a0a28 50%,
+                    #2a0820 65%,
+                    #1a0618 78%,
+                    #0d0410 90%,
+                    #08020a 100%
+                );
+            background-attachment: fixed;
+            background-size: 100% 100%;
             color: var(--text-white);
             font-family: var(--font-body);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 45%;
+            background:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 500' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='fade' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='0.6' stop-color='%23000' stop-opacity='0.3'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0.8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='500' fill='url(%23fade)'/%3E%3C!-- Radio tower --%3E%3Cg stroke='%23200818' stroke-width='2' fill='none' opacity='0.6'%3E%3Cline x1='600' y1='120' x2='600' y2='380'/%3E%3Cline x1='585' y1='380' x2='615' y2='380'/%3E%3Cline x1='588' y1='120' x2='612' y2='120'/%3E%3Cline x1='582' y1='380' x2='600' y2='120'/%3E%3Cline x1='618' y1='380' x2='600' y2='120'/%3E%3Cline x1='587' y1='200' x2='613' y2='200'/%3E%3Cline x1='589' y1='250' x2='611' y2='250'/%3E%3Cline x1='591' y1='300' x2='609' y2='300'/%3E%3Cline x1='593' y1='340' x2='607' y2='340'/%3E%3C!-- Antenna prongs --%3E%3Cline x1='600' y1='120' x2='600' y2='100'/%3E%3Cline x1='594' y1='115' x2='600' y2='100'/%3E%3Cline x1='606' y1='115' x2='600' y2='100'/%3E%3C!-- Cross bracing --%3E%3Cline x1='590' y1='200' x2='610' y2='250'/%3E%3Cline x1='610' y1='200' x2='590' y2='250'/%3E%3Cline x1='591' y1='250' x2='609' y2='300'/%3E%3Cline x1='609' y1='250' x2='591' y2='300'/%3E%3C/g%3E%3C!-- City skyline silhouette --%3E%3Cpath d='M0 370 L80 370 L80 350 L120 350 L120 360 L200 360 L200 340 L220 340 L220 355 L350 355 L350 345 L400 345 L400 365 L500 365 L500 355 L550 355 L550 370 L700 370 L700 350 L740 350 L740 360 L850 360 L850 345 L900 345 L900 365 L1000 365 L1000 355 L1050 355 L1050 370 L1200 370 L1200 500 L0 500 Z' fill='%230d0410' opacity='0.5'/%3E%3C!-- Highway curves --%3E%3Cpath d='M0 430 Q300 390 600 410 Q900 430 1200 400' stroke='%23301025' stroke-width='20' fill='none' opacity='0.5'/%3E%3Cpath d='M0 450 Q300 420 600 435 Q900 450 1200 425' stroke='%23251020' stroke-width='15' fill='none' opacity='0.4'/%3E%3C!-- Highway light trails --%3E%3Cpath d='M0 430 Q300 390 600 410 Q900 430 1200 400' stroke='%23c08090' stroke-width='1.5' fill='none' opacity='0.3'/%3E%3Cpath d='M0 450 Q300 420 600 435 Q900 450 1200 425' stroke='%23a07080' stroke-width='1' fill='none' opacity='0.25'/%3E%3C/svg%3E") no-repeat center bottom;
+            background-size: 100% 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* Dark background with subtle purple accent */
@@ -133,7 +172,7 @@
             padding: 0 2rem;
         }
 
-        section { padding: 5rem 0; }
+        section { padding: 5rem 0; position: relative; z-index: 1; }
 
         /* --- ANIMATIONS --- */
         @keyframes pulse {
@@ -752,6 +791,95 @@
             animation: none;
         }
 
+        /* --- ADD-ONS --- */
+        .addons-section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .addons-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .addons-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .addon-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .addon-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 184, 0, 0.3);
+        }
+
+        .addon-card .addon-name {
+            font-family: var(--font-head);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .addon-card .addon-price {
+            font-family: var(--font-head);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            margin-bottom: 0.8rem;
+        }
+
+        .addon-card .addon-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .addon-card .btn-addon {
+            background: transparent;
+            border: 2px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            letter-spacing: 1px;
+        }
+
+        .addon-card .btn-addon:hover {
+            background: var(--accent-yellow);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 184, 0, 0.25);
+        }
+
         .paypal-note {
             display: flex;
             align-items: center;
@@ -1332,6 +1460,7 @@
             .pricing-card.featured { transform: scale(1); }
             .pricing-card.featured:hover { transform: translateY(-4px); }
             .steps-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+            .addons-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
         }
 
         @media (max-width: 768px) {
@@ -1454,6 +1583,8 @@
         /* Prevent horizontal scroll on all devices */
         @media (max-width: 768px) {
             html, body { overflow-x: hidden; }
+            body { background-attachment: scroll; }
+            body::before { position: absolute; }
         }
     </style>
 </head>
@@ -1699,6 +1830,17 @@
             </div>
         </section>
 
+        <!-- ADD-ONS -->
+        <section class="addons-section" id="addons" style="display: none;">
+            <div class="container-wide">
+                <h2 class="text-white text-center" data-key="addons_heading">LEVEL UP YOUR CAMPAIGN</h2>
+                <p class="text-center addons-subtitle" data-key="addons_subtitle">Add extra firepower to any tier.</p>
+                <div class="addons-grid" id="addons-grid">
+                    <!-- Populated dynamically from API -->
+                </div>
+            </div>
+        </section>
+
         <!-- TRUST SECTION -->
         <!-- BOOST CTA -->
         <section class="boost-cta">
@@ -1930,6 +2072,33 @@
             if (c.boost_dm_reply) {
                 const el = document.getElementById('boost-dm-reply');
                 if (el) el.textContent = c.boost_dm_reply;
+            }
+
+            // Add-Ons section
+            const addonsGrid = document.getElementById('addons-grid');
+            const addonsSection = document.getElementById('addons');
+            if (addonsGrid && addonsSection) {
+                let hasAddons = false;
+                let addonsHTML = '';
+                [1, 2, 3].forEach(i => {
+                    const name = c['addon_' + i + '_name'];
+                    const price = c['addon_' + i + '_price'];
+                    const desc = c['addon_' + i + '_desc'];
+                    const link = c['addon_' + i + '_paypal_link'];
+                    if (name && price && link) {
+                        hasAddons = true;
+                        addonsHTML += '<div class="addon-card animate-in">'
+                            + '<div class="addon-name">' + name + '</div>'
+                            + '<div class="addon-price">$' + price + '</div>'
+                            + '<div class="addon-desc">' + (desc || '') + '</div>'
+                            + '<a href="' + link + '" target="_blank" rel="noopener" class="btn-addon">ADD THIS</a>'
+                            + '</div>';
+                    }
+                });
+                if (hasAddons) {
+                    addonsGrid.innerHTML = addonsHTML;
+                    addonsSection.style.display = '';
+                }
             }
 
             // Form placeholders
