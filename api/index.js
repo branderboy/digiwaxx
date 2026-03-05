@@ -84,14 +84,19 @@ function requireAdmin(req, res, next) {
   next();
 }
 
-// Init DB before handling requests
+// Health check (no DB needed)
+app.get('/api/health', (req, res) => {
+  res.json({ ok: true, env: { hasDbUrl: !!process.env.DATABASE_URL, hasAdminPw: !!process.env.ADMIN_PASSWORD } });
+});
+
+// Init DB before handling DB routes
 app.use(async (req, res, next) => {
   try {
     await initDB();
     next();
   } catch (err) {
     console.error('DB init error:', err);
-    res.status(500).json({ error: 'Database initialization failed' });
+    res.status(500).json({ error: 'Database initialization failed', detail: err.message });
   }
 });
 
