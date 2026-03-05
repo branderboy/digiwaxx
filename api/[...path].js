@@ -122,7 +122,7 @@ module.exports = async (req, res) => {
         adminTokens.add(token);
         return json(res, { ok: true, token });
       }
-      return json(res, { error: 'Invalid password' }, 401);
+      return json(res, { error: 'Invalid password', debug: { receivedLength: (body.password || '').length, expectedLength: ADMIN_PASSWORD.length, receivedType: typeof body.password, bodyKeys: Object.keys(body) } }, 401);
     }
 
     // ===== PUBLIC ROUTES =====
