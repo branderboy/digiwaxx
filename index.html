@@ -14,9 +14,9 @@
     <style>
         /* --- CSS VARIABLES & THEME --- */
         :root {
-            --bg-dark: #0d050d;
-            --bg-mid: #1e0815;
-            --bg-light: #3a0e28;
+            --bg-dark: #1a0a18;
+            --bg-mid: #3a0e2a;
+            --bg-light: #5c1440;
             --accent-yellow: #FFB800;
             --accent-yellow-hover: #FFD54F;
             --accent-gold: #D4A017;
@@ -25,7 +25,7 @@
             --dot-purple: #c084fc;
             --font-head: 'Barlow Condensed', sans-serif;
             --font-body: 'DM Sans', sans-serif;
-            --card-bg: rgba(15, 5, 12, 0.9);
+            --card-bg: rgba(30, 10, 25, 0.9);
             --border-glow: rgba(255, 184, 0, 0.4);
             --max-width: 1200px;
             --funnel-width: 900px;
@@ -43,7 +43,7 @@
         }
 
         body {
-            background: var(--bg-dark);
+            background: linear-gradient(180deg, #2a0a22 0%, #1a0a18 20%, #3a0e2a 50%, #1a0a18 80%, #2a0a22 100%);
             color: var(--text-white);
             font-family: var(--font-body);
             line-height: 1.6;
@@ -275,7 +275,7 @@
             transform: translateX(-50%);
             width: 1000px;
             height: 1000px;
-            background: radial-gradient(circle, rgba(255, 184, 0, 0.06) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(120, 20, 80, 0.25) 0%, rgba(80, 10, 60, 0.1) 40%, transparent 60%);
             border-radius: 50%;
             pointer-events: none;
         }
@@ -766,13 +766,45 @@
             height: 16px;
         }
 
+        /* --- BOOST CTA BANNER --- */
+        .boost-cta {
+            padding: 5rem 0;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(100, 15, 65, 0.4) 0%, transparent 70%);
+        }
+
+        .boost-cta-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .boost-cta h2 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 0.95;
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 0;
+        }
+
+        .boost-cta h2 .boost-word {
+            color: var(--accent-yellow);
+            display: block;
+            font-size: clamp(4rem, 12vw, 8rem);
+            line-height: 1;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .boost-cta .boost-quotes {
+            color: var(--text-white);
+        }
+
         /* --- TRUST / SOCIAL PROOF SECTION --- */
         .trust-section {
             padding: 5rem 0;
         }
 
         .trust-badge {
-            background: linear-gradient(135deg, rgba(20,0,15,0.9), rgba(30,5,20,0.9));
+            background: linear-gradient(135deg, rgba(60, 10, 40, 0.9), rgba(40, 8, 30, 0.95));
             border: 1px solid rgba(255, 184, 0, 0.2);
             border-radius: 16px;
             padding: 3.5rem;
@@ -1091,8 +1123,8 @@
         .footer {
             padding: 2rem 0;
             text-align: center;
-            border-top: 1px solid rgba(200, 50, 140, 0.15);
-            background: rgba(20, 5, 18, 0.6);
+            border-top: 1px solid rgba(200, 50, 140, 0.25);
+            background: rgba(40, 10, 30, 0.8);
         }
 
         .footer p {
@@ -1318,11 +1350,11 @@
     <header class="navbar" id="navbar">
         <div class="navbar-inner">
             <a href="#" class="nav-logo">
-                <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 40 85 A 60 60 0 0 1 160 85" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
-                    <circle cx="100" cy="100" r="48" fill="#FFFFFF"/>
-                    <path d="M 38 82 A 18 18 0 0 0 38 118 L 18 118 A 18 18 0 0 1 18 82 Z" fill="#FFFFFF"/>
-                    <path d="M 162 82 A 18 18 0 0 1 162 118 L 182 118 A 18 18 0 0 0 182 82 Z" fill="#FFFFFF"/>
+                <svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 35 95 A 75 75 0 0 1 185 95" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
+                    <circle cx="110" cy="105" r="52" fill="#FFFFFF"/>
+                    <path d="M 33 90 Q 33 75 20 75 Q 7 75 7 90 L 7 120 Q 7 135 20 135 Q 33 135 33 120 Z" fill="#FFFFFF"/>
+                    <path d="M 187 90 Q 187 75 200 75 Q 213 75 213 90 L 213 120 Q 213 135 200 135 Q 187 135 187 120 Z" fill="#FFFFFF"/>
                 </svg>
                 <span class="font-head italic">DIGIWAXX</span>
             </a>
@@ -1555,15 +1587,25 @@
         </section>
 
         <!-- TRUST SECTION -->
+        <!-- BOOST CTA -->
+        <section class="boost-cta">
+            <div class="container-wide">
+                <div class="boost-cta-inner animate-in">
+                    <h2 class="font-head">COMMENT<br><span class="boost-quotes">"</span><span class="boost-word">BOOST</span><span class="boost-quotes">"</span><br>TO START<br>NOW</h2>
+                </div>
+            </div>
+        </section>
+
         <section class="trust-section text-center">
             <div class="container">
                 <div class="trust-badge animate-in">
                     <h2 class="font-head">TRUSTED BY DJs SINCE 1998</h2>
                     <p>
-                        Digiwaxx serves 30,000+ DJs worldwide across radio, clubs, and culture.<br>
-                        This isn't a random promo service.<br>
-                        <span class="text-yellow bold">It's a DJ ecosystem built for breaking records.</span>
+                        <span class="text-yellow bold">Digiwaxx Services 30,000+ DJs Worldwide across radio, clubs &amp; culture.</span><br>
+                        This isn't a promo page. It's a DJ ecosystem.
                     </p>
+                    <h3 class="font-head text-yellow" style="font-size: clamp(2rem, 5vw, 3rem); margin-top: 1.5rem; line-height: 1;">DROP YOUR RECORD<br>IN THE RIGHT ROOM.</h3>
+                    <p style="font-size: 1.3rem; margin-top: 1rem;"><span class="text-yellow bold">Limited Slots. Serious Artists Only.</span></p>
                     <div class="trust-stats">
                         <div class="trust-stat">
                             <div class="number">30K+</div>
@@ -1591,10 +1633,10 @@
                 <span class="dot purple"></span>
                 <span class="dot white"></span>
             </div>
-            <h2 class="text-yellow">PUT YOUR RECORD IN THE RIGHT ROOM</h2>
+            <h2 class="text-yellow">DROP YOUR RECORD IN THE RIGHT ROOM</h2>
             <p class="bold">
                 If your song is ready, it deserves to reach the DJs who matter.<br>
-                <span class="highlight">Limited slots available. Serious artists only.</span>
+                <span class="highlight">Limited Slots. Serious Artists Only.</span>
             </p>
 
             <div class="opt-in-box">
