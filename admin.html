@@ -43,22 +43,24 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background:
-                radial-gradient(ellipse at 30% -10%, rgba(180, 40, 120, 0.7) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% -5%, rgba(140, 30, 90, 0.6) 0%, transparent 45%),
-                radial-gradient(ellipse at 50% 0%, rgba(200, 50, 140, 0.5) 0%, transparent 40%),
-                radial-gradient(ellipse at 20% 40%, rgba(120, 20, 80, 0.6) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(100, 15, 70, 0.5) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 30%, rgba(160, 30, 100, 0.4) 0%, transparent 60%),
-                linear-gradient(180deg,
-                    rgba(100, 20, 65, 0.9) 0%,
-                    rgba(70, 15, 50, 0.95) 30%,
-                    rgba(40, 10, 35, 1) 60%,
-                    rgba(20, 5, 20, 1) 100%
-                );
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
             pointer-events: none;
+            background:
+                linear-gradient(180deg,
+                    #6b0a3d 0%,
+                    #6b0a3d 55%,
+                    #4a0830 65%,
+                    #2e0620 73%,
+                    #1a0415 82%,
+                    #0d020c 90%,
+                    #060108 100%
+                );
+            background-repeat: no-repeat;
+            background-size: 100vw 100vh;
         }
 
         h1, h2, h3, h4 {
