@@ -102,7 +102,7 @@ module.exports = async (req, res) => {
 
   // Health check
   if (url === '/api/health') {
-    return json(res, { ok: true, env: { hasDbUrl: !!process.env.DATABASE_URL, hasAdminPw: !!process.env.ADMIN_PASSWORD } });
+    return json(res, { ok: true, env: { hasDbUrl: !!process.env.DATABASE_URL, hasAdminPw: !!process.env.ADMIN_PASSWORD, adminPwLength: (process.env.ADMIN_PASSWORD || '').length } });
   }
 
   // Init DB for all other routes
