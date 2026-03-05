@@ -186,7 +186,7 @@
 
         .admin-header h1 {
             font-size: 1.5rem;
-            color: var(--accent);
+            color: #FFFFFF;
             letter-spacing: 2px;
         }
 
@@ -634,6 +634,7 @@
                 <div class="tab" onclick="switchTab('pricing')">Pricing</div>
                 <div class="tab" onclick="switchTab('paypal')">Integrations</div>
                 <div class="tab" onclick="switchTab('emails')">Emails</div>
+                <div class="tab" onclick="switchTab('manychat')">Conversations</div>
             </div>
 
             <!-- Leads Panel -->
@@ -923,24 +924,46 @@
                             <input type="text" id="set-pricing_subtitle" class="settings-input" style="width: 100%;">
                         </div>
                     </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Pay Button Text</label>
+                            <input type="text" id="set-pay_button_text" class="settings-input" style="width: 100%;" placeholder="PAY WITH PAYPAL →">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Price Label</label>
+                            <input type="text" id="set-price_label" class="settings-input" style="width: 100%;" placeholder="One-time payment">
+                        </div>
+                    </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">STARTER Tagline</label>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">STARTER Name</label>
+                            <input type="text" id="set-starter_name" class="settings-input" style="width: 100%;" placeholder="STARTER">
+                            <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Tagline</label>
                             <input type="text" id="set-starter_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
-                            <textarea id="set-starter_description" class="settings-input" rows="3" style="width: 100%;"></textarea>
+                            <textarea id="set-starter_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                            <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Features (one per line)</label>
+                            <textarea id="set-starter_features" class="settings-input" rows="6" style="width: 100%;" placeholder="Record pool placement&#10;Spotify playlist placement&#10;..."></textarea>
                         </div>
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PRO Tagline</label>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PRO Name</label>
+                            <input type="text" id="set-pro_name" class="settings-input" style="width: 100%;" placeholder="PRO">
+                            <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Tagline</label>
                             <input type="text" id="set-pro_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
-                            <textarea id="set-pro_description" class="settings-input" rows="3" style="width: 100%;"></textarea>
+                            <textarea id="set-pro_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                            <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Features (one per line)</label>
+                            <textarea id="set-pro_features" class="settings-input" rows="6" style="width: 100%;" placeholder="Everything in Starter&#10;IG feed post&#10;..."></textarea>
                         </div>
                         <div>
-                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">ELITE Tagline</label>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">ELITE Name</label>
+                            <input type="text" id="set-elite_name" class="settings-input" style="width: 100%;" placeholder="ELITE">
+                            <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Tagline</label>
                             <input type="text" id="set-elite_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
-                            <textarea id="set-elite_description" class="settings-input" rows="3" style="width: 100%;"></textarea>
+                            <textarea id="set-elite_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                            <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Features (one per line)</label>
+                            <textarea id="set-elite_features" class="settings-input" rows="6" style="width: 100%;" placeholder="Everything in Pro&#10;Zoom interview&#10;..."></textarea>
                         </div>
                     </div>
 
@@ -949,8 +972,26 @@
                     <!-- BOOST CTA -->
                     <h4 style="color: #ffd700; margin: 0;">Boost CTA Banner</h4>
                     <div>
-                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Boost CTA Text</label>
+                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Boost CTA Text (legacy)</label>
                         <input type="text" id="set-boost_cta_text" class="settings-input" style="width: 100%;">
+                    </div>
+                    <div>
+                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Boost CTA Heading (HTML allowed, use &lt;br&gt; for line breaks)</label>
+                        <textarea id="set-boost_cta_heading" class="settings-input" rows="2" style="width: 100%;" placeholder='If on IG<br>DM @Digiwaxx "BOOST"'></textarea>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">DM Username (shown in mockup)</label>
+                            <input type="text" id="set-boost_dm_username" class="settings-input" style="width: 100%;" placeholder="digiwaxx">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">DM Sent Message</label>
+                            <input type="text" id="set-boost_dm_sent" class="settings-input" style="width: 100%;" placeholder="BOOST">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">DM Reply Message</label>
+                            <input type="text" id="set-boost_dm_reply" class="settings-input" style="width: 100%;" placeholder="Hey! Ready to push your record...">
+                        </div>
                     </div>
 
                     <hr style="border-color: #333;">
@@ -1013,6 +1054,68 @@
                     <div>
                         <label style="display: block; color: #aaa; font-size: 0.75rem;">Highlight Text</label>
                         <input type="text" id="set-final_cta_highlight" class="settings-input" style="width: 100%;">
+                    </div>
+
+                    <h4 style="color: #ffd700; margin: 0.5rem 0 0;">Form Customization</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Form Heading</label>
+                            <input type="text" id="set-form_heading" class="settings-input" style="width: 100%;" placeholder="SUBMIT YOUR RECORD">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Form Subheading</label>
+                            <input type="text" id="set-form_subheading" class="settings-input" style="width: 100%;" placeholder="Get your music into the Digiwaxx DJ network today.">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Field 1 Placeholder</label>
+                            <input type="text" id="set-form_field1_placeholder" class="settings-input" style="width: 100%;" placeholder="Artist Name">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Field 2 Placeholder</label>
+                            <input type="text" id="set-form_field2_placeholder" class="settings-input" style="width: 100%;" placeholder="Song Title">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Field 3 Placeholder</label>
+                            <input type="text" id="set-form_field3_placeholder" class="settings-input" style="width: 100%;" placeholder="Link to the Record (Spotify, Apple, Soundcloud, etc.)">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Field 4 Placeholder</label>
+                            <input type="text" id="set-form_field4_placeholder" class="settings-input" style="width: 100%;" placeholder="Your Email Address">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Submit Button Text</label>
+                            <input type="text" id="set-form_submit_text" class="settings-input" style="width: 100%;" placeholder="SUBMIT MY RECORD">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Form Note (below button)</label>
+                            <input type="text" id="set-form_note" class="settings-input" style="width: 100%;" placeholder="We'll review your submission within 72 hours.">
+                        </div>
+                    </div>
+
+                    <h4 style="color: #ffd700; margin: 0.5rem 0 0;">Success Modal</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Modal Heading</label>
+                            <input type="text" id="set-modal_heading" class="settings-input" style="width: 100%;" placeholder="RECORD SUBMITTED">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-size: 0.75rem;">Modal Button Text</label>
+                            <input type="text" id="set-modal_button" class="settings-input" style="width: 100%;" placeholder="GOT IT">
+                        </div>
+                    </div>
+                    <div>
+                        <label style="display: block; color: #aaa; font-size: 0.75rem;">Modal Body</label>
+                        <textarea id="set-modal_body" class="settings-input" rows="2" style="width: 100%;" placeholder="Your submission has been received..."></textarea>
+                    </div>
+                    <div>
+                        <label style="display: block; color: #aaa; font-size: 0.75rem;">Modal CTA Text</label>
+                        <input type="text" id="set-modal_cta" class="settings-input" style="width: 100%;" placeholder="Ready to boost now? Choose a tier above...">
                     </div>
 
                     <hr style="border-color: #333;">
@@ -1106,6 +1209,26 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Resend (Email) -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
+                    <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Resend (Email Delivery)</h4>
+                    <p style="color: #aaa; margin-bottom: 1rem; font-size: 0.85rem;">Used to send automated email sequences to leads. Get your API key from <a href="https://resend.com" target="_blank" style="color: #ffd700;">Resend</a>.</p>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 700px;">
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Resend API Key</label>
+                            <input type="password" id="set-resend_api_key" class="settings-input" style="width: 100%;" placeholder="re_xxxxxxxxxxxxxxxxxxxxxxxx">
+                        </div>
+                        <div>
+                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">From Address</label>
+                            <input type="text" id="set-email_from" class="settings-input" style="width: 100%;" placeholder="Digiwaxx <noreply@digiwaxx.com>">
+                        </div>
+                        <div>
+                            <button onclick="saveResend()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer;">Save Resend Settings</button>
+                        </div>
+                        <div id="resendStatus" style="color: #aaa;"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- Emails Panel -->
@@ -1113,15 +1236,7 @@
                 <h3 style="margin-bottom: 1rem; color: #ffd700;">Email Automation</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">3-step email sequence sent to leads. Uses Resend to deliver emails.</p>
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 100%;">
-                    <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Resend API Key</label>
-                        <input type="password" id="set-resend_api_key" class="settings-input" style="width: 100%;">
-                    </div>
-                    <div>
-                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">From Address</label>
-                        <input type="text" id="set-email_from" class="settings-input" style="width: 100%;" placeholder="Digiwaxx <noreply@digiwaxx.com>">
-                    </div>
-                    <hr style="border-color: #333;">
+                    <p style="color: #aaa; font-size: 0.85rem; background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 8px; padding: 0.75rem;">Resend API Key and From Address are configured in the <strong style="color: #ffd700;">Integrations</strong> tab.</p>
                     <div>
                         <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Step 1 - Welcome Email</h4>
                         <label style="color: #aaa; font-size: 0.75rem;">Delay (hours after signup)</label>
@@ -1169,6 +1284,57 @@
                             </thead>
                             <tbody id="emailQueueBody"></tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ManyChat Conversations Panel -->
+            <div class="panel" id="panel-manychat">
+                <h3 style="margin-bottom: 1rem; color: #ffd700;">Conversations</h3>
+                <p style="color: #aaa; margin-bottom: 1.5rem;">View and manage your ManyChat conversations. Connect your ManyChat account in the Integrations tab to enable this feature.</p>
+                <div id="manychatConversationsContainer">
+                    <div id="manychatNotConfigured" style="display: none; background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 2rem; text-align: center;">
+                        <p style="color: #ffd700; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">ManyChat Not Configured</p>
+                        <p style="color: #aaa;">Go to the <strong>Integrations</strong> tab and enter your ManyChat Widget ID and Page ID to connect.</p>
+                    </div>
+                    <div id="manychatConfigured" style="display: none;">
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center;">
+                            <a id="manychatDashboardLink" href="https://manychat.com" target="_blank" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block;">Open ManyChat Dashboard</a>
+                            <span style="color: #22c55e; font-size: 0.85rem;" id="manychatConnectedStatus">Connected</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Quick Access</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                                <a href="https://manychat.com/liveChat" target="_blank" style="background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 8px; padding: 1rem; text-align: center; color: #fff; text-decoration: none; transition: border-color 0.2s;" onmouseover="this.style.borderColor='#ffd700'" onmouseout="this.style.borderColor='#333'">
+                                    <div style="font-size: 1.5rem; margin-bottom: 0.3rem;">💬</div>
+                                    <div style="font-weight: 700; font-size: 0.85rem;">Live Chat</div>
+                                    <div style="color: #aaa; font-size: 0.75rem;">View all conversations</div>
+                                </a>
+                                <a href="https://manychat.com/contacts" target="_blank" style="background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 8px; padding: 1rem; text-align: center; color: #fff; text-decoration: none; transition: border-color 0.2s;" onmouseover="this.style.borderColor='#ffd700'" onmouseout="this.style.borderColor='#333'">
+                                    <div style="font-size: 1.5rem; margin-bottom: 0.3rem;">👥</div>
+                                    <div style="font-weight: 700; font-size: 0.85rem;">Contacts</div>
+                                    <div style="color: #aaa; font-size: 0.75rem;">Manage subscribers</div>
+                                </a>
+                                <a href="https://manychat.com/automation" target="_blank" style="background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 8px; padding: 1rem; text-align: center; color: #fff; text-decoration: none; transition: border-color 0.2s;" onmouseover="this.style.borderColor='#ffd700'" onmouseout="this.style.borderColor='#333'">
+                                    <div style="font-size: 1.5rem; margin-bottom: 0.3rem;">⚡</div>
+                                    <div style="font-weight: 700; font-size: 0.85rem;">Automations</div>
+                                    <div style="color: #aaa; font-size: 0.75rem;">Edit DM flows</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem;">
+                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Connection Details</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <label style="display: block; color: #aaa; font-size: 0.75rem;">Widget ID</label>
+                                    <div id="mc-widget-id-display" style="color: #fff; font-family: monospace; background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 4px; font-size: 0.85rem;">--</div>
+                                </div>
+                                <div>
+                                    <label style="display: block; color: #aaa; font-size: 0.75rem;">Page ID</label>
+                                    <div id="mc-page-id-display" style="color: #fff; font-family: monospace; background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 4px; font-size: 0.85rem;">--</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1468,6 +1634,7 @@
                     if (el) el.value = value;
                 });
                 syncDesignInputs();
+                loadManychatPanel();
             } catch (e) {
                 console.error('Failed to load settings:', e);
             }
@@ -1506,12 +1673,17 @@
                 'problem_heading', 'problem_intro', 'problem_closing',
                 'solution_heading', 'solution_intro', 'solution_closing', 'solution_cta',
                 'step1_title', 'step1_desc', 'step2_title', 'step2_desc', 'step3_title', 'step3_desc',
-                'pricing_heading', 'pricing_subtitle',
-                'starter_tagline', 'starter_description', 'pro_tagline', 'pro_description', 'elite_tagline', 'elite_description',
-                'boost_cta_text',
+                'pricing_heading', 'pricing_subtitle', 'pay_button_text', 'price_label',
+                'starter_name', 'starter_tagline', 'starter_description', 'starter_features',
+                'pro_name', 'pro_tagline', 'pro_description', 'pro_features',
+                'elite_name', 'elite_tagline', 'elite_description', 'elite_features',
+                'boost_cta_text', 'boost_cta_heading', 'boost_dm_username', 'boost_dm_sent', 'boost_dm_reply',
                 'trust_heading', 'trust_body', 'trust_cta', 'trust_subtext',
                 'trust_stat1_number', 'trust_stat1_label', 'trust_stat2_number', 'trust_stat2_label', 'trust_stat3_number', 'trust_stat3_label',
                 'final_cta_heading', 'final_cta_body', 'final_cta_highlight',
+                'form_heading', 'form_subheading', 'form_field1_placeholder', 'form_field2_placeholder',
+                'form_field3_placeholder', 'form_field4_placeholder', 'form_submit_text', 'form_note',
+                'modal_heading', 'modal_body', 'modal_cta', 'modal_button',
                 'footer_text'
             ]);
         }
@@ -1545,8 +1717,13 @@
             document.getElementById('pixelStatus').innerHTML = '<span style="color: #22c55e;">Saved! Facebook Pixel is now tracking your landing page.</span>';
         }
 
+        function saveResend() {
+            saveSettings(['resend_api_key', 'email_from']);
+            document.getElementById('resendStatus').innerHTML = '<span style="color: #22c55e;">Saved! Resend settings updated.</span>';
+        }
+
         function saveEmails() {
-            saveSettings(['resend_api_key', 'email_from', 'email1_subject', 'email1_body', 'email1_delay_hours', 'email2_subject', 'email2_body', 'email2_delay_hours', 'email3_subject', 'email3_body', 'email3_delay_hours']);
+            saveSettings(['email1_subject', 'email1_body', 'email1_delay_hours', 'email2_subject', 'email2_body', 'email2_delay_hours', 'email3_subject', 'email3_body', 'email3_delay_hours']);
         }
 
         async function processEmails() {
@@ -1624,6 +1801,21 @@
             const logoUrl = document.getElementById('set-logo_url');
             if (logoUrl && logoUrl.value) {
                 document.getElementById('logoPreview').innerHTML = '<img src="' + logoUrl.value + '" style="max-height: 60px; border-radius: 8px; background: rgba(255,255,255,0.1); padding: 8px;">';
+            }
+        }
+
+        // ========== MANYCHAT ==========
+        function loadManychatPanel() {
+            const widgetId = allSettings.manychat_widget_id;
+            const pageId = allSettings.manychat_page_id;
+            if (widgetId && pageId) {
+                document.getElementById('manychatNotConfigured').style.display = 'none';
+                document.getElementById('manychatConfigured').style.display = 'block';
+                document.getElementById('mc-widget-id-display').textContent = widgetId;
+                document.getElementById('mc-page-id-display').textContent = pageId;
+            } else {
+                document.getElementById('manychatNotConfigured').style.display = 'block';
+                document.getElementById('manychatConfigured').style.display = 'none';
             }
         }
 

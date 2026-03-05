@@ -1619,16 +1619,16 @@
                 <div class="pricing-grid">
 
                     <!-- STARTER -->
-                    <div class="pricing-card animate-in">
+                    <div class="pricing-card animate-in" data-tier-card="starter">
                         <div class="card-header">
-                            <h3 class="text-pink">STARTER</h3>
+                            <h3 class="text-pink tier-name" data-key="starter_name">STARTER</h3>
                             <div class="price">$99</div>
-                            <div class="price-label">One-time payment</div>
+                            <div class="price-label" data-key="price_label">One-time payment</div>
                             <div class="tagline italic bold">Get In The System</div>
                         </div>
                         <div class="card-body">
                             <p>Perfect for artists who need their first real DJ push.</p>
-                            <ul class="custom-bullets text-white">
+                            <ul class="custom-bullets text-white tier-features" data-features-key="starter_features">
                                 <li>Record pool placement</li>
                                 <li>Spotify playlist placement</li>
                                 <li>Digiwaxx radio rotation</li>
@@ -1636,7 +1636,7 @@
                                 <li>Official Digiwaxx.com artist coverage</li>
                                 <li>Artist spotlight write-up (SEO indexed)</li>
                             </ul>
-                            <a href="#" class="btn-buy" data-tier="starter" data-price="99" onclick="handlePayPalClick(event, 'Starter', 99)">PAY WITH PAYPAL &rarr;</a>
+                            <a href="#" class="btn-buy" data-tier="starter" data-price="99" onclick="handlePayPalClick(event, 'Starter', 99)"><span class="pay-btn-text">PAY WITH PAYPAL &rarr;</span></a>
                             <div class="paypal-note">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm0-8h2v6h-2V9z"/></svg>
                                 Secure PayPal checkout
@@ -1645,24 +1645,24 @@
                     </div>
 
                     <!-- PRO (Featured) -->
-                    <div class="pricing-card featured animate-in">
+                    <div class="pricing-card featured animate-in" data-tier-card="pro">
                         <div class="popular-badge">Most Popular</div>
                         <div class="card-header">
-                            <h3 class="text-pink">PRO</h3>
+                            <h3 class="text-pink tier-name" data-key="pro_name">PRO</h3>
                             <div class="price">$149</div>
-                            <div class="price-label">One-time payment</div>
+                            <div class="price-label" data-key="price_label">One-time payment</div>
                             <div class="tagline italic bold">Turn The Lights On</div>
                         </div>
                         <div class="card-body">
                             <p>Everything in Starter, plus stronger visibility.</p>
-                            <ul class="custom-bullets text-white">
+                            <ul class="custom-bullets text-white tier-features" data-features-key="pro_features">
                                 <li>Everything in Starter</li>
                                 <li>IG feed post on Digiwaxx</li>
                                 <li>2 Instagram story placements</li>
                                 <li>Featured spin on DJ Call</li>
                                 <li>Live DJ mention</li>
                             </ul>
-                            <a href="#" class="btn-buy" data-tier="pro" data-price="149" onclick="handlePayPalClick(event, 'Pro', 149)">PAY WITH PAYPAL &rarr;</a>
+                            <a href="#" class="btn-buy" data-tier="pro" data-price="149" onclick="handlePayPalClick(event, 'Pro', 149)"><span class="pay-btn-text">PAY WITH PAYPAL &rarr;</span></a>
                             <div class="paypal-note">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm0-8h2v6h-2V9z"/></svg>
                                 Secure PayPal checkout
@@ -1671,23 +1671,23 @@
                     </div>
 
                     <!-- ELITE -->
-                    <div class="pricing-card animate-in">
+                    <div class="pricing-card animate-in" data-tier-card="elite">
                         <div class="card-header">
-                            <h3 class="text-pink">ELITE</h3>
+                            <h3 class="text-pink tier-name" data-key="elite_name">ELITE</h3>
                             <div class="price">$199</div>
-                            <div class="price-label">One-time payment</div>
+                            <div class="price-label" data-key="price_label">One-time payment</div>
                             <div class="tagline italic bold">Heavy Rotation Energy</div>
                         </div>
                         <div class="card-body">
                             <p>Everything in Pro, plus deeper industry exposure.</p>
-                            <ul class="custom-bullets text-white">
+                            <ul class="custom-bullets text-white tier-features" data-features-key="elite_features">
                                 <li>Everything in Pro</li>
                                 <li>One-on-one Zoom interview</li>
                                 <li>TikTok post on Digiwaxx</li>
                                 <li>Performance snapshot report</li>
                                 <li>Priority DJ call placement</li>
                             </ul>
-                            <a href="#" class="btn-buy" data-tier="elite" data-price="199" onclick="handlePayPalClick(event, 'Elite', 199)">PAY WITH PAYPAL &rarr;</a>
+                            <a href="#" class="btn-buy" data-tier="elite" data-price="199" onclick="handlePayPalClick(event, 'Elite', 199)"><span class="pay-btn-text">PAY WITH PAYPAL &rarr;</span></a>
                             <div class="paypal-note">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm0-8h2v6h-2V9z"/></svg>
                                 Secure PayPal checkout
@@ -1705,19 +1705,19 @@
             <div class="container-wide">
                 <div class="boost-cta-inner animate-in">
                     <div class="boost-cta-text">
-                        <h2 class="font-head">If on IG<br>DM @Digiwaxx <span class="boost-quotes">"</span><span class="boost-word">BOOST</span><span class="boost-quotes">"</span></h2>
+                        <h2 class="font-head" data-key="boost_cta_heading" data-raw="1">If on IG<br>DM @Digiwaxx <span class="boost-quotes">"</span><span class="boost-word">BOOST</span><span class="boost-quotes">"</span></h2>
                     </div>
                     <div class="boost-cta-mockup">
                         <div class="ig-dm-mockup">
                             <div class="ig-dm-header">
                                 <div class="ig-dm-avatar"><svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg"><path d="M 35 95 A 75 75 0 0 1 185 95" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/><circle cx="110" cy="105" r="52" fill="#FFFFFF"/><path d="M 33 90 Q 33 75 20 75 Q 7 75 7 90 L 7 120 Q 7 135 20 135 Q 33 135 33 120 Z" fill="#FFFFFF"/><path d="M 187 90 Q 187 75 200 75 Q 213 75 213 90 L 213 120 Q 213 135 200 135 Q 187 135 187 120 Z" fill="#FFFFFF"/></svg></div>
                                 <div>
-                                    <div class="ig-dm-name">digiwaxx <span class="ig-dm-verified">&#10003;</span></div>
+                                    <div class="ig-dm-name"><span id="boost-dm-username">digiwaxx</span> <span class="ig-dm-verified">&#10003;</span></div>
                                 </div>
                             </div>
                             <div class="ig-dm-messages">
-                                <div class="ig-dm-bubble sent">BOOST</div>
-                                <div class="ig-dm-bubble received">Hey! Ready to push your record to 30K+ DJs? Drop your track link and let's go.</div>
+                                <div class="ig-dm-bubble sent" id="boost-dm-sent">BOOST</div>
+                                <div class="ig-dm-bubble received" id="boost-dm-reply">Hey! Ready to push your record to 30K+ DJs? Drop your track link and let's go.</div>
                             </div>
                             <div class="ig-dm-input">
                                 <span>Message...</span>
@@ -1772,26 +1772,26 @@
             <div class="opt-in-box">
                 <div class="opt-in-inner">
                     <div class="form-header">
-                        <h3>SUBMIT YOUR RECORD</h3>
-                        <p>Get your music into the Digiwaxx DJ network today.</p>
+                        <h3 data-key="form_heading">SUBMIT YOUR RECORD</h3>
+                        <p data-key="form_subheading">Get your music into the Digiwaxx DJ network today.</p>
                     </div>
 
                     <form id="leadForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="artistName" placeholder="Artist Name" required>
+                            <input type="text" class="form-control" id="artistName" data-placeholder-key="form_field1_placeholder" placeholder="Artist Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="songTitle" placeholder="Song Title" required>
+                            <input type="text" class="form-control" id="songTitle" data-placeholder-key="form_field2_placeholder" placeholder="Song Title" required>
                         </div>
                         <div class="form-group">
-                            <input type="url" class="form-control" id="recordLink" placeholder="Link to the Record (Spotify, Apple, Soundcloud, etc.)" required>
+                            <input type="url" class="form-control" id="recordLink" data-placeholder-key="form_field3_placeholder" placeholder="Link to the Record (Spotify, Apple, Soundcloud, etc.)" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="Your Email Address" required>
+                            <input type="email" class="form-control" id="email" data-placeholder-key="form_field4_placeholder" placeholder="Your Email Address" required>
                         </div>
 
-                        <button type="submit" class="submit-btn">SUBMIT MY RECORD</button>
-                        <p class="form-note">We'll review your submission within 72 hours.</p>
+                        <button type="submit" class="submit-btn" data-key="form_submit_text">SUBMIT MY RECORD</button>
+                        <p class="form-note" data-key="form_note">We'll review your submission within 72 hours.</p>
                     </form>
                 </div>
             </div>
@@ -1808,10 +1808,10 @@
     <!-- SUCCESS MODAL -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-content">
-            <h2>RECORD SUBMITTED</h2>
-            <p>Your submission has been received. Our team will review your record and reach out within 24 hours.</p>
-            <p class="text-white bold">Ready to boost now? Choose a tier above to pay via PayPal and skip the line.</p>
-            <button class="modal-close" onclick="closeModal()">GOT IT</button>
+            <h2 data-key="modal_heading">RECORD SUBMITTED</h2>
+            <p data-key="modal_body">Your submission has been received. Our team will review your record and reach out within 24 hours.</p>
+            <p class="text-white bold" data-key="modal_cta">Ready to boost now? Choose a tier above to pay via PayPal and skip the line.</p>
+            <button class="modal-close" onclick="closeModal()" data-key="modal_button">GOT IT</button>
         </div>
     </div>
 
@@ -1890,13 +1890,52 @@
 
             // Pricing tier content
             ['starter', 'pro', 'elite'].forEach(tier => {
-                const cards = document.querySelectorAll('.pricing-card');
-                cards.forEach(card => {
-                    const btn = card.querySelector(`.btn-buy[data-tier="${tier}"]`);
-                    if (!btn) return;
-                    if (c[tier + '_tagline']) { const el = card.querySelector('.tagline'); if (el) el.textContent = c[tier + '_tagline']; }
-                    if (c[tier + '_description']) { const el = card.querySelector('.card-body > p'); if (el) el.textContent = c[tier + '_description']; }
-                });
+                const card = document.querySelector(`[data-tier-card="${tier}"]`);
+                if (!card) return;
+                if (c[tier + '_tagline']) { const el = card.querySelector('.tagline'); if (el) el.textContent = c[tier + '_tagline']; }
+                if (c[tier + '_description']) { const el = card.querySelector('.card-body > p'); if (el) el.textContent = c[tier + '_description']; }
+                // Dynamic feature list
+                if (c[tier + '_features']) {
+                    const ul = card.querySelector('.tier-features');
+                    if (ul) {
+                        const features = c[tier + '_features'].split('\n').filter(f => f.trim());
+                        ul.innerHTML = features.map(f => '<li>' + f.trim() + '</li>').join('');
+                    }
+                }
+            });
+
+            // Pay button text
+            if (c.pay_button_text) {
+                document.querySelectorAll('.pay-btn-text').forEach(el => el.textContent = c.pay_button_text);
+            }
+
+            // Price label
+            if (c.price_label) {
+                document.querySelectorAll('.price-label').forEach(el => el.textContent = c.price_label);
+            }
+
+            // Boost CTA section
+            if (c.boost_cta_heading) {
+                const el = document.querySelector('[data-key="boost_cta_heading"]');
+                if (el) el.innerHTML = c.boost_cta_heading;
+            }
+            if (c.boost_dm_username) {
+                const el = document.getElementById('boost-dm-username');
+                if (el) el.textContent = c.boost_dm_username;
+            }
+            if (c.boost_dm_sent) {
+                const el = document.getElementById('boost-dm-sent');
+                if (el) el.textContent = c.boost_dm_sent;
+            }
+            if (c.boost_dm_reply) {
+                const el = document.getElementById('boost-dm-reply');
+                if (el) el.textContent = c.boost_dm_reply;
+            }
+
+            // Form placeholders
+            document.querySelectorAll('[data-placeholder-key]').forEach(el => {
+                const key = el.dataset.placeholderKey;
+                if (c[key]) el.placeholder = c[key];
             });
 
             // Logo: if URL provided, swap SVG for image
