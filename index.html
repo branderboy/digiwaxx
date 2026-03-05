@@ -25,7 +25,7 @@
             --dot-purple: #d4a0a0;
             --font-head: 'Barlow Condensed', sans-serif;
             --font-body: 'DM Sans', sans-serif;
-            --card-bg: rgba(30, 10, 25, 0.9);
+            --card-bg: #140812;
             --border-glow: rgba(255, 184, 0, 0.4);
             --max-width: 1200px;
             --funnel-width: 900px;
@@ -285,8 +285,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 184, 0, 0.08);
-            border: 1px solid rgba(255, 184, 0, 0.25);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
             color: #ffffff;
             padding: 8px 18px;
             border-radius: 50px;
@@ -433,10 +433,10 @@
 
         /* --- SOCIAL PROOF BAR --- */
         .proof-bar {
-            background: rgba(100, 20, 70, 0.2);
-            border-top: 1px solid rgba(200, 50, 140, 0.15);
-            border-bottom: 1px solid rgba(200, 50, 140, 0.15);
-            padding: 1.5rem 0;
+            background: rgba(0, 0, 0, 0.35);
+            border-top: 1px solid rgba(255, 184, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 184, 0, 0.2);
+            padding: 1.2rem 0;
         }
 
         .proof-bar-inner {
@@ -448,17 +448,22 @@
         }
 
         .proof-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: rgba(255,255,255,0.7);
-            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: var(--font-head);
         }
 
-        .proof-item .icon {
-            font-size: 1.4rem;
+        .proof-item + .proof-item::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            margin-right: 2rem;
         }
 
         /* --- PROBLEM / SOLUTION SECTIONS --- */
@@ -1547,14 +1552,13 @@
     <header class="navbar" id="navbar">
         <div class="navbar-inner">
             <a href="#" class="nav-logo" id="navLogo">
-                <svg id="logoSvg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+                <svg id="logoSvg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg" style="display:none;">
                     <path d="M 35 95 A 75 75 0 0 1 185 95" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
                     <circle cx="110" cy="105" r="52" fill="#FFFFFF"/>
                     <path d="M 33 90 Q 33 75 20 75 Q 7 75 7 90 L 7 120 Q 7 135 20 135 Q 33 135 33 120 Z" fill="#FFFFFF"/>
                     <path d="M 187 90 Q 187 75 200 75 Q 213 75 213 90 L 213 120 Q 213 135 200 135 Q 187 135 187 120 Z" fill="#FFFFFF"/>
                 </svg>
-                <img id="logoImg" style="display:none; height: 42px; width: auto;" alt="Digiwaxx">
-                <span class="font-head italic">DIGIWAXX</span>
+                <img id="logoImg" src="images/logo.jpg" style="height: 48px; width: auto;" alt="Digiwaxx">
             </a>
             <div class="nav-links">
                 <a href="#pricing" class="nav-link">Pricing</a>
@@ -1621,10 +1625,10 @@
         <!-- SOCIAL PROOF BAR -->
         <div class="proof-bar">
             <div class="container-wide proof-bar-inner">
-                <div class="proof-item"><span class="icon">&#127911;</span> Record Pool Distribution</div>
-                <div class="proof-item"><span class="icon">&#128251;</span> Radio Rotation</div>
-                <div class="proof-item"><span class="icon">&#127926;</span> Spotify Playlists</div>
-                <div class="proof-item"><span class="icon">&#127775;</span> DJ Network Access</div>
+                <div class="proof-item">Record Pool Distribution</div>
+                <div class="proof-item">Radio Rotation</div>
+                <div class="proof-item">Spotify Playlists</div>
+                <div class="proof-item">DJ Network Access</div>
             </div>
         </div>
 
@@ -1896,6 +1900,7 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container-wide">
+            <p style="margin-bottom: 0.5rem;"><a href="tel:+18006651259" style="color: #fff; text-decoration: none; font-weight: 700; font-size: 1rem; letter-spacing: 1px;">1-(800) 665-1259</a></p>
             <p data-key="footer_text">&copy; 2026 Digiwaxx Media Group. All rights reserved. Trusted by DJs since 1998.</p>
         </div>
     </footer>
@@ -2060,14 +2065,11 @@
                 if (c[key]) el.placeholder = c[key];
             });
 
-            // Logo: if URL provided, swap SVG for image
+            // Logo: if custom URL provided, override default logo image
             if (c.logo_url) {
-                const svg = document.getElementById('logoSvg');
                 const img = document.getElementById('logoImg');
-                if (svg && img) {
-                    svg.style.display = 'none';
+                if (img) {
                     img.src = c.logo_url;
-                    img.style.display = 'block';
                 }
             }
 
@@ -2079,11 +2081,19 @@
                 }
             }
 
+            // Background image
+            if (c.bg_image) {
+                document.body.style.background = 'none';
+                const before = document.createElement('style');
+                before.textContent = 'body::before { background: url(' + JSON.stringify(c.bg_image) + ') no-repeat center top / cover !important; }';
+                document.head.appendChild(before);
+            }
+
             // Colors
             if (c.accent_color) {
                 document.documentElement.style.setProperty('--accent-yellow', c.accent_color);
             }
-            if (c.bg_color) {
+            if (c.bg_color && !c.bg_image) {
                 document.documentElement.style.setProperty('--bg-dark', c.bg_color);
             }
 
