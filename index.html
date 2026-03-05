@@ -43,32 +43,7 @@
         }
 
         body {
-            background-color: #1a0a18;
-            background-image:
-                /* Purple/blue arc lines at the top */
-                radial-gradient(ellipse 120% 60% at 50% -10%, transparent 58%, rgba(100, 40, 180, 0.15) 59%, transparent 61%),
-                radial-gradient(ellipse 100% 50% at 45% -5%, transparent 55%, rgba(60, 20, 200, 0.12) 56%, transparent 58%),
-                radial-gradient(ellipse 90% 45% at 55% -8%, transparent 52%, rgba(140, 50, 200, 0.1) 53%, transparent 55%),
-                /* Soft glow behind tower area */
-                radial-gradient(ellipse 40% 25% at 55% 78%, rgba(80, 20, 60, 0.5) 0%, transparent 100%),
-                /* Highway light trail curve at bottom */
-                radial-gradient(ellipse 120% 8% at 50% 96%, rgba(180, 120, 160, 0.15) 0%, transparent 100%),
-                radial-gradient(ellipse 100% 4% at 55% 93%, rgba(200, 150, 180, 0.1) 0%, transparent 100%),
-                /* Main atmosphere gradient - deep magenta to dark */
-                linear-gradient(180deg,
-                    #3d0a2a 0%,
-                    #5c1040 8%,
-                    #6b0a3d 15%,
-                    #5a0e38 25%,
-                    #4a0c30 35%,
-                    #3a0a28 50%,
-                    #2a0820 65%,
-                    #1a0618 78%,
-                    #0d0410 90%,
-                    #08020a 100%
-                );
-            background-attachment: fixed;
-            background-size: 100% 100%;
+            background: #6b0a3d;
             color: var(--text-white);
             font-family: var(--font-body);
             line-height: 1.6;
@@ -77,62 +52,46 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Fixed viewport background — bright magenta top, cityscape bottom */
         body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                /* Thin purple/blue arc lines near top-left */
+                radial-gradient(ellipse 160% 80% at 50% -20%, transparent 54%, rgba(120, 50, 220, 0.13) 54.5%, transparent 55.5%),
+                radial-gradient(ellipse 130% 65% at 40% -12%, transparent 52%, rgba(80, 30, 200, 0.10) 52.5%, transparent 53.5%),
+                /* Flat bright magenta top 65%, transitions to dark bottom 35% */
+                linear-gradient(180deg,
+                    #6b0a3d 0%,
+                    #6b0a3d 55%,
+                    #4a0830 65%,
+                    #2e0620 73%,
+                    #1a0415 82%,
+                    #0d020c 90%,
+                    #060108 100%
+                );
+            background-repeat: no-repeat;
+            background-size: 100vw 100vh;
+        }
+
+        /* Cityscape scene — tower, highway, skyline anchored to bottom */
+        body::after {
             content: '';
             position: fixed;
             bottom: 0;
             left: 0;
-            right: 0;
-            height: 45%;
-            background:
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 500' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='fade' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='0.6' stop-color='%23000' stop-opacity='0.3'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0.8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='500' fill='url(%23fade)'/%3E%3C!-- Radio tower --%3E%3Cg stroke='%23200818' stroke-width='2' fill='none' opacity='0.6'%3E%3Cline x1='600' y1='120' x2='600' y2='380'/%3E%3Cline x1='585' y1='380' x2='615' y2='380'/%3E%3Cline x1='588' y1='120' x2='612' y2='120'/%3E%3Cline x1='582' y1='380' x2='600' y2='120'/%3E%3Cline x1='618' y1='380' x2='600' y2='120'/%3E%3Cline x1='587' y1='200' x2='613' y2='200'/%3E%3Cline x1='589' y1='250' x2='611' y2='250'/%3E%3Cline x1='591' y1='300' x2='609' y2='300'/%3E%3Cline x1='593' y1='340' x2='607' y2='340'/%3E%3C!-- Antenna prongs --%3E%3Cline x1='600' y1='120' x2='600' y2='100'/%3E%3Cline x1='594' y1='115' x2='600' y2='100'/%3E%3Cline x1='606' y1='115' x2='600' y2='100'/%3E%3C!-- Cross bracing --%3E%3Cline x1='590' y1='200' x2='610' y2='250'/%3E%3Cline x1='610' y1='200' x2='590' y2='250'/%3E%3Cline x1='591' y1='250' x2='609' y2='300'/%3E%3Cline x1='609' y1='250' x2='591' y2='300'/%3E%3C/g%3E%3C!-- City skyline silhouette --%3E%3Cpath d='M0 370 L80 370 L80 350 L120 350 L120 360 L200 360 L200 340 L220 340 L220 355 L350 355 L350 345 L400 345 L400 365 L500 365 L500 355 L550 355 L550 370 L700 370 L700 350 L740 350 L740 360 L850 360 L850 345 L900 345 L900 365 L1000 365 L1000 355 L1050 355 L1050 370 L1200 370 L1200 500 L0 500 Z' fill='%230d0410' opacity='0.5'/%3E%3C!-- Highway curves --%3E%3Cpath d='M0 430 Q300 390 600 410 Q900 430 1200 400' stroke='%23301025' stroke-width='20' fill='none' opacity='0.5'/%3E%3Cpath d='M0 450 Q300 420 600 435 Q900 450 1200 425' stroke='%23251020' stroke-width='15' fill='none' opacity='0.4'/%3E%3C!-- Highway light trails --%3E%3Cpath d='M0 430 Q300 390 600 410 Q900 430 1200 400' stroke='%23c08090' stroke-width='1.5' fill='none' opacity='0.3'/%3E%3Cpath d='M0 450 Q300 420 600 435 Q900 450 1200 425' stroke='%23a07080' stroke-width='1' fill='none' opacity='0.25'/%3E%3C/svg%3E") no-repeat center bottom;
+            width: 100vw;
+            height: 40vh;
+            z-index: -1;
+            pointer-events: none;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 600' preserveAspectRatio='xMidYMax slice'%3E%3C!-- Haze/fog layer --%3E%3Crect x='0' y='0' width='1920' height='250' fill='url(%23haze)'/%3E%3Cdefs%3E%3ClinearGradient id='haze' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%236b0a3d' stop-opacity='1'/%3E%3Cstop offset='1' stop-color='%236b0a3d' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- City skyline silhouette --%3E%3Cpath d='M0 320 L60 320 L60 295 L90 295 L90 310 L160 310 L160 285 L185 285 L185 305 L280 305 L280 290 L330 290 L330 315 L480 315 L480 300 L530 300 L530 320 L620 320 L620 310 L680 310 L680 295 L750 295 L750 320 L850 320 L850 300 L890 300 L890 310 L1000 310 L1000 290 L1040 290 L1040 315 L1150 315 L1150 305 L1200 305 L1200 320 L1320 320 L1320 295 L1370 295 L1370 310 L1500 310 L1500 295 L1540 295 L1540 315 L1650 315 L1650 300 L1700 300 L1700 320 L1920 320 L1920 600 L0 600 Z' fill='%23180812' opacity='0.4'/%3E%3C!-- Radio tower --%3E%3Cg stroke='%23200815' stroke-width='2.5' fill='none' opacity='0.45'%3E%3Cline x1='1050' y1='140' x2='1050' y2='420'/%3E%3Cline x1='1030' y1='420' x2='1070' y2='420'/%3E%3Cline x1='1025' y1='420' x2='1050' y2='140'/%3E%3Cline x1='1075' y1='420' x2='1050' y2='140'/%3E%3Cline x1='1035' y1='230' x2='1065' y2='230'/%3E%3Cline x1='1037' y1='290' x2='1063' y2='290'/%3E%3Cline x1='1040' y1='350' x2='1060' y2='350'/%3E%3Cline x1='1050' y1='140' x2='1050' y2='115'/%3E%3Cline x1='1043' y1='138' x2='1050' y2='115'/%3E%3Cline x1='1057' y1='138' x2='1050' y2='115'/%3E%3Cline x1='1037' y1='230' x2='1063' y2='290'/%3E%3Cline x1='1063' y1='230' x2='1037' y2='290'/%3E%3Cline x1='1038' y1='290' x2='1060' y2='350'/%3E%3Cline x1='1062' y1='290' x2='1040' y2='350'/%3E%3C/g%3E%3C!-- Highway overpass --%3E%3Cpath d='M700 440 Q1000 400 1200 420 Q1400 440 1920 410' stroke='%23250c18' stroke-width='28' fill='none' opacity='0.45'/%3E%3Cpath d='M500 470 Q800 440 1100 455 Q1400 470 1920 445' stroke='%231e0a14' stroke-width='20' fill='none' opacity='0.35'/%3E%3C!-- Light trails on highway --%3E%3Cpath d='M700 440 Q1000 400 1200 420 Q1400 440 1920 410' stroke='%23c07888' stroke-width='1.5' fill='none' opacity='0.2'/%3E%3Cpath d='M0 520 Q400 500 900 510 Q1400 520 1920 505' stroke='%23503050' stroke-width='2' fill='none' opacity='0.15'/%3E%3C!-- Bottom blue/purple edge glow --%3E%3Cpath d='M0 570 Q480 555 960 565 Q1440 575 1920 560' stroke='%23302060' stroke-width='3' fill='none' opacity='0.25'/%3E%3C/svg%3E") no-repeat center bottom;
             background-size: 100% 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Dark background with subtle purple accent */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background:
-                /* Subtle top purple hints */
-                radial-gradient(ellipse at 30% -10%, rgba(100, 20, 65, 0.4) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% -5%, rgba(80, 15, 50, 0.35) 0%, transparent 45%),
-                /* Very subtle mid glow */
-                radial-gradient(ellipse at 20% 40%, rgba(60, 10, 40, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(50, 8, 35, 0.25) 0%, transparent 50%),
-                /* Dark gradient base */
-                linear-gradient(180deg,
-                    rgba(40, 10, 30, 0.95) 0%,
-                    rgba(20, 5, 18, 1) 30%,
-                    rgba(13, 5, 13, 1) 60%,
-                    rgba(8, 3, 8, 1) 100%
-                );
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Subtle animated accent */
-        body::after {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -20%;
-            width: 140%;
-            height: 80%;
-            background:
-                radial-gradient(ellipse at 40% 50%, rgba(100, 30, 70, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 65% 40%, rgba(80, 20, 55, 0.06) 0%, transparent 45%);
-            z-index: -1;
-            pointer-events: none;
-            animation: bgShimmer 12s ease-in-out infinite alternate;
-        }
-
-        @keyframes bgShimmer {
-            0% { opacity: 0.5; transform: translateY(0) scale(1); }
-            100% { opacity: 0.8; transform: translateY(20px) scale(1.02); }
         }
 
         h1, h2, h3, h4, .font-head {
@@ -1583,8 +1542,6 @@
         /* Prevent horizontal scroll on all devices */
         @media (max-width: 768px) {
             html, body { overflow-x: hidden; }
-            body { background-attachment: scroll; }
-            body::before { position: absolute; }
         }
     </style>
 </head>
