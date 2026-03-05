@@ -164,7 +164,23 @@ async function initDB() {
       ('modal_heading', 'RECORD SUBMITTED'),
       ('modal_body', 'Your submission has been received. Our team will review your record and reach out within 24 hours.'),
       ('modal_cta', 'Ready to boost now? Choose a tier above to pay via PayPal and skip the line.'),
-      ('modal_button', 'GOT IT')
+      ('modal_button', 'GOT IT'),
+      ('addon_enabled', 'true'),
+      ('addon_email_subject', 'Exclusive Add-Ons for Your Digiwaxx Boost'),
+      ('addon_email_intro', 'Hey {{artist_name}},\n\nThanks for choosing Digiwaxx to boost "{{song_title}}"! We have some exclusive add-on services to take your campaign even further.'),
+      ('addon_email_outro', 'Reply to this email or visit {{site_url}} to learn more.\n\n- The Digiwaxx Team'),
+      ('addon_1_name', 'Extra IG Story Feature'),
+      ('addon_1_desc', 'Get an additional Instagram story placement on the Digiwaxx account.'),
+      ('addon_1_price', '49'),
+      ('addon_1_paypal_link', ''),
+      ('addon_2_name', 'Priority DJ Blast'),
+      ('addon_2_desc', 'Jump to the top of the DJ blast email queue for maximum exposure.'),
+      ('addon_2_price', '59'),
+      ('addon_2_paypal_link', ''),
+      ('addon_3_name', 'Custom Press Release'),
+      ('addon_3_desc', 'Professional press release written and distributed for your record.'),
+      ('addon_3_price', '79'),
+      ('addon_3_paypal_link', '')
     ON CONFLICT (key) DO NOTHING;
     CREATE TABLE IF NOT EXISTS email_queue (
       id SERIAL PRIMARY KEY,
@@ -549,6 +565,87 @@ module.exports = async (req, res) => {
       } catch (e) {
         return json(res, { error: 'Connection failed: ' + e.message }, 500);
       }
+    }
+
+    // ===== ADDON EMAILS TO PURCHASERS =====
+    if (url === '/api/admin/send-addon-emails' && req.method === 'POST') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const apiKey = await getSetting('resend_api_key');
+      if (!apiKey) return json(res, { error: 'Resend API key not configured. Set it in Integrations.' }, 400);
+      const fromAddr = await getSetting('email_from');
+
+      const addonSettings = await getSettings([
+        'addon_email_subject', 'addon_email_intro', 'addon_email_outro',
+        'addon_1_name', 'addon_1_desc', 'addon_1_price', 'addon_1_paypal_link',
+        'addon_2_name', 'addon_2_desc', 'addon_2_price', 'addon_2_paypal_link',
+        'addon_3_name', 'addon_3_desc', 'addon_3_price', 'addon_3_paypal_link'
+      ]);
+
+      // Build add-on HTML blocks
+      let addonsHtml = '';
+      for (let i = 1; i <= 3; i++) {
+        const name = addonSettings[`addon_${i}_name`];
+        const desc = addonSettings[`addon_${i}_desc`];
+        const price = addonSettings[`addon_${i}_price`];
+        const link = addonSettings[`addon_${i}_paypal_link`];
+        if (name && link) {
+          addonsHtml += `<div style="background:#1a1a2e;border:1px solid #333;border-radius:8px;padding:16px;margin-bottom:12px;">` +
+            `<strong style="color:#ffd700;font-size:16px;">${name} — $${price}</strong><br>` +
+            `<span style="color:#ccc;">${desc}</span><br><br>` +
+            `<a href="${link}" style="background:#ffd700;color:#000;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:700;">GET THIS ADD-ON</a>` +
+            `</div>`;
+        }
+      }
+
+      if (!addonsHtml) return json(res, { error: 'No add-ons configured with PayPal links.' }, 400);
+
+      // Get all purchasers with their lead info
+      const { rows: purchasers } = await pool.query(
+        `SELECT DISTINCT ON (l.email) p.tier, l.email, l.artist_name, l.song_title
+         FROM purchases p
+         JOIN leads l ON l.id = p.lead_id
+         WHERE p.status = 'completed' AND l.email IS NOT NULL AND l.email != ''
+         ORDER BY l.email, p.created_at DESC`
+      );
+
+      if (purchasers.length === 0) return json(res, { error: 'No completed purchases with email addresses found.' }, 400);
+
+      const siteUrl = req.headers.host ? ('https://' + req.headers.host) : '';
+      let sent = 0, failed = 0;
+
+      for (const buyer of purchasers) {
+        const replacements = {
+          '{{artist_name}}': buyer.artist_name || 'Artist',
+          '{{song_title}}': buyer.song_title || 'your record',
+          '{{tier}}': buyer.tier || '',
+          '{{site_url}}': siteUrl
+        };
+
+        let subject = addonSettings.addon_email_subject || 'Add-On Services';
+        let intro = addonSettings.addon_email_intro || '';
+        let outro = addonSettings.addon_email_outro || '';
+
+        for (const [k, v] of Object.entries(replacements)) {
+          subject = subject.split(k).join(v);
+          intro = intro.split(k).join(v);
+          outro = outro.split(k).join(v);
+        }
+
+        const emailHtml = `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#0d0d1a;padding:24px;border-radius:12px;">` +
+          `<div style="color:#fff;font-size:14px;line-height:1.6;">${intro.replace(/\n/g, '<br>')}</div>` +
+          `<div style="margin:20px 0;">${addonsHtml}</div>` +
+          `<div style="color:#fff;font-size:14px;line-height:1.6;">${outro.replace(/\n/g, '<br>')}</div>` +
+          `</div>`;
+
+        try {
+          await sendResendEmail(apiKey, fromAddr, buyer.email, subject, emailHtml);
+          sent++;
+        } catch (e) {
+          failed++;
+        }
+      }
+
+      return json(res, { ok: true, total: purchasers.length, sent, failed });
     }
 
     // ===== EMAIL QUEUE =====
