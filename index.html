@@ -1552,14 +1552,13 @@
     <header class="navbar" id="navbar">
         <div class="navbar-inner">
             <a href="#" class="nav-logo" id="navLogo">
-                <svg id="logoSvg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+                <svg id="logoSvg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg" style="display:none;">
                     <path d="M 35 95 A 75 75 0 0 1 185 95" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
                     <circle cx="110" cy="105" r="52" fill="#FFFFFF"/>
                     <path d="M 33 90 Q 33 75 20 75 Q 7 75 7 90 L 7 120 Q 7 135 20 135 Q 33 135 33 120 Z" fill="#FFFFFF"/>
                     <path d="M 187 90 Q 187 75 200 75 Q 213 75 213 90 L 213 120 Q 213 135 200 135 Q 187 135 187 120 Z" fill="#FFFFFF"/>
                 </svg>
-                <img id="logoImg" style="display:none; height: 42px; width: auto;" alt="Digiwaxx">
-                <span class="font-head italic">DIGIWAXX</span>
+                <img id="logoImg" src="images/logo.jpg" style="height: 48px; width: auto;" alt="Digiwaxx">
             </a>
             <div class="nav-links">
                 <a href="#pricing" class="nav-link">Pricing</a>
@@ -2066,14 +2065,11 @@
                 if (c[key]) el.placeholder = c[key];
             });
 
-            // Logo: if URL provided, swap SVG for image
+            // Logo: if custom URL provided, override default logo image
             if (c.logo_url) {
-                const svg = document.getElementById('logoSvg');
                 const img = document.getElementById('logoImg');
-                if (svg && img) {
-                    svg.style.display = 'none';
+                if (img) {
                     img.src = c.logo_url;
-                    img.style.display = 'block';
                 }
             }
 
