@@ -495,6 +495,19 @@
             color: var(--text-muted);
         }
 
+        .settings-input {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+        .settings-input:focus { outline: none; border-color: var(--accent); }
+        textarea.settings-input { resize: vertical; }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .admin-header { padding: 0 1rem; }
@@ -586,6 +599,9 @@
                 <div class="tab" onclick="switchTab('clicks')">PayPal Clicks</div>
                 <div class="tab" onclick="switchTab('purchases')">Purchases</div>
                 <div class="tab" onclick="switchTab('pricing')">Pricing</div>
+                <div class="tab" onclick="switchTab('content')">Content</div>
+                <div class="tab" onclick="switchTab('paypal')">PayPal</div>
+                <div class="tab" onclick="switchTab('emails')">Emails</div>
             </div>
 
             <!-- Leads Panel -->
@@ -663,6 +679,126 @@
                 <h3 style="margin-bottom: 1rem; color: #ffd700;">Tier Pricing</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">Change prices below. Updates will appear on the landing page immediately.</p>
                 <div id="pricingEditor" style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;"></div>
+            </div>
+
+            <!-- Content Panel -->
+            <div class="panel" id="panel-content">
+                <h3 style="margin-bottom: 1rem; color: #ffd700;">Landing Page Content</h3>
+                <p style="color: #aaa; margin-bottom: 1.5rem;">Edit the text that appears on your landing page.</p>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px;">
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Headline</label>
+                        <input type="text" id="set-site_headline" class="settings-input" style="width: 100%;">
+                    </div>
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Subheadline</label>
+                        <textarea id="set-site_subheadline" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                    </div>
+                    <hr style="border-color: #333;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">STARTER Tagline</label>
+                            <input type="text" id="set-starter_tagline" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
+                            <textarea id="set-starter_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                        </div>
+                        <div>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PRO Tagline</label>
+                            <input type="text" id="set-pro_tagline" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
+                            <textarea id="set-pro_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                        </div>
+                        <div>
+                            <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">ELITE Tagline</label>
+                            <input type="text" id="set-elite_tagline" class="settings-input" style="width: 100%;">
+                            <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
+                            <textarea id="set-elite_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                        </div>
+                    </div>
+                    <button onclick="saveContent()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; align-self: flex-start;">Save Content</button>
+                </div>
+            </div>
+
+            <!-- PayPal Panel -->
+            <div class="panel" id="panel-paypal">
+                <h3 style="margin-bottom: 1rem; color: #ffd700;">PayPal Connection</h3>
+                <p style="color: #aaa; margin-bottom: 1.5rem;">Configure your PayPal.me link. Customers will be sent to paypal.me/[username]/[price].</p>
+                <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">PayPal.me Username</label>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="color: #aaa;">paypal.me/</span>
+                            <input type="text" id="set-paypal_username" class="settings-input" style="flex: 1;">
+                        </div>
+                    </div>
+                    <div id="paypalPreview" style="color: #aaa; font-size: 0.85rem;"></div>
+                    <button onclick="savePaypal()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; align-self: flex-start;">Save PayPal Settings</button>
+                </div>
+            </div>
+
+            <!-- Emails Panel -->
+            <div class="panel" id="panel-emails">
+                <h3 style="margin-bottom: 1rem; color: #ffd700;">Email Automation</h3>
+                <p style="color: #aaa; margin-bottom: 1.5rem;">3-step email sequence sent to leads. Uses Resend to deliver emails.</p>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px;">
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Resend API Key</label>
+                        <input type="password" id="set-resend_api_key" class="settings-input" style="width: 100%;">
+                    </div>
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">From Address</label>
+                        <input type="text" id="set-email_from" class="settings-input" style="width: 100%;" placeholder="Digiwaxx <noreply@digiwaxx.com>">
+                    </div>
+                    <hr style="border-color: #333;">
+                    <div>
+                        <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Step 1 - Welcome Email</h4>
+                        <label style="color: #aaa; font-size: 0.75rem;">Delay (hours after signup)</label>
+                        <input type="number" id="set-email1_delay_hours" class="settings-input" style="width: 80px;" min="0">
+                        <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Subject</label>
+                        <input type="text" id="set-email1_subject" class="settings-input" style="width: 100%;">
+                        <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Body (use {{artist_name}}, {{song_title}}, {{site_url}})</label>
+                        <textarea id="set-email1_body" class="settings-input" rows="4" style="width: 100%;"></textarea>
+                    </div>
+                    <div>
+                        <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Step 2 - Follow-up</h4>
+                        <label style="color: #aaa; font-size: 0.75rem;">Delay (hours after signup)</label>
+                        <input type="number" id="set-email2_delay_hours" class="settings-input" style="width: 80px;" min="0">
+                        <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Subject</label>
+                        <input type="text" id="set-email2_subject" class="settings-input" style="width: 100%;">
+                        <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Body</label>
+                        <textarea id="set-email2_body" class="settings-input" rows="4" style="width: 100%;"></textarea>
+                    </div>
+                    <div>
+                        <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Step 3 - Final Push</h4>
+                        <label style="color: #aaa; font-size: 0.75rem;">Delay (hours after signup)</label>
+                        <input type="number" id="set-email3_delay_hours" class="settings-input" style="width: 80px;" min="0">
+                        <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Subject</label>
+                        <input type="text" id="set-email3_subject" class="settings-input" style="width: 100%;">
+                        <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Body</label>
+                        <textarea id="set-email3_body" class="settings-input" rows="4" style="width: 100%;"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button onclick="saveEmails()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer;">Save Email Settings</button>
+                        <button onclick="processEmails()" style="background: transparent; border: 1px solid #ffd700; color: #ffd700; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer;">Send Pending Emails Now</button>
+                    </div>
+                    <div id="emailStatus" style="color: #aaa;"></div>
+                    <hr style="border-color: #333;">
+                    <h4 style="color: #ffd700;">Email Queue</h4>
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Scheduled</th>
+                                    <th>Artist</th>
+                                    <th>To</th>
+                                    <th>Step</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="emailQueueBody"></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -945,6 +1081,103 @@
             }
         }
 
+        // ========== SETTINGS (Content, PayPal, Emails) ==========
+        let allSettings = {};
+
+        async function loadSettings() {
+            try {
+                const res = await fetch('/api/admin/settings', { headers: authHeaders() });
+                if (res.status === 401) return handleLogout();
+                const data = await res.json();
+                allSettings = data.settings;
+                // Populate all settings inputs
+                Object.entries(allSettings).forEach(([key, value]) => {
+                    const el = document.getElementById('set-' + key);
+                    if (el) el.value = value;
+                });
+                // PayPal preview
+                updatePaypalPreview();
+            } catch (e) {
+                console.error('Failed to load settings:', e);
+            }
+        }
+
+        function updatePaypalPreview() {
+            const username = document.getElementById('set-paypal_username').value;
+            document.getElementById('paypalPreview').textContent = 'Preview: paypal.me/' + username + '/99';
+        }
+
+        document.addEventListener('input', (e) => {
+            if (e.target.id === 'set-paypal_username') updatePaypalPreview();
+        });
+
+        async function saveSettings(keys) {
+            const settings = {};
+            keys.forEach(key => {
+                const el = document.getElementById('set-' + key);
+                if (el) settings[key] = el.value;
+            });
+            try {
+                const res = await fetch('/api/admin/settings', {
+                    method: 'POST', headers: authHeaders(),
+                    body: JSON.stringify({ settings })
+                });
+                if (res.status === 401) return handleLogout();
+                const data = await res.json();
+                if (data.ok) alert('Settings saved!');
+            } catch (e) { alert('Failed to save settings'); }
+        }
+
+        function saveContent() {
+            saveSettings(['site_headline', 'site_subheadline', 'starter_tagline', 'starter_description', 'pro_tagline', 'pro_description', 'elite_tagline', 'elite_description']);
+        }
+
+        function savePaypal() {
+            saveSettings(['paypal_username']);
+        }
+
+        function saveEmails() {
+            saveSettings(['resend_api_key', 'email_from', 'email1_subject', 'email1_body', 'email1_delay_hours', 'email2_subject', 'email2_body', 'email2_delay_hours', 'email3_subject', 'email3_body', 'email3_delay_hours']);
+        }
+
+        async function processEmails() {
+            document.getElementById('emailStatus').textContent = 'Processing...';
+            try {
+                const res = await fetch('/api/admin/process-emails', { method: 'POST', headers: authHeaders() });
+                const data = await res.json();
+                if (data.ok) {
+                    document.getElementById('emailStatus').textContent = 'Processed ' + data.processed + ' emails, ' + data.sent + ' sent successfully.';
+                    loadEmailQueue();
+                } else {
+                    document.getElementById('emailStatus').textContent = 'Error: ' + (data.error || 'Unknown');
+                }
+            } catch (e) {
+                document.getElementById('emailStatus').textContent = 'Failed to process emails.';
+            }
+        }
+
+        async function loadEmailQueue() {
+            try {
+                const res = await fetch('/api/admin/emails', { headers: authHeaders() });
+                if (res.status === 401) return;
+                const data = await res.json();
+                const tbody = document.getElementById('emailQueueBody');
+                if (!data.emails.length) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No emails queued yet.</td></tr>';
+                    return;
+                }
+                tbody.innerHTML = data.emails.map(e => `
+                    <tr>
+                        <td>${new Date(e.scheduled_at + 'Z').toLocaleString()}</td>
+                        <td>${esc(e.artist_name || '')}</td>
+                        <td>${esc(e.email_to)}</td>
+                        <td>Step ${e.step}</td>
+                        <td><span class="badge badge-${e.status === 'sent' ? 'completed' : e.status === 'failed' ? 'new' : 'pending'}">${e.status}${e.sent_at ? ' (' + new Date(e.sent_at + 'Z').toLocaleString() + ')' : ''}</span></td>
+                    </tr>
+                `).join('');
+            } catch (e) { console.error('Failed to load email queue:', e); }
+        }
+
         // ========== INIT ==========
         function loadAll() {
             loadStats();
@@ -952,6 +1185,8 @@
             loadClicks();
             loadPurchases();
             loadPricing();
+            loadSettings();
+            loadEmailQueue();
         }
     </script>
 </body>

@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 const crypto = require('crypto');
+const https = require('https');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -56,6 +57,44 @@ async function initDB() {
       price REAL NOT NULL
     );
     INSERT INTO tier_prices (tier, price) VALUES ('starter', 99), ('pro', 149), ('elite', 199) ON CONFLICT (tier) DO NOTHING;
+    CREATE TABLE IF NOT EXISTS settings (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    );
+    INSERT INTO settings (key, value) VALUES
+      ('paypal_username', 'digiwaxx'),
+      ('site_headline', 'NEW MUSIC DESERVES A REAL PUSH'),
+      ('site_subheadline', 'Digiwaxx connects your records to the DJs, playlists, and platforms that matter.'),
+      ('starter_name', 'STARTER'),
+      ('starter_tagline', 'Get In The System'),
+      ('starter_description', 'Perfect for artists who need their first real DJ push.'),
+      ('pro_name', 'PRO'),
+      ('pro_tagline', 'Turn The Lights On'),
+      ('pro_description', 'Everything in Starter, plus stronger visibility.'),
+      ('elite_name', 'ELITE'),
+      ('elite_tagline', 'Heavy Rotation Energy'),
+      ('elite_description', 'Everything in Pro, plus deeper industry exposure.'),
+      ('resend_api_key', ''),
+      ('email_from', 'Digiwaxx <noreply@digiwaxx.com>'),
+      ('email1_subject', 'Welcome to Digiwaxx!'),
+      ('email1_body', 'Hey {{artist_name}},\n\nThanks for submitting your record "{{song_title}}" to Digiwaxx! We''re excited to check it out.\n\nOur team will review your submission and get back to you shortly.\n\n- The Digiwaxx Team'),
+      ('email1_delay_hours', '0'),
+      ('email2_subject', 'Your Digiwaxx Submission Update'),
+      ('email2_body', 'Hey {{artist_name}},\n\nJust following up on your submission "{{song_title}}". Our team has been reviewing it.\n\nReady to boost your record? Check out our tiers at {{site_url}}\n\n- The Digiwaxx Team'),
+      ('email2_delay_hours', '48'),
+      ('email3_subject', 'Last Chance - Boost Your Record'),
+      ('email3_body', 'Hey {{artist_name}},\n\nDon''t let "{{song_title}}" sit on the shelf. Our DJ network is ready to spin it.\n\nChoose your boost tier: {{site_url}}\n\n- The Digiwaxx Team'),
+      ('email3_delay_hours', '120')
+    ON CONFLICT (key) DO NOTHING;
+    CREATE TABLE IF NOT EXISTS email_queue (
+      id SERIAL PRIMARY KEY,
+      lead_id TEXT REFERENCES leads(id),
+      email_to TEXT NOT NULL,
+      step INTEGER NOT NULL,
+      scheduled_at TIMESTAMPTZ NOT NULL,
+      sent_at TIMESTAMPTZ,
+      status TEXT DEFAULT 'pending'
+    );
   `);
   dbInitialized = true;
 }
@@ -85,6 +124,41 @@ function getBody(req) {
       catch { resolve({}); }
     });
     req.on('error', reject);
+  });
+}
+
+async function getSetting(key) {
+  const { rows } = await pool.query('SELECT value FROM settings WHERE key = $1', [key]);
+  return rows[0]?.value || '';
+}
+
+async function getSettings(keys) {
+  const { rows } = await pool.query('SELECT key, value FROM settings WHERE key = ANY($1)', [keys]);
+  const map = {};
+  rows.forEach(r => map[r.key] = r.value);
+  return map;
+}
+
+function sendResendEmail(apiKey, from, to, subject, html) {
+  return new Promise((resolve, reject) => {
+    const data = JSON.stringify({ from, to: [to], subject, html: html.replace(/\n/g, '<br>') });
+    const req = https.request({
+      hostname: 'api.resend.com',
+      path: '/emails',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + apiKey,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(data)
+      }
+    }, (res) => {
+      let body = '';
+      res.on('data', c => body += c);
+      res.on('end', () => resolve({ status: res.statusCode, body }));
+    });
+    req.on('error', reject);
+    req.write(data);
+    req.end();
   });
 }
 
@@ -147,6 +221,13 @@ module.exports = async (req, res) => {
       return json(res, prices);
     }
 
+    if (url === '/api/site-content' && req.method === 'GET') {
+      const { rows } = await pool.query("SELECT key, value FROM settings WHERE key LIKE 'site_%' OR key LIKE 'starter_%' OR key LIKE 'pro_%' OR key LIKE 'elite_%' OR key = 'paypal_username'");
+      const content = {};
+      rows.forEach(r => content[r.key] = r.value);
+      return json(res, content);
+    }
+
     if (url === '/api/pageview' && req.method === 'POST') {
       const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
       const ua = req.headers['user-agent'];
@@ -167,6 +248,17 @@ module.exports = async (req, res) => {
         'INSERT INTO leads (id, artist_name, song_title, record_link, email, selected_tier) VALUES ($1, $2, $3, $4, $5, $6)',
         [id, artist_name, song_title, record_link, email, selected_tier || null]
       );
+      // Queue 3-step email automation
+      try {
+        const delays = await getSettings(['email1_delay_hours', 'email2_delay_hours', 'email3_delay_hours']);
+        for (let step = 1; step <= 3; step++) {
+          const hours = parseInt(delays[`email${step}_delay_hours`]) || 0;
+          await pool.query(
+            'INSERT INTO email_queue (lead_id, email_to, step, scheduled_at) VALUES ($1, $2, $3, NOW() + ($4 || \' hours\')::interval)',
+            [id, email, step, String(hours)]
+          );
+        }
+      } catch (e) { console.error('Failed to queue emails:', e); }
       return json(res, { ok: true, lead_id: id });
     }
 
@@ -301,6 +393,69 @@ module.exports = async (req, res) => {
       if (!tier || !price) return json(res, { error: 'Tier and price required' }, 400);
       await pool.query('UPDATE tier_prices SET price = $1 WHERE tier = $2', [parseFloat(price), tier.toLowerCase()]);
       return json(res, { ok: true });
+    }
+
+    // ===== ADMIN SETTINGS =====
+    if (url === '/api/admin/settings' && req.method === 'GET') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const { rows } = await pool.query('SELECT key, value FROM settings ORDER BY key');
+      const settings = {};
+      rows.forEach(r => settings[r.key] = r.value);
+      return json(res, { settings });
+    }
+
+    if (url === '/api/admin/settings' && req.method === 'POST') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const { settings } = body;
+      if (!settings || typeof settings !== 'object') return json(res, { error: 'Settings object required' }, 400);
+      for (const [key, value] of Object.entries(settings)) {
+        await pool.query('INSERT INTO settings (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = $2', [key, String(value)]);
+      }
+      return json(res, { ok: true });
+    }
+
+    // ===== EMAIL QUEUE =====
+    if (url === '/api/admin/emails' && req.method === 'GET') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const { rows } = await pool.query(`
+        SELECT eq.*, l.artist_name, l.song_title
+        FROM email_queue eq
+        LEFT JOIN leads l ON l.id = eq.lead_id
+        ORDER BY eq.scheduled_at DESC LIMIT 100
+      `);
+      return json(res, { emails: rows });
+    }
+
+    if (url === '/api/admin/process-emails' && req.method === 'POST') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const apiKey = await getSetting('resend_api_key');
+      if (!apiKey) return json(res, { error: 'Resend API key not configured' }, 400);
+      const fromAddr = await getSetting('email_from');
+
+      const { rows: pending } = await pool.query(
+        "SELECT eq.*, l.artist_name, l.song_title, l.record_link FROM email_queue eq LEFT JOIN leads l ON l.id = eq.lead_id WHERE eq.status = 'pending' AND eq.scheduled_at <= NOW() ORDER BY eq.scheduled_at ASC LIMIT 20"
+      );
+
+      let sent = 0;
+      for (const email of pending) {
+        const s = await getSettings([`email${email.step}_subject`, `email${email.step}_body`]);
+        const siteUrl = req.headers.host ? ('https://' + req.headers.host) : '';
+        let subject = s[`email${email.step}_subject`] || '';
+        let emailBody = s[`email${email.step}_body`] || '';
+        const replacements = { '{{artist_name}}': email.artist_name, '{{song_title}}': email.song_title, '{{record_link}}': email.record_link, '{{site_url}}': siteUrl };
+        for (const [k, v] of Object.entries(replacements)) {
+          subject = subject.split(k).join(v || '');
+          emailBody = emailBody.split(k).join(v || '');
+        }
+        try {
+          await sendResendEmail(apiKey, fromAddr, email.email_to, subject, emailBody);
+          await pool.query("UPDATE email_queue SET status = 'sent', sent_at = NOW() WHERE id = $1", [email.id]);
+          sent++;
+        } catch (e) {
+          await pool.query("UPDATE email_queue SET status = 'failed' WHERE id = $1", [email.id]);
+        }
+      }
+      return json(res, { ok: true, processed: pending.length, sent });
     }
 
     return json(res, { error: 'Not found' }, 404);

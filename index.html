@@ -1630,6 +1630,7 @@
         }).catch(() => {});
 
         // ============ LOAD PRICES FROM API ============
+        let paypalUsername = 'digiwaxx';
         fetch('/api/prices').then(r => r.json()).then(prices => {
             document.querySelectorAll('.btn-buy').forEach(btn => {
                 const tier = btn.dataset.tier;
@@ -1639,6 +1640,22 @@
                     const card = btn.closest('.pricing-card');
                     if (card) card.querySelector('.price').textContent = '$' + prices[tier];
                 }
+            });
+        }).catch(() => {});
+
+        // ============ LOAD SITE CONTENT ============
+        fetch('/api/site-content').then(r => r.json()).then(c => {
+            if (c.paypal_username) paypalUsername = c.paypal_username;
+            if (c.site_headline) { const el = document.querySelector('.hero h1'); if (el) el.textContent = c.site_headline; }
+            if (c.site_subheadline) { const el = document.querySelector('.hero p'); if (el) el.textContent = c.site_subheadline; }
+            ['starter', 'pro', 'elite'].forEach(tier => {
+                const cards = document.querySelectorAll('.pricing-card');
+                cards.forEach(card => {
+                    const btn = card.querySelector(`.btn-buy[data-tier="${tier}"]`);
+                    if (!btn) return;
+                    if (c[tier + '_tagline']) { const el = card.querySelector('.tagline'); if (el) el.textContent = c[tier + '_tagline']; }
+                    if (c[tier + '_description']) { const el = card.querySelector('.card-body > p'); if (el) el.textContent = c[tier + '_description']; }
+                });
             });
         }).catch(() => {});
 
@@ -1693,7 +1710,7 @@
             }).catch(() => {});
 
             // Open PayPal.me link with price
-            const paypalUrl = 'https://paypal.me/digiwaxx/' + price;
+            const paypalUrl = 'https://paypal.me/' + paypalUsername + '/' + price;
             window.open(paypalUrl, '_blank');
             showToast('Redirecting to PayPal...');
         }
