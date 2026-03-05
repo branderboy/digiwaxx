@@ -715,34 +715,34 @@
             <div class="panel" id="panel-content">
                 <h3 style="margin-bottom: 1rem; color: #ffd700;">Landing Page Content</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">Edit the text that appears on your landing page.</p>
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px;">
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 100%;">
                     <div>
                         <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Headline</label>
                         <input type="text" id="set-site_headline" class="settings-input" style="width: 100%;">
                     </div>
                     <div>
                         <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Subheadline</label>
-                        <textarea id="set-site_subheadline" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                        <textarea id="set-site_subheadline" class="settings-input" rows="3" style="width: 100%;"></textarea>
                     </div>
                     <hr style="border-color: #333;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
                         <div>
                             <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">STARTER Tagline</label>
                             <input type="text" id="set-starter_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
-                            <textarea id="set-starter_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                            <textarea id="set-starter_description" class="settings-input" rows="4" style="width: 100%;"></textarea>
                         </div>
                         <div>
                             <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PRO Tagline</label>
                             <input type="text" id="set-pro_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
-                            <textarea id="set-pro_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                            <textarea id="set-pro_description" class="settings-input" rows="4" style="width: 100%;"></textarea>
                         </div>
                         <div>
                             <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">ELITE Tagline</label>
                             <input type="text" id="set-elite_tagline" class="settings-input" style="width: 100%;">
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
-                            <textarea id="set-elite_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
+                            <textarea id="set-elite_description" class="settings-input" rows="4" style="width: 100%;"></textarea>
                         </div>
                     </div>
                     <button onclick="saveContent()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; align-self: flex-start;">Save Content</button>
@@ -753,7 +753,7 @@
             <div class="panel" id="panel-paypal">
                 <h3 style="margin-bottom: 1rem; color: #ffd700;">PayPal Connection</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">Connect your PayPal account to verify payments automatically. Get your credentials from the <a href="https://developer.paypal.com/dashboard/applications" target="_blank">PayPal Developer Dashboard</a>.</p>
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;">
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 700px;">
                     <div>
                         <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Client ID</label>
                         <input type="text" id="set-paypal_client_id" class="settings-input" style="width: 100%;" placeholder="Your PayPal Client ID">
@@ -781,7 +781,7 @@
             <div class="panel" id="panel-emails">
                 <h3 style="margin-bottom: 1rem; color: #ffd700;">Email Automation</h3>
                 <p style="color: #aaa; margin-bottom: 1.5rem;">3-step email sequence sent to leads. Uses Resend to deliver emails.</p>
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px;">
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 100%;">
                     <div>
                         <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Resend API Key</label>
                         <input type="password" id="set-resend_api_key" class="settings-input" style="width: 100%;">
