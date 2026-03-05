@@ -285,9 +285,11 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 184, 0, 0.08);
-            border: 1px solid rgba(255, 184, 0, 0.25);
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             color: #ffffff;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             padding: 8px 18px;
             border-radius: 50px;
             font-family: var(--font-body);
@@ -2079,11 +2081,19 @@
                 }
             }
 
+            // Background image
+            if (c.bg_image) {
+                document.body.style.background = 'none';
+                const before = document.createElement('style');
+                before.textContent = 'body::before { background: url(' + JSON.stringify(c.bg_image) + ') no-repeat center top / cover !important; }';
+                document.head.appendChild(before);
+            }
+
             // Colors
             if (c.accent_color) {
                 document.documentElement.style.setProperty('--accent-yellow', c.accent_color);
             }
-            if (c.bg_color) {
+            if (c.bg_color && !c.bg_image) {
                 document.documentElement.style.setProperty('--bg-dark', c.bg_color);
             }
 

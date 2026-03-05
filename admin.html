@@ -703,6 +703,12 @@
                         <input type="text" id="set-video_url" class="settings-input" style="width: 100%;" placeholder="https://www.youtube.com/embed/VIDEO_ID">
                         <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">YouTube embed URL. Right-click video → Copy embed code → paste just the URL from src="..."</p>
                     </div>
+                    <div>
+                        <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem;">Background Image URL</label>
+                        <input type="text" id="set-bg_image" class="settings-input" style="width: 100%;" placeholder="https://example.com/background.jpg">
+                        <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Full-page background image. Covers the entire page. Recommended: at least 1920x1080. Leave empty to use the default gradient.</p>
+                        <div id="bgPreview" style="margin-top: 0.5rem;"></div>
+                    </div>
                     <hr style="border-color: #333;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                         <div>
@@ -1748,7 +1754,7 @@
         }
 
         function saveDesign() {
-            saveSettings(['logo_url', 'video_url', 'accent_color', 'bg_color', 'heading_font_size', 'body_font_size']);
+            saveSettings(['logo_url', 'video_url', 'bg_image', 'accent_color', 'bg_color', 'heading_font_size', 'body_font_size']);
         }
 
         function saveMeta() {
