@@ -1381,6 +1381,90 @@
             color: var(--text-muted);
         }
 
+        /* --- SALES FUNNEL --- */
+        .funnel-box {
+            background: var(--bg-dark);
+            border: 2px solid var(--accent-yellow);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            max-width: 640px;
+            width: 94%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            text-align: center;
+            animation: fadeInUp 0.4s ease;
+        }
+        .funnel-close {
+            position: absolute; top: 10px; right: 14px;
+            background: none; border: none; color: var(--text-muted);
+            font-size: 1.8rem; cursor: pointer; line-height: 1;
+        }
+        .funnel-close:hover { color: #fff; }
+        .funnel-pane { display: none; }
+        .funnel-pane.active { display: block; }
+        .funnel-pane h2 { font-size: clamp(1.8rem, 5vw, 2.4rem); margin-bottom: 0.8rem; color: #fff; }
+        .fnl-eyebrow {
+            display: inline-block; background: rgba(255,184,0,0.15); color: var(--accent-yellow);
+            font-family: var(--font-head); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            font-size: 0.85rem; padding: 5px 16px; border-radius: 20px; margin-bottom: 1rem;
+        }
+        .fnl-desc { color: var(--text-muted); margin-bottom: 1.2rem; }
+        .fnl-list { list-style: none; text-align: left; max-width: 380px; margin: 0 auto 1.2rem; padding: 0; }
+        .fnl-list li { padding: 0.3rem 0 0.3rem 1.6rem; position: relative; color: #fff; font-size: 0.95rem; }
+        .fnl-list li::before { content: '+'; position: absolute; left: 0; color: var(--accent-yellow); font-weight: 700; }
+        .fnl-price-line { margin-bottom: 1.2rem; }
+        .fnl-price-line .was { text-decoration: line-through; color: var(--text-muted); font-size: 1.2rem; margin-right: 0.6rem; }
+        .fnl-price-line .now { font-family: var(--font-head); font-size: 2.4rem; font-weight: 800; color: var(--accent-yellow); }
+        .fnl-accept {
+            display: block; width: 100%; font-family: var(--font-head); font-weight: 800; font-size: 1.35rem;
+            letter-spacing: 1px; text-transform: uppercase;
+            background: linear-gradient(180deg, #FFE066 0%, var(--accent-yellow) 100%);
+            color: var(--bg-dark); border: none; border-radius: 10px; padding: 0.95rem 1.5rem; cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .fnl-accept:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,184,0,0.4); }
+        .fnl-decline {
+            display: block; margin: 1rem auto 0; background: none; border: none;
+            color: var(--text-muted); font-size: 0.9rem; text-decoration: underline; cursor: pointer;
+        }
+        .fnl-decline:hover { color: #fff; }
+        .fnl-addon-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem; margin-bottom: 1.5rem; text-align: left;
+        }
+        .fnl-addon {
+            background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 12px; padding: 1rem; cursor: pointer; transition: border-color 0.2s ease;
+        }
+        .fnl-addon:hover { border-color: var(--border-glow); }
+        .fnl-addon.added { border-color: #4ade80; }
+        .fnl-addon .a-tag {
+            display: inline-block; background: rgba(255,184,0,0.15); color: var(--accent-yellow);
+            font-family: var(--font-head); font-weight: 700; font-size: 0.65rem; letter-spacing: 1.5px;
+            text-transform: uppercase; padding: 2px 8px; border-radius: 10px; margin-bottom: 0.4rem;
+        }
+        .fnl-addon .a-name { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; color: #fff; }
+        .fnl-addon .a-price { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; color: var(--accent-yellow); margin: 0.15rem 0 0.3rem; }
+        .fnl-addon .a-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.7rem; }
+        .fnl-addon .a-toggle {
+            display: block; width: 100%; text-align: center; font-family: var(--font-head);
+            font-weight: 700; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase;
+            padding: 0.45rem; border-radius: 6px; border: 2px solid var(--accent-yellow);
+            color: var(--accent-yellow); background: transparent; cursor: pointer;
+        }
+        .fnl-addon.added .a-toggle { border-color: #4ade80; background: #4ade80; color: var(--bg-dark); }
+        .fnl-order-line {
+            display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.15); font-size: 0.95rem; text-align: left; color: #fff;
+        }
+        .fnl-order-line .i-tag { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent-yellow); display: block; }
+        .fnl-order-line .amount { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; white-space: nowrap; }
+        .fnl-total { display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 0 1.3rem; }
+        .fnl-total .label { font-family: var(--font-head); font-size: 1.3rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
+        .fnl-total .amount { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; color: var(--accent-yellow); }
+        .fnl-secure { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.7rem; }
+
         /* --- SUCCESS MODAL --- */
         .modal-overlay {
             display: none;
@@ -1955,6 +2039,53 @@
         </div>
     </footer>
 
+    <!-- SALES FUNNEL -->
+    <div class="modal-overlay" id="funnelOverlay">
+        <div class="funnel-box">
+            <button class="funnel-close" onclick="closeFunnel()" aria-label="Close">&times;</button>
+
+            <!-- UPSELL -->
+            <div class="funnel-pane" id="fnlUpsell">
+                <div class="fnl-eyebrow">Wait &mdash; One-Time Upgrade</div>
+                <h2 id="fnlUpsellHeading"></h2>
+                <p class="fnl-desc" id="fnlUpsellDesc"></p>
+                <ul class="fnl-list" id="fnlUpsellFeatures"></ul>
+                <div class="fnl-price-line"><span class="was" id="fnlUpsellWas"></span> <span class="now" id="fnlUpsellNow"></span></div>
+                <button class="fnl-accept" id="fnlUpsellAccept"></button>
+                <button class="fnl-decline" id="fnlUpsellDecline">No thanks, keep my current package</button>
+            </div>
+
+            <!-- ADD-ONS -->
+            <div class="funnel-pane" id="fnlAddons">
+                <h2>Level Up Your Campaign</h2>
+                <p class="fnl-desc">Grab features from the higher packages as one-off add-ons &mdash; without upgrading your whole tier.</p>
+                <div class="fnl-addon-grid" id="fnlAddonGrid"></div>
+                <button class="fnl-accept" id="fnlAddonsContinue">Continue to Checkout &rarr;</button>
+                <button class="fnl-decline" id="fnlAddonsSkip">Skip add-ons</button>
+            </div>
+
+            <!-- ORDER SUMMARY -->
+            <div class="funnel-pane" id="fnlSummary">
+                <h2>Your Order</h2>
+                <div id="fnlOrderLines"></div>
+                <div class="fnl-total"><span class="label">Total</span><span class="amount" id="fnlOrderTotal"></span></div>
+                <button class="fnl-accept" id="fnlPayBtn"></button>
+                <p class="fnl-secure">&#128274; Secure PayPal checkout</p>
+                <button class="fnl-decline" id="fnlAbandon">I'm not ready to order</button>
+            </div>
+
+            <!-- DOWNSELL -->
+            <div class="funnel-pane" id="fnlDownsell">
+                <div class="fnl-eyebrow">Before You Go&hellip;</div>
+                <h2>Not Ready For The Full Package?</h2>
+                <p class="fnl-desc" id="fnlDownsellDesc"></p>
+                <div class="fnl-price-line"><span class="was" id="fnlDownsellWas"></span> <span class="now" id="fnlDownsellNow"></span></div>
+                <button class="fnl-accept" id="fnlDownsellAccept"></button>
+                <button class="fnl-decline" id="fnlDownsellDecline">No thanks, back to my order</button>
+            </div>
+        </div>
+    </div>
+
     <!-- SUCCESS MODAL -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-content">
@@ -2242,28 +2373,170 @@
             }
         });
 
-        // ============ PAYPAL CLICK HANDLER ============
-        function handlePayPalClick(event, tier, price) {
-            event.preventDefault();
+        // ============ SALES FUNNEL ============
+        const FNL_NEXT = { starter: 'pro', pro: 'elite', elite: null };
+        const FNL_RANK = { starter: 1, pro: 2, elite: 3 };
+        const FNL_SINGLES = [
+            { id: 'ig_feed',    name: 'IG Feed Post on Digiwaxx',     price: 45, desc: 'One post on the Digiwaxx Instagram feed.',             fromTier: 'pro' },
+            { id: 'ig_story',   name: '2 Instagram Story Placements', price: 35, desc: 'Two Instagram story placements on Digiwaxx.',          fromTier: 'pro' },
+            { id: 'dj_call',    name: 'Featured Spin on DJ Call',     price: 35, desc: 'Your record featured live on the weekly DJ call.',     fromTier: 'pro' },
+            { id: 'dj_mention', name: 'Live DJ Mention',              price: 25, desc: 'A live on-air mention from a Digiwaxx DJ.',            fromTier: 'pro' },
+            { id: 'zoom',       name: 'One-on-One Zoom Interview',    price: 75, desc: 'Recorded interview, published on Digiwaxx.com.',       fromTier: 'elite' },
+            { id: 'tiktok',     name: 'TikTok Post on Digiwaxx',      price: 55, desc: 'One TikTok post on the Digiwaxx account.',             fromTier: 'elite' },
+            { id: 'snapshot',   name: 'Performance Snapshot Report',  price: 29, desc: 'Report on spins, downloads & DJ feedback.',            fromTier: 'elite' },
+            { id: 'priority',   name: 'Priority DJ Call Placement',   price: 49, desc: 'Your record jumps to the front of the DJ call queue.', fromTier: 'elite' }
+        ];
+        const FNL_DOWNSELL = {
+            name: 'DJ Blast Email Feature (Solo)',
+            wasPrice: 99,
+            price: 75,
+            desc: 'Skip the full package for now. Get your record in front of the DJ network with the DJ blast email feature on its own — at a one-time discount.'
+        };
+        const fnlState = { tier: null, upgraded: false, addons: [], downsellOnly: false };
+        const fnl = id => document.getElementById(id);
+        const fnlMoney = n => '$' + n;
+
+        function fnlTierData(key) {
+            const card = document.querySelector(`[data-tier-card="${key}"]`);
+            const btn = card.querySelector('.btn-buy');
+            const tagEl = card.querySelector('.tagline');
+            return {
+                key,
+                name: card.querySelector('.tier-name').textContent.trim(),
+                tagline: tagEl ? tagEl.textContent.trim() : '',
+                price: parseFloat(btn.dataset.price) || 0,
+                features: Array.from(card.querySelectorAll('.tier-features li')).map(li => li.textContent.trim())
+            };
+        }
+        function fnlCurrentTierKey() { return fnlState.upgraded ? FNL_NEXT[fnlState.tier] : fnlState.tier; }
+        function fnlShowPane(id) {
+            document.querySelectorAll('.funnel-pane').forEach(p => p.classList.remove('active'));
+            fnl(id).classList.add('active');
+            document.querySelector('.funnel-box').scrollTop = 0;
+        }
+        function openFunnel(tierKey) {
+            fnlState.tier = tierKey;
+            fnlState.upgraded = false;
+            fnlState.addons = [];
+            fnlState.downsellOnly = false;
+            fnl('funnelOverlay').classList.add('active');
+            if (FNL_NEXT[tierKey]) fnlEnterUpsell(); else fnlEnterAddons();
+        }
+        function closeFunnel() { fnl('funnelOverlay').classList.remove('active'); }
+
+        function fnlEnterUpsell() {
+            const base = fnlTierData(fnlState.tier);
+            const next = fnlTierData(FNL_NEXT[fnlState.tier]);
+            const diff = Math.max(1, Math.round(next.price - base.price));
+            const extras = next.features.filter(f => !f.toLowerCase().startsWith('everything'));
+            fnl('fnlUpsellHeading').textContent = `Upgrade to ${next.name} for just ${fnlMoney(diff)} more?`;
+            fnl('fnlUpsellDesc').textContent = `You chose ${base.name} (${fnlMoney(base.price)}). For ${fnlMoney(diff)} more you unlock everything below — cheaper than adding any one of these later.`;
+            fnl('fnlUpsellFeatures').innerHTML = extras.map(f => `<li>${f}</li>`).join('');
+            fnl('fnlUpsellWas').textContent = fnlMoney(next.price);
+            fnl('fnlUpsellNow').textContent = '+' + fnlMoney(diff);
+            fnl('fnlUpsellAccept').textContent = `Yes, Upgrade Me to ${next.name}`;
+            fnlShowPane('fnlUpsell');
+        }
+
+        function fnlEnterAddons() {
+            const rank = FNL_RANK[fnlCurrentTierKey()];
+            const singles = FNL_SINGLES.filter(s => FNL_RANK[s.fromTier] > rank);
+            if (!singles.length) { fnlEnterSummary(); return; }
+            fnl('fnlAddonGrid').innerHTML = singles.map(s => `
+                <div class="fnl-addon ${fnlState.addons.includes(s.id) ? 'added' : ''}" data-id="${s.id}">
+                    <div class="a-tag">${fnlTierData(s.fromTier).name} feature</div>
+                    <div class="a-name">${s.name}</div>
+                    <div class="a-price">${fnlMoney(s.price)}</div>
+                    <div class="a-desc">${s.desc}</div>
+                    <button class="a-toggle">${fnlState.addons.includes(s.id) ? 'Added ✓' : 'Add This'}</button>
+                </div>
+            `).join('');
+            document.querySelectorAll('.fnl-addon').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = card.dataset.id;
+                    const idx = fnlState.addons.indexOf(id);
+                    if (idx >= 0) fnlState.addons.splice(idx, 1);
+                    else fnlState.addons.push(id);
+                    card.classList.toggle('added', idx < 0);
+                    card.querySelector('.a-toggle').textContent = idx < 0 ? 'Added ✓' : 'Add This';
+                });
+            });
+            fnlShowPane('fnlAddons');
+        }
+
+        function fnlOrderItems() {
+            if (fnlState.downsellOnly) {
+                return [{ tag: 'Special Offer', name: FNL_DOWNSELL.name, price: FNL_DOWNSELL.price }];
+            }
+            const tier = fnlTierData(fnlCurrentTierKey());
+            const items = [{
+                tag: fnlState.upgraded ? 'Package (Upgraded)' : 'Package',
+                name: tier.name + ' Boost' + (tier.tagline ? ' — ' + tier.tagline : ''),
+                price: tier.price
+            }];
+            fnlState.addons.forEach(id => {
+                const s = FNL_SINGLES.find(x => x.id === id);
+                if (s) items.push({ tag: 'Add-On', name: s.name, price: s.price });
+            });
+            return items;
+        }
+
+        function fnlEnterSummary() {
+            const items = fnlOrderItems();
+            const total = items.reduce((sum, i) => sum + i.price, 0);
+            fnl('fnlOrderLines').innerHTML = items.map(i => `
+                <div class="fnl-order-line"><span><span class="i-tag">${i.tag}</span>${i.name}</span><span class="amount">${fnlMoney(i.price)}</span></div>
+            `).join('');
+            fnl('fnlOrderTotal').textContent = fnlMoney(total);
+            fnl('fnlPayBtn').textContent = `Pay ${fnlMoney(total)} with PayPal →`;
+            fnlShowPane('fnlSummary');
+        }
+
+        function fnlShowDownsell() {
+            fnl('fnlDownsellDesc').textContent = FNL_DOWNSELL.desc;
+            fnl('fnlDownsellWas').textContent = fnlMoney(FNL_DOWNSELL.wasPrice);
+            fnl('fnlDownsellNow').textContent = fnlMoney(FNL_DOWNSELL.price);
+            fnl('fnlDownsellAccept').textContent = `Yes, Give Me the Blast for ${fnlMoney(FNL_DOWNSELL.price)}`;
+            fnlShowPane('fnlDownsell');
+        }
+
+        function fnlCheckout() {
+            const items = fnlOrderItems();
+            const total = items.reduce((sum, i) => sum + i.price, 0);
+            const tierKey = fnlState.downsellOnly ? 'downsell' : fnlCurrentTierKey();
 
             // Track the click
             fetch('/api/paypal-click', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    tier: tier.toLowerCase(),
-                    price: price,
-                    lead_id: currentLeadId
-                })
+                body: JSON.stringify({ tier: tierKey, price: total, lead_id: currentLeadId })
             }).catch(() => {});
 
             // FB Pixel: InitiateCheckout
-            if (window._fbPixelLoaded) fbq('track', 'InitiateCheckout', { value: price, currency: 'USD', content_name: tier });
+            if (window._fbPixelLoaded) fbq('track', 'InitiateCheckout', { value: total, currency: 'USD', content_name: tierKey });
 
-            // Open PayPal.me link with price
-            const paypalUrl = 'https://paypal.me/' + paypalUsername + '/' + price;
-            window.open(paypalUrl, '_blank');
+            // Open PayPal.me link with the order total
+            window.open('https://paypal.me/' + paypalUsername + '/' + total, '_blank');
             showToast('Redirecting to PayPal...');
+            closeFunnel();
+        }
+
+        fnl('fnlUpsellAccept').onclick = () => { fnlState.upgraded = true; fnlEnterAddons(); };
+        fnl('fnlUpsellDecline').onclick = () => fnlEnterAddons();
+        fnl('fnlAddonsContinue').onclick = () => fnlEnterSummary();
+        fnl('fnlAddonsSkip').onclick = () => fnlEnterSummary();
+        fnl('fnlPayBtn').onclick = () => fnlCheckout();
+        fnl('fnlAbandon').onclick = () => fnlShowDownsell();
+        fnl('fnlDownsellAccept').onclick = () => { fnlState.downsellOnly = true; fnlEnterSummary(); };
+        fnl('fnlDownsellDecline').onclick = () => { fnlState.downsellOnly = false; fnlEnterSummary(); };
+        fnl('funnelOverlay').addEventListener('click', e => {
+            if (e.target === e.currentTarget) closeFunnel();
+        });
+
+        // ============ PAYPAL CLICK HANDLER (opens the funnel) ============
+        function handlePayPalClick(event, tier, price) {
+            event.preventDefault();
+            openFunnel(String(tier).toLowerCase());
         }
 
         // ============ CHECK FOR PURCHASE RETURN ============
