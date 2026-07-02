@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGIWAXX | Boost Funnel (Demo)</title>
+    <meta name="description" content="Demo sales funnel — main offer, upsell, cross-sell, downsell. Mock prices only.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #1a0a18;
+            --bg-mid: #3a0e2a;
+            --bg-light: #5c1440;
+            --accent-yellow: #FFB800;
+            --accent-yellow-hover: #FFD54F;
+            --text-white: #FFFFFF;
+            --text-muted: rgba(255,255,255,0.75);
+            --pink: #d4a0a0;
+            --font-head: 'Barlow Condensed', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --card-bg: #140812;
+            --border-glow: rgba(255, 184, 0, 0.4);
+            --green: #4ade80;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #6b0a3d;
+            color: var(--text-white);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(180deg,
+                #6b0a3d 0%, #6b0a3d 45%, #4a0830 60%,
+                #2e0620 73%, #1a0415 85%, #060108 100%);
+        }
+
+        h1, h2, h3, h4, .font-head {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 1.05;
+        }
+
+        a { text-decoration: none; }
+
+        .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* --- DEMO BANNER --- */
+        .demo-banner {
+            background: repeating-linear-gradient(-45deg, #FFB800, #FFB800 18px, #e6a600 18px, #e6a600 36px);
+            color: #1a0a18;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* --- HEADER --- */
+        .funnel-header {
+            text-align: center;
+            padding: 2rem 1rem 0.5rem;
+        }
+        .funnel-header img { height: 52px; width: auto; }
+
+        /* --- PROGRESS BAR --- */
+        .progress-wrap {
+            max-width: 720px;
+            margin: 1.5rem auto 0;
+            padding: 0 1.5rem;
+        }
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 14px; left: 8%; right: 8%;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            z-index: 0;
+        }
+        .p-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            z-index: 1;
+            flex: 1;
+        }
+        .p-step .dot {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: var(--bg-mid);
+            border: 2px solid rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .p-step .plabel {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+        .p-step.active .dot {
+            background: var(--accent-yellow);
+            border-color: var(--accent-yellow);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px var(--border-glow);
+        }
+        .p-step.active .plabel { color: var(--accent-yellow); }
+        .p-step.done .dot {
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--bg-dark);
+        }
+
+        /* --- STEPS --- */
+        .funnel-step { display: none; padding: 2.5rem 0 5rem; animation: fadeUp 0.45s ease; }
+        .funnel-step.active { display: block; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-heading { text-align: center; margin-bottom: 0.6rem; font-size: clamp(2.2rem, 6vw, 3.4rem); }
+        .step-sub { text-align: center; color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
+        .step-sub .hl { color: var(--accent-yellow); font-weight: 700; }
+
+        /* --- OFFER CARDS (Step 1) --- */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+        .tier-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .tier-card:hover { transform: translateY(-5px); border-color: var(--border-glow); }
+        .tier-card.selected {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 25px rgba(255,184,0,0.25);
+        }
+        .tier-card .badge {
+            position: absolute;
+            top: -14px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-yellow);
+            color: var(--bg-dark);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .tier-card h3 { color: var(--pink); font-size: 1.6rem; letter-spacing: 2px; text-align: center; }
+        .tier-card .price {
+            font-family: var(--font-head);
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--text-white);
+        }
+        .tier-card .price-note { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; }
+        .tier-card ul { list-style: none; margin: 0 0 1.5rem; flex: 1; }
+        .tier-card ul li {
+            font-size: 0.9rem;
+            padding: 0.35rem 0 0.35rem 1.6rem;
+            position: relative;
+            color: var(--text-muted);
+        }
+        .tier-card ul li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--accent-yellow);
+            font-weight: 700;
+        }
+        .tier-card .select-btn {
+            display: block;
+            text-align: center;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 2px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            background: transparent;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+        .tier-card:hover .select-btn, .tier-card.selected .select-btn {
+            background: var(--accent-yellow);
+            color: var(--bg-dark);
+        }
+
+        /* --- OFFER BOX (Upsell / Downsell) --- */
+        .offer-box {
+            background: var(--card-bg);
+            border: 2px solid var(--border-glow);
+            border-radius: 16px;
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255,184,0,0.15);
+        }
+        .offer-box .eyebrow {
+            display: inline-block;
+            background: rgba(255,184,0,0.15);
+            color: var(--accent-yellow);
+            font-family: var(--font-head);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            padding: 5px 16px;
+            border-radius: 20px;
+            margin-bottom: 1.2rem;
+        }
+        .offer-box h2 { font-size: clamp(1.8rem, 5vw, 2.6rem); margin-bottom: 1rem; }
+        .offer-box .offer-desc { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .offer-box ul {
+            list-style: none;
+            text-align: left;
+            max-width: 380px;
+            margin: 0 auto 1.5rem;
+        }
+        .offer-box ul li {
+            padding: 0.35rem 0 0.35rem 1.7rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        .offer-box ul li::before {
+            content: '+';
+            position: absolute;
+            left: 0;
+            color: var(--accent-yellow);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .price-line { margin-bottom: 1.5rem; }
+        .price-line .was {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            margin-right: 0.6rem;
+        }
+        .price-line .now {
+            font-family: var(--font-head);
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+        }
+        .price-line .per { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- BUTTONS --- */
+        .btn-accept {
+            display: inline-block;
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--accent-yellow), var(--accent-yellow-hover));
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 10px;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            width: 100%;
+            max-width: 420px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-accept:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,184,0,0.4); }
+        .btn-decline {
+            display: block;
+            margin: 1.2rem auto 0;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .btn-decline:hover { color: var(--text-white); }
+
+        /* --- CROSS-SELL GRID (Step 3) --- */
+        .addon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+        .addon-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 1.3rem;
+            cursor: pointer;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+            position: relative;
+        }
+        .addon-card:hover { transform: translateY(-3px); border-color: var(--border-glow); }
+        .addon-card.added { border-color: var(--green); }
+        .addon-card .addon-tier-tag {
+            display: inline-block;
+            background: rgba(255,184,0,0.15);
+            color: var(--accent-yellow);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+        }
+        .addon-card .addon-name {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .addon-card .addon-price {
+            font-family: var(--font-head);
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            margin: 0.2rem 0 0.4rem;
+        }
+        .addon-card .addon-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.9rem; }
+        .addon-card .addon-toggle {
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.55rem;
+            border-radius: 6px;
+            border: 2px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .addon-card.added .addon-toggle {
+            border-color: var(--green);
+            background: var(--green);
+            color: var(--bg-dark);
+        }
+        .addon-card .check-mark {
+            position: absolute;
+            top: 10px; right: 12px;
+            color: var(--green);
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: none;
+        }
+        .addon-card.added .check-mark { display: block; }
+        .step-actions { text-align: center; }
+
+        /* --- ORDER SUMMARY (Step 4) --- */
+        .summary-box {
+            background: var(--card-bg);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .summary-box h3 {
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.2rem;
+            color: var(--pink);
+            text-align: center;
+        }
+        .order-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.15);
+            font-size: 0.95rem;
+        }
+        .order-line .item-tag {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent-yellow);
+            display: block;
+        }
+        .order-line .amount { font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; white-space: nowrap; }
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.2rem;
+            margin-top: 0.4rem;
+        }
+        .order-total .label { font-family: var(--font-head); font-size: 1.4rem; letter-spacing: 2px; text-transform: uppercase; }
+        .order-total .amount {
+            font-family: var(--font-head);
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+        }
+        .summary-box .btn-accept { margin-top: 1.5rem; max-width: none; }
+        .secure-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.9rem;
+        }
+
+        /* --- THANK YOU (Step 5) --- */
+        .thankyou-box { text-align: center; max-width: 620px; margin: 0 auto; }
+        .thankyou-box .big-check {
+            width: 84px; height: 84px;
+            border-radius: 50%;
+            background: var(--green);
+            color: var(--bg-dark);
+            font-size: 2.6rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        .thankyou-box h2 { font-size: clamp(2.2rem, 6vw, 3.2rem); margin-bottom: 1rem; }
+        .thankyou-box p { color: var(--text-muted); margin-bottom: 2rem; }
+        .thankyou-box .summary-box { text-align: left; }
+
+        /* --- DOWNSELL MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 2, 8, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 1.5rem;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-overlay .offer-box { animation: fadeUp 0.35s ease; max-height: 90vh; overflow-y: auto; }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem 3rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+        .footer a { color: var(--accent-yellow); }
+
+        @media (max-width: 600px) {
+            .p-step .plabel { display: none; }
+            .funnel-step { padding: 1.8rem 0 4rem; }
+            .offer-box { padding: 1.8rem 1.2rem; }
+            .btn-accept { font-size: 1.25rem; padding: 0.9rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="demo-banner">Demo Funnel &mdash; Mock Prices Only &mdash; No Real Payments</div>
+
+    <header class="funnel-header">
+        <img src="images/logo.jpg" alt="Digiwaxx">
+    </header>
+
+    <div class="progress-wrap">
+        <div class="progress-steps" id="progressSteps">
+            <div class="p-step" data-step="1"><div class="dot">1</div><div class="plabel">Your Boost</div></div>
+            <div class="p-step" data-step="2"><div class="dot">2</div><div class="plabel">Upgrade</div></div>
+            <div class="p-step" data-step="3"><div class="dot">3</div><div class="plabel">Add-Ons</div></div>
+            <div class="p-step" data-step="4"><div class="dot">4</div><div class="plabel">Checkout</div></div>
+            <div class="p-step" data-step="5"><div class="dot">5</div><div class="plabel">Done</div></div>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- ============ STEP 1: MAIN OFFER (product groups) ============ -->
+        <section class="funnel-step" id="step1">
+            <h2 class="step-heading">Choose Your Boost</h2>
+            <p class="step-sub">Start with a package. You can fine-tune it in the next steps.</p>
+            <div class="tier-grid" id="tierGrid"></div>
+        </section>
+
+        <!-- ============ STEP 2: UPSELL ============ -->
+        <section class="funnel-step" id="step2">
+            <div class="offer-box">
+                <div class="eyebrow">Wait &mdash; One-Time Upgrade</div>
+                <h2 id="upsellHeading"></h2>
+                <p class="offer-desc" id="upsellDesc"></p>
+                <ul id="upsellFeatures"></ul>
+                <div class="price-line">
+                    <span class="was" id="upsellWas"></span>
+                    <span class="now" id="upsellNow"></span>
+                    <span class="per">one-time (demo)</span>
+                </div>
+                <button class="btn-accept" id="upsellAccept"></button>
+                <button class="btn-decline" id="upsellDecline">No thanks, keep my current package</button>
+            </div>
+        </section>
+
+        <!-- ============ STEP 3: CROSS-SELL (single products) ============ -->
+        <section class="funnel-step" id="step3">
+            <h2 class="step-heading">Level Up Your Campaign</h2>
+            <p class="step-sub">Grab features from the <span class="hl">higher packages</span> as one-off add-ons &mdash; without upgrading your whole tier.</p>
+            <div class="addon-grid" id="addonGrid"></div>
+            <div class="step-actions">
+                <button class="btn-accept" id="crossSellContinue">Continue to Checkout &rarr;</button>
+                <button class="btn-decline" id="crossSellSkip">Skip add-ons</button>
+            </div>
+        </section>
+
+        <!-- ============ STEP 4: ORDER SUMMARY / CHECKOUT ============ -->
+        <section class="funnel-step" id="step4">
+            <h2 class="step-heading">Your Order</h2>
+            <p class="step-sub">Review your boost campaign before payment.</p>
+            <div class="summary-box">
+                <h3>Order Summary</h3>
+                <div id="orderLines"></div>
+                <div class="order-total">
+                    <span class="label">Total</span>
+                    <span class="amount" id="orderTotal"></span>
+                </div>
+                <button class="btn-accept" id="payBtn">Pay Now (Demo)</button>
+                <p class="secure-note">&#128274; Mock checkout &mdash; no real payment is processed.</p>
+            </div>
+            <div class="step-actions">
+                <button class="btn-decline" id="abandonBtn">I'm not ready to order</button>
+            </div>
+        </section>
+
+        <!-- ============ STEP 5: THANK YOU ============ -->
+        <section class="funnel-step" id="step5">
+            <div class="thankyou-box">
+                <div class="big-check">&#10003;</div>
+                <h2>Order Confirmed!</h2>
+                <p>(Demo) Your record is headed to the Digiwaxx DJ network. Our team would normally reach out within 24 hours to collect your track and kick off the campaign.</p>
+                <div class="summary-box">
+                    <h3>What You Ordered</h3>
+                    <div id="finalLines"></div>
+                    <div class="order-total">
+                        <span class="label">Paid</span>
+                        <span class="amount" id="finalTotal"></span>
+                    </div>
+                </div>
+                <div class="step-actions" style="margin-top: 2rem;">
+                    <button class="btn-accept" onclick="restartFunnel()">Restart Demo</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ DOWNSELL MODAL ============ -->
+    <div class="modal-overlay" id="downsellModal">
+        <div class="offer-box">
+            <div class="eyebrow">Before You Go&hellip;</div>
+            <h2 id="downsellHeading">Not Ready For The Full Package?</h2>
+            <p class="offer-desc" id="downsellDesc"></p>
+            <div class="price-line">
+                <span class="was" id="downsellWas"></span>
+                <span class="now" id="downsellNow"></span>
+                <span class="per">one-time (demo)</span>
+            </div>
+            <button class="btn-accept" id="downsellAccept"></button>
+            <button class="btn-decline" id="downsellDecline">No thanks, take me back to my order</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        This is a <strong>demo funnel with mock prices</strong>. <a href="/">Back to the live Digiwaxx page &rarr;</a>
+    </div>
+
+    <script>
+        // ==========================================================
+        // MOCK PRODUCT CATALOG — all prices are fake / demo only
+        // ==========================================================
+
+        // Product GROUPS (bundles) — the main offer
+        const TIERS = {
+            starter: {
+                name: 'Starter',
+                tagline: 'Get In The System',
+                price: 97,
+                features: [
+                    'Record pool placement',
+                    'Spotify playlist placement',
+                    'Digiwaxx radio rotation',
+                    'DJ blast email feature',
+                    'Official Digiwaxx.com artist coverage',
+                    'Artist spotlight write-up (SEO indexed)'
+                ],
+                next: 'pro'
+            },
+            pro: {
+                name: 'Pro',
+                tagline: 'Turn The Lights On',
+                price: 147,
+                badge: 'Most Popular',
+                features: [
+                    'Everything in Starter',
+                    'IG feed post on Digiwaxx',
+                    '2 Instagram story placements',
+                    'Featured spin on DJ Call',
+                    'Live DJ mention'
+                ],
+                next: 'elite'
+            },
+            elite: {
+                name: 'Elite',
+                tagline: 'Heavy Rotation Energy',
+                price: 197,
+                features: [
+                    'Everything in Pro',
+                    'One-on-one Zoom interview',
+                    'TikTok post on Digiwaxx',
+                    'Performance snapshot report',
+                    'Priority DJ call placement'
+                ],
+                next: null
+            }
+        };
+
+        // SINGLE products — the features of the UPGRADED tiers, sold as
+        // individual add-ons. fromTier: the package this item belongs to;
+        // it's offered as an add-on to anyone buying a lower tier.
+        const SINGLES = [
+            // Pro-level features (real products, mock prices)
+            { id: 'ig_feed',    name: 'IG Feed Post on Digiwaxx',        price: 45, desc: 'One post on the Digiwaxx Instagram feed.',              fromTier: 'pro' },
+            { id: 'ig_story',   name: '2 Instagram Story Placements',    price: 35, desc: 'Two Instagram story placements on Digiwaxx.',           fromTier: 'pro' },
+            { id: 'dj_call',    name: 'Featured Spin on DJ Call',        price: 35, desc: 'Your record featured live on the weekly DJ call.',      fromTier: 'pro' },
+            { id: 'dj_mention', name: 'Live DJ Mention',                 price: 25, desc: 'A live on-air mention from a Digiwaxx DJ.',             fromTier: 'pro' },
+            // Elite-level features (real products, mock prices)
+            { id: 'zoom',       name: 'One-on-One Zoom Interview',       price: 75, desc: 'Recorded interview, published on Digiwaxx.com.',        fromTier: 'elite' },
+            { id: 'tiktok',     name: 'TikTok Post on Digiwaxx',         price: 55, desc: 'One TikTok post on the Digiwaxx account.',              fromTier: 'elite' },
+            { id: 'snapshot',   name: 'Performance Snapshot Report',     price: 29, desc: 'Report on spins, downloads & DJ feedback.',             fromTier: 'elite' },
+            { id: 'priority',   name: 'Priority DJ Call Placement',      price: 49, desc: 'Your record jumps to the front of the DJ call queue.',  fromTier: 'elite' }
+        ];
+        const TIER_RANK = { starter: 1, pro: 2, elite: 3 };
+
+        // DOWNSELL — a single Starter-level feature, discounted
+        const DOWNSELL = {
+            name: 'DJ Blast Email Feature (Solo)',
+            wasPrice: 39,
+            price: 19,
+            desc: 'Skip the full package for now. Get your record in front of the DJ network with the DJ blast email feature on its own — at a one-time demo discount.'
+        };
+
+        // ==========================================================
+        // FUNNEL STATE
+        // ==========================================================
+        const state = {
+            tier: null,          // selected tier key
+            upgraded: false,     // accepted the upsell
+            addons: [],          // single product ids added at cross-sell
+            downsellOnly: false  // took the downsell instead of a package
+        };
+
+        const $ = id => document.getElementById(id);
+        const money = n => '$' + n;
+
+        function currentTierKey() {
+            if (!state.tier) return null;
+            return state.upgraded ? TIERS[state.tier].next : state.tier;
+        }
+
+        // ==========================================================
+        // NAVIGATION
+        // ==========================================================
+        function goToStep(n) {
+            document.querySelectorAll('.funnel-step').forEach(s => s.classList.remove('active'));
+            $('step' + n).classList.add('active');
+            document.querySelectorAll('.p-step').forEach(p => {
+                const num = parseInt(p.dataset.step);
+                p.classList.toggle('active', num === n);
+                p.classList.toggle('done', num < n);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==========================================================
+        // STEP 1: MAIN OFFER — render tier cards
+        // ==========================================================
+        function renderTiers() {
+            $('tierGrid').innerHTML = Object.entries(TIERS).map(([key, t]) => `
+                <div class="tier-card" data-tier="${key}">
+                    ${t.badge ? `<div class="badge">${t.badge}</div>` : ''}
+                    <h3>${t.name}</h3>
+                    <div class="price">${money(t.price)}</div>
+                    <div class="price-note">one-time &middot; demo price</div>
+                    <ul>${t.features.map(f => `<li>${f}</li>`).join('')}</ul>
+                    <button class="select-btn">Select ${t.name}</button>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    state.tier = card.dataset.tier;
+                    state.upgraded = false;
+                    document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    setTimeout(() => enterUpsell(), 250);
+                });
+            });
+        }
+
+        // ==========================================================
+        // STEP 2: UPSELL — offer the next tier up for the difference
+        // ==========================================================
+        function enterUpsell() {
+            const base = TIERS[state.tier];
+            const nextKey = base.next;
+
+            if (!nextKey) {
+                // Elite is the top package and already includes every product —
+                // nothing to upsell or cross-sell, go straight to checkout.
+                enterSummary();
+                return;
+            } else {
+                const next = TIERS[nextKey];
+                const diff = next.price - base.price;
+                const extras = next.features.filter(f => !f.toLowerCase().startsWith('everything'));
+                $('upsellHeading').textContent = `Upgrade to ${next.name} for just ${money(diff)} more?`;
+                $('upsellDesc').textContent = `You chose ${base.name} (${money(base.price)}). For ${money(diff)} more you unlock everything below — cheaper than adding any one of these later.`;
+                $('upsellFeatures').innerHTML = extras.map(f => `<li>${f}</li>`).join('');
+                $('upsellWas').textContent = money(next.price);
+                $('upsellNow').textContent = '+' + money(diff);
+                $('upsellAccept').textContent = `Yes, Upgrade Me to ${next.name}`;
+                $('upsellAccept').onclick = () => {
+                    state.upgraded = true;
+                    enterCrossSell();
+                };
+            }
+            goToStep(2);
+        }
+
+        // ==========================================================
+        // STEP 3: CROSS-SELL — singles not already in the bundle
+        // ==========================================================
+        function enterCrossSell() {
+            const tierKey = currentTierKey();
+            // Offer the individual products from the packages ABOVE the one
+            // being bought (e.g. Starter buyers see Pro + Elite features).
+            const upgradeSingles = SINGLES.filter(s => TIER_RANK[s.fromTier] > TIER_RANK[tierKey]);
+
+            if (upgradeSingles.length === 0) {
+                enterSummary();
+                return;
+            }
+
+            $('addonGrid').innerHTML = upgradeSingles.map(s => `
+                    <div class="addon-card ${state.addons.includes(s.id) ? 'added' : ''}" data-id="${s.id}">
+                        <span class="check-mark">&#10003;</span>
+                        <div class="addon-tier-tag">${TIERS[s.fromTier].name} feature</div>
+                        <div class="addon-name">${s.name}</div>
+                        <div class="addon-price">${money(s.price)}</div>
+                        <div class="addon-desc">${s.desc}</div>
+                        <button class="addon-toggle">${state.addons.includes(s.id) ? 'Added' : 'Add This'}</button>
+                    </div>
+                `).join('');
+
+            document.querySelectorAll('.addon-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = card.dataset.id;
+                    const idx = state.addons.indexOf(id);
+                    if (idx >= 0) state.addons.splice(idx, 1);
+                    else state.addons.push(id);
+                    card.classList.toggle('added', idx < 0);
+                    card.querySelector('.addon-toggle').textContent = idx < 0 ? 'Added' : 'Add This';
+                });
+            });
+
+            goToStep(3);
+        }
+
+        // ==========================================================
+        // STEP 4: ORDER SUMMARY
+        // ==========================================================
+        function orderItems() {
+            const items = [];
+            if (state.downsellOnly) {
+                items.push({ tag: 'Downsell Special', name: DOWNSELL.name, price: DOWNSELL.price });
+                return items;
+            }
+            const tierKey = currentTierKey();
+            const tier = TIERS[tierKey];
+            items.push({
+                tag: state.upgraded ? 'Package (Upgraded)' : 'Package',
+                name: `${tier.name} Boost — ${tier.tagline}`,
+                price: tier.price
+            });
+            state.addons.forEach(id => {
+                const s = SINGLES.find(x => x.id === id);
+                if (s) items.push({ tag: 'Add-On', name: s.name, price: s.price });
+            });
+            return items;
+        }
+
+        function renderOrder(containerId, totalId) {
+            const items = orderItems();
+            $(containerId).innerHTML = items.map(i => `
+                <div class="order-line">
+                    <span><span class="item-tag">${i.tag}</span>${i.name}</span>
+                    <span class="amount">${money(i.price)}</span>
+                </div>
+            `).join('');
+            $(totalId).textContent = money(items.reduce((sum, i) => sum + i.price, 0));
+        }
+
+        function enterSummary() {
+            renderOrder('orderLines', 'orderTotal');
+            goToStep(4);
+        }
+
+        // ==========================================================
+        // DOWNSELL — triggered on abandoning the order
+        // ==========================================================
+        function showDownsell() {
+            $('downsellDesc').textContent = DOWNSELL.desc;
+            $('downsellWas').textContent = money(DOWNSELL.wasPrice);
+            $('downsellNow').textContent = money(DOWNSELL.price);
+            $('downsellAccept').textContent = `Yes, Give Me the Blast for ${money(DOWNSELL.price)}`;
+            $('downsellModal').classList.add('active');
+        }
+
+        $('downsellAccept').onclick = () => {
+            state.downsellOnly = true;
+            $('downsellModal').classList.remove('active');
+            enterSummary();
+        };
+        $('downsellDecline').onclick = () => {
+            $('downsellModal').classList.remove('active');
+        };
+        $('downsellModal').addEventListener('click', e => {
+            if (e.target === e.currentTarget) $('downsellModal').classList.remove('active');
+        });
+
+        // ==========================================================
+        // STEP 5: THANK YOU
+        // ==========================================================
+        function enterThankYou() {
+            renderOrder('finalLines', 'finalTotal');
+            goToStep(5);
+        }
+
+        function restartFunnel() {
+            state.tier = null;
+            state.upgraded = false;
+            state.addons = [];
+            state.downsellOnly = false;
+            document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+            goToStep(1);
+        }
+
+        // ==========================================================
+        // WIRE UP STATIC BUTTONS
+        // ==========================================================
+        $('upsellDecline').onclick = () => enterCrossSell();
+        $('crossSellContinue').onclick = () => enterSummary();
+        $('crossSellSkip').onclick = () => { enterSummary(); };
+        $('payBtn').onclick = () => enterThankYou();
+        $('abandonBtn').onclick = () => showDownsell();
+
+        // ==========================================================
+        // INIT — support ?tier=pro deep links from the pricing page
+        // ==========================================================
+        renderTiers();
+        const params = new URLSearchParams(window.location.search);
+        const deepTier = (params.get('tier') || '').toLowerCase();
+        if (TIERS[deepTier]) {
+            state.tier = deepTier;
+            document.querySelector(`.tier-card[data-tier="${deepTier}"]`)?.classList.add('selected');
+            enterUpsell();
+        } else {
+            goToStep(1);
+        }
+    </script>
+</body>
+</html>
