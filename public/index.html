@@ -684,8 +684,9 @@
         }
 
         .pricing-card {
-            background: rgba(250, 178, 208, 0.24);
-            border: 1px solid rgba(250, 178, 208, 0.38);
+            background: linear-gradient(180deg, #fbf7f0 0%, #f2ebdd 100%);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.25);
             border-radius: 16px;
             padding: 2.5rem 2rem;
             display: flex;
@@ -701,7 +702,7 @@
 
         .pricing-card.featured {
             border-color: var(--accent-yellow);
-            background: rgba(252, 188, 214, 0.28);
+            background: linear-gradient(180deg, #fffdf8 0%, #f7f0e3 100%);
             transform: scale(1.05);
             box-shadow: 0 15px 40px rgba(255, 184, 0, 0.15);
             z-index: 2;
@@ -821,6 +822,16 @@
         .pricing-card.featured .btn-buy:hover {
             animation: none;
         }
+
+        /* White/linen pricing cards — darken text for contrast */
+        .pricing-card .card-header { border-bottom-color: rgba(0, 0, 0, 0.1); }
+        .pricing-card .card-header .tier-name { color: #6b0a3d; }
+        .pricing-card .card-header .price { color: #1a0a18; }
+        .pricing-card .card-header .price-label { color: #6a5f66; }
+        .pricing-card .card-body p { color: #55505a; }
+        .pricing-card ul.custom-bullets li { color: #2a0a20; }
+        .pricing-card ul.custom-bullets li::before { color: #6b0a3d; }
+        .pricing-card .paypal-note { color: #6a5f66; }
 
         /* --- ADD-ONS --- */
         .addons-section {
