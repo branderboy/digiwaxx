@@ -95,13 +95,13 @@ async function initDB() {
       ('bg_color', '#1a0a18'),
       ('heading_font_size', '100'),
       ('body_font_size', '100'),
-      ('meta_title', 'DIGIWAXX | New Music Boost — Get Your Record to DJs'),
+      ('meta_title', 'DIGIWAXX | New Music Boost | Get Your Record to DJs'),
       ('meta_description', 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Spotify playlists, radio rotation, and more.'),
       ('og_image_url', ''),
       ('hero_eyebrow', 'The New Music Boost'),
       ('hero_h3', 'YOUR RECORD DESERVES MORE THAN STREAMS.'),
       ('hero_cta_text', 'DROP YOUR RECORD NOW'),
-      ('hero_cta_subtext', 'Limited slots available — serious artists only'),
+      ('hero_cta_subtext', 'Limited slots available. Serious artists only'),
       ('hero_stat1_number', '30K+'),
       ('hero_stat1_label', 'DJs Worldwide'),
       ('hero_stat2_number', '1998'),
@@ -113,15 +113,15 @@ async function initDB() {
       ('problem_closing', 'You upload your song. Then it sits.'),
       ('solution_heading', 'THE DIGIWAXX SOLUTION'),
       ('solution_intro', 'What if your record landed in the right hands?'),
-      ('solution_closing', 'This isn''t just promo. It''s an industry co-sign — the ecosystem that turns spins into fans, bookings, and royalties.'),
+      ('solution_closing', 'This isn''t just promo. It''s an industry co-sign. It''s the ecosystem that turns spins into fans, bookings, and royalties.'),
       ('solution_cta', 'GET YOUR MUSIC HEARD NOW'),
       ('step1_title', 'SUBMIT YOUR RECORD'),
       ('step1_desc', 'Fill out the form with your artist info and a link to your track. Choose your boost tier.'),
       ('step2_title', 'WE PUSH IT OUT'),
-      ('step2_desc', 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation — in days, not months of chasing contacts on your own.'),
+      ('step2_desc', 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation, in days, not months of chasing contacts on your own.'),
       ('step3_title', 'DJs SPIN YOUR TRACK'),
-      ('step3_desc', 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide — turning spins into fans, bookings, and royalties.'),
-      ('video_heading', 'SEE DIGIWAXX IN ACTION'),
+      ('step3_desc', 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide, turning spins into fans, bookings, and royalties.'),
+      ('video_heading', 'WHY CHOOSE DIGIWAXX?'),
       ('video_subtitle', 'Watch how Digiwaxx connects artists to DJs across the globe.'),
       ('boost_cta_text', 'DM "BOOST" ON IG TO START NOW'),
       ('trust_heading', 'TRUSTED BY DJs SINCE 1998'),
@@ -135,11 +135,11 @@ async function initDB() {
       ('trust_stat3_number', '100+'),
       ('trust_stat3_label', 'Radio Partners'),
       ('final_cta_heading', 'DROP YOUR RECORD IN THE RIGHT ROOM'),
-      ('final_cta_body', 'One submission puts your record in front of 30,000+ DJs — no contracts, no gatekeepers, reviewed within 72 hours.'),
+      ('final_cta_body', 'One submission puts your record in front of 30,000+ DJs, no contracts, no gatekeepers, reviewed within 72 hours.'),
       ('final_cta_highlight', 'Limited Slots. Serious Artists Only.'),
       ('footer_text', '© 2026 Digiwaxx Media Group. All rights reserved. Trusted by DJs since 1998.'),
       ('pricing_heading', 'CHOOSE YOUR BOOST'),
-      ('pricing_subtitle', 'Every tier gets your record into the Digiwaxx DJ network. One-time payment, no contracts, secure PayPal checkout — trusted by DJs since 1998.'),
+      ('pricing_subtitle', 'Every tier gets your record into the Digiwaxx DJ network. One-time payment, no contracts, secure PayPal checkout, trusted by DJs since 1998.'),
       ('manychat_widget_id', ''),
       ('manychat_page_id', ''),
       ('fb_pixel_id', ''),
@@ -183,12 +183,15 @@ async function initDB() {
       ('addon_3_paypal_link', '')
     ON CONFLICT (key) DO NOTHING;
     UPDATE settings SET value = 'PROMOTE MY RECORD →' WHERE key = 'pay_button_text' AND value = 'PAY WITH PAYPAL →';
-    UPDATE settings SET value = 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs — stop uploading into the void.' WHERE key = 'site_subheadline' AND value IN ('Digiwaxx connects your records to the DJs, playlists, and platforms that matter.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.');
-    UPDATE settings SET value = 'This isn''t just promo. It''s an industry co-sign — the ecosystem that turns spins into fans, bookings, and royalties.' WHERE key = 'solution_closing' AND value = 'This isn''t just promo. It''s access to the ecosystem that launches records.';
-    UPDATE settings SET value = 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation — in days, not months of chasing contacts on your own.' WHERE key = 'step2_desc' AND value = 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation.';
-    UPDATE settings SET value = 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide — turning spins into fans, bookings, and royalties.' WHERE key = 'step3_desc' AND value = 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide.';
-    UPDATE settings SET value = 'One submission puts your record in front of 30,000+ DJs — no contracts, no gatekeepers, reviewed within 72 hours.' WHERE key = 'final_cta_body' AND value IN ('If your song is ready, it deserves to reach the DJs who matter.', 'Get your music into the Digiwaxx DJ network today.');
-    UPDATE settings SET value = 'Select the tier that fits your goals. One-time payment, no contracts, secure PayPal checkout — backed by a DJ network trusted since 1998.' WHERE key = 'pricing_subtitle' AND value IN ('Every tier gets your record into the Digiwaxx DJ network. Choose how loud you want to go.', 'Select the tier that fits your goals. Every plan includes DJ network access.');
+    UPDATE settings SET value = 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs. Stop uploading into the void.' WHERE key = 'site_subheadline' AND value IN ('Digiwaxx connects your records to the DJs, playlists, and platforms that matter.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs — stop uploading into the void.');
+    UPDATE settings SET value = 'This isn''t just promo. It''s an industry co-sign. It''s the ecosystem that turns spins into fans, bookings, and royalties.' WHERE key = 'solution_closing' AND value IN ('This isn''t just promo. It''s access to the ecosystem that launches records.', 'This isn''t just promo. It''s an industry co-sign — the ecosystem that turns spins into fans, bookings, and royalties.');
+    UPDATE settings SET value = 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation, in days, not months of chasing contacts on your own.' WHERE key = 'step2_desc' AND value IN ('Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation.', 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation — in days, not months of chasing contacts on your own.');
+    UPDATE settings SET value = 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide, turning spins into fans, bookings, and royalties.' WHERE key = 'step3_desc' AND value IN ('Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide.', 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide — turning spins into fans, bookings, and royalties.');
+    UPDATE settings SET value = 'One submission puts your record in front of 30,000+ DJs, no contracts, no gatekeepers, reviewed within 72 hours.' WHERE key = 'final_cta_body' AND value IN ('If your song is ready, it deserves to reach the DJs who matter.', 'Get your music into the Digiwaxx DJ network today.', 'One submission puts your record in front of 30,000+ DJs — no contracts, no gatekeepers, reviewed within 72 hours.');
+    UPDATE settings SET value = 'Select the tier that fits your goals. One-time payment, no contracts, secure PayPal checkout, backed by a DJ network trusted since 1998.' WHERE key = 'pricing_subtitle' AND value IN ('Every tier gets your record into the Digiwaxx DJ network. Choose how loud you want to go.', 'Select the tier that fits your goals. Every plan includes DJ network access.', 'Select the tier that fits your goals. One-time payment, no contracts, secure PayPal checkout — backed by a DJ network trusted since 1998.');
+    UPDATE settings SET value = 'WHY CHOOSE DIGIWAXX?' WHERE key = 'video_heading' AND value IN ('SEE DIGIWAXX IN ACTION', 'WHY DIGIWAXX EXISTS!');
+    UPDATE settings SET value = 'DIGIWAXX | New Music Boost | Get Your Record to DJs' WHERE key = 'meta_title' AND value = 'DIGIWAXX | New Music Boost — Get Your Record to DJs';
+    UPDATE settings SET value = 'Limited slots available. Serious artists only' WHERE key = 'hero_cta_subtext' AND value = 'Limited slots available — serious artists only';
     CREATE TABLE IF NOT EXISTS email_queue (
       id SERIAL PRIMARY KEY,
       lead_id TEXT REFERENCES leads(id),
@@ -597,7 +600,7 @@ module.exports = async (req, res) => {
         const link = addonSettings[`addon_${i}_paypal_link`];
         if (name && link) {
           addonsHtml += `<div style="background:#1a1a2e;border:1px solid #333;border-radius:8px;padding:16px;margin-bottom:12px;">` +
-            `<strong style="color:#ffd700;font-size:16px;">${name} — $${price}</strong><br>` +
+            `<strong style="color:#ffd700;font-size:16px;">${name}: $${price}</strong><br>` +
             `<span style="color:#ccc;">${desc}</span><br><br>` +
             `<a href="${link}" style="background:#ffd700;color:#000;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:700;">GET THIS ADD-ON</a>` +
             `</div>`;
