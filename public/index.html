@@ -1143,7 +1143,7 @@
         .trust-badge p {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: rgba(255,255,255,0.7);
+            color: #ffffff;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -1164,13 +1164,13 @@
             font-family: var(--font-head);
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 800;
-            color: var(--accent-yellow);
+            color: #ffffff;
             line-height: 1;
         }
 
         .trust-stat .label {
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.5);
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-top: 8px;
@@ -1676,12 +1676,15 @@
             font-weight: 700;
             font-size: 0.95rem;
             z-index: 3000;
-            transform: translateY(120%);
-            transition: transform 0.3s ease;
+            transform: translateY(200%);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
-        .toast.show { transform: translateY(0); }
+        .toast.show { transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
