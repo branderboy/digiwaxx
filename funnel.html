@@ -349,6 +349,19 @@
         }
         .addon-card:hover { transform: translateY(-3px); border-color: var(--border-glow); }
         .addon-card.added { border-color: var(--green); }
+        .addon-card .addon-tier-tag {
+            display: inline-block;
+            background: rgba(255,184,0,0.15);
+            color: var(--accent-yellow);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+        }
         .addon-card .addon-name {
             font-family: var(--font-head);
             font-weight: 700;
@@ -549,7 +562,7 @@
         <!-- ============ STEP 3: CROSS-SELL (single products) ============ -->
         <section class="funnel-step" id="step3">
             <h2 class="step-heading">Level Up Your Campaign</h2>
-            <p class="step-sub">Add single placements that are <span class="hl">not included</span> in your package.</p>
+            <p class="step-sub">Grab features from the <span class="hl">higher packages</span> as one-off add-ons &mdash; without upgrading your whole tier.</p>
             <div class="addon-grid" id="addonGrid"></div>
             <div class="step-actions">
                 <button class="btn-accept" id="crossSellContinue">Continue to Checkout &rarr;</button>
@@ -633,7 +646,8 @@
                     'Spotify playlist placement',
                     'Digiwaxx radio rotation',
                     'DJ blast email feature',
-                    'Artist spotlight write-up'
+                    'Official Digiwaxx.com artist coverage',
+                    'Artist spotlight write-up (SEO indexed)'
                 ],
                 next: 'pro'
             },
@@ -666,26 +680,29 @@
             }
         };
 
-        // SINGLE products (à la carte) — used for cross-sell + downsell.
-        // includedIn: tiers whose bundle already contains this item.
+        // SINGLE products — the features of the UPGRADED tiers, sold as
+        // individual add-ons. fromTier: the package this item belongs to;
+        // it's offered as an add-on to anyone buying a lower tier.
         const SINGLES = [
-            { id: 'dj_blast',   name: 'DJ Blast Email',           price: 39, desc: 'One dedicated email blast to the DJ network.',        includedIn: ['starter', 'pro', 'elite'] },
-            { id: 'ig_feed',    name: 'IG Feed Post',             price: 45, desc: 'One post on the Digiwaxx Instagram feed.',            includedIn: ['pro', 'elite'] },
-            { id: 'ig_story',   name: 'IG Story Placement',       price: 25, desc: 'One Instagram story placement on Digiwaxx.',          includedIn: ['pro', 'elite'] },
-            { id: 'dj_call',    name: 'Featured Spin on DJ Call', price: 35, desc: 'Your record featured live on the weekly DJ call.',    includedIn: ['pro', 'elite'] },
-            { id: 'tiktok',     name: 'TikTok Post',              price: 55, desc: 'One TikTok post on the Digiwaxx account.',            includedIn: ['elite'] },
-            { id: 'zoom',       name: 'Zoom Interview Feature',   price: 75, desc: 'One-on-one recorded interview, published on-site.',   includedIn: ['elite'] },
-            { id: 'snapshot',   name: 'Performance Snapshot',     price: 29, desc: 'Report on spins, downloads & DJ feedback.',           includedIn: ['elite'] },
-            { id: 'rush',       name: 'Priority Rush Placement',  price: 49, desc: 'Jump the queue — record goes out within 48 hours.',   includedIn: [] }
+            // Pro-level features (real products, mock prices)
+            { id: 'ig_feed',    name: 'IG Feed Post on Digiwaxx',        price: 45, desc: 'One post on the Digiwaxx Instagram feed.',              fromTier: 'pro' },
+            { id: 'ig_story',   name: '2 Instagram Story Placements',    price: 35, desc: 'Two Instagram story placements on Digiwaxx.',           fromTier: 'pro' },
+            { id: 'dj_call',    name: 'Featured Spin on DJ Call',        price: 35, desc: 'Your record featured live on the weekly DJ call.',      fromTier: 'pro' },
+            { id: 'dj_mention', name: 'Live DJ Mention',                 price: 25, desc: 'A live on-air mention from a Digiwaxx DJ.',             fromTier: 'pro' },
+            // Elite-level features (real products, mock prices)
+            { id: 'zoom',       name: 'One-on-One Zoom Interview',       price: 75, desc: 'Recorded interview, published on Digiwaxx.com.',        fromTier: 'elite' },
+            { id: 'tiktok',     name: 'TikTok Post on Digiwaxx',         price: 55, desc: 'One TikTok post on the Digiwaxx account.',              fromTier: 'elite' },
+            { id: 'snapshot',   name: 'Performance Snapshot Report',     price: 29, desc: 'Report on spins, downloads & DJ feedback.',             fromTier: 'elite' },
+            { id: 'priority',   name: 'Priority DJ Call Placement',      price: 49, desc: 'Your record jumps to the front of the DJ call queue.',  fromTier: 'elite' }
         ];
+        const TIER_RANK = { starter: 1, pro: 2, elite: 3 };
 
-        // DOWNSELL — cheapest meaningful single, discounted
+        // DOWNSELL — a single Starter-level feature, discounted
         const DOWNSELL = {
-            singleId: 'dj_blast',
-            name: 'DJ Blast Email (Solo)',
+            name: 'DJ Blast Email Feature (Solo)',
             wasPrice: 39,
             price: 19,
-            desc: 'Skip the full package for now. Get your record in front of the DJ network with a single dedicated email blast — at a one-time demo discount.'
+            desc: 'Skip the full package for now. Get your record in front of the DJ network with the DJ blast email feature on its own — at a one-time demo discount.'
         };
 
         // ==========================================================
@@ -754,18 +771,10 @@
             const nextKey = base.next;
 
             if (!nextKey) {
-                // Elite has no higher tier — offer the rush single as the upsell instead
-                const rush = SINGLES.find(s => s.id === 'rush');
-                $('upsellHeading').textContent = 'Add Priority Rush Placement?';
-                $('upsellDesc').textContent = 'You picked our top package. Want your record pushed to the front of the line?';
-                $('upsellFeatures').innerHTML = `<li>${rush.desc}</li><li>First look from top-tier DJs</li>`;
-                $('upsellWas').textContent = '';
-                $('upsellNow').textContent = '+' + money(rush.price);
-                $('upsellAccept').textContent = 'Yes, Rush My Record';
-                $('upsellAccept').onclick = () => {
-                    if (!state.addons.includes('rush')) state.addons.push('rush');
-                    enterCrossSell();
-                };
+                // Elite is the top package and already includes every product —
+                // nothing to upsell or cross-sell, go straight to checkout.
+                enterSummary();
+                return;
             } else {
                 const next = TIERS[nextKey];
                 const diff = next.price - base.price;
@@ -789,21 +798,19 @@
         // ==========================================================
         function enterCrossSell() {
             const tierKey = currentTierKey();
-            const available = SINGLES.filter(s =>
-                !s.includedIn.includes(tierKey) && !state.addons.includes(s.id)
-            );
-            const preAdded = state.addons.slice();
+            // Offer the individual products from the packages ABOVE the one
+            // being bought (e.g. Starter buyers see Pro + Elite features).
+            const upgradeSingles = SINGLES.filter(s => TIER_RANK[s.fromTier] > TIER_RANK[tierKey]);
 
-            if (available.length === 0 && preAdded.length === 0) {
+            if (upgradeSingles.length === 0) {
                 enterSummary();
                 return;
             }
 
-            $('addonGrid').innerHTML = SINGLES
-                .filter(s => !s.includedIn.includes(tierKey))
-                .map(s => `
+            $('addonGrid').innerHTML = upgradeSingles.map(s => `
                     <div class="addon-card ${state.addons.includes(s.id) ? 'added' : ''}" data-id="${s.id}">
                         <span class="check-mark">&#10003;</span>
+                        <div class="addon-tier-tag">${TIERS[s.fromTier].name} feature</div>
                         <div class="addon-name">${s.name}</div>
                         <div class="addon-price">${money(s.price)}</div>
                         <div class="addon-desc">${s.desc}</div>
