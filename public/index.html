@@ -482,6 +482,18 @@
         }
 
         /* --- PROBLEM / SOLUTION SECTIONS --- */
+        .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+            margin-bottom: 3rem;
+        }
+        .ps-grid .funnel-box { margin-bottom: 0; height: 100%; }
+        @media (max-width: 768px) {
+            .ps-grid { grid-template-columns: 1fr; }
+        }
+
         .funnel-box {
             border: 2px solid;
             border-radius: 20px;
@@ -1391,8 +1403,9 @@
             color: var(--text-muted);
         }
 
-        /* --- SALES FUNNEL --- */
-        .funnel-box {
+        /* --- SALES FUNNEL (modal only — scoped so it doesn't leak onto the
+           Problem/Solution boxes, which share the .funnel-box class) --- */
+        #funnelOverlay .funnel-box {
             background: var(--bg-dark);
             border: 2px solid var(--accent-yellow);
             border-radius: 16px;
@@ -1776,6 +1789,7 @@
 
         <!-- THE PROBLEM -->
         <section class="container">
+            <div class="ps-grid">
             <div class="funnel-box problem animate-in">
                 <h2 class="text-white box-header" data-key="problem_heading">THE PROBLEM</h2>
                 <p class="text-white bold intro-line" data-key="problem_intro">Most independent releases die before they ever reach the people who break records.</p>
@@ -1811,6 +1825,7 @@
                 <p class="text-white italic closing-line" data-key="solution_closing">
                     This isn't just promo. It's an industry co-sign — the ecosystem that turns spins into fans, bookings, and royalties.
                 </p>
+            </div>
             </div>
 
             <div class="btn-wrapper">
