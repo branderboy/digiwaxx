@@ -1260,6 +1260,26 @@
             background: #000;
         }
 
+        /* Branded play-button overlay (custom player, not native controls) */
+        .video-play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(ellipse at center, rgba(100, 20, 70, 0.3) 0%, transparent 70%),
+                rgba(0, 0, 0, 0.45);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .video-play-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
         /* --- FINAL CTA & OPT-IN --- */
         .final-cta {
             padding: 2rem 0 6rem;
@@ -1807,11 +1827,28 @@
                 <h2 class="text-white" data-key="video_heading">SEE DIGIWAXX IN ACTION</h2>
                 <p class="video-subtitle" data-key="video_subtitle">Watch how we connect independent artists with the DJs who break records.</p>
                 <div class="video-wrapper">
-                    <video class="video-player" controls preload="metadata" playsinline poster="/video_thumbnail1.png">
+                    <video class="video-player" id="siteVideo" preload="metadata" playsinline>
                         <source src="/Digiwaxx__The_New_Music_Boost%202.mp4" type="video/mp4">
                         Your browser doesn&rsquo;t support embedded video.
                     </video>
+                    <button type="button" class="video-play-overlay" id="videoPlayBtn" aria-label="Play video">
+                        <span class="play-btn-circle">
+                            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        </span>
+                    </button>
                 </div>
+                <script>
+                    (function () {
+                        var v = document.getElementById('siteVideo');
+                        var ov = document.getElementById('videoPlayBtn');
+                        if (!v || !ov) return;
+                        ov.addEventListener('click', function () { v.play(); });
+                        v.addEventListener('click', function () { if (!v.paused) v.pause(); });
+                        v.addEventListener('play', function () { ov.classList.add('hidden'); });
+                        v.addEventListener('pause', function () { ov.classList.remove('hidden'); });
+                        v.addEventListener('ended', function () { ov.classList.remove('hidden'); });
+                    })();
+                </script>
             </div>
         </section>
 
