@@ -147,7 +147,7 @@ async function initDB() {
       ('starter_features', 'Record pool placement\nSpotify playlist placement\nDigiwaxx radio rotation\nDJ blast email feature\nOfficial Digiwaxx.com artist coverage\nArtist spotlight write-up (SEO indexed)'),
       ('pro_features', 'Everything in Starter\nIG feed post on Digiwaxx\n2 Instagram story placements\nFeatured spin on DJ Call\nLive DJ mention'),
       ('elite_features', 'Everything in Pro\nOne-on-one Zoom interview\nTikTok post on Digiwaxx\nPerformance snapshot report\nPriority DJ call placement'),
-      ('pay_button_text', 'PAY WITH PAYPAL →'),
+      ('pay_button_text', 'PROMOTE MY RECORD →'),
       ('price_label', 'One-time payment'),
       ('boost_cta_heading', 'If on IG<br>DM @Digiwaxx "BOOST"'),
       ('boost_dm_username', 'digiwaxx'),
