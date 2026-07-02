@@ -1251,11 +1251,13 @@
         }
 
         /* When video is embedded */
-        .video-wrapper iframe {
+        .video-wrapper iframe,
+        .video-wrapper .video-player {
             width: 100%;
             aspect-ratio: 16 / 9;
             display: block;
             border: none;
+            background: #000;
         }
 
         /* --- FINAL CTA & OPT-IN --- */
@@ -1805,14 +1807,10 @@
                 <h2 class="text-white" data-key="video_heading">SEE DIGIWAXX IN ACTION</h2>
                 <p class="video-subtitle" data-key="video_subtitle">Watch how we connect independent artists with the DJs who break records.</p>
                 <div class="video-wrapper">
-                    <a class="video-placeholder" id="videoPlaceholder"
-                       href="https://notebooklm.google.com/notebook/c34c91ea-7aed-402d-baef-174e5b029f4b/artifact/d32cd194-5918-4bc1-83cc-17afb2de56a1?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_"
-                       target="_blank" rel="noopener">
-                        <div class="play-btn-circle">
-                            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                        </div>
-                        <p>Watch the Video</p>
-                    </a>
+                    <video class="video-player" controls preload="metadata" playsinline>
+                        <source src="/Digiwaxx__The_New_Music_Boost%202.mp4" type="video/mp4">
+                        Your browser doesn&rsquo;t support embedded video.
+                    </video>
                 </div>
             </div>
         </section>
