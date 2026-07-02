@@ -436,6 +436,16 @@
             color: #ff5555;
         }
 
+        /* Problem/Solution lists: center the list as a block, keep text left-aligned
+           next to its icon (otherwise the icon pins left while text centers). */
+        .funnel-box.problem ul.custom-bullets,
+        .funnel-box.solution ul.custom-bullets {
+            display: inline-block;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         /* --- SOCIAL PROOF BAR --- */
         .proof-bar {
             background: rgba(0, 0, 0, 0.35);
