@@ -182,6 +182,13 @@ async function initDB() {
       ('addon_3_price', '79'),
       ('addon_3_paypal_link', '')
     ON CONFLICT (key) DO NOTHING;
+    UPDATE settings SET value = 'PROMOTE MY RECORD →' WHERE key = 'pay_button_text' AND value = 'PAY WITH PAYPAL →';
+    UPDATE settings SET value = 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs — stop uploading into the void.' WHERE key = 'site_subheadline' AND value IN ('Digiwaxx connects your records to the DJs, playlists, and platforms that matter.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.');
+    UPDATE settings SET value = 'This isn''t just promo. It''s an industry co-sign — the ecosystem that turns spins into fans, bookings, and royalties.' WHERE key = 'solution_closing' AND value = 'This isn''t just promo. It''s access to the ecosystem that launches records.';
+    UPDATE settings SET value = 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation — in days, not months of chasing contacts on your own.' WHERE key = 'step2_desc' AND value = 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation.';
+    UPDATE settings SET value = 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide — turning spins into fans, bookings, and royalties.' WHERE key = 'step3_desc' AND value = 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide.';
+    UPDATE settings SET value = 'One submission puts your record in front of 30,000+ DJs — no contracts, no gatekeepers, reviewed within 72 hours.' WHERE key = 'final_cta_body' AND value IN ('If your song is ready, it deserves to reach the DJs who matter.', 'Get your music into the Digiwaxx DJ network today.');
+    UPDATE settings SET value = 'Select the tier that fits your goals. One-time payment, no contracts, secure PayPal checkout — backed by a DJ network trusted since 1998.' WHERE key = 'pricing_subtitle' AND value IN ('Every tier gets your record into the Digiwaxx DJ network. Choose how loud you want to go.', 'Select the tier that fits your goals. Every plan includes DJ network access.');
     CREATE TABLE IF NOT EXISTS email_queue (
       id SERIAL PRIMARY KEY,
       lead_id TEXT REFERENCES leads(id),
