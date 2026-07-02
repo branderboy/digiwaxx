@@ -433,7 +433,7 @@
 
         ul.problem-bullets li::before {
             content: '✘';
-            color: #ffffff;
+            color: #c0304f;
         }
 
         /* Problem/Solution lists: center the list as a block, keep text left-aligned
@@ -532,9 +532,9 @@
         }
 
         .funnel-box.problem {
-            background: linear-gradient(160deg, #d24d80 0%, #a82e5e 100%);
-            border-color: rgba(255, 140, 175, 0.5);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12);
+            background: linear-gradient(160deg, #f9d1de 0%, #f3b9ce 100%);
+            border-color: rgba(214, 110, 150, 0.45);
+            box-shadow: 0 16px 44px rgba(0,0,0,0.35);
         }
 
         .funnel-box.problem::before {
@@ -546,10 +546,29 @@
         }
 
         .funnel-box.solution {
-            background: linear-gradient(145deg, rgba(50, 20, 10, 0.9), rgba(25, 10, 5, 0.95));
-            border-color: rgba(255, 184, 0, 0.35);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 80px rgba(255, 184, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.06);
+            background: linear-gradient(180deg, #fbf7f0 0%, #f2ebdd 100%);
+            border-color: rgba(255, 184, 0, 0.55);
+            box-shadow: 0 16px 44px rgba(0,0,0,0.3);
         }
+
+        /* Light problem/solution boxes — dark text for contrast */
+        .funnel-box.problem .box-header,
+        .funnel-box.problem .intro-line,
+        .funnel-box.problem .closing-line,
+        .funnel-box.problem ul.custom-bullets li {
+            color: #4a0a24;
+        }
+        .funnel-box.problem .box-header { border-bottom-color: rgba(120, 20, 50, 0.25); }
+
+        .funnel-box.solution .intro-line,
+        .funnel-box.solution .closing-line,
+        .funnel-box.solution ul.custom-bullets li {
+            color: #2a0a20;
+        }
+        .funnel-box.solution .box-header,
+        .funnel-box.solution .text-pink { color: #a82e5e; }
+        .funnel-box.solution ul.custom-bullets li::before { color: #2e9e5b; }
+        .funnel-box.solution .box-header { border-bottom-color: rgba(0, 0, 0, 0.12); }
 
         .funnel-box.solution::before {
             background: linear-gradient(90deg, transparent, var(--accent-yellow), transparent);
