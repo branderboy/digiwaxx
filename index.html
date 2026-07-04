@@ -2725,20 +2725,22 @@
             const total = items.reduce((sum, i) => sum + i.price, 0);
             const tierKey = fnlState.downsellOnly ? 'downsell' : fnlCurrentTierKey();
 
-            // Track the click
+            // Track the click (keepalive so it survives the navigation below)
             fetch('/api/paypal-click', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ tier: tierKey, price: total, lead_id: currentLeadId })
+                body: JSON.stringify({ tier: tierKey, price: total, lead_id: currentLeadId }),
+                keepalive: true
             }).catch(() => {});
 
             // FB Pixel: InitiateCheckout
             if (window._fbPixelLoaded) fbq('track', 'InitiateCheckout', { value: total, currency: 'USD', content_name: tierKey });
 
-            // Open PayPal.me link with the order total
-            window.open('https://paypal.me/' + paypalUsername + '/' + total, '_blank');
+            // Navigate in the same tab: window.open shows a blank page in the
+            // Instagram/Facebook in-app browsers and under popup blockers
             showToast('Redirecting to PayPal...');
             closeFunnel();
+            window.location.href = 'https://paypal.me/' + paypalUsername + '/' + total;
         }
 
         fnl('fnlUpsellAccept').onclick = () => { fnlState.upgraded = true; fnlEnterAddons(); };
