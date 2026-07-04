@@ -456,6 +456,42 @@ module.exports = async (req, res) => {
         [id, song_title, artist_name, producer || null, label || null, contact_name || null, email,
          clean_url || null, dirty_url || null, instrumental_url || null, logo_url || null, receipt_url || null, notes || null]
       );
+
+      // Notify the team; submission already saved, so email failures are non-fatal
+      try {
+        const conf = await getSettings(['resend_api_key', 'email_from']);
+        if (conf.resend_api_key) {
+          const escHtml = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+          const row = (k, v) => v ? `<tr><td style="padding:6px 12px 6px 0;color:#888;white-space:nowrap;vertical-align:top;">${k}</td><td style="padding:6px 0;color:#111;">${v}</td></tr>` : '';
+          const link = u => u ? `<a href="${escHtml(u)}">${escHtml(u)}</a>` : '';
+          const html = `<div style="font-family:sans-serif;max-width:600px;">` +
+            `<h2 style="color:#111;">New Music Files Submitted</h2>` +
+            `<table style="font-size:14px;border-collapse:collapse;">` +
+            row('Song', `<strong>${escHtml(song_title)}</strong>`) +
+            row('Artist', escHtml(artist_name)) +
+            row('Producer', escHtml(producer)) +
+            row('Label', escHtml(label)) +
+            row('Contact', escHtml(contact_name)) +
+            row('Email', `<a href="mailto:${escHtml(email)}">${escHtml(email)}</a>`) +
+            row('Clean', link(clean_url)) +
+            row('Dirty', link(dirty_url)) +
+            row('Instrumental', link(instrumental_url)) +
+            row('Logo', link(logo_url)) +
+            row('Receipt / TX ID', /^https?:\/\//i.test(receipt_url || '') ? link(receipt_url) : escHtml(receipt_url)) +
+            row('Notes', escHtml(notes)) +
+            `</table>` +
+            `<p style="font-size:13px;color:#888;">Review it in the admin panel under the Assets tab.</p>` +
+            `</div>`;
+          const fromAddr = conf.email_from || 'Digiwaxx <noreply@digiwaxx.com>';
+          const subject = 'New Music Files: ' + artist_name + ' - ' + song_title;
+          const recipients = ['cl@digiwaxx.com', 'business@digiwaxx.com', 'kawani@digiwaxx.com'];
+          for (const to of recipients) {
+            try { await sendResendEmail(conf.resend_api_key, fromAddr, to, subject, html); }
+            catch (e) { console.error('Asset notification failed for ' + to + ':', e); }
+          }
+        }
+      } catch (e) { console.error('Failed to send asset notifications:', e); }
+
       return json(res, { ok: true, submission_id: id });
     }
 
