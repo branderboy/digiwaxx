@@ -2,8 +2,23 @@ const { Pool } = require('pg');
 const crypto = require('crypto');
 const https = require('https');
 
+// The Neon integration may add its variables under a project prefix
+// (digiwaxx_...); prefer those, then fall back to the classic names.
+const env = process.env;
+const fromParts = (host, user, pass, db) =>
+  host ? `postgresql://${user}:${pass}@${host}/${db || 'neondb'}?sslmode=require` : null;
+const DB_URL =
+  env.digiwaxx_DATABASE_URL ||
+  env.digiwaxx_POSTGRES_URL ||
+  env.digiwaxx_DATABASE_URL_UNPOOLED ||
+  env.digiwaxx_POSTGRES_URL_NON_POOLING ||
+  fromParts(env.digiwaxx_POSTGRES_HOST, env.digiwaxx_POSTGRES_USER, env.digiwaxx_POSTGRES_PASSWORD, env.digiwaxx_POSTGRES_DATABASE) ||
+  fromParts(env.digiwaxx_PGHOST, env.digiwaxx_PGUSER, env.digiwaxx_PGPASSWORD, env.digiwaxx_PGDATABASE) ||
+  env.DATABASE_URL ||
+  env.POSTGRES_URL;
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: DB_URL,
   ssl: { rejectUnauthorized: false }
 });
 
@@ -271,6 +286,7 @@ async function initDB() {
       data BYTEA NOT NULL,
       PRIMARY KEY (file_id, seq)
     );
+    ALTER TABLE uploaded_files ADD COLUMN IF NOT EXISTS remote_url TEXT;
   `);
   dbInitialized = true;
 }
@@ -338,6 +354,38 @@ function sendResendEmail(apiKey, from, to, subject, html) {
     req.on('error', reject);
     req.write(data);
     req.end();
+  });
+}
+
+// Push an assembled file into Vercel Blob storage (used when the store is
+// connected to the project and BLOB_READ_WRITE_TOKEN is present)
+function uploadToBlob(pathname, buf, mime) {
+  return new Promise((resolve, reject) => {
+    const r = https.request({
+      hostname: 'blob.vercel-storage.com',
+      path: '/' + pathname.split('/').map(encodeURIComponent).join('/'),
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + process.env.BLOB_READ_WRITE_TOKEN,
+        'x-api-version': '7',
+        'x-content-type': mime || 'application/octet-stream',
+        'x-add-random-suffix': '1',
+        'Content-Length': buf.length
+      }
+    }, (res) => {
+      let body = '';
+      res.on('data', c => body += c);
+      res.on('end', () => {
+        try {
+          const j = JSON.parse(body);
+          if (res.statusCode === 200 && j.url) resolve(j);
+          else reject(new Error('Blob upload failed (' + res.statusCode + '): ' + body.slice(0, 200)));
+        } catch { reject(new Error('Blob upload failed: ' + body.slice(0, 200))); }
+      });
+    });
+    r.on('error', reject);
+    r.write(buf);
+    r.end();
   });
 }
 
@@ -670,18 +718,39 @@ module.exports = async (req, res) => {
       const { file_id } = body;
       if (!file_id) return json(res, { error: 'file_id is required' }, 400);
       const { rows } = await pool.query(
-        "UPDATE uploaded_files SET status = 'complete' WHERE id = $1 AND status = 'uploading' RETURNING size_bytes",
+        "UPDATE uploaded_files SET status = 'complete' WHERE id = $1 AND status = 'uploading' RETURNING filename, mime, size_bytes",
         [file_id]
       );
       if (!rows.length) return json(res, { error: 'Upload not found' }, 404);
-      if (parseInt(rows[0].size_bytes) === 0) return json(res, { error: 'No data was uploaded' }, 400);
-      return json(res, { ok: true, url: '/api/files/' + file_id, size: parseInt(rows[0].size_bytes) });
+      const size = parseInt(rows[0].size_bytes);
+      if (size === 0) return json(res, { error: 'No data was uploaded' }, 400);
+
+      // Offload to Vercel Blob when the store is connected; the chunks in
+      // Postgres are only a staging area in that case
+      if (process.env.BLOB_READ_WRITE_TOKEN) {
+        try {
+          const { rows: chunks } = await pool.query('SELECT data FROM uploaded_file_chunks WHERE file_id = $1 ORDER BY seq', [file_id]);
+          const buf = Buffer.concat(chunks.map(c => c.data));
+          const blob = await uploadToBlob('campaigns/' + rows[0].filename, buf, rows[0].mime);
+          await pool.query('UPDATE uploaded_files SET remote_url = $1 WHERE id = $2', [blob.url, file_id]);
+          await pool.query('DELETE FROM uploaded_file_chunks WHERE file_id = $1', [file_id]);
+          return json(res, { ok: true, url: blob.url, size });
+        } catch (e) {
+          console.error('Blob offload failed, serving file from Postgres instead:', e.message);
+        }
+      }
+      return json(res, { ok: true, url: '/api/files/' + file_id, size });
     }
 
     if (url.startsWith('/api/files/') && req.method === 'GET') {
       const id = url.split('/api/files/')[1];
-      const { rows } = await pool.query("SELECT filename, mime, status FROM uploaded_files WHERE id = $1", [id]);
+      const { rows } = await pool.query("SELECT filename, mime, status, remote_url FROM uploaded_files WHERE id = $1", [id]);
       if (!rows.length || rows[0].status !== 'complete') return json(res, { error: 'File not found' }, 404);
+      if (rows[0].remote_url) {
+        res.statusCode = 302;
+        res.setHeader('Location', rows[0].remote_url);
+        return res.end();
+      }
       const { rows: chunks } = await pool.query('SELECT data FROM uploaded_file_chunks WHERE file_id = $1 ORDER BY seq', [id]);
       const buf = Buffer.concat(chunks.map(c => c.data));
       res.statusCode = 200;
