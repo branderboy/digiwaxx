@@ -1413,6 +1413,32 @@
                         <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Body</label>
                         <textarea id="set-email3_body" class="settings-input" rows="4" style="width: 100%;"></textarea>
                     </div>
+                    <hr style="border-color: #333;">
+                    <h4 style="color: #ffd700;">Payment & File Collection Emails</h4>
+                    <div>
+                        <h4 style="color: #ffd700; margin-bottom: 0.5rem;">After Pay Click (sent ~15 min later)</h4>
+                        <p style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.5rem;">Queued when a lead clicks the Pay button. Points them to /submit to send their music files.</p>
+                        <label style="color: #aaa; font-size: 0.75rem; display: block;">Subject</label>
+                        <input type="text" id="set-payclick_email_subject" class="settings-input" style="width: 100%;">
+                        <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Body (use {{artist_name}}, {{song_title}}, {{site_url}})</label>
+                        <textarea id="set-payclick_email_body" class="settings-input" rows="4" style="width: 100%;"></textarea>
+                    </div>
+                    <div>
+                        <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Payment Received (PayPal IPN)</h4>
+                        <p style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.5rem;">Sent to the payer's PayPal email when PayPal confirms a payment. Requires IPN pointed at /api/paypal-ipn in your PayPal account settings.</p>
+                        <label style="color: #aaa; font-size: 0.75rem; display: block;">Subject</label>
+                        <input type="text" id="set-payment_email_subject" class="settings-input" style="width: 100%;">
+                        <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Body (use {{artist_name}}, {{amount}}, {{site_url}})</label>
+                        <textarea id="set-payment_email_body" class="settings-input" rows="4" style="width: 100%;"></textarea>
+                    </div>
+                    <div>
+                        <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Files Received Confirmation</h4>
+                        <p style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.5rem;">Sent instantly to the artist after they submit the /submit form.</p>
+                        <label style="color: #aaa; font-size: 0.75rem; display: block;">Subject</label>
+                        <input type="text" id="set-assets_email_subject" class="settings-input" style="width: 100%;">
+                        <label style="color: #aaa; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Body (use {{artist_name}}, {{song_title}})</label>
+                        <textarea id="set-assets_email_body" class="settings-input" rows="4" style="width: 100%;"></textarea>
+                    </div>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <button onclick="saveEmails()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer;">Save Email Settings</button>
                         <button onclick="processEmails()" style="background: transparent; border: 1px solid #ffd700; color: #ffd700; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer;">Send Pending Emails Now</button>
@@ -1909,7 +1935,7 @@
         }
 
         function saveEmails() {
-            saveSettings(['email1_subject', 'email1_body', 'email1_delay_hours', 'email2_subject', 'email2_body', 'email2_delay_hours', 'email3_subject', 'email3_body', 'email3_delay_hours']);
+            saveSettings(['email1_subject', 'email1_body', 'email1_delay_hours', 'email2_subject', 'email2_body', 'email2_delay_hours', 'email3_subject', 'email3_body', 'email3_delay_hours', 'payclick_email_subject', 'payclick_email_body', 'payment_email_subject', 'payment_email_body', 'assets_email_subject', 'assets_email_body']);
         }
 
         async function processEmails() {

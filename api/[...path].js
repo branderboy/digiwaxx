@@ -180,7 +180,13 @@ async function initDB() {
       ('addon_3_name', 'Custom Press Release'),
       ('addon_3_desc', 'Professional press release written and distributed for your record.'),
       ('addon_3_price', '79'),
-      ('addon_3_paypal_link', '')
+      ('addon_3_paypal_link', ''),
+      ('payclick_email_subject', 'Next Step: Send Us Your Music Files'),
+      ('payclick_email_body', 'Hey {{artist_name}},\n\nThanks for your payment! Next step: send us your music files (clean, dirty, and instrumental versions), your logo, and your song info here:\n\n{{site_url}}/submit\n\nIf you haven''t completed your payment yet, you can do that first at {{site_url}}.\n\n- The Digiwaxx Team'),
+      ('payment_email_subject', 'Payment Received - Send Us Your Music Files'),
+      ('payment_email_body', 'Hey {{artist_name}},\n\nWe received your payment of \${{amount}}. You''re locked in!\n\nNext step: send us your music files (clean, dirty, and instrumental versions), your logo, and your song info here:\n\n{{site_url}}/submit\n\n- The Digiwaxx Team'),
+      ('assets_email_subject', 'We Got Your Files!'),
+      ('assets_email_body', 'Hey {{artist_name}},\n\nWe received your files for "{{song_title}}". Our team is verifying your payment now, then your record goes into rotation prep.\n\nWe''ll reach out at this email if we need anything else.\n\n- The Digiwaxx Team')
     ON CONFLICT (key) DO NOTHING;
     UPDATE settings SET value = 'PROMOTE MY RECORD →' WHERE key = 'pay_button_text' AND value = 'PAY WITH PAYPAL →';
     UPDATE settings SET value = 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs. Stop uploading into the void.' WHERE key = 'site_subheadline' AND value IN ('Digiwaxx connects your records to the DJs, playlists, and platforms that matter.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs — stop uploading into the void.');
@@ -314,6 +320,40 @@ function getPaypalToken(clientId, clientSecret, mode) {
   });
 }
 
+function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => resolve(body));
+    req.on('error', reject);
+  });
+}
+
+// Echo the IPN message back to PayPal; only 'VERIFIED' means it's genuine
+function verifyIpn(rawBody, sandbox) {
+  const host = sandbox ? 'ipnpb.sandbox.paypal.com' : 'ipnpb.paypal.com';
+  const data = 'cmd=_notify-validate&' + rawBody;
+  return new Promise((resolve, reject) => {
+    const r = https.request({
+      hostname: host,
+      path: '/cgi-bin/webscr',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(data),
+        'User-Agent': 'Digiwaxx-IPN-Listener'
+      }
+    }, (res) => {
+      let body = '';
+      res.on('data', c => body += c);
+      res.on('end', () => resolve(body.trim()));
+    });
+    r.on('error', reject);
+    r.write(data);
+    r.end();
+  });
+}
+
 function signToken() {
   const payload = Buffer.from(JSON.stringify({ role: 'admin', iat: Date.now() })).toString('base64url');
   const sig = crypto.createHmac('sha256', TOKEN_SECRET).update(payload).digest('base64url');
@@ -351,6 +391,69 @@ module.exports = async (req, res) => {
     await initDB();
   } catch (err) {
     return json(res, { error: 'Database initialization failed', detail: err.message }, 500);
+  }
+
+  // PayPal IPN posts form-encoded data and must be verified with the raw body,
+  // so handle it before the JSON body parse consumes the stream
+  if (url === '/api/paypal-ipn' && req.method === 'POST') {
+    try {
+      const raw = await getRawBody(req);
+      const p = Object.fromEntries(new URLSearchParams(raw));
+      const mode = await getSetting('paypal_mode');
+      const verdict = await verifyIpn(raw, mode === 'sandbox');
+
+      if (verdict !== 'VERIFIED') {
+        console.error('IPN not verified:', verdict, p.txn_id || '');
+      } else if (p.payment_status === 'Completed' && p.txn_id) {
+        const { rows: existing } = await pool.query(
+          'SELECT id FROM purchases WHERE paypal_transaction_id = $1', [p.txn_id]
+        );
+        if (existing.length === 0) {
+          const gross = parseFloat(p.mc_gross) || 0;
+
+          // Best-effort match: exact tier price, then a recent Pay click for the
+          // same amount (PayPal.me carries no order info)
+          const { rows: tiers } = await pool.query('SELECT tier FROM tier_prices WHERE price = $1', [gross]);
+          const { rows: clicks } = await pool.query(
+            `SELECT pc.lead_id, l.artist_name FROM paypal_clicks pc
+             JOIN leads l ON l.id = pc.lead_id
+             WHERE pc.price = $1 AND pc.lead_id IS NOT NULL
+               AND pc.clicked_at >= NOW() - INTERVAL '48 hours'
+             ORDER BY pc.clicked_at DESC LIMIT 1`, [gross]
+          );
+          const tier = tiers[0]?.tier || (clicks[0] ? 'bundle' : 'other');
+          await pool.query(
+            'INSERT INTO purchases (id, lead_id, tier, price, paypal_transaction_id, payer_email, status) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+            [uuid(), clicks[0]?.lead_id || null, tier, gross, p.txn_id, p.payer_email || null, 'completed']
+          );
+
+          // Auto-reply to the payer with the submit link
+          const conf = await getSettings(['resend_api_key', 'email_from', 'payment_email_subject', 'payment_email_body']);
+          if (conf.resend_api_key && p.payer_email) {
+            const siteUrl = req.headers.host ? ('https://' + req.headers.host) : '';
+            const artistName = clicks[0]?.artist_name || p.first_name || 'Artist';
+            const replacements = {
+              '{{artist_name}}': artistName,
+              '{{amount}}': String(gross),
+              '{{site_url}}': siteUrl
+            };
+            let subject = conf.payment_email_subject || 'Payment Received';
+            let bodyTxt = conf.payment_email_body || 'Thanks for your payment! Send us your music files at {{site_url}}/submit';
+            for (const [k, v] of Object.entries(replacements)) {
+              subject = subject.split(k).join(v);
+              bodyTxt = bodyTxt.split(k).join(v);
+            }
+            try { await sendResendEmail(conf.resend_api_key, conf.email_from || 'Digiwaxx <noreply@digiwaxx.com>', p.payer_email, subject, bodyTxt); }
+            catch (e) { console.error('IPN auto-reply failed:', e); }
+          }
+        }
+      }
+    } catch (err) {
+      console.error('IPN handler error:', err);
+    }
+    // Always 200 so PayPal doesn't endlessly retry messages we can't use
+    res.statusCode = 200;
+    return res.end();
   }
 
   const body = req.method !== 'GET' ? await getBody(req) : {};
@@ -435,6 +538,18 @@ module.exports = async (req, res) => {
         'INSERT INTO paypal_clicks (id, tier, price, lead_id, ip_address, user_agent) VALUES ($1, $2, $3, $4, $5, $6)',
         [id, tier, price, lead_id || null, ip, ua]
       );
+      // Queue the "send us your files" reminder 15 min after their first Pay click
+      if (lead_id) {
+        try {
+          await pool.query(
+            `INSERT INTO email_queue (lead_id, email_to, step, scheduled_at)
+             SELECT id, email, 4, NOW() + INTERVAL '15 minutes' FROM leads
+             WHERE id = $1
+               AND NOT EXISTS (SELECT 1 FROM email_queue WHERE lead_id = $1 AND step = 4)`,
+            [lead_id]
+          );
+        } catch (e) { console.error('Failed to queue pay-click email:', e); }
+      }
       return json(res, { ok: true, click_id: id });
     }
 
@@ -491,6 +606,21 @@ module.exports = async (req, res) => {
           }
         }
       } catch (e) { console.error('Failed to send asset notifications:', e); }
+
+      // Instant confirmation back to the artist
+      try {
+        const conf = await getSettings(['resend_api_key', 'email_from', 'assets_email_subject', 'assets_email_body']);
+        if (conf.resend_api_key) {
+          const replacements = { '{{artist_name}}': artist_name, '{{song_title}}': song_title };
+          let subject = conf.assets_email_subject || 'We Got Your Files!';
+          let bodyTxt = conf.assets_email_body || 'We received your files for "{{song_title}}". Our team is verifying your payment now.';
+          for (const [k, v] of Object.entries(replacements)) {
+            subject = subject.split(k).join(v);
+            bodyTxt = bodyTxt.split(k).join(v);
+          }
+          await sendResendEmail(conf.resend_api_key, conf.email_from || 'Digiwaxx <noreply@digiwaxx.com>', email, subject, bodyTxt);
+        }
+      } catch (e) { console.error('Failed to send artist confirmation:', e); }
 
       return json(res, { ok: true, submission_id: id });
     }
@@ -779,10 +909,14 @@ module.exports = async (req, res) => {
 
       let sent = 0;
       for (const email of pending) {
-        const s = await getSettings([`email${email.step}_subject`, `email${email.step}_body`]);
+        // Step 4 is the post-payment "send us your files" reminder
+        const [subjectKey, bodyKey] = email.step === 4
+          ? ['payclick_email_subject', 'payclick_email_body']
+          : [`email${email.step}_subject`, `email${email.step}_body`];
+        const s = await getSettings([subjectKey, bodyKey]);
         const siteUrl = req.headers.host ? ('https://' + req.headers.host) : '';
-        let subject = s[`email${email.step}_subject`] || '';
-        let emailBody = s[`email${email.step}_body`] || '';
+        let subject = s[subjectKey] || '';
+        let emailBody = s[bodyKey] || '';
         const replacements = { '{{artist_name}}': email.artist_name, '{{song_title}}': email.song_title, '{{record_link}}': email.record_link, '{{site_url}}': siteUrl };
         for (const [k, v] of Object.entries(replacements)) {
           subject = subject.split(k).join(v || '');
