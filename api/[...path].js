@@ -202,6 +202,23 @@ async function initDB() {
       sent_at TIMESTAMPTZ,
       status TEXT DEFAULT 'pending'
     );
+    CREATE TABLE IF NOT EXISTS asset_submissions (
+      id TEXT PRIMARY KEY,
+      song_title TEXT NOT NULL,
+      artist_name TEXT NOT NULL,
+      producer TEXT,
+      label TEXT,
+      contact_name TEXT,
+      email TEXT NOT NULL,
+      clean_url TEXT,
+      dirty_url TEXT,
+      instrumental_url TEXT,
+      logo_url TEXT,
+      receipt_url TEXT,
+      notes TEXT,
+      status TEXT DEFAULT 'new',
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
   `);
   dbInitialized = true;
 }
@@ -421,6 +438,63 @@ module.exports = async (req, res) => {
       return json(res, { ok: true, click_id: id });
     }
 
+    if (url === '/api/assets' && req.method === 'POST') {
+      const { song_title, artist_name, producer, label, contact_name, email,
+              clean_url, dirty_url, instrumental_url, logo_url, receipt_url, notes } = body;
+      if (!song_title || !artist_name || !email) {
+        return json(res, { error: 'Song title, artist name, and email are required' }, 400);
+      }
+      if (!clean_url && !dirty_url && !instrumental_url) {
+        return json(res, { error: 'Add a link to at least one version of your music' }, 400);
+      }
+      const id = uuid();
+      await pool.query(
+        `INSERT INTO asset_submissions
+           (id, song_title, artist_name, producer, label, contact_name, email,
+            clean_url, dirty_url, instrumental_url, logo_url, receipt_url, notes)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+        [id, song_title, artist_name, producer || null, label || null, contact_name || null, email,
+         clean_url || null, dirty_url || null, instrumental_url || null, logo_url || null, receipt_url || null, notes || null]
+      );
+
+      // Notify the team; submission already saved, so email failures are non-fatal
+      try {
+        const conf = await getSettings(['resend_api_key', 'email_from']);
+        if (conf.resend_api_key) {
+          const escHtml = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+          const row = (k, v) => v ? `<tr><td style="padding:6px 12px 6px 0;color:#888;white-space:nowrap;vertical-align:top;">${k}</td><td style="padding:6px 0;color:#111;">${v}</td></tr>` : '';
+          const link = u => u ? `<a href="${escHtml(u)}">${escHtml(u)}</a>` : '';
+          const html = `<div style="font-family:sans-serif;max-width:600px;">` +
+            `<h2 style="color:#111;">New Music Files Submitted</h2>` +
+            `<table style="font-size:14px;border-collapse:collapse;">` +
+            row('Song', `<strong>${escHtml(song_title)}</strong>`) +
+            row('Artist', escHtml(artist_name)) +
+            row('Producer', escHtml(producer)) +
+            row('Label', escHtml(label)) +
+            row('Contact', escHtml(contact_name)) +
+            row('Email', `<a href="mailto:${escHtml(email)}">${escHtml(email)}</a>`) +
+            row('Clean', link(clean_url)) +
+            row('Dirty', link(dirty_url)) +
+            row('Instrumental', link(instrumental_url)) +
+            row('Logo', link(logo_url)) +
+            row('Receipt / TX ID', /^https?:\/\//i.test(receipt_url || '') ? link(receipt_url) : escHtml(receipt_url)) +
+            row('Notes', escHtml(notes)) +
+            `</table>` +
+            `<p style="font-size:13px;color:#888;">Review it in the admin panel under the Assets tab.</p>` +
+            `</div>`;
+          const fromAddr = conf.email_from || 'Digiwaxx <noreply@digiwaxx.com>';
+          const subject = 'New Music Files: ' + artist_name + ' - ' + song_title;
+          const recipients = ['cl@digiwaxx.com', 'business@digiwaxx.com', 'kawani@digiwaxx.com'];
+          for (const to of recipients) {
+            try { await sendResendEmail(conf.resend_api_key, fromAddr, to, subject, html); }
+            catch (e) { console.error('Asset notification failed for ' + to + ':', e); }
+          }
+        }
+      } catch (e) { console.error('Failed to send asset notifications:', e); }
+
+      return json(res, { ok: true, submission_id: id });
+    }
+
     if (url === '/api/purchases' && req.method === 'POST') {
       const { lead_id, tier, price, paypal_transaction_id, payer_email, status } = body;
       if (!tier || !price) return json(res, { error: 'Tier and price are required' }, 400);
@@ -486,6 +560,28 @@ module.exports = async (req, res) => {
       if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
       const { rows: clicks } = await pool.query('SELECT * FROM paypal_clicks ORDER BY clicked_at DESC LIMIT 200');
       return json(res, { clicks });
+    }
+
+    if (url === '/api/admin/assets' && req.method === 'GET') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const { rows: assets } = await pool.query('SELECT * FROM asset_submissions ORDER BY created_at DESC LIMIT 200');
+      return json(res, { assets });
+    }
+
+    if (url.startsWith('/api/admin/assets/') && req.method === 'PATCH') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const id = url.split('/api/admin/assets/')[1];
+      const result = await pool.query('UPDATE asset_submissions SET status = $1 WHERE id = $2', [body.status, id]);
+      if (result.rowCount === 0) return json(res, { error: 'Submission not found' }, 404);
+      return json(res, { ok: true });
+    }
+
+    if (url.startsWith('/api/admin/assets/') && req.method === 'DELETE') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const id = url.split('/api/admin/assets/')[1];
+      const result = await pool.query('DELETE FROM asset_submissions WHERE id = $1', [id]);
+      if (result.rowCount === 0) return json(res, { error: 'Submission not found' }, 404);
+      return json(res, { ok: true });
     }
 
     if (url === '/api/admin/purchases' && req.method === 'GET') {
