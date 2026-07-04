@@ -977,7 +977,7 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr auto;
-            gap: 1rem;
+            gap: 3rem;
             align-items: center;
             justify-items: center;
         }
@@ -1119,6 +1119,7 @@
         @media (max-width: 768px) {
             .boost-cta-inner {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
             .ig-dm-mockup {
                 max-width: 340px;
@@ -2136,7 +2137,7 @@
             <div class="container-wide">
                 <div class="boost-cta-inner animate-in">
                     <div class="boost-cta-text">
-                        <h2 class="font-head" data-key="boost_cta_heading" data-raw="1">If on IG<br>DM @Digiwaxx <span class="boost-quotes">"</span><span class="boost-word">BOOST</span><span class="boost-quotes">"</span></h2>
+                        <h2 class="font-head" data-key="boost_cta_heading" data-raw="1">Go to Instagram<br>and visit <span class="boost-word">@digiwaxx</span></h2>
                     </div>
                     <div class="boost-cta-mockup">
                         <img src="/comment-boost.jpg" alt="Comment BOOST to start now" class="boost-cta-image">
@@ -2724,20 +2725,22 @@
             const total = items.reduce((sum, i) => sum + i.price, 0);
             const tierKey = fnlState.downsellOnly ? 'downsell' : fnlCurrentTierKey();
 
-            // Track the click
+            // Track the click (keepalive so it survives the navigation below)
             fetch('/api/paypal-click', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ tier: tierKey, price: total, lead_id: currentLeadId })
+                body: JSON.stringify({ tier: tierKey, price: total, lead_id: currentLeadId }),
+                keepalive: true
             }).catch(() => {});
 
             // FB Pixel: InitiateCheckout
             if (window._fbPixelLoaded) fbq('track', 'InitiateCheckout', { value: total, currency: 'USD', content_name: tierKey });
 
-            // Open PayPal.me link with the order total
-            window.open('https://paypal.me/' + paypalUsername + '/' + total, '_blank');
+            // Navigate in the same tab: window.open shows a blank page in the
+            // Instagram/Facebook in-app browsers and under popup blockers
             showToast('Redirecting to PayPal...');
             closeFunnel();
+            window.location.href = 'https://paypal.me/' + paypalUsername + '/' + total;
         }
 
         fnl('fnlUpsellAccept').onclick = () => { fnlState.upgraded = true; fnlEnterAddons(); };

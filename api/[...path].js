@@ -149,7 +149,7 @@ async function initDB() {
       ('elite_features', 'Everything in Pro\nOne-on-one Zoom interview\nTikTok post on Digiwaxx\nPerformance snapshot report\nPriority DJ call placement'),
       ('pay_button_text', 'PROMOTE MY RECORD →'),
       ('price_label', 'One-time payment'),
-      ('boost_cta_heading', 'If on IG<br>DM @Digiwaxx "BOOST"'),
+      ('boost_cta_heading', 'Go to Instagram<br>and visit <span class="boost-word">@digiwaxx</span>'),
       ('boost_dm_username', 'digiwaxx'),
       ('boost_dm_sent', 'BOOST'),
       ('boost_dm_reply', 'Hey! Ready to push your record to 30K+ DJs? Drop your track link and let''s go.'),
@@ -192,6 +192,7 @@ async function initDB() {
     UPDATE settings SET value = 'WHY CHOOSE DIGIWAXX?' WHERE key = 'video_heading' AND value IN ('SEE DIGIWAXX IN ACTION', 'WHY DIGIWAXX EXISTS!');
     UPDATE settings SET value = 'DIGIWAXX | New Music Boost | Get Your Record to DJs' WHERE key = 'meta_title' AND value = 'DIGIWAXX | New Music Boost — Get Your Record to DJs';
     UPDATE settings SET value = 'Limited slots available. Serious artists only' WHERE key = 'hero_cta_subtext' AND value = 'Limited slots available — serious artists only';
+    UPDATE settings SET value = 'Go to Instagram<br>and visit <span class="boost-word">@digiwaxx</span>' WHERE key = 'boost_cta_heading' AND value = 'If on IG<br>DM @Digiwaxx "BOOST"';
     CREATE TABLE IF NOT EXISTS email_queue (
       id SERIAL PRIMARY KEY,
       lead_id TEXT REFERENCES leads(id),
