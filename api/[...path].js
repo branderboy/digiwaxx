@@ -202,6 +202,23 @@ async function initDB() {
       sent_at TIMESTAMPTZ,
       status TEXT DEFAULT 'pending'
     );
+    CREATE TABLE IF NOT EXISTS asset_submissions (
+      id TEXT PRIMARY KEY,
+      song_title TEXT NOT NULL,
+      artist_name TEXT NOT NULL,
+      producer TEXT,
+      label TEXT,
+      contact_name TEXT,
+      email TEXT NOT NULL,
+      clean_url TEXT,
+      dirty_url TEXT,
+      instrumental_url TEXT,
+      logo_url TEXT,
+      receipt_url TEXT,
+      notes TEXT,
+      status TEXT DEFAULT 'new',
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
   `);
   dbInitialized = true;
 }
@@ -421,6 +438,27 @@ module.exports = async (req, res) => {
       return json(res, { ok: true, click_id: id });
     }
 
+    if (url === '/api/assets' && req.method === 'POST') {
+      const { song_title, artist_name, producer, label, contact_name, email,
+              clean_url, dirty_url, instrumental_url, logo_url, receipt_url, notes } = body;
+      if (!song_title || !artist_name || !email) {
+        return json(res, { error: 'Song title, artist name, and email are required' }, 400);
+      }
+      if (!clean_url && !dirty_url && !instrumental_url) {
+        return json(res, { error: 'Add a link to at least one version of your music' }, 400);
+      }
+      const id = uuid();
+      await pool.query(
+        `INSERT INTO asset_submissions
+           (id, song_title, artist_name, producer, label, contact_name, email,
+            clean_url, dirty_url, instrumental_url, logo_url, receipt_url, notes)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+        [id, song_title, artist_name, producer || null, label || null, contact_name || null, email,
+         clean_url || null, dirty_url || null, instrumental_url || null, logo_url || null, receipt_url || null, notes || null]
+      );
+      return json(res, { ok: true, submission_id: id });
+    }
+
     if (url === '/api/purchases' && req.method === 'POST') {
       const { lead_id, tier, price, paypal_transaction_id, payer_email, status } = body;
       if (!tier || !price) return json(res, { error: 'Tier and price are required' }, 400);
@@ -486,6 +524,28 @@ module.exports = async (req, res) => {
       if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
       const { rows: clicks } = await pool.query('SELECT * FROM paypal_clicks ORDER BY clicked_at DESC LIMIT 200');
       return json(res, { clicks });
+    }
+
+    if (url === '/api/admin/assets' && req.method === 'GET') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const { rows: assets } = await pool.query('SELECT * FROM asset_submissions ORDER BY created_at DESC LIMIT 200');
+      return json(res, { assets });
+    }
+
+    if (url.startsWith('/api/admin/assets/') && req.method === 'PATCH') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const id = url.split('/api/admin/assets/')[1];
+      const result = await pool.query('UPDATE asset_submissions SET status = $1 WHERE id = $2', [body.status, id]);
+      if (result.rowCount === 0) return json(res, { error: 'Submission not found' }, 404);
+      return json(res, { ok: true });
+    }
+
+    if (url.startsWith('/api/admin/assets/') && req.method === 'DELETE') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const id = url.split('/api/admin/assets/')[1];
+      const result = await pool.query('DELETE FROM asset_submissions WHERE id = $1', [id]);
+      if (result.rowCount === 0) return json(res, { error: 'Submission not found' }, 404);
+      return json(res, { ok: true });
     }
 
     if (url === '/api/admin/purchases' && req.method === 'GET') {

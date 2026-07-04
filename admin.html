@@ -629,6 +629,7 @@
             <div class="tabs">
                 <div class="tab active" onclick="switchTab('leads')">Leads</div>
                 <div class="tab" onclick="switchTab('purchases')">Sales</div>
+                <div class="tab" onclick="switchTab('assets')">Assets</div>
                 <div class="tab" onclick="switchTab('design')">Design</div>
                 <div class="tab" onclick="switchTab('meta')">SEO</div>
                 <div class="tab" onclick="switchTab('content')">Content</div>
@@ -685,6 +686,30 @@
                             </tr>
                         </thead>
                         <tbody id="purchasesBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Assets Panel -->
+            <div class="panel" id="panel-assets">
+                <p style="color: #aaa; margin-bottom: 1rem;">Music files submitted by paying artists at <a href="/submit" target="_blank" style="color: #ffd700;">/submit</a>.</p>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Song</th>
+                                <th>Artist</th>
+                                <th>Producer</th>
+                                <th>Label</th>
+                                <th>Contact</th>
+                                <th>Files</th>
+                                <th>Receipt</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assetsBody"></tbody>
                     </table>
                 </div>
             </div>
@@ -1652,6 +1677,64 @@
             loadStats();
         }
 
+        // ========== LOAD ASSET SUBMISSIONS ==========
+        async function loadAssets() {
+            try {
+                const res = await fetch('/api/admin/assets', { headers: authHeaders() });
+                if (res.status === 401) return handleLogout();
+                const data = await res.json();
+                const tbody = document.getElementById('assetsBody');
+
+                if (!data.assets || data.assets.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="10" class="empty-state">No asset submissions yet. Send buyers to /submit after they pay.</td></tr>';
+                    return;
+                }
+
+                const fileLink = (url, lbl) => url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${lbl}</a>` : '';
+                const receiptCell = a => {
+                    if (!a.receipt_url) return '—';
+                    return /^https?:\/\//i.test(a.receipt_url)
+                        ? `<a href="${esc(a.receipt_url)}" target="_blank" rel="noopener">Receipt</a>`
+                        : esc(a.receipt_url);
+                };
+                tbody.innerHTML = data.assets.map(a => `
+                    <tr>
+                        <td>${new Date(a.created_at + 'Z').toLocaleDateString()}</td>
+                        <td class="truncate"><strong>${esc(a.song_title)}</strong>${a.notes ? `<br><span style="color:#888;font-size:0.75rem;">${esc(a.notes)}</span>` : ''}</td>
+                        <td>${esc(a.artist_name)}</td>
+                        <td>${esc(a.producer) || '—'}</td>
+                        <td>${esc(a.label) || '—'}</td>
+                        <td class="truncate">${esc(a.contact_name)}${a.contact_name ? '<br>' : ''}${esc(a.email)}</td>
+                        <td>${[fileLink(a.clean_url, 'Clean'), fileLink(a.dirty_url, 'Dirty'), fileLink(a.instrumental_url, 'Instr'), fileLink(a.logo_url, 'Logo')].filter(Boolean).join(' · ') || '—'}</td>
+                        <td class="truncate" style="font-size: 0.8rem;">${receiptCell(a)}</td>
+                        <td><span class="badge badge-${a.status}">${a.status}</span></td>
+                        <td>
+                            <button class="action-btn" onclick="updateAsset('${a.id}', 'verified')">Verify</button>
+                            <button class="action-btn" onclick="updateAsset('${a.id}', 'completed')">Complete</button>
+                            <button class="action-btn danger" onclick="deleteAsset('${a.id}')">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                console.error('Failed to load asset submissions:', e);
+            }
+        }
+
+        async function updateAsset(id, status) {
+            await fetch('/api/admin/assets/' + id, {
+                method: 'PATCH',
+                headers: authHeaders(),
+                body: JSON.stringify({ status })
+            });
+            loadAssets();
+        }
+
+        async function deleteAsset(id) {
+            if (!confirm('Delete this submission? This cannot be undone.')) return;
+            await fetch('/api/admin/assets/' + id, { method: 'DELETE', headers: authHeaders() });
+            loadAssets();
+        }
+
         // ========== CLICKS CHART ==========
         function renderClicksChart(clicksByTier) {
             const chart = document.getElementById('clicksChart');
@@ -1960,6 +2043,7 @@
             loadStats();
             loadLeads();
             loadPurchases();
+            loadAssets();
             loadPricing();
             loadSettings();
             loadEmailQueue();
