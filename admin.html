@@ -1729,9 +1729,9 @@
                         : esc(a.receipt_url);
                 };
                 tbody.innerHTML = data.assets.map(a => {
-                    const releaseInfo = [a.genre, a.release_date, a.producer && 'Prod: ' + a.producer, a.label]
+                    const releaseInfo = [a.project_type, a.project_name, a.genre, a.release_date, a.producer && 'Prod: ' + a.producer, a.label]
                         .filter(Boolean).map(esc).join(' · ');
-                    const notesInfo = [a.notes, a.dj_notes && 'DJ: ' + a.dj_notes, a.marketing_notes && 'Mktg: ' + a.marketing_notes]
+                    const notesInfo = [a.bio && 'Bio: ' + a.bio, a.notes, a.dj_notes && 'DJ: ' + a.dj_notes, a.marketing_notes && 'Mktg: ' + a.marketing_notes, a.socials]
                         .filter(Boolean).map(esc).join(' | ');
                     return `
                     <tr>
@@ -1740,8 +1740,8 @@
                         <td class="truncate"><strong>${esc(a.song_title)}</strong>${releaseInfo ? `<br><span style="color:#888;font-size:0.75rem;">${releaseInfo}</span>` : ''}${notesInfo ? `<br><span style="color:#888;font-size:0.75rem;">${notesInfo}</span>` : ''}</td>
                         <td>${esc(a.artist_name)}</td>
                         <td class="truncate">${esc(a.contact_name)}${a.contact_name ? '<br>' : ''}${esc(a.email)}${a.phone ? '<br>' + esc(a.phone) : ''}</td>
-                        <td>${[fileLink(a.clean_url, 'Clean'), fileLink(a.dirty_url, 'Dirty'), fileLink(a.radio_url, 'Radio'), fileLink(a.instrumental_url, 'Instr'), fileLink(a.logo_url, 'Art'), fileLink(a.press_photo_url, 'Photo')].filter(Boolean).join(' · ') || '—'}</td>
-                        <td>${[fileLink(a.spotify_url, 'Sp'), fileLink(a.apple_url, 'Ap'), fileLink(a.youtube_url, 'YT'), fileLink(a.instagram_url, 'IG'), fileLink(a.tiktok_url, 'TT'), fileLink(a.website_url, 'Web')].filter(Boolean).join(' · ') || '—'}</td>
+                        <td>${[fileLink(a.clean_url, 'Clean'), fileLink(a.dirty_url, 'Dirty'), fileLink(a.radio_url, 'Radio'), fileLink(a.instrumental_url, 'Instr'), fileLink(a.acapella_url, 'Acap'), fileLink(a.logo_url, 'Art'), fileLink(a.label_logo_url, 'LblLogo'), fileLink(a.press_photo_url, 'Photo')].filter(Boolean).join(' · ') || '—'}</td>
+                        <td>${[fileLink(a.spotify_url, 'Sp'), fileLink(a.apple_url, 'Ap'), fileLink(a.youtube_url, 'YT'), fileLink(a.video_url, 'Vid'), fileLink(a.instagram_url, 'IG'), fileLink(a.tiktok_url, 'TT'), fileLink(a.website_url, 'Web')].filter(Boolean).join(' · ') || '—'}</td>
                         <td class="truncate" style="font-size: 0.8rem;">${receiptCell(a)}</td>
                         <td><span class="badge badge-${a.status}">${a.status}</span></td>
                         <td>

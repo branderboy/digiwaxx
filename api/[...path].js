@@ -219,7 +219,7 @@ async function initDB() {
       ('payment_email_subject', 'Payment Received - Send Us Your Music Files'),
       ('payment_email_body', 'Hey {{artist_name}},\n\nWe received your payment of \${{amount}}. You''re locked in!\n\nNext step: send us your music files (clean, dirty, and instrumental versions), your logo, and your song info here:\n\n{{site_url}}/submit\n\n- The Digiwaxx Team'),
       ('assets_email_subject', 'We Got Your Files!'),
-      ('assets_email_body', 'Hey {{artist_name}},\n\nWe received your files for "{{song_title}}". Our team is verifying your payment now, then your record goes into rotation prep.\n\nWe''ll reach out at this email if we need anything else.\n\n- The Digiwaxx Team')
+      ('assets_email_body', 'Hey {{artist_name}},\n\nWe received your files for "{{song_title}}". Our team is verifying your payment now, then your record goes into rotation prep.\n\nOne more step if you haven''t done it yet: create your CLIENT ACCOUNT so you can track your campaign:\nhttps://app.digiwaxx.com/Client_registration_step1?package_id=13\n\nWe''ll reach out at this email if we need anything else.\n\n- The Digiwaxx Team')
     ON CONFLICT (key) DO NOTHING;
     UPDATE settings SET value = 'PROMOTE MY RECORD →' WHERE key = 'pay_button_text' AND value = 'PAY WITH PAYPAL →';
     UPDATE settings SET value = 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs. Stop uploading into the void.' WHERE key = 'site_subheadline' AND value IN ('Digiwaxx connects your records to the DJs, playlists, and platforms that matter.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs — stop uploading into the void.');
@@ -272,6 +272,13 @@ async function initDB() {
     ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS website_url TEXT;
     ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS dj_notes TEXT;
     ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS marketing_notes TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS project_type TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS project_name TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS acapella_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS label_logo_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS video_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS socials TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS bio TEXT;
     CREATE TABLE IF NOT EXISTS uploaded_files (
       id TEXT PRIMARY KEY,
       filename TEXT NOT NULL,
@@ -763,10 +770,10 @@ module.exports = async (req, res) => {
 
     if (url === '/api/assets' && req.method === 'POST') {
       const { song_title, artist_name, producer, label, contact_name, email, phone,
-              release_date, genre, campaign_tier,
-              clean_url, dirty_url, radio_url, instrumental_url, logo_url, press_photo_url,
-              spotify_url, apple_url, youtube_url, instagram_url, tiktok_url, website_url,
-              receipt_url, notes, dj_notes, marketing_notes } = body;
+              release_date, genre, campaign_tier, project_type, project_name,
+              clean_url, dirty_url, radio_url, instrumental_url, acapella_url, logo_url, label_logo_url, press_photo_url,
+              spotify_url, apple_url, youtube_url, instagram_url, tiktok_url, website_url, video_url, socials,
+              receipt_url, notes, dj_notes, marketing_notes, bio } = body;
       if (!song_title || !artist_name || !email) {
         return json(res, { error: 'Song title, artist name, and email are required' }, 400);
       }
@@ -777,16 +784,17 @@ module.exports = async (req, res) => {
       await pool.query(
         `INSERT INTO asset_submissions
            (id, song_title, artist_name, producer, label, contact_name, email, phone,
-            release_date, genre, campaign_tier,
-            clean_url, dirty_url, radio_url, instrumental_url, logo_url, press_photo_url,
-            spotify_url, apple_url, youtube_url, instagram_url, tiktok_url, website_url,
-            receipt_url, notes, dj_notes, marketing_notes)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27)`,
+            release_date, genre, campaign_tier, project_type, project_name,
+            clean_url, dirty_url, radio_url, instrumental_url, acapella_url, logo_url, label_logo_url, press_photo_url,
+            spotify_url, apple_url, youtube_url, instagram_url, tiktok_url, website_url, video_url, socials,
+            receipt_url, notes, dj_notes, marketing_notes, bio)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21,
+                 $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34)`,
         [id, song_title, artist_name, producer || null, label || null, contact_name || null, email, phone || null,
-         release_date || null, genre || null, campaign_tier || null,
-         clean_url || null, dirty_url || null, radio_url || null, instrumental_url || null, logo_url || null, press_photo_url || null,
-         spotify_url || null, apple_url || null, youtube_url || null, instagram_url || null, tiktok_url || null, website_url || null,
-         receipt_url || null, notes || null, dj_notes || null, marketing_notes || null]
+         release_date || null, genre || null, campaign_tier || null, project_type || null, project_name || null,
+         clean_url || null, dirty_url || null, radio_url || null, instrumental_url || null, acapella_url || null, logo_url || null, label_logo_url || null, press_photo_url || null,
+         spotify_url || null, apple_url || null, youtube_url || null, instagram_url || null, tiktok_url || null, website_url || null, video_url || null, socials || null,
+         receipt_url || null, notes || null, dj_notes || null, marketing_notes || null, bio || null]
       );
 
       // Payment status for the team notification: match transaction ID or payer email
@@ -823,13 +831,15 @@ module.exports = async (req, res) => {
             `<p style="font-size:14px;margin:4px 0;"><strong>Payment Status:</strong> <span style="color:${verified ? '#15803d' : '#b45309'};font-weight:700;">${escHtml(paymentStatus)}</span><br>` +
             `<strong>Campaign:</strong> ${escHtml(campaign_tier || 'Not specified')}<br>` +
             `<strong>Submitted:</strong> ${new Date().toUTCString()}</p>` +
-            section('Artist Information',
-              row('Full Name', escHtml(contact_name)) +
-              row('Email', `<a href="mailto:${escHtml(email)}">${escHtml(email)}</a>`) +
-              row('Phone', escHtml(phone)) +
+            section('Label Contact Information',
+              row('Contact Name', escHtml(contact_name)) +
+              row('Contact Email', `<a href="mailto:${escHtml(email)}">${escHtml(email)}</a>`) +
+              row('Contact Number', escHtml(phone)) +
               row('Artist Name', `<strong>${escHtml(artist_name)}</strong>`)) +
             section('Release Information',
-              row('Song Title', `<strong>${escHtml(song_title)}</strong>`) +
+              row('Song Name', `<strong>${escHtml(song_title)}</strong>`) +
+              row('Project Type', escHtml(project_type)) +
+              row('Album / Project Name', escHtml(project_name)) +
               row('Release Date', escHtml(release_date)) +
               row('Genre', escHtml(genre)) +
               row('Producer', escHtml(producer)) +
@@ -839,16 +849,21 @@ module.exports = async (req, res) => {
               row('Dirty Version', link(dirty_url)) +
               row('Radio Edit', link(radio_url)) +
               row('Instrumental', link(instrumental_url)) +
+              row('Acapella', link(acapella_url)) +
               row('Cover Artwork', link(logo_url)) +
+              row('Label / Mgmt Logo', link(label_logo_url)) +
               row('Press Photo', link(press_photo_url))) +
             section('Links',
               row('Spotify', link(spotify_url)) +
               row('Apple Music', link(apple_url)) +
               row('YouTube', link(youtube_url)) +
+              row('Video Link', link(video_url)) +
               row('Instagram', link(instagram_url)) +
               row('TikTok', link(tiktok_url)) +
-              row('Website', link(website_url))) +
-            section('Campaign Notes',
+              row('Website', link(website_url)) +
+              row('Social Tags', escHtml(socials))) +
+            section('Bio & Campaign Notes',
+              row('Artist / Song Bio', escHtml(bio)) +
               row('Special Instructions', escHtml(notes)) +
               row('DJ Servicing Notes', escHtml(dj_notes)) +
               row('Marketing Goals', escHtml(marketing_notes)) +

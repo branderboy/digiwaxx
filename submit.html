@@ -174,20 +174,28 @@
             <p class="sub">Complete the form below so we can launch your campaign and push your record to the DJ network.</p>
             <div class="paid-banner" id="paidBanner">&#9989; Payment complete — one last step: submit your campaign details below.</div>
 
+            <div class="card" style="border-color: #FFB800; background: #fff8e6;">
+                <h2>Step 1: Create Your Client Account</h2>
+                <p class="hint" style="margin-bottom: 0.8rem;">Your client account is where DJs and members connect with your project and where you track your campaign.</p>
+                <a href="https://app.digiwaxx.com/Client_registration_step1?package_id=13" target="_blank" rel="noopener" style="display: inline-block; background: var(--bg-dark); color: #fff; font-weight: 700; padding: 0.7rem 1.4rem; border-radius: 10px; text-decoration: none;">Create Client Account &rarr;</a>
+                <p class="hint" style="margin: 0.8rem 0 0;">Then come back to this page and finish the form below.</p>
+            </div>
+
             <form id="assetForm" novalidate>
                 <div class="card">
-                    <h2>Artist Information</h2>
+                    <h2>Project Contact Information</h2>
+                    <p class="hint">Who DJs and members should reach out to on behalf of the project.</p>
                     <div class="grid2">
                         <div class="field">
-                            <label for="contactName">Full Name <span class="req">*</span></label>
-                            <input type="text" id="contactName" placeholder="Your full name" required>
+                            <label for="contactName">Label Contact Name <span class="req">*</span></label>
+                            <input type="text" id="contactName" placeholder="Full name" required>
                         </div>
                         <div class="field">
-                            <label for="email">Email Address <span class="req">*</span></label>
+                            <label for="email">Label Contact Email <span class="req">*</span></label>
                             <input type="email" id="email" placeholder="you@email.com" required>
                         </div>
                         <div class="field">
-                            <label for="phone">Phone Number <span class="req">*</span></label>
+                            <label for="phone">Label Contact Number <span class="req">*</span></label>
                             <input type="tel" id="phone" placeholder="(555) 555-5555" required>
                         </div>
                         <div class="field">
@@ -223,11 +231,25 @@
                             </select>
                         </div>
                         <div class="field">
-                            <label for="producer">Producer <span class="opt">(optional)</span></label>
+                            <label for="projectType">Project Type</label>
+                            <select id="projectType">
+                                <option value="Single">Single</option>
+                                <option value="Album">Album</option>
+                                <option value="EP">EP</option>
+                                <option value="Mixtape">Mixtape</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="projectName">Album / Project Name <span class="opt">(optional)</span></label>
+                            <input type="text" id="projectName" placeholder="If part of an album, EP, or mixtape">
+                        </div>
+                        <div class="field">
+                            <label for="producer">Producer Name</label>
                             <input type="text" id="producer" placeholder="Produced by">
                         </div>
                         <div class="field">
-                            <label for="label">Label <span class="opt">(optional)</span></label>
+                            <label for="label">Label Name <span class="opt">(or Independent)</span></label>
                             <input type="text" id="label" placeholder="Label (or Independent)">
                         </div>
                     </div>
@@ -235,7 +257,7 @@
 
                 <div class="card">
                     <h2>Music Assets</h2>
-                    <p class="hint">Upload your files directly (60MB max per file). <a href="#" id="linkModeToggle" style="color: #a8790a;">Prefer to paste links instead?</a></p>
+                    <p class="hint">High-quality <strong>320kbps MP3s</strong> — a full DJ pack (clean, dirty, instrumental, acapella) is best, but send whatever versions you have. 60MB max per file. <a href="#" id="linkModeToggle" style="color: #a8790a;">Prefer to paste links instead?</a></p>
                     <div class="field asset-field">
                         <label for="cleanFile">Clean Version <span class="req">*</span></label>
                         <input type="file" id="cleanFile" data-key="clean" accept="audio/*,.mp3,.wav,.m4a,.aiff,.aif,.flac">
@@ -261,13 +283,25 @@
                         <div class="upstat" id="instrumentalStat"></div>
                     </div>
                     <div class="field asset-field">
+                        <label for="acapellaFile">Acapella <span class="opt">(optional)</span></label>
+                        <input type="file" id="acapellaFile" data-key="acapella" accept="audio/*,.mp3,.wav,.m4a,.aiff,.aif,.flac">
+                        <input type="url" id="acapellaUrl" placeholder="https://..." style="display:none;">
+                        <div class="upstat" id="acapellaStat"></div>
+                    </div>
+                    <div class="field asset-field">
                         <label for="logoFile">Cover Artwork <span class="req">*</span></label>
                         <input type="file" id="logoFile" data-key="logo" accept="image/*,.jpg,.jpeg,.png,.webp">
-                        <input type="url" id="logoUrl" placeholder="https://... (3000x3000 JPG or PNG preferred)" style="display:none;">
+                        <input type="url" id="logoUrl" placeholder="https://... (hi-res, 3000x3000 preferred)" style="display:none;">
                         <div class="upstat" id="logoStat"></div>
                     </div>
                     <div class="field asset-field">
-                        <label for="pressPhotoFile">Press Photo <span class="opt">(optional)</span></label>
+                        <label for="labelLogoFile">Label / Management Logo <span class="opt">(optional)</span></label>
+                        <input type="file" id="labelLogoFile" data-key="labelLogo" accept="image/*,.jpg,.jpeg,.png,.webp">
+                        <input type="url" id="labelLogoUrl" placeholder="https://..." style="display:none;">
+                        <div class="upstat" id="labelLogoStat"></div>
+                    </div>
+                    <div class="field asset-field">
+                        <label for="pressPhotoFile">Press Photo / Artist Image <span class="opt">(optional)</span></label>
                         <input type="file" id="pressPhotoFile" data-key="pressPhoto" accept="image/*,.jpg,.jpeg,.png,.webp">
                         <input type="url" id="pressPhotoUrl" placeholder="https://..." style="display:none;">
                         <div class="upstat" id="pressPhotoStat"></div>
@@ -298,14 +332,26 @@
                             <input type="url" id="tiktokUrl" placeholder="https://tiktok.com/@...">
                         </div>
                         <div class="field">
+                            <label for="videoUrl">Video Link <span class="opt">(optional)</span></label>
+                            <input type="url" id="videoUrl" placeholder="Music video / visualizer link">
+                        </div>
+                        <div class="field">
                             <label for="websiteUrl">Website <span class="opt">(optional)</span></label>
                             <input type="url" id="websiteUrl" placeholder="https://...">
+                        </div>
+                        <div class="field">
+                            <label for="socials">Social Media Tags</label>
+                            <input type="text" id="socials" placeholder="@artist (IG), @artist (X), @artist (TikTok)...">
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h2>Campaign Notes</h2>
+                    <h2>Bio & Campaign Notes</h2>
+                    <div class="field">
+                        <label for="bio">Artist and/or Song Bio</label>
+                        <textarea id="bio" placeholder="Tell the DJs who you are and the story behind this record..."></textarea>
+                    </div>
                     <div class="field">
                         <label for="notes">Special Instructions</label>
                         <textarea id="notes" placeholder="Anything specific we should know about this record..."></textarea>
@@ -333,6 +379,7 @@
             <div class="check">&#9989;</div>
             <h2>Thank You! Your Campaign Has Been Received.</h2>
             <p>Our team will review your submission, verify your payment, and begin processing your campaign. You'll receive a confirmation email once everything has been approved.</p>
+            <p style="margin-top: 1.2rem;">Haven't created your client account yet? <a href="https://app.digiwaxx.com/Client_registration_step1?package_id=13" target="_blank" rel="noopener" style="color: #a8790a; font-weight: 700;">Create it here</a> — it's how DJs and members connect with your project.</p>
         </div>
     </div>
 
@@ -440,20 +487,27 @@
                 release_date: val('releaseDate'),
                 genre: val('genre'),
                 campaign_tier: val('campaign'),
+                project_type: val('projectType'),
+                project_name: val('projectName'),
                 producer: val('producer'),
                 label: val('label'),
                 clean_url: asset('clean', 'cleanUrl'),
                 dirty_url: asset('dirty', 'dirtyUrl'),
                 radio_url: asset('radio', 'radioUrl'),
                 instrumental_url: asset('instrumental', 'instrumentalUrl'),
+                acapella_url: asset('acapella', 'acapellaUrl'),
                 logo_url: asset('logo', 'logoUrl'),
+                label_logo_url: asset('labelLogo', 'labelLogoUrl'),
                 press_photo_url: asset('pressPhoto', 'pressPhotoUrl'),
                 spotify_url: val('spotifyUrl'),
                 apple_url: val('appleUrl'),
                 youtube_url: val('youtubeUrl'),
                 instagram_url: val('instagramUrl'),
                 tiktok_url: val('tiktokUrl'),
+                video_url: val('videoUrl'),
                 website_url: val('websiteUrl'),
+                socials: val('socials'),
+                bio: val('bio'),
                 notes: val('notes'),
                 dj_notes: val('djNotes'),
                 marketing_notes: val('marketingNotes'),
@@ -467,7 +521,7 @@
             }
 
             if (!data.contact_name || !data.email || !data.phone || !data.artist_name) {
-                return fail('Please complete the Artist Information section: full name, email, phone, and artist name.');
+                return fail('Please complete the Project Contact Information section: contact name, email, phone, and artist name.');
             }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
                 return fail('Please enter a valid email address.');
