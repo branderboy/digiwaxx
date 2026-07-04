@@ -2362,6 +2362,7 @@
 
         // ============ LOAD PRICES FROM API ============
         let paypalUsername = 'digiwaxx';
+        let paypalBusinessEmail = '';
         fetch('/api/prices').then(r => r.json()).then(prices => {
             document.querySelectorAll('.btn-buy').forEach(btn => {
                 const tier = btn.dataset.tier;
@@ -2377,6 +2378,7 @@
         // ============ LOAD SITE CONTENT ============
         fetch('/api/site-content').then(r => r.json()).then(c => {
             if (c.paypal_username) paypalUsername = c.paypal_username;
+            if (c.paypal_business_email) paypalBusinessEmail = c.paypal_business_email;
 
             // Apply all data-key elements
             document.querySelectorAll('[data-key]').forEach(el => {
@@ -2737,11 +2739,25 @@
             // FB Pixel: InitiateCheckout
             if (window._fbPixelLoaded) fbq('track', 'InitiateCheckout', { value: total, currency: 'USD', content_name: tierKey });
 
+            // PayPal Checkout (with the business email set) returns the buyer to
+            // /submit after payment and reports the sale back via IPN; PayPal.me
+            // is the fallback and supports neither
+            const payUrl = paypalBusinessEmail
+                ? 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick'
+                    + '&business=' + encodeURIComponent(paypalBusinessEmail)
+                    + '&item_name=' + encodeURIComponent('Digiwaxx ' + tierKey.toUpperCase() + ' Campaign')
+                    + '&amount=' + total + '&currency_code=USD&no_shipping=1&no_note=1'
+                    + (currentLeadId ? '&custom=' + encodeURIComponent(currentLeadId) : '')
+                    + '&return=' + encodeURIComponent(location.origin + '/submit?paid=1&campaign=' + encodeURIComponent(tierKey))
+                    + '&cancel_return=' + encodeURIComponent(location.origin + '/')
+                    + '&notify_url=' + encodeURIComponent(location.origin + '/api/paypal-ipn')
+                : 'https://paypal.me/' + paypalUsername + '/' + total;
+
             // Navigate in the same tab: window.open shows a blank page in the
             // Instagram/Facebook in-app browsers and under popup blockers
             showToast('Redirecting to PayPal...');
             closeFunnel();
-            window.location.href = 'https://paypal.me/' + paypalUsername + '/' + total;
+            window.location.href = payUrl;
         }
 
         fnl('fnlUpsellAccept').onclick = () => { fnlState.upgraded = true; fnlEnterAddons(); };

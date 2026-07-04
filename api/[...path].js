@@ -64,6 +64,7 @@ async function initDB() {
     );
     INSERT INTO settings (key, value) VALUES
       ('paypal_username', 'digiwaxx'),
+      ('paypal_business_email', ''),
       ('site_headline', 'NEW MUSIC DESERVES A REAL PUSH'),
       ('site_subheadline', 'Digiwaxx connects your records to the DJs, playlists, and platforms that matter. One submission replaces months of cold DMs.'),
       ('starter_name', 'STARTER'),
@@ -225,6 +226,20 @@ async function initDB() {
       status TEXT DEFAULT 'new',
       created_at TIMESTAMPTZ DEFAULT NOW()
     );
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS phone TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS release_date TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS genre TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS campaign_tier TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS radio_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS press_photo_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS spotify_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS apple_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS youtube_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS instagram_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS tiktok_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS website_url TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS dj_notes TEXT;
+    ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS marketing_notes TEXT;
   `);
   dbInitialized = true;
 }
@@ -411,27 +426,36 @@ module.exports = async (req, res) => {
         if (existing.length === 0) {
           const gross = parseFloat(p.mc_gross) || 0;
 
-          // Best-effort match: exact tier price, then a recent Pay click for the
-          // same amount (PayPal.me carries no order info)
+          // Exact match first: checkout links pass the lead id in `custom`.
+          // Fall back to a recent Pay click for the same amount (PayPal.me
+          // payments carry no order info).
+          let matchedLead = null;
+          if (p.custom) {
+            const { rows } = await pool.query('SELECT id AS lead_id, artist_name FROM leads WHERE id = $1', [p.custom]);
+            matchedLead = rows[0] || null;
+          }
+          if (!matchedLead) {
+            const { rows } = await pool.query(
+              `SELECT pc.lead_id, l.artist_name FROM paypal_clicks pc
+               JOIN leads l ON l.id = pc.lead_id
+               WHERE pc.price = $1 AND pc.lead_id IS NOT NULL
+                 AND pc.clicked_at >= NOW() - INTERVAL '48 hours'
+               ORDER BY pc.clicked_at DESC LIMIT 1`, [gross]
+            );
+            matchedLead = rows[0] || null;
+          }
           const { rows: tiers } = await pool.query('SELECT tier FROM tier_prices WHERE price = $1', [gross]);
-          const { rows: clicks } = await pool.query(
-            `SELECT pc.lead_id, l.artist_name FROM paypal_clicks pc
-             JOIN leads l ON l.id = pc.lead_id
-             WHERE pc.price = $1 AND pc.lead_id IS NOT NULL
-               AND pc.clicked_at >= NOW() - INTERVAL '48 hours'
-             ORDER BY pc.clicked_at DESC LIMIT 1`, [gross]
-          );
-          const tier = tiers[0]?.tier || (clicks[0] ? 'bundle' : 'other');
+          const tier = tiers[0]?.tier || (matchedLead ? 'bundle' : 'other');
           await pool.query(
             'INSERT INTO purchases (id, lead_id, tier, price, paypal_transaction_id, payer_email, status) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-            [uuid(), clicks[0]?.lead_id || null, tier, gross, p.txn_id, p.payer_email || null, 'completed']
+            [uuid(), matchedLead?.lead_id || null, tier, gross, p.txn_id, p.payer_email || null, 'completed']
           );
 
           // Auto-reply to the payer with the submit link
           const conf = await getSettings(['resend_api_key', 'email_from', 'payment_email_subject', 'payment_email_body']);
           if (conf.resend_api_key && p.payer_email) {
             const siteUrl = req.headers.host ? ('https://' + req.headers.host) : '';
-            const artistName = clicks[0]?.artist_name || p.first_name || 'Artist';
+            const artistName = matchedLead?.artist_name || p.first_name || 'Artist';
             const replacements = {
               '{{artist_name}}': artistName,
               '{{amount}}': String(gross),
@@ -554,23 +578,48 @@ module.exports = async (req, res) => {
     }
 
     if (url === '/api/assets' && req.method === 'POST') {
-      const { song_title, artist_name, producer, label, contact_name, email,
-              clean_url, dirty_url, instrumental_url, logo_url, receipt_url, notes } = body;
+      const { song_title, artist_name, producer, label, contact_name, email, phone,
+              release_date, genre, campaign_tier,
+              clean_url, dirty_url, radio_url, instrumental_url, logo_url, press_photo_url,
+              spotify_url, apple_url, youtube_url, instagram_url, tiktok_url, website_url,
+              receipt_url, notes, dj_notes, marketing_notes } = body;
       if (!song_title || !artist_name || !email) {
         return json(res, { error: 'Song title, artist name, and email are required' }, 400);
       }
-      if (!clean_url && !dirty_url && !instrumental_url) {
+      if (!clean_url && !dirty_url && !radio_url && !instrumental_url) {
         return json(res, { error: 'Add a link to at least one version of your music' }, 400);
       }
       const id = uuid();
       await pool.query(
         `INSERT INTO asset_submissions
-           (id, song_title, artist_name, producer, label, contact_name, email,
-            clean_url, dirty_url, instrumental_url, logo_url, receipt_url, notes)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
-        [id, song_title, artist_name, producer || null, label || null, contact_name || null, email,
-         clean_url || null, dirty_url || null, instrumental_url || null, logo_url || null, receipt_url || null, notes || null]
+           (id, song_title, artist_name, producer, label, contact_name, email, phone,
+            release_date, genre, campaign_tier,
+            clean_url, dirty_url, radio_url, instrumental_url, logo_url, press_photo_url,
+            spotify_url, apple_url, youtube_url, instagram_url, tiktok_url, website_url,
+            receipt_url, notes, dj_notes, marketing_notes)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27)`,
+        [id, song_title, artist_name, producer || null, label || null, contact_name || null, email, phone || null,
+         release_date || null, genre || null, campaign_tier || null,
+         clean_url || null, dirty_url || null, radio_url || null, instrumental_url || null, logo_url || null, press_photo_url || null,
+         spotify_url || null, apple_url || null, youtube_url || null, instagram_url || null, tiktok_url || null, website_url || null,
+         receipt_url || null, notes || null, dj_notes || null, marketing_notes || null]
       );
+
+      // Payment status for the team notification: match transaction ID or payer email
+      let paymentStatus = 'Pending verification';
+      try {
+        if (receipt_url) {
+          const tx = String(receipt_url).trim();
+          const { rows } = await pool.query(
+            "SELECT id FROM purchases WHERE paypal_transaction_id = $1 AND status = 'completed'", [tx]);
+          if (rows.length) paymentStatus = 'VERIFIED (transaction ID matched)';
+        }
+        if (paymentStatus === 'Pending verification') {
+          const { rows } = await pool.query(
+            "SELECT id FROM purchases WHERE payer_email = $1 AND status = 'completed' AND created_at >= NOW() - INTERVAL '14 days'", [email]);
+          if (rows.length) paymentStatus = 'VERIFIED (PayPal email matched)';
+        }
+      } catch (e) { console.error('Payment status check failed:', e); }
 
       // Notify the team; submission already saved, so email failures are non-fatal
       try {
@@ -578,27 +627,50 @@ module.exports = async (req, res) => {
         if (conf.resend_api_key) {
           const escHtml = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
           const row = (k, v) => v ? `<tr><td style="padding:6px 12px 6px 0;color:#888;white-space:nowrap;vertical-align:top;">${k}</td><td style="padding:6px 0;color:#111;">${v}</td></tr>` : '';
+          const section = (title, rowsHtml) => rowsHtml
+            ? `<h3 style="color:#111;margin:18px 0 4px;font-size:15px;border-bottom:1px solid #ddd;padding-bottom:4px;">${title}</h3><table style="font-size:14px;border-collapse:collapse;">${rowsHtml}</table>`
+            : '';
           const link = u => u ? `<a href="${escHtml(u)}">${escHtml(u)}</a>` : '';
-          const html = `<div style="font-family:sans-serif;max-width:600px;">` +
-            `<h2 style="color:#111;">New Music Files Submitted</h2>` +
-            `<table style="font-size:14px;border-collapse:collapse;">` +
-            row('Song', `<strong>${escHtml(song_title)}</strong>`) +
-            row('Artist', escHtml(artist_name)) +
-            row('Producer', escHtml(producer)) +
-            row('Label', escHtml(label)) +
-            row('Contact', escHtml(contact_name)) +
-            row('Email', `<a href="mailto:${escHtml(email)}">${escHtml(email)}</a>`) +
-            row('Clean', link(clean_url)) +
-            row('Dirty', link(dirty_url)) +
-            row('Instrumental', link(instrumental_url)) +
-            row('Logo', link(logo_url)) +
-            row('Receipt / TX ID', /^https?:\/\//i.test(receipt_url || '') ? link(receipt_url) : escHtml(receipt_url)) +
-            row('Notes', escHtml(notes)) +
-            `</table>` +
-            `<p style="font-size:13px;color:#888;">Review it in the admin panel under the Assets tab.</p>` +
+          const verified = paymentStatus.startsWith('VERIFIED');
+          const html = `<div style="font-family:sans-serif;max-width:640px;">` +
+            `<h2 style="color:#111;">New Campaign Submission</h2>` +
+            `<p style="font-size:14px;margin:4px 0;"><strong>Payment Status:</strong> <span style="color:${verified ? '#15803d' : '#b45309'};font-weight:700;">${escHtml(paymentStatus)}</span><br>` +
+            `<strong>Campaign:</strong> ${escHtml(campaign_tier || 'Not specified')}<br>` +
+            `<strong>Submitted:</strong> ${new Date().toUTCString()}</p>` +
+            section('Artist Information',
+              row('Full Name', escHtml(contact_name)) +
+              row('Email', `<a href="mailto:${escHtml(email)}">${escHtml(email)}</a>`) +
+              row('Phone', escHtml(phone)) +
+              row('Artist Name', `<strong>${escHtml(artist_name)}</strong>`)) +
+            section('Release Information',
+              row('Song Title', `<strong>${escHtml(song_title)}</strong>`) +
+              row('Release Date', escHtml(release_date)) +
+              row('Genre', escHtml(genre)) +
+              row('Producer', escHtml(producer)) +
+              row('Label', escHtml(label))) +
+            section('Music Assets',
+              row('Clean Version', link(clean_url)) +
+              row('Dirty Version', link(dirty_url)) +
+              row('Radio Edit', link(radio_url)) +
+              row('Instrumental', link(instrumental_url)) +
+              row('Cover Artwork', link(logo_url)) +
+              row('Press Photo', link(press_photo_url))) +
+            section('Links',
+              row('Spotify', link(spotify_url)) +
+              row('Apple Music', link(apple_url)) +
+              row('YouTube', link(youtube_url)) +
+              row('Instagram', link(instagram_url)) +
+              row('TikTok', link(tiktok_url)) +
+              row('Website', link(website_url))) +
+            section('Campaign Notes',
+              row('Special Instructions', escHtml(notes)) +
+              row('DJ Servicing Notes', escHtml(dj_notes)) +
+              row('Marketing Goals', escHtml(marketing_notes)) +
+              row('Receipt / TX ID', /^https?:\/\//i.test(receipt_url || '') ? link(receipt_url) : escHtml(receipt_url))) +
+            `<p style="font-size:13px;color:#888;margin-top:18px;">Review it in the admin panel under the Assets tab.</p>` +
             `</div>`;
           const fromAddr = conf.email_from || 'Digiwaxx <noreply@digiwaxx.com>';
-          const subject = 'New Music Files: ' + artist_name + ' - ' + song_title;
+          const subject = 'New Campaign: ' + artist_name + ' - ' + song_title + (verified ? ' [PAID]' : ' [verify payment]');
           const recipients = ['cl@digiwaxx.com', 'business@digiwaxx.com', 'kawani@digiwaxx.com'];
           for (const to of recipients) {
             try { await sendResendEmail(conf.resend_api_key, fromAddr, to, subject, html); }

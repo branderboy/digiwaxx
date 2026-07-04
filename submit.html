@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <title>DIGIWAXX | Submit Your Music Files</title>
+    <title>DIGIWAXX | Campaign Submission</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -47,9 +47,21 @@
         .sub {
             text-align: center;
             color: var(--text-muted);
-            margin: 0.8rem auto 2.2rem;
+            margin: 0.8rem auto 1.4rem;
             max-width: 480px;
             line-height: 1.5;
+        }
+        .paid-banner {
+            display: none;
+            background: #ecfdf3;
+            border: 1px solid #22c55e;
+            color: #15803d;
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.4rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-align: center;
         }
         .card {
             background: #faf8fa;
@@ -82,7 +94,8 @@
             margin-bottom: 0.35rem;
         }
         label .req { color: #c02929; }
-        input, textarea {
+        label .opt { color: var(--text-muted); font-weight: 400; text-transform: none; }
+        input, textarea, select {
             width: 100%;
             padding: 0.85rem 1rem;
             border-radius: 10px;
@@ -93,8 +106,8 @@
             font-size: 1rem;
         }
         input::placeholder, textarea::placeholder { color: #a595a1; }
-        input:focus, textarea:focus { outline: 2px solid var(--accent-yellow); border-color: transparent; }
-        textarea { resize: vertical; min-height: 80px; }
+        input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent-yellow); border-color: transparent; }
+        textarea { resize: vertical; min-height: 70px; }
         .submit-btn {
             width: 100%;
             padding: 1.1rem;
@@ -134,7 +147,7 @@
             text-transform: uppercase;
             margin: 0.8rem 0 0.5rem;
         }
-        .success p { color: var(--text-muted); max-width: 420px; margin: 0 auto; line-height: 1.5; }
+        .success p { color: var(--text-muted); max-width: 460px; margin: 0 auto; line-height: 1.55; }
     </style>
 </head>
 <body>
@@ -142,89 +155,175 @@
         <div class="brand"><a href="/">DIGIWAXX</a></div>
 
         <div id="formView">
-            <h1>Submit Your Music Files</h1>
-            <p class="sub">You paid, now let's get your record moving. Send us everything below so we can push it to the DJ network.</p>
+            <h1>Campaign Submission</h1>
+            <p class="sub">Complete the form below so we can launch your campaign and push your record to the DJ network.</p>
+            <div class="paid-banner" id="paidBanner">&#9989; Payment complete — one last step: submit your campaign details below.</div>
 
             <form id="assetForm" novalidate>
                 <div class="card">
-                    <h2>The Record</h2>
+                    <h2>Artist Information</h2>
                     <div class="grid2">
                         <div class="field">
-                            <label for="songTitle">Name of Song <span class="req">*</span></label>
-                            <input type="text" id="songTitle" placeholder="Song title" required>
+                            <label for="contactName">Full Name <span class="req">*</span></label>
+                            <input type="text" id="contactName" placeholder="Your full name" required>
+                        </div>
+                        <div class="field">
+                            <label for="email">Email Address <span class="req">*</span></label>
+                            <input type="email" id="email" placeholder="you@email.com" required>
+                        </div>
+                        <div class="field">
+                            <label for="phone">Phone Number <span class="req">*</span></label>
+                            <input type="tel" id="phone" placeholder="(555) 555-5555" required>
                         </div>
                         <div class="field">
                             <label for="artistName">Artist Name <span class="req">*</span></label>
                             <input type="text" id="artistName" placeholder="Artist / group name" required>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Release Information</h2>
+                    <div class="grid2">
                         <div class="field">
-                            <label for="producer">Producer</label>
+                            <label for="songTitle">Song Title <span class="req">*</span></label>
+                            <input type="text" id="songTitle" placeholder="Song title" required>
+                        </div>
+                        <div class="field">
+                            <label for="releaseDate">Release Date <span class="req">*</span></label>
+                            <input type="date" id="releaseDate" required>
+                        </div>
+                        <div class="field">
+                            <label for="genre">Genre <span class="req">*</span></label>
+                            <input type="text" id="genre" placeholder="Hip-Hop, R&B, Afrobeats..." required>
+                        </div>
+                        <div class="field">
+                            <label for="campaign">Campaign Purchased <span class="req">*</span></label>
+                            <select id="campaign" required>
+                                <option value="">Select your campaign...</option>
+                                <option value="starter">STARTER - $99</option>
+                                <option value="pro">PRO - $149</option>
+                                <option value="elite">ELITE - $199</option>
+                                <option value="other">Other / Custom</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="producer">Producer <span class="opt">(optional)</span></label>
                             <input type="text" id="producer" placeholder="Produced by">
                         </div>
                         <div class="field">
-                            <label for="label">Label</label>
+                            <label for="label">Label <span class="opt">(optional)</span></label>
                             <input type="text" id="label" placeholder="Label (or Independent)">
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h2>Your Music</h2>
-                    <p class="hint">Paste download links to your files (Google Drive, Dropbox, WeTransfer, etc.). Make sure each link is set to "anyone with the link can view". At least one version is required — leave blank any version you don't have.</p>
+                    <h2>Music Assets</h2>
+                    <p class="hint">Paste download links to your files (Google Drive, Dropbox, WeTransfer, etc.). Make sure each link is set to "anyone with the link can view".</p>
                     <div class="field">
-                        <label for="cleanUrl">Clean Version Link</label>
+                        <label for="cleanUrl">Clean Version <span class="req">*</span></label>
                         <input type="url" id="cleanUrl" placeholder="https://...">
                     </div>
                     <div class="field">
-                        <label for="dirtyUrl">Dirty / Explicit Version Link</label>
+                        <label for="dirtyUrl">Dirty Version</label>
                         <input type="url" id="dirtyUrl" placeholder="https://...">
                     </div>
                     <div class="field">
-                        <label for="instrumentalUrl">Instrumental Link</label>
+                        <label for="radioUrl">Radio Edit <span class="opt">(optional)</span></label>
+                        <input type="url" id="radioUrl" placeholder="https://...">
+                    </div>
+                    <div class="field">
+                        <label for="instrumentalUrl">Instrumental <span class="opt">(optional)</span></label>
                         <input type="url" id="instrumentalUrl" placeholder="https://...">
                     </div>
                     <div class="field">
-                        <label for="logoUrl">Artist Logo / Artwork Link</label>
-                        <input type="url" id="logoUrl" placeholder="https://... (PNG or JPG)">
+                        <label for="logoUrl">Cover Artwork <span class="req">*</span></label>
+                        <input type="url" id="logoUrl" placeholder="https://... (3000x3000 JPG or PNG preferred)">
+                    </div>
+                    <div class="field">
+                        <label for="pressPhotoUrl">Press Photo <span class="opt">(optional)</span></label>
+                        <input type="url" id="pressPhotoUrl" placeholder="https://...">
                     </div>
                 </div>
 
                 <div class="card">
-                    <h2>Contact & Payment</h2>
+                    <h2>Links</h2>
                     <div class="grid2">
                         <div class="field">
-                            <label for="contactName">Contact Name</label>
-                            <input type="text" id="contactName" placeholder="Who we should talk to">
+                            <label for="spotifyUrl">Spotify</label>
+                            <input type="url" id="spotifyUrl" placeholder="https://open.spotify.com/...">
                         </div>
                         <div class="field">
-                            <label for="email">Contact Email <span class="req">*</span></label>
-                            <input type="email" id="email" placeholder="you@email.com" required>
+                            <label for="appleUrl">Apple Music</label>
+                            <input type="url" id="appleUrl" placeholder="https://music.apple.com/...">
+                        </div>
+                        <div class="field">
+                            <label for="youtubeUrl">YouTube</label>
+                            <input type="url" id="youtubeUrl" placeholder="https://youtube.com/...">
+                        </div>
+                        <div class="field">
+                            <label for="instagramUrl">Instagram</label>
+                            <input type="url" id="instagramUrl" placeholder="https://instagram.com/...">
+                        </div>
+                        <div class="field">
+                            <label for="tiktokUrl">TikTok</label>
+                            <input type="url" id="tiktokUrl" placeholder="https://tiktok.com/@...">
+                        </div>
+                        <div class="field">
+                            <label for="websiteUrl">Website <span class="opt">(optional)</span></label>
+                            <input type="url" id="websiteUrl" placeholder="https://...">
                         </div>
                     </div>
+                </div>
+
+                <div class="card">
+                    <h2>Campaign Notes</h2>
                     <div class="field">
-                        <label for="receiptUrl">PayPal Receipt Link or Transaction ID <span class="req">*</span></label>
-                        <input type="text" id="receiptUrl" placeholder="Receipt link or Transaction ID from your PayPal email" required>
-                        <p class="hint" style="margin: 0.4rem 0 0;">Open the PayPal receipt email you got after paying and copy the Transaction ID (or a link to the receipt). This is how we match your files to your payment.</p>
+                        <label for="notes">Special Instructions</label>
+                        <textarea id="notes" placeholder="Anything specific we should know about this record..."></textarea>
                     </div>
                     <div class="field">
-                        <label for="notes">Anything Else We Should Know</label>
-                        <textarea id="notes" placeholder="Release date, socials, special requests..."></textarea>
+                        <label for="djNotes">DJ Servicing Notes</label>
+                        <textarea id="djNotes" placeholder="Preferred regions, formats, mix versions for DJs..."></textarea>
+                    </div>
+                    <div class="field">
+                        <label for="marketingNotes">Marketing Goals</label>
+                        <textarea id="marketingNotes" placeholder="What does a win look like for this campaign?"></textarea>
+                    </div>
+                    <div class="field">
+                        <label for="receiptUrl">PayPal Transaction ID <span class="opt">(optional — helps us verify your payment faster)</span></label>
+                        <input type="text" id="receiptUrl" placeholder="From your PayPal receipt email">
                     </div>
                 </div>
 
                 <div class="form-error" id="formError"></div>
-                <button type="submit" class="submit-btn" id="submitBtn">Send My Files &rarr;</button>
+                <button type="submit" class="submit-btn" id="submitBtn">Submit My Campaign &rarr;</button>
             </form>
         </div>
 
         <div class="success" id="successView">
             <div class="check">&#9989;</div>
-            <h2>Files Received!</h2>
-            <p>We've got everything. Our team will verify your payment and start pushing your record to the Digiwaxx DJ network. Keep an eye on your email.</p>
+            <h2>Thank You! Your Campaign Has Been Received.</h2>
+            <p>Our team will review your submission, verify your payment, and begin processing your campaign. You'll receive a confirmation email once everything has been approved.</p>
         </div>
     </div>
 
     <script>
+        // Arriving from PayPal: show the paid banner and prefill what we can
+        (function initFromPayPal() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('paid') === '1' || params.get('tx')) {
+                document.getElementById('paidBanner').style.display = 'block';
+            }
+            // PayPal auto-return appends tx= when Payment Data Transfer is on
+            if (params.get('tx')) document.getElementById('receiptUrl').value = params.get('tx');
+            const campaign = (params.get('campaign') || '').toLowerCase();
+            if (['starter', 'pro', 'elite'].includes(campaign)) {
+                document.getElementById('campaign').value = campaign;
+            }
+        })();
+
         document.getElementById('assetForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const errBox = document.getElementById('formError');
@@ -232,18 +331,32 @@
 
             const val = id => document.getElementById(id).value.trim();
             const data = {
-                song_title: val('songTitle'),
-                artist_name: val('artistName'),
-                producer: val('producer'),
-                label: val('label'),
                 contact_name: val('contactName'),
                 email: val('email'),
+                phone: val('phone'),
+                artist_name: val('artistName'),
+                song_title: val('songTitle'),
+                release_date: val('releaseDate'),
+                genre: val('genre'),
+                campaign_tier: val('campaign'),
+                producer: val('producer'),
+                label: val('label'),
                 clean_url: val('cleanUrl'),
                 dirty_url: val('dirtyUrl'),
+                radio_url: val('radioUrl'),
                 instrumental_url: val('instrumentalUrl'),
                 logo_url: val('logoUrl'),
-                receipt_url: val('receiptUrl'),
-                notes: val('notes')
+                press_photo_url: val('pressPhotoUrl'),
+                spotify_url: val('spotifyUrl'),
+                apple_url: val('appleUrl'),
+                youtube_url: val('youtubeUrl'),
+                instagram_url: val('instagramUrl'),
+                tiktok_url: val('tiktokUrl'),
+                website_url: val('websiteUrl'),
+                notes: val('notes'),
+                dj_notes: val('djNotes'),
+                marketing_notes: val('marketingNotes'),
+                receipt_url: val('receiptUrl')
             };
 
             function fail(msg) {
@@ -252,17 +365,20 @@
                 errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
-            if (!data.song_title || !data.artist_name || !data.email) {
-                return fail('Please fill in the song name, artist name, and contact email.');
+            if (!data.contact_name || !data.email || !data.phone || !data.artist_name) {
+                return fail('Please complete the Artist Information section: full name, email, phone, and artist name.');
             }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
                 return fail('Please enter a valid email address.');
             }
-            if (!data.clean_url && !data.dirty_url && !data.instrumental_url) {
-                return fail('Add a link to at least one version of your music (clean, dirty, or instrumental).');
+            if (!data.song_title || !data.release_date || !data.genre || !data.campaign_tier) {
+                return fail('Please complete the Release Information section: song title, release date, genre, and campaign.');
             }
-            if (!data.receipt_url) {
-                return fail('Please add your PayPal receipt link or Transaction ID so we can match your payment.');
+            if (!data.clean_url) {
+                return fail('Please add a link to the clean version of your record.');
+            }
+            if (!data.logo_url) {
+                return fail('Please add a link to your cover artwork.');
             }
 
             const btn = document.getElementById('submitBtn');
@@ -286,7 +402,7 @@
                 fail('Network error. Please check your connection and try again.');
             }
             btn.disabled = false;
-            btn.textContent = 'Send My Files →';
+            btn.textContent = 'Submit My Campaign →';
         });
     </script>
 </body>
