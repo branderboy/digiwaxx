@@ -108,6 +108,21 @@
         input::placeholder, textarea::placeholder { color: #a595a1; }
         input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent-yellow); border-color: transparent; }
         textarea { resize: vertical; min-height: 70px; }
+        input[type="file"] { padding: 0.65rem 1rem; background: #fff; cursor: pointer; }
+        input[type="file"]::file-selector-button {
+            font-family: var(--font-body);
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-right: 0.8rem;
+            background: var(--bg-dark);
+            color: #fff;
+            cursor: pointer;
+        }
+        .upstat { font-size: 0.82rem; margin-top: 0.35rem; color: var(--text-muted); }
+        .upstat.done { color: #15803d; font-weight: 700; }
+        .upstat.err { color: #b91c1c; font-weight: 700; }
         .submit-btn {
             width: 100%;
             padding: 1.1rem;
@@ -220,30 +235,42 @@
 
                 <div class="card">
                     <h2>Music Assets</h2>
-                    <p class="hint">Paste download links to your files (Google Drive, Dropbox, WeTransfer, etc.). Make sure each link is set to "anyone with the link can view".</p>
-                    <div class="field">
-                        <label for="cleanUrl">Clean Version <span class="req">*</span></label>
-                        <input type="url" id="cleanUrl" placeholder="https://...">
+                    <p class="hint">Upload your files directly (60MB max per file). <a href="#" id="linkModeToggle" style="color: #a8790a;">Prefer to paste links instead?</a></p>
+                    <div class="field asset-field">
+                        <label for="cleanFile">Clean Version <span class="req">*</span></label>
+                        <input type="file" id="cleanFile" data-key="clean" accept="audio/*,.mp3,.wav,.m4a,.aiff,.aif,.flac">
+                        <input type="url" id="cleanUrl" placeholder="https://..." style="display:none;">
+                        <div class="upstat" id="cleanStat"></div>
                     </div>
-                    <div class="field">
-                        <label for="dirtyUrl">Dirty Version</label>
-                        <input type="url" id="dirtyUrl" placeholder="https://...">
+                    <div class="field asset-field">
+                        <label for="dirtyFile">Dirty Version</label>
+                        <input type="file" id="dirtyFile" data-key="dirty" accept="audio/*,.mp3,.wav,.m4a,.aiff,.aif,.flac">
+                        <input type="url" id="dirtyUrl" placeholder="https://..." style="display:none;">
+                        <div class="upstat" id="dirtyStat"></div>
                     </div>
-                    <div class="field">
-                        <label for="radioUrl">Radio Edit <span class="opt">(optional)</span></label>
-                        <input type="url" id="radioUrl" placeholder="https://...">
+                    <div class="field asset-field">
+                        <label for="radioFile">Radio Edit <span class="opt">(optional)</span></label>
+                        <input type="file" id="radioFile" data-key="radio" accept="audio/*,.mp3,.wav,.m4a,.aiff,.aif,.flac">
+                        <input type="url" id="radioUrl" placeholder="https://..." style="display:none;">
+                        <div class="upstat" id="radioStat"></div>
                     </div>
-                    <div class="field">
-                        <label for="instrumentalUrl">Instrumental <span class="opt">(optional)</span></label>
-                        <input type="url" id="instrumentalUrl" placeholder="https://...">
+                    <div class="field asset-field">
+                        <label for="instrumentalFile">Instrumental <span class="opt">(optional)</span></label>
+                        <input type="file" id="instrumentalFile" data-key="instrumental" accept="audio/*,.mp3,.wav,.m4a,.aiff,.aif,.flac">
+                        <input type="url" id="instrumentalUrl" placeholder="https://..." style="display:none;">
+                        <div class="upstat" id="instrumentalStat"></div>
                     </div>
-                    <div class="field">
-                        <label for="logoUrl">Cover Artwork <span class="req">*</span></label>
-                        <input type="url" id="logoUrl" placeholder="https://... (3000x3000 JPG or PNG preferred)">
+                    <div class="field asset-field">
+                        <label for="logoFile">Cover Artwork <span class="req">*</span></label>
+                        <input type="file" id="logoFile" data-key="logo" accept="image/*,.jpg,.jpeg,.png,.webp">
+                        <input type="url" id="logoUrl" placeholder="https://... (3000x3000 JPG or PNG preferred)" style="display:none;">
+                        <div class="upstat" id="logoStat"></div>
                     </div>
-                    <div class="field">
-                        <label for="pressPhotoUrl">Press Photo <span class="opt">(optional)</span></label>
-                        <input type="url" id="pressPhotoUrl" placeholder="https://...">
+                    <div class="field asset-field">
+                        <label for="pressPhotoFile">Press Photo <span class="opt">(optional)</span></label>
+                        <input type="file" id="pressPhotoFile" data-key="pressPhoto" accept="image/*,.jpg,.jpeg,.png,.webp">
+                        <input type="url" id="pressPhotoUrl" placeholder="https://..." style="display:none;">
+                        <div class="upstat" id="pressPhotoStat"></div>
                     </div>
                 </div>
 
@@ -324,12 +351,86 @@
             }
         })();
 
+        // ===== Direct file uploads (chunked; stored in our database) =====
+        const uploadedUrls = {};   // data-key -> /api/files/<id>
+        let activeUploads = 0;
+        let linksMode = false;
+
+        document.getElementById('linkModeToggle').addEventListener('click', (e) => {
+            e.preventDefault();
+            linksMode = !linksMode;
+            e.target.textContent = linksMode ? 'Prefer to upload files instead?' : 'Prefer to paste links instead?';
+            document.querySelectorAll('.asset-field').forEach(f => {
+                f.querySelector('input[type="file"]').style.display = linksMode ? 'none' : '';
+                f.querySelector('input[type="url"]').style.display = linksMode ? '' : 'none';
+            });
+        });
+
+        async function uploadFile(file, key, statEl) {
+            const init = await fetch('/api/upload-init', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ filename: file.name, mime: file.type, size: file.size })
+            }).then(r => r.json());
+            if (!init.ok) throw new Error(init.error || 'Could not start upload');
+
+            const CHUNK = 3 * 1024 * 1024;
+            for (let off = 0, seq = 0; off < file.size; off += CHUNK, seq++) {
+                const part = await fetch('/api/upload-chunk?file_id=' + init.file_id + '&seq=' + seq, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/octet-stream' },
+                    body: file.slice(off, off + CHUNK)
+                }).then(r => r.json());
+                if (!part.ok) throw new Error(part.error || 'Upload failed');
+                statEl.textContent = 'Uploading... ' + Math.min(100, Math.round(((off + CHUNK) / file.size) * 100)) + '%';
+            }
+            const done = await fetch('/api/upload-complete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ file_id: init.file_id })
+            }).then(r => r.json());
+            if (!done.ok) throw new Error(done.error || 'Could not finish upload');
+            return done.url;
+        }
+
+        document.querySelectorAll('.asset-field input[type="file"]').forEach(input => {
+            input.addEventListener('change', async () => {
+                const file = input.files[0];
+                const key = input.dataset.key;
+                const statEl = document.getElementById(key + 'Stat');
+                if (!file) { delete uploadedUrls[key]; statEl.textContent = ''; return; }
+                if (file.size > 60 * 1024 * 1024) {
+                    statEl.className = 'upstat err';
+                    statEl.textContent = 'File is over the 60MB limit. Compress it or use a link instead.';
+                    input.value = '';
+                    return;
+                }
+                statEl.className = 'upstat';
+                activeUploads++;
+                document.getElementById('submitBtn').disabled = true;
+                try {
+                    uploadedUrls[key] = await uploadFile(file, key, statEl);
+                    statEl.className = 'upstat done';
+                    statEl.textContent = '✓ ' + file.name + ' uploaded';
+                } catch (err) {
+                    delete uploadedUrls[key];
+                    input.value = '';
+                    statEl.className = 'upstat err';
+                    statEl.textContent = 'Upload failed: ' + err.message + ' — try again or paste a link.';
+                }
+                activeUploads--;
+                if (activeUploads === 0) document.getElementById('submitBtn').disabled = false;
+            });
+        });
+
         document.getElementById('assetForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (activeUploads > 0) return;
             const errBox = document.getElementById('formError');
             errBox.style.display = 'none';
 
             const val = id => document.getElementById(id).value.trim();
+            const asset = (key, urlId) => uploadedUrls[key] || val(urlId);
             const data = {
                 contact_name: val('contactName'),
                 email: val('email'),
@@ -341,12 +442,12 @@
                 campaign_tier: val('campaign'),
                 producer: val('producer'),
                 label: val('label'),
-                clean_url: val('cleanUrl'),
-                dirty_url: val('dirtyUrl'),
-                radio_url: val('radioUrl'),
-                instrumental_url: val('instrumentalUrl'),
-                logo_url: val('logoUrl'),
-                press_photo_url: val('pressPhotoUrl'),
+                clean_url: asset('clean', 'cleanUrl'),
+                dirty_url: asset('dirty', 'dirtyUrl'),
+                radio_url: asset('radio', 'radioUrl'),
+                instrumental_url: asset('instrumental', 'instrumentalUrl'),
+                logo_url: asset('logo', 'logoUrl'),
+                press_photo_url: asset('pressPhoto', 'pressPhotoUrl'),
                 spotify_url: val('spotifyUrl'),
                 apple_url: val('appleUrl'),
                 youtube_url: val('youtubeUrl'),
@@ -375,10 +476,10 @@
                 return fail('Please complete the Release Information section: song title, release date, genre, and campaign.');
             }
             if (!data.clean_url) {
-                return fail('Please add a link to the clean version of your record.');
+                return fail('Please upload the clean version of your record (or paste a link to it).');
             }
             if (!data.logo_url) {
-                return fail('Please add a link to your cover artwork.');
+                return fail('Please upload your cover artwork (or paste a link to it).');
             }
 
             const btn = document.getElementById('submitBtn');

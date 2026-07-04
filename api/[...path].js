@@ -10,6 +10,23 @@ const pool = new Pool({
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 const TOKEN_SECRET = process.env.ADMIN_PASSWORD || 'admin123';
 
+const MAX_FILE_BYTES = 60 * 1024 * 1024;
+
+// Environment variables take priority over admin-panel settings
+const ENV_SETTINGS = {
+  paypal_business_email: 'PAYPAL_BUSINESS_EMAIL',
+  paypal_username: 'PAYPAL_USERNAME',
+  paypal_client_id: 'PAYPAL_CLIENT_ID',
+  paypal_client_secret: 'PAYPAL_CLIENT_SECRET',
+  paypal_mode: 'PAYPAL_MODE',
+  resend_api_key: 'RESEND_API_KEY',
+  email_from: 'EMAIL_FROM'
+};
+function envSetting(key) {
+  const envKey = ENV_SETTINGS[key];
+  return envKey && process.env[envKey] ? process.env[envKey] : null;
+}
+
 let dbInitialized = false;
 async function initDB() {
   if (dbInitialized) return;
@@ -240,6 +257,20 @@ async function initDB() {
     ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS website_url TEXT;
     ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS dj_notes TEXT;
     ALTER TABLE asset_submissions ADD COLUMN IF NOT EXISTS marketing_notes TEXT;
+    CREATE TABLE IF NOT EXISTS uploaded_files (
+      id TEXT PRIMARY KEY,
+      filename TEXT NOT NULL,
+      mime TEXT,
+      size_bytes BIGINT DEFAULT 0,
+      status TEXT DEFAULT 'uploading',
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
+    CREATE TABLE IF NOT EXISTS uploaded_file_chunks (
+      file_id TEXT REFERENCES uploaded_files(id) ON DELETE CASCADE,
+      seq INTEGER NOT NULL,
+      data BYTEA NOT NULL,
+      PRIMARY KEY (file_id, seq)
+    );
   `);
   dbInitialized = true;
 }
@@ -273,6 +304,8 @@ function getBody(req) {
 }
 
 async function getSetting(key) {
+  const env = envSetting(key);
+  if (env !== null) return env;
   const { rows } = await pool.query('SELECT value FROM settings WHERE key = $1', [key]);
   return rows[0]?.value || '';
 }
@@ -281,6 +314,7 @@ async function getSettings(keys) {
   const { rows } = await pool.query('SELECT key, value FROM settings WHERE key = ANY($1)', [keys]);
   const map = {};
   rows.forEach(r => map[r.key] = r.value);
+  keys.forEach(k => { const env = envSetting(k); if (env !== null) map[k] = env; });
   return map;
 }
 
@@ -340,6 +374,15 @@ function getRawBody(req) {
     let body = '';
     req.on('data', chunk => body += chunk);
     req.on('end', () => resolve(body));
+    req.on('error', reject);
+  });
+}
+
+function getRawBuffer(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on('data', c => chunks.push(c));
+    req.on('end', () => resolve(Buffer.concat(chunks)));
     req.on('error', reject);
   });
 }
@@ -480,6 +523,33 @@ module.exports = async (req, res) => {
     return res.end();
   }
 
+  // Binary chunk uploads also bypass the JSON body parse
+  if (url === '/api/upload-chunk' && req.method === 'POST') {
+    try {
+      const fileId = query.file_id;
+      const seq = parseInt(query.seq);
+      if (!fileId || isNaN(seq) || seq < 0) return json(res, { error: 'file_id and seq are required' }, 400);
+      const buf = await getRawBuffer(req);
+      if (!buf.length) return json(res, { error: 'Empty chunk' }, 400);
+      if (buf.length > 4 * 1024 * 1024) return json(res, { error: 'Chunk too large' }, 413);
+      const { rows } = await pool.query('SELECT size_bytes, status FROM uploaded_files WHERE id = $1', [fileId]);
+      if (!rows.length || rows[0].status !== 'uploading') return json(res, { error: 'Upload not found' }, 404);
+      if (parseInt(rows[0].size_bytes) + buf.length > MAX_FILE_BYTES) return json(res, { error: 'File exceeds the 60MB limit' }, 413);
+      await pool.query(
+        'INSERT INTO uploaded_file_chunks (file_id, seq, data) VALUES ($1, $2, $3) ON CONFLICT (file_id, seq) DO UPDATE SET data = $3',
+        [fileId, seq, buf]
+      );
+      await pool.query(
+        'UPDATE uploaded_files SET size_bytes = (SELECT COALESCE(SUM(length(data)), 0) FROM uploaded_file_chunks WHERE file_id = $1) WHERE id = $1',
+        [fileId]
+      );
+      return json(res, { ok: true });
+    } catch (err) {
+      console.error('Chunk upload error:', err);
+      return json(res, { error: 'Upload failed', detail: err.message }, 500);
+    }
+  }
+
   const body = req.method !== 'GET' ? await getBody(req) : {};
 
   try {
@@ -504,6 +574,9 @@ module.exports = async (req, res) => {
       const { rows } = await pool.query("SELECT key, value FROM settings WHERE key NOT LIKE 'paypal_client%' AND key NOT LIKE 'resend_%' AND key != 'paypal_mode'");
       const content = {};
       rows.forEach(r => content[r.key] = r.value);
+      // Public-safe env overrides (these appear in the checkout URL anyway)
+      if (process.env.PAYPAL_BUSINESS_EMAIL) content.paypal_business_email = process.env.PAYPAL_BUSINESS_EMAIL;
+      if (process.env.PAYPAL_USERNAME) content.paypal_username = process.env.PAYPAL_USERNAME;
       return json(res, content);
     }
 
@@ -577,6 +650,48 @@ module.exports = async (req, res) => {
       return json(res, { ok: true, click_id: id });
     }
 
+    // ===== FILE UPLOADS (stored in Neon as bytea chunks) =====
+    if (url === '/api/upload-init' && req.method === 'POST') {
+      const { filename, mime, size } = body;
+      if (!filename) return json(res, { error: 'Filename is required' }, 400);
+      const sz = parseInt(size) || 0;
+      if (sz > MAX_FILE_BYTES) return json(res, { error: 'File is too large (60MB max)' }, 400);
+      const okType = /^(audio|image)\//.test(mime || '') || /\.(mp3|wav|m4a|aac|aiff?|flac|ogg|jpe?g|png|gif|webp|pdf|zip)$/i.test(filename);
+      if (!okType) return json(res, { error: 'Only audio, image, ZIP, or PDF files are allowed' }, 400);
+      const id = uuid();
+      await pool.query(
+        'INSERT INTO uploaded_files (id, filename, mime) VALUES ($1, $2, $3)',
+        [id, String(filename).slice(0, 200), mime || null]
+      );
+      return json(res, { ok: true, file_id: id });
+    }
+
+    if (url === '/api/upload-complete' && req.method === 'POST') {
+      const { file_id } = body;
+      if (!file_id) return json(res, { error: 'file_id is required' }, 400);
+      const { rows } = await pool.query(
+        "UPDATE uploaded_files SET status = 'complete' WHERE id = $1 AND status = 'uploading' RETURNING size_bytes",
+        [file_id]
+      );
+      if (!rows.length) return json(res, { error: 'Upload not found' }, 404);
+      if (parseInt(rows[0].size_bytes) === 0) return json(res, { error: 'No data was uploaded' }, 400);
+      return json(res, { ok: true, url: '/api/files/' + file_id, size: parseInt(rows[0].size_bytes) });
+    }
+
+    if (url.startsWith('/api/files/') && req.method === 'GET') {
+      const id = url.split('/api/files/')[1];
+      const { rows } = await pool.query("SELECT filename, mime, status FROM uploaded_files WHERE id = $1", [id]);
+      if (!rows.length || rows[0].status !== 'complete') return json(res, { error: 'File not found' }, 404);
+      const { rows: chunks } = await pool.query('SELECT data FROM uploaded_file_chunks WHERE file_id = $1 ORDER BY seq', [id]);
+      const buf = Buffer.concat(chunks.map(c => c.data));
+      res.statusCode = 200;
+      res.setHeader('Content-Type', rows[0].mime || 'application/octet-stream');
+      res.setHeader('Content-Disposition', 'inline; filename="' + rows[0].filename.replace(/[^\w.\- ]/g, '_') + '"');
+      res.setHeader('Content-Length', buf.length);
+      res.setHeader('Cache-Control', 'private, max-age=3600');
+      return res.end(buf);
+    }
+
     if (url === '/api/assets' && req.method === 'POST') {
       const { song_title, artist_name, producer, label, contact_name, email, phone,
               release_date, genre, campaign_tier,
@@ -630,7 +745,9 @@ module.exports = async (req, res) => {
           const section = (title, rowsHtml) => rowsHtml
             ? `<h3 style="color:#111;margin:18px 0 4px;font-size:15px;border-bottom:1px solid #ddd;padding-bottom:4px;">${title}</h3><table style="font-size:14px;border-collapse:collapse;">${rowsHtml}</table>`
             : '';
-          const link = u => u ? `<a href="${escHtml(u)}">${escHtml(u)}</a>` : '';
+          const emailSiteUrl = req.headers.host ? ('https://' + req.headers.host) : '';
+          const abs = u => u && u.startsWith('/') ? emailSiteUrl + u : u;
+          const link = u => u ? `<a href="${escHtml(abs(u))}">${escHtml(abs(u))}</a>` : '';
           const verified = paymentStatus.startsWith('VERIFIED');
           const html = `<div style="font-family:sans-serif;max-width:640px;">` +
             `<h2 style="color:#111;">New Campaign Submission</h2>` +
