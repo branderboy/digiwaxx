@@ -177,7 +177,7 @@
             <div class="card" style="border-color: #FFB800; background: #fff8e6;">
                 <h2>Step 1: Create Your Client Account</h2>
                 <p class="hint" style="margin-bottom: 0.8rem;">Your client account is where DJs and members connect with your project and where you track your campaign.</p>
-                <a href="https://app.digiwaxx.com/Client_registration_step1?package_id=13" target="_blank" rel="noopener" style="display: inline-block; background: var(--bg-dark); color: #fff; font-weight: 700; padding: 0.7rem 1.4rem; border-radius: 10px; text-decoration: none;">Create Client Account &rarr;</a>
+                <a href="https://app.digiwaxx.com/Client_registration_step1?package_id=13" data-account-link target="_blank" rel="noopener" style="display: inline-block; background: var(--bg-dark); color: #fff; font-weight: 700; padding: 0.7rem 1.4rem; border-radius: 10px; text-decoration: none;">Create Client Account &rarr;</a>
                 <p class="hint" style="margin: 0.8rem 0 0;">Then come back to this page and finish the form below.</p>
             </div>
 
@@ -379,11 +379,28 @@
             <div class="check">&#9989;</div>
             <h2>Thank You! Your Campaign Has Been Received.</h2>
             <p>Our team will review your submission, verify your payment, and begin processing your campaign. You'll receive a confirmation email once everything has been approved.</p>
-            <p style="margin-top: 1.2rem;">Haven't created your client account yet? <a href="https://app.digiwaxx.com/Client_registration_step1?package_id=13" target="_blank" rel="noopener" style="color: #a8790a; font-weight: 700;">Create it here</a> — it's how DJs and members connect with your project.</p>
+            <p style="margin-top: 1.2rem;">Haven't created your client account yet? <a href="https://app.digiwaxx.com/Client_registration_step1?package_id=13" data-account-link target="_blank" rel="noopener" style="color: #a8790a; font-weight: 700;">Create it here</a> — it's how DJs and members connect with your project.</p>
         </div>
     </div>
 
     <script>
+        // Registration package id per campaign; overridable via settings/env vars
+        let packageIds = { starter: '13', pro: '13', elite: '13' };
+        function updateAccountLinks() {
+            const tier = (document.getElementById('campaign').value || 'starter').toLowerCase();
+            const id = packageIds[tier] || packageIds.starter || '13';
+            document.querySelectorAll('[data-account-link]').forEach(a => {
+                a.href = 'https://app.digiwaxx.com/Client_registration_step1?package_id=' + id;
+            });
+        }
+        fetch('/api/site-content').then(r => r.json()).then(c => {
+            if (c.package_id_starter) packageIds.starter = c.package_id_starter;
+            if (c.package_id_pro) packageIds.pro = c.package_id_pro;
+            if (c.package_id_elite) packageIds.elite = c.package_id_elite;
+            updateAccountLinks();
+        }).catch(() => {});
+        document.getElementById('campaign').addEventListener('change', updateAccountLinks);
+
         // Arriving from PayPal: show the paid banner and prefill what we can
         (function initFromPayPal() {
             const params = new URLSearchParams(window.location.search);
@@ -396,6 +413,7 @@
             if (['starter', 'pro', 'elite'].includes(campaign)) {
                 document.getElementById('campaign').value = campaign;
             }
+            updateAccountLinks();
         })();
 
         // ===== Direct file uploads (chunked; stored in our database) =====

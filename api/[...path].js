@@ -35,7 +35,10 @@ const ENV_SETTINGS = {
   paypal_client_secret: 'PAYPAL_CLIENT_SECRET',
   paypal_mode: 'PAYPAL_MODE',
   resend_api_key: 'RESEND_API_KEY',
-  email_from: 'EMAIL_FROM'
+  email_from: 'EMAIL_FROM',
+  package_id_starter: 'PACKAGE_ID_STARTER',
+  package_id_pro: 'PACKAGE_ID_PRO',
+  package_id_elite: 'PACKAGE_ID_ELITE'
 };
 function envSetting(key) {
   const envKey = ENV_SETTINGS[key];
@@ -97,6 +100,9 @@ async function initDB() {
     INSERT INTO settings (key, value) VALUES
       ('paypal_username', 'digiwaxx'),
       ('paypal_business_email', ''),
+      ('package_id_starter', '13'),
+      ('package_id_pro', '13'),
+      ('package_id_elite', '13'),
       ('site_headline', 'NEW MUSIC DESERVES A REAL PUSH'),
       ('site_subheadline', 'Digiwaxx connects your records to the DJs, playlists, and platforms that matter. One submission replaces months of cold DMs.'),
       ('starter_name', 'STARTER'),
@@ -219,7 +225,7 @@ async function initDB() {
       ('payment_email_subject', 'Payment Received - Send Us Your Music Files'),
       ('payment_email_body', 'Hey {{artist_name}},\n\nWe received your payment of \${{amount}}. You''re locked in!\n\nNext step: send us your music files (clean, dirty, and instrumental versions), your logo, and your song info here:\n\n{{site_url}}/submit\n\n- The Digiwaxx Team'),
       ('assets_email_subject', 'We Got Your Files!'),
-      ('assets_email_body', 'Hey {{artist_name}},\n\nWe received your files for "{{song_title}}". Our team is verifying your payment now, then your record goes into rotation prep.\n\nOne more step if you haven''t done it yet: create your CLIENT ACCOUNT so you can track your campaign:\nhttps://app.digiwaxx.com/Client_registration_step1?package_id=13\n\nWe''ll reach out at this email if we need anything else.\n\n- The Digiwaxx Team')
+      ('assets_email_body', 'Hey {{artist_name}},\n\nWe received your files for "{{song_title}}". Our team is verifying your payment now, then your record goes into rotation prep.\n\nOne more step if you haven''t done it yet: create your CLIENT ACCOUNT so you can track your campaign:\n{{account_link}}\n\nWe''ll reach out at this email if we need anything else.\n\n- The Digiwaxx Team')
     ON CONFLICT (key) DO NOTHING;
     UPDATE settings SET value = 'PROMOTE MY RECORD →' WHERE key = 'pay_button_text' AND value = 'PAY WITH PAYPAL →';
     UPDATE settings SET value = 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs. Stop uploading into the void.' WHERE key = 'site_subheadline' AND value IN ('Digiwaxx connects your records to the DJs, playlists, and platforms that matter.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs — stop uploading into the void.');
@@ -629,9 +635,12 @@ module.exports = async (req, res) => {
       const { rows } = await pool.query("SELECT key, value FROM settings WHERE key NOT LIKE 'paypal_client%' AND key NOT LIKE 'resend_%' AND key != 'paypal_mode'");
       const content = {};
       rows.forEach(r => content[r.key] = r.value);
-      // Public-safe env overrides (these appear in the checkout URL anyway)
+      // Public-safe env overrides (these appear in checkout/registration URLs anyway)
       if (process.env.PAYPAL_BUSINESS_EMAIL) content.paypal_business_email = process.env.PAYPAL_BUSINESS_EMAIL;
       if (process.env.PAYPAL_USERNAME) content.paypal_username = process.env.PAYPAL_USERNAME;
+      if (process.env.PACKAGE_ID_STARTER) content.package_id_starter = process.env.PACKAGE_ID_STARTER;
+      if (process.env.PACKAGE_ID_PRO) content.package_id_pro = process.env.PACKAGE_ID_PRO;
+      if (process.env.PACKAGE_ID_ELITE) content.package_id_elite = process.env.PACKAGE_ID_ELITE;
       return json(res, content);
     }
 
@@ -882,9 +891,15 @@ module.exports = async (req, res) => {
 
       // Instant confirmation back to the artist
       try {
-        const conf = await getSettings(['resend_api_key', 'email_from', 'assets_email_subject', 'assets_email_body']);
+        const conf = await getSettings(['resend_api_key', 'email_from', 'assets_email_subject', 'assets_email_body',
+                                        'package_id_starter', 'package_id_pro', 'package_id_elite']);
         if (conf.resend_api_key) {
-          const replacements = { '{{artist_name}}': artist_name, '{{song_title}}': song_title };
+          const pkgId = conf['package_id_' + String(campaign_tier || '').toLowerCase()] || conf.package_id_starter || '13';
+          const replacements = {
+            '{{artist_name}}': artist_name,
+            '{{song_title}}': song_title,
+            '{{account_link}}': 'https://app.digiwaxx.com/Client_registration_step1?package_id=' + pkgId
+          };
           let subject = conf.assets_email_subject || 'We Got Your Files!';
           let bodyTxt = conf.assets_email_body || 'We received your files for "{{song_title}}". Our team is verifying your payment now.';
           for (const [k, v] of Object.entries(replacements)) {
