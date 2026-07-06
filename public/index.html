@@ -1533,10 +1533,6 @@
             color: var(--text-muted);
         }
 
-        /* --- ARTIST BOOST FLYER (plain image, no link) --- */
-        .flyer-section { padding: 4rem 0; text-align: center; }
-        .flyer-img { display: block; width: 100%; max-width: 620px; margin: 0 auto; border-radius: 18px; }
-
         /* --- SALES FUNNEL (modal only - scoped so it doesn't leak onto the
            Problem/Solution boxes, which share the .funnel-box class) --- */
         #funnelOverlay .funnel-box {
@@ -1573,6 +1569,7 @@
         .fnl-price-line { margin-bottom: 1.2rem; }
         .fnl-price-line .was { text-decoration: line-through; color: var(--text-muted); font-size: 1.2rem; margin-right: 0.6rem; }
         .fnl-price-line .now { font-family: var(--font-head); font-size: 2.4rem; font-weight: 800; color: var(--accent-yellow); }
+        .fnl-price-line .sub { font-family: var(--font-head); font-weight: 700; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-left: 0.4rem; }
         .fnl-accept {
             display: block; width: 100%; font-family: var(--font-head); font-weight: 800; font-size: 1.35rem;
             letter-spacing: 1px; text-transform: uppercase;
@@ -1633,6 +1630,7 @@
         #funnelOverlay .fnl-list li::before { color: #1a9e57; }
         #funnelOverlay .fnl-price-line .was { color: #8a8590; }
         #funnelOverlay .fnl-price-line .now { color: #a82e5e; }
+        #funnelOverlay .fnl-price-line .sub { color: #6a6a72; }
         #funnelOverlay .fnl-decline { color: #6a6a72; }
         #funnelOverlay .fnl-decline:hover { color: #000; }
         #funnelOverlay .fnl-addon { background: #f6f6f8; border-color: rgba(0,0,0,0.12); }
@@ -2135,14 +2133,6 @@
             </div>
         </section>
 
-        <!-- ARTIST BOOST FLYER: plain graphic only. Hidden until /artist-boost.jpg exists in the repo. -->
-        <section class="flyer-section">
-            <div class="container">
-                <img src="/artist-boost.jpg" alt="Digiwaxx Artist Boost Strategy Session" class="flyer-img"
-                     onerror="this.closest('.flyer-section').style.display='none'">
-            </div>
-        </section>
-
         <!-- TRUST SECTION -->
         <!-- BOOST CTA -->
         <section class="boost-cta">
@@ -2295,6 +2285,23 @@
                 <div class="fnl-addon-grid" id="fnlAddonGrid"></div>
                 <button class="fnl-accept" id="fnlAddonsContinue">Continue to Checkout &rarr;</button>
                 <button class="fnl-decline" id="fnlAddonsSkip">Skip add-ons</button>
+            </div>
+
+            <!-- STRATEGY SESSION UPSELL -->
+            <div class="funnel-pane" id="fnlStrategy">
+                <div class="fnl-eyebrow">One-Time Offer</div>
+                <h2>Add an Artist Boost Strategy Session?</h2>
+                <p class="fnl-desc">A 1-on-1 strategy session on Zoom with CL Llewellyn, music marketing expert, founder &amp; CEO of Digiwaxx. You get a clear plan. Real advice. No guesswork. Just strategy.</p>
+                <ul class="fnl-list">
+                    <li>I listen to your music &mdash; live feedback on your sound &amp; potential</li>
+                    <li>We review your visuals &mdash; video strategy tips &amp; branding insights</li>
+                    <li>We analyze your streams &mdash; understand your numbers &amp; growth opportunities</li>
+                    <li>We check your press &amp; SEO &mdash; evaluate your online presence &amp; media visibility</li>
+                    <li>You get a roadmap &mdash; a custom plan to grow using Digiwaxx &amp; other key services</li>
+                </ul>
+                <div class="fnl-price-line"><span class="now" id="fnlStrategyNow"></span> <span class="sub">30-min Zoom session</span></div>
+                <button class="fnl-accept" id="fnlStrategyAccept"></button>
+                <button class="fnl-decline" id="fnlStrategyDecline">No thanks, continue to checkout</button>
             </div>
 
             <!-- ORDER SUMMARY -->
@@ -2619,13 +2626,17 @@
             { id: 'snapshot',   name: 'Performance Snapshot Report',  price: 29, desc: 'Report on spins, downloads & DJ feedback.',            fromTier: 'elite' },
             { id: 'priority',   name: 'Priority DJ Call Placement',   price: 49, desc: 'Your record jumps to the front of the DJ call queue.', fromTier: 'elite' }
         ];
+        const FNL_STRATEGY = {
+            name: 'Artist Boost Strategy Session (30-Min Zoom)',
+            price: 50
+        };
         const FNL_DOWNSELL = {
             name: 'DJ Blast Email Feature (Solo)',
             wasPrice: 99,
             price: 75,
             desc: 'Skip the full package for now. Get your record in front of the DJ network with the DJ blast email feature on its own, at a one-time discount.'
         };
-        const fnlState = { tier: null, upgraded: false, addons: [], downsellOnly: false };
+        const fnlState = { tier: null, upgraded: false, addons: [], strategy: false, downsellOnly: false };
         const fnl = id => document.getElementById(id);
         const fnlMoney = n => '$' + n;
 
@@ -2651,6 +2662,7 @@
             fnlState.tier = tierKey;
             fnlState.upgraded = false;
             fnlState.addons = [];
+            fnlState.strategy = false;
             fnlState.downsellOnly = false;
             fnl('funnelOverlay').classList.add('active');
             if (FNL_NEXT[tierKey]) fnlEnterUpsell(); else fnlEnterAddons();
@@ -2674,7 +2686,7 @@
         function fnlEnterAddons() {
             const rank = FNL_RANK[fnlCurrentTierKey()];
             const singles = FNL_SINGLES.filter(s => FNL_RANK[s.fromTier] > rank);
-            if (!singles.length) { fnlEnterSummary(); return; }
+            if (!singles.length) { fnlEnterStrategy(); return; }
             fnl('fnlAddonGrid').innerHTML = singles.map(s => `
                 <div class="fnl-addon ${fnlState.addons.includes(s.id) ? 'added' : ''}" data-id="${s.id}">
                     <div class="a-tag">${fnlTierData(s.fromTier).name} feature</div>
@@ -2711,7 +2723,16 @@
                 const s = FNL_SINGLES.find(x => x.id === id);
                 if (s) items.push({ tag: 'Add-On', name: s.name, price: s.price });
             });
+            if (fnlState.strategy) {
+                items.push({ tag: 'Strategy Session', name: FNL_STRATEGY.name, price: FNL_STRATEGY.price });
+            }
             return items;
+        }
+
+        function fnlEnterStrategy() {
+            fnl('fnlStrategyNow').textContent = fnlMoney(FNL_STRATEGY.price);
+            fnl('fnlStrategyAccept').textContent = `Yes, Add My Strategy Session for ${fnlMoney(FNL_STRATEGY.price)}`;
+            fnlShowPane('fnlStrategy');
         }
 
         function fnlEnterSummary() {
@@ -2758,8 +2779,10 @@
 
         fnl('fnlUpsellAccept').onclick = () => { fnlState.upgraded = true; fnlEnterAddons(); };
         fnl('fnlUpsellDecline').onclick = () => fnlEnterAddons();
-        fnl('fnlAddonsContinue').onclick = () => fnlEnterSummary();
-        fnl('fnlAddonsSkip').onclick = () => fnlEnterSummary();
+        fnl('fnlAddonsContinue').onclick = () => fnlEnterStrategy();
+        fnl('fnlAddonsSkip').onclick = () => fnlEnterStrategy();
+        fnl('fnlStrategyAccept').onclick = () => { fnlState.strategy = true; fnlEnterSummary(); };
+        fnl('fnlStrategyDecline').onclick = () => { fnlState.strategy = false; fnlEnterSummary(); };
         fnl('fnlPayBtn').onclick = () => fnlCheckout();
         fnl('fnlAbandon').onclick = () => fnlShowDownsell();
         fnl('fnlDownsellAccept').onclick = () => { fnlState.downsellOnly = true; fnlEnterSummary(); };
