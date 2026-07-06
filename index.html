@@ -1533,6 +1533,49 @@
             color: var(--text-muted);
         }
 
+        /* --- ARTIST BOOST FLYER --- */
+        .flyer-section { padding: 4rem 0; text-align: center; }
+        .flyer-link {
+            display: block; max-width: 620px; margin: 0 auto; text-decoration: none;
+            border-radius: 18px; transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .flyer-link:hover { transform: translateY(-4px); box-shadow: 0 18px 50px rgba(255, 184, 0, 0.3); }
+        .flyer-img { display: block; width: 100%; border-radius: 18px; }
+        .flyer-card {
+            background: linear-gradient(160deg, #4a0f26 0%, #2a0a2e 55%, #16081f 100%);
+            border: 1px solid rgba(255, 184, 0, 0.3); border-radius: 18px;
+            padding: 2rem 1.4rem; text-align: center; cursor: pointer;
+        }
+        .flyer-card .fc-brand { font-family: var(--font-head); font-style: italic; font-weight: 800; font-size: 1.4rem; letter-spacing: 3px; color: #fff; }
+        .fc-head { display: flex; gap: 1.2rem; align-items: center; justify-content: center; margin: 0.6rem 0 0.6rem; }
+        .fc-title { text-align: left; }
+        .fc-title .t1, .fc-title .t2 { display: block; font-family: var(--font-head); font-weight: 800; font-size: clamp(2.4rem, 9vw, 3.6rem); line-height: 0.92; letter-spacing: 1px; }
+        .fc-title .t1 { color: var(--accent-yellow); }
+        .fc-title .t2 { color: #fff; }
+        .fc-title .t3 { display: block; font-family: var(--font-head); font-weight: 800; font-size: 1.1rem; letter-spacing: 3px; color: var(--accent-yellow); margin-top: 0.25rem; }
+        .fc-price { border: 3px solid #fff; border-radius: 14px; padding: 0.6rem 0.9rem; }
+        .fc-price .p1 { font-family: var(--font-head); font-weight: 800; font-size: 2.4rem; line-height: 1; color: var(--accent-yellow); }
+        .fc-price .p2 { font-family: var(--font-head); font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; color: #fff; margin-top: 0.2rem; }
+        .fc-sub { color: #e8dce8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; max-width: 440px; margin: 0 auto 1rem; }
+        .fc-pill { display: inline-block; background: var(--accent-yellow); color: #2a0a2e; font-family: var(--font-head); font-weight: 800; font-size: 0.95rem; letter-spacing: 2px; padding: 4px 26px; border-radius: 18px; margin-bottom: 1rem; }
+        .fc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.55rem; margin-bottom: 1.1rem; }
+        .fc-item { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 184, 0, 0.25); border-radius: 10px; padding: 0.7rem 0.4rem; }
+        .fc-item .ico { display: block; font-size: 1.4rem; margin-bottom: 0.35rem; }
+        .fc-item b { display: block; font-family: var(--font-head); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.5px; color: #fff; margin-bottom: 0.25rem; }
+        .fc-item i { display: block; font-style: normal; font-size: 0.58rem; line-height: 1.3; color: #c9b5c9; }
+        .fc-line { font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; letter-spacing: 1px; color: #fff; margin-bottom: 1.1rem; }
+        .fc-line span { color: var(--accent-yellow); }
+        .fc-cta { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+        .fc-cta > div { border: 2px solid var(--accent-yellow); border-radius: 12px; padding: 0.6rem 1rem; font-family: var(--font-head); font-weight: 800; font-size: 0.85rem; letter-spacing: 0.5px; color: #fff; }
+        .fc-cta .c1 i { display: block; font-style: normal; color: var(--accent-yellow); font-size: 0.68rem; letter-spacing: 2.5px; margin-top: 0.25rem; }
+        .fc-cta .c2 i { display: block; font-style: normal; background: var(--accent-yellow); color: #2a0a2e; border-radius: 8px; padding: 2px 10px; margin-bottom: 0.3rem; font-size: 0.75rem; letter-spacing: 1.5px; }
+        @media (max-width: 640px) {
+            .fc-grid { grid-template-columns: repeat(2, 1fr); }
+            .fc-grid .fc-item:last-child { grid-column: 1 / -1; }
+            .fc-head { flex-direction: column; gap: 0.7rem; }
+            .fc-title { text-align: center; }
+        }
+
         /* --- SALES FUNNEL (modal only - scoped so it doesn't leak onto the
            Problem/Solution boxes, which share the .funnel-box class) --- */
         #funnelOverlay .funnel-box {
@@ -2130,6 +2173,44 @@
                 <div class="addons-grid" id="addons-grid">
                     <!-- Populated dynamically from API -->
                 </div>
+            </div>
+        </section>
+
+        <!-- ARTIST BOOST FLYER (clickable ad -> /artist-boost) -->
+        <section class="flyer-section" id="artist-boost-ad">
+            <div class="container">
+                <a href="/artist-boost" class="flyer-link animate-in" aria-label="Artist Boost Strategy Session - $50, 30-minute Zoom session with CL Llewellyn. Register now.">
+                    <img src="/artist-boost.jpg" alt="Digiwaxx Artist Boost Strategy Session - $50, 30-min Zoom session" class="flyer-img"
+                         onerror="this.style.display='none';document.getElementById('flyerFallback').style.display='block';">
+                    <div class="flyer-card" id="flyerFallback" style="display:none">
+                        <div class="fc-brand">DIGIWAXX</div>
+                        <div class="fc-head">
+                            <div class="fc-title">
+                                <span class="t1">ARTIST</span>
+                                <span class="t2">BOOST</span>
+                                <span class="t3">STRATEGY SESSION</span>
+                            </div>
+                            <div class="fc-price">
+                                <div class="p1">$50</div>
+                                <div class="p2">30 MIN<br>ZOOM SESSION</div>
+                            </div>
+                        </div>
+                        <p class="fc-sub">A 1-on-1 strategy session with CL Llewellyn, music marketing expert, founder &amp; CEO of Digiwaxx.</p>
+                        <div class="fc-pill">WHAT YOU GET</div>
+                        <div class="fc-grid">
+                            <div class="fc-item"><span class="ico">&#127911;</span><b>I LISTEN TO YOUR MUSIC</b><i>Live feedback on your sound &amp; potential</i></div>
+                            <div class="fc-item"><span class="ico">&#127916;</span><b>WE REVIEW YOUR VISUALS</b><i>Video strategy tips &amp; branding insights</i></div>
+                            <div class="fc-item"><span class="ico">&#128200;</span><b>WE ANALYZE YOUR STREAMS</b><i>Understand your numbers &amp; growth opportunities</i></div>
+                            <div class="fc-item"><span class="ico">&#128269;</span><b>WE CHECK YOUR PRESS &amp; SEO</b><i>Evaluate your online presence &amp; media visibility</i></div>
+                            <div class="fc-item"><span class="ico">&#127919;</span><b>YOU GET A ROADMAP</b><i>A custom plan to grow using Digiwaxx &amp; other key services</i></div>
+                        </div>
+                        <p class="fc-line">YOU GET A CLEAR PLAN. REAL ADVICE.<br><span>NO GUESSWORK. JUST STRATEGY.</span></p>
+                        <div class="fc-cta">
+                            <div class="c1">READY TO LEVEL UP?<br>BOOK YOUR SESSION TODAY!<i>SPACES ARE LIMITED.</i></div>
+                            <div class="c2"><i>REGISTER NOW</i>DIGIWAXX.COM/ARTIST-BOOST</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </section>
 

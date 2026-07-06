@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Boost Strategy Session — $50 | Digiwaxx</title>
+    <meta name="description" content="A 1-on-1 30-minute Zoom strategy session with CL Llewellyn, music marketing expert, founder & CEO of Digiwaxx. $50. You get a clear plan. Real advice. No guesswork. Just strategy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-head: 'Barlow Condensed', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --yellow: #FFB800;
+            --dark: #16081f;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { background: #16081f; }
+        body {
+            font-family: var(--font-body);
+            /* no background-attachment:fixed — iOS Safari paints white past the first viewport */
+            background: linear-gradient(160deg, #4a0f26 0%, #2a0a2e 45%, #16081f 100%) no-repeat;
+            background-size: 100% 100%;
+            color: #fff; text-align: center; min-height: 100vh;
+        }
+        .wrap { max-width: 720px; margin: 0 auto; padding: 2.2rem 1.2rem 3.5rem; }
+        .brand { font-family: var(--font-head); font-style: italic; font-weight: 800; font-size: 1.6rem; letter-spacing: 3px; color: #fff; text-decoration: none; display: inline-block; }
+        .head { display: flex; gap: 1.4rem; align-items: center; justify-content: center; margin: 1.4rem 0 0.8rem; flex-wrap: wrap; }
+        .title { text-align: left; }
+        .title .t1, .title .t2 { display: block; font-family: var(--font-head); font-weight: 800; font-size: clamp(3rem, 12vw, 4.6rem); line-height: 0.92; letter-spacing: 1px; }
+        .title .t1 { color: var(--yellow); }
+        .title .t2 { color: #fff; }
+        .title .t3 { display: block; font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; letter-spacing: 4px; color: var(--yellow); margin-top: 0.3rem; }
+        .price-badge { border: 3px solid #fff; border-radius: 16px; padding: 0.8rem 1.2rem; }
+        .price-badge .p1 { font-family: var(--font-head); font-weight: 800; font-size: 3rem; line-height: 1; color: var(--yellow); }
+        .price-badge .p2 { font-family: var(--font-head); font-weight: 700; font-size: 0.95rem; letter-spacing: 1px; color: #fff; margin-top: 0.25rem; }
+        .sub { color: #e8dce8; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; max-width: 520px; margin: 0 auto 1.6rem; line-height: 1.5; }
+        .pill { display: inline-block; background: var(--yellow); color: #2a0a2e; font-family: var(--font-head); font-weight: 800; font-size: 1.1rem; letter-spacing: 2px; padding: 5px 30px; border-radius: 20px; margin-bottom: 1.2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0.8rem; margin-bottom: 1.6rem; text-align: left; }
+        .item { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 184, 0, 0.3); border-radius: 12px; padding: 1rem; display: flex; gap: 0.7rem; align-items: flex-start; }
+        .item .ico { font-size: 1.5rem; line-height: 1; }
+        .item b { display: block; font-family: var(--font-head); font-weight: 800; font-size: 0.95rem; letter-spacing: 0.5px; color: #fff; margin-bottom: 0.2rem; }
+        .item i { font-style: normal; font-size: 0.8rem; line-height: 1.4; color: #c9b5c9; }
+        .line { font-family: var(--font-head); font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; color: #fff; margin-bottom: 1.6rem; }
+        .line span { color: var(--yellow); }
+        .book-btn {
+            display: block; width: 100%; max-width: 480px; margin: 0 auto 0.8rem;
+            font-family: var(--font-head); font-weight: 800; font-size: 1.5rem; letter-spacing: 1.5px; text-transform: uppercase;
+            background: linear-gradient(180deg, #FFE066 0%, var(--yellow) 100%); color: var(--dark);
+            border: none; border-radius: 12px; padding: 1.1rem 1.5rem; cursor: pointer; text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .book-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 184, 0, 0.45); }
+        .limited { font-family: var(--font-head); font-weight: 800; letter-spacing: 3px; color: var(--yellow); font-size: 0.85rem; margin-bottom: 1.6rem; }
+        .secure { font-size: 0.8rem; color: #c9b5c9; margin-bottom: 1.8rem; }
+        .questions { font-size: 0.9rem; color: #e8dce8; }
+        .questions a { color: var(--yellow); font-weight: 700; text-decoration: none; }
+        .questions a:hover { text-decoration: underline; }
+        .back { display: inline-block; margin-top: 2rem; color: #c9b5c9; font-size: 0.85rem; }
+        .back:hover { color: #fff; }
+        .toast {
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120px);
+            background: var(--yellow); color: var(--dark); font-weight: 700; padding: 12px 22px;
+            border-radius: 10px; transition: transform 0.35s ease, opacity 0.35s ease; z-index: 50;
+            opacity: 0; pointer-events: none;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <a class="brand" href="/">DIGIWAXX</a>
+
+        <div class="head">
+            <div class="title">
+                <span class="t1">ARTIST</span>
+                <span class="t2">BOOST</span>
+                <span class="t3">STRATEGY SESSION</span>
+            </div>
+            <div class="price-badge">
+                <div class="p1">$50</div>
+                <div class="p2">30 MIN<br>ZOOM SESSION</div>
+            </div>
+        </div>
+
+        <p class="sub">A 1-on-1 strategy session with CL Llewellyn, music marketing expert, founder &amp; CEO of Digiwaxx.</p>
+
+        <div class="pill">WHAT YOU GET</div>
+        <div class="grid">
+            <div class="item"><span class="ico">&#127911;</span><div><b>I LISTEN TO YOUR MUSIC</b><i>Live feedback on your sound &amp; potential</i></div></div>
+            <div class="item"><span class="ico">&#127916;</span><div><b>WE REVIEW YOUR VISUALS</b><i>Video strategy tips &amp; branding insights</i></div></div>
+            <div class="item"><span class="ico">&#128200;</span><div><b>WE ANALYZE YOUR STREAMS</b><i>Understand your numbers &amp; growth opportunities</i></div></div>
+            <div class="item"><span class="ico">&#128269;</span><div><b>WE CHECK YOUR PRESS &amp; SEO</b><i>Evaluate your online presence &amp; media visibility</i></div></div>
+            <div class="item"><span class="ico">&#127919;</span><div><b>YOU GET A ROADMAP</b><i>A custom plan to grow using Digiwaxx &amp; other key services</i></div></div>
+        </div>
+
+        <p class="line">YOU GET A CLEAR PLAN. REAL ADVICE.<br><span>NO GUESSWORK. JUST STRATEGY.</span></p>
+
+        <a href="#" class="book-btn" id="bookBtn">Book My Session &mdash; $50 &rarr;</a>
+        <div class="limited">SPACES ARE LIMITED.</div>
+        <p class="secure">&#128274; Secure PayPal checkout &middot; After payment we'll email you to schedule your Zoom.</p>
+
+        <p class="questions">Questions? <a href="mailto:info@digiwaxx.com">INFO@DIGIWAXX.COM</a></p>
+
+        <a class="back" href="/">&larr; Back to Digiwaxx</a>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        var PRICE = 50;
+        var paypalUsername = 'digiwaxx';
+
+        fetch('/api/site-content').then(function (r) { return r.json(); }).then(function (c) {
+            if (c.paypal_username) paypalUsername = c.paypal_username;
+        }).catch(function () {});
+
+        fetch('/api/pageview', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ page: window.location.pathname, referrer: document.referrer || null })
+        }).catch(function () {});
+
+        function showToast(msg) {
+            var t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(function () { t.classList.remove('show'); }, 3500);
+        }
+
+        document.getElementById('bookBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+            fetch('/api/paypal-click', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tier: 'artist_boost', price: PRICE }),
+                keepalive: true
+            }).catch(function () {});
+            showToast('Redirecting to PayPal...');
+            // Same-tab navigation: window.open shows a blank page in in-app browsers
+            window.location.href = 'https://paypal.me/' + paypalUsername + '/' + PRICE;
+        });
+    </script>
+</body>
+</html>
