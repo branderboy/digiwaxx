@@ -2304,6 +2304,21 @@
                 <button class="fnl-decline" id="fnlStrategyDecline">No thanks, continue to checkout</button>
             </div>
 
+            <!-- GUEST POST UPSELL -->
+            <div class="funnel-pane" id="fnlGuest">
+                <div class="fnl-eyebrow">One Last Thing</div>
+                <h2>Get a Guest Post on Digiwaxx.com?</h2>
+                <p class="fnl-desc">Your own feature published on Digiwaxx.com &mdash; the platform trusted by 30,000+ DJs since 1998. A permanent page about you and your record that works for you around the clock.</p>
+                <ul class="fnl-list">
+                    <li>A feature article about you &amp; your record on Digiwaxx.com</li>
+                    <li>A permanent link to share with press, playlists &amp; promoters</li>
+                    <li>Strengthens your press presence &amp; search results</li>
+                </ul>
+                <div class="fnl-price-line"><span class="now" id="fnlGuestNow"></span> <span class="sub">Published on digiwaxx.com</span></div>
+                <button class="fnl-accept" id="fnlGuestAccept"></button>
+                <button class="fnl-decline" id="fnlGuestDecline">No thanks, continue to checkout</button>
+            </div>
+
             <!-- ORDER SUMMARY -->
             <div class="funnel-pane" id="fnlSummary">
                 <h2>Your Order</h2>
@@ -2630,13 +2645,17 @@
             name: 'Artist Boost Strategy Session (30-Min Zoom)',
             price: 50
         };
+        const FNL_GUEST = {
+            name: 'Guest Post on Digiwaxx.com',
+            price: 35
+        };
         const FNL_DOWNSELL = {
             name: 'DJ Blast Email Feature (Solo)',
             wasPrice: 99,
             price: 75,
             desc: 'Skip the full package for now. Get your record in front of the DJ network with the DJ blast email feature on its own, at a one-time discount.'
         };
-        const fnlState = { tier: null, upgraded: false, addons: [], strategy: false, downsellOnly: false };
+        const fnlState = { tier: null, upgraded: false, addons: [], strategy: false, guestpost: false, downsellOnly: false };
         const fnl = id => document.getElementById(id);
         const fnlMoney = n => '$' + n;
 
@@ -2663,6 +2682,7 @@
             fnlState.upgraded = false;
             fnlState.addons = [];
             fnlState.strategy = false;
+            fnlState.guestpost = false;
             fnlState.downsellOnly = false;
             fnl('funnelOverlay').classList.add('active');
             if (FNL_NEXT[tierKey]) fnlEnterUpsell(); else fnlEnterAddons();
@@ -2726,6 +2746,9 @@
             if (fnlState.strategy) {
                 items.push({ tag: 'Strategy Session', name: FNL_STRATEGY.name, price: FNL_STRATEGY.price });
             }
+            if (fnlState.guestpost) {
+                items.push({ tag: 'Guest Post', name: FNL_GUEST.name, price: FNL_GUEST.price });
+            }
             return items;
         }
 
@@ -2733,6 +2756,12 @@
             fnl('fnlStrategyNow').textContent = fnlMoney(FNL_STRATEGY.price);
             fnl('fnlStrategyAccept').textContent = `Yes, Add My Strategy Session for ${fnlMoney(FNL_STRATEGY.price)}`;
             fnlShowPane('fnlStrategy');
+        }
+
+        function fnlEnterGuest() {
+            fnl('fnlGuestNow').textContent = fnlMoney(FNL_GUEST.price);
+            fnl('fnlGuestAccept').textContent = `Yes, Add My Guest Post for ${fnlMoney(FNL_GUEST.price)}`;
+            fnlShowPane('fnlGuest');
         }
 
         function fnlEnterSummary() {
@@ -2781,8 +2810,10 @@
         fnl('fnlUpsellDecline').onclick = () => fnlEnterAddons();
         fnl('fnlAddonsContinue').onclick = () => fnlEnterStrategy();
         fnl('fnlAddonsSkip').onclick = () => fnlEnterStrategy();
-        fnl('fnlStrategyAccept').onclick = () => { fnlState.strategy = true; fnlEnterSummary(); };
-        fnl('fnlStrategyDecline').onclick = () => { fnlState.strategy = false; fnlEnterSummary(); };
+        fnl('fnlStrategyAccept').onclick = () => { fnlState.strategy = true; fnlEnterGuest(); };
+        fnl('fnlStrategyDecline').onclick = () => { fnlState.strategy = false; fnlEnterGuest(); };
+        fnl('fnlGuestAccept').onclick = () => { fnlState.guestpost = true; fnlEnterSummary(); };
+        fnl('fnlGuestDecline').onclick = () => { fnlState.guestpost = false; fnlEnterSummary(); };
         fnl('fnlPayBtn').onclick = () => fnlCheckout();
         fnl('fnlAbandon').onclick = () => fnlShowDownsell();
         fnl('fnlDownsellAccept').onclick = () => { fnlState.downsellOnly = true; fnlEnterSummary(); };
