@@ -10,6 +10,7 @@ const { SITE_URL, CATEGORIES, esc, pageUrl, renderPage, nav, footer } = require(
 const ROOT = path.resolve(__dirname, '..', '..');
 
 const pages = [
+  ...require('./data/campaigns'),
   ...require('./data/guides-before'),
   ...require('./data/guides-after'),
   ...require('./data/goals'),
@@ -46,8 +47,9 @@ for (const p of pages) {
 }
 
 // ---- University hub (Layer 10 authority cluster index) ----
-const catOrder = ['guides', 'goals', 'answers', 'promotion', 'journey', 'tools', 'stories'];
+const catOrder = ['campaigns', 'guides', 'goals', 'answers', 'promotion', 'journey', 'tools', 'stories'];
 const catDescriptions = {
+  campaigns: 'Complete sample campaigns you can launch as-is — dated, step-by-step, from Day 1 to done.',
   guides: 'Step-by-step playbooks for every stage of a release — before the drop and after it.',
   goals: 'Start from what you want — fans, bookings, club plays, spins — and work backward.',
   answers: 'One page, one question, answered straight: DJs, record pools, playlists, radio.',

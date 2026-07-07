@@ -262,7 +262,7 @@ module.exports = [
       { q: 'Can I roll out a single in two weeks?', a: 'You can, but you sacrifice editorial pitching (needs lead time) and pre-release DJ service. If the record is time-sensitive, compress weeks 6–4 into a few days — but keep distribution at least two weeks ahead of release.' },
       { q: 'How long should I promote a single before moving on?', a: 'Six to eight weeks minimum after release. Most artists quit at two weeks, exactly when DJ spins, playlist adds, and algorithmic traction typically start compounding.' },
     ],
-    related: ['how-to-release-a-single', 'music-marketing-checklist', 'how-to-build-anticipation', 'how-many-songs-should-i-release'],
+    related: ['60-day-release-plan', 'how-to-release-a-single', 'music-marketing-checklist', 'how-to-build-anticipation'],
   },
   {
     slug: 'best-day-to-release-music',
