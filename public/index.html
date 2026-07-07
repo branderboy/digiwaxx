@@ -1533,34 +1533,9 @@
             color: var(--text-muted);
         }
 
-        /* --- STRATEGY SESSION PRODUCT --- */
+        /* --- STRATEGY SESSION PRODUCT (same card design as the pricing tiers) --- */
         .session-section { padding: 4rem 0; }
-        .session-card {
-            max-width: 640px; margin: 0 auto; text-align: center;
-            background: rgba(255, 255, 255, 0.03); border: 2px solid var(--accent-yellow);
-            border-radius: 16px; padding: 2.5rem 2rem;
-        }
-        .session-eyebrow {
-            display: inline-block; background: rgba(255,184,0,0.15); color: var(--accent-yellow);
-            font-family: var(--font-head); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-            font-size: 0.85rem; padding: 5px 16px; border-radius: 20px; margin-bottom: 1rem;
-        }
-        .session-card h2 { color: #fff; margin-bottom: 0.6rem; }
-        .session-price { font-family: var(--font-head); font-size: 2.6rem; font-weight: 800; color: var(--accent-yellow); margin-bottom: 0.8rem; }
-        .session-price span { font-size: 1rem; color: var(--text-muted); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-left: 0.3rem; }
-        .session-desc { color: var(--text-muted); margin-bottom: 1.3rem; }
-        .session-list { list-style: none; text-align: left; max-width: 420px; margin: 0 auto 1.6rem; padding: 0; }
-        .session-list li { padding: 0.3rem 0 0.3rem 1.6rem; position: relative; color: #fff; font-size: 0.95rem; }
-        .session-list li::before { content: '+'; position: absolute; left: 0; color: var(--accent-yellow); font-weight: 700; }
-        .session-btn {
-            display: inline-block; font-family: var(--font-head); font-weight: 800; font-size: 1.35rem;
-            letter-spacing: 1px; text-transform: uppercase;
-            background: linear-gradient(180deg, #FFE066 0%, var(--accent-yellow) 100%);
-            color: var(--bg-dark); border-radius: 10px; padding: 0.95rem 2.2rem; text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .session-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,184,0,0.4); }
-        .session-note { font-family: var(--font-head); font-weight: 700; color: var(--accent-yellow); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-top: 0.9rem; }
+        .session-section .pricing-card { max-width: 420px; margin: 1.5rem auto 0; }
 
         /* --- SALES FUNNEL (modal only - scoped so it doesn't leak onto the
            Problem/Solution boxes, which share the .funnel-box class) --- */
@@ -2162,23 +2137,33 @@
             </div>
         </section>
 
-        <!-- STRATEGY SESSION - STANDALONE PRODUCT -->
+        <!-- STRATEGY SESSION - STANDALONE PRODUCT (mirrors the tier card design) -->
         <section class="session-section" id="strategy-session">
             <div class="container">
-                <div class="session-card animate-in">
-                    <div class="session-eyebrow">1-on-1 With the CEO</div>
-                    <h2 class="font-head">ARTIST BOOST STRATEGY SESSION</h2>
-                    <div class="session-price">$50 <span>30-min Zoom session</span></div>
-                    <p class="session-desc">A 1-on-1 strategy session with CL Llewellyn, music marketing expert, founder &amp; CEO of Digiwaxx. You get a clear plan. Real advice. No guesswork. Just strategy.</p>
-                    <ul class="session-list">
-                        <li>I listen to your music &mdash; live feedback on your sound &amp; potential</li>
-                        <li>We review your visuals &mdash; video strategy tips &amp; branding insights</li>
-                        <li>We analyze your streams &mdash; understand your numbers &amp; growth opportunities</li>
-                        <li>We check your press &amp; SEO &mdash; evaluate your online presence &amp; media visibility</li>
-                        <li>You get a roadmap &mdash; a custom plan to grow using Digiwaxx &amp; other key services</li>
-                    </ul>
-                    <a href="#" class="session-btn" onclick="event.preventDefault(); openSessionFunnel();">Book My Session &mdash; $50 &rarr;</a>
-                    <p class="session-note">Spaces are limited.</p>
+                <h2 class="text-white text-center">1-ON-1 ARTIST BOOST STRATEGY SESSION</h2>
+                <p class="text-center addons-subtitle">A private Zoom session with CL Llewellyn, music marketing expert, founder &amp; CEO of Digiwaxx.</p>
+                <div class="pricing-card animate-in">
+                    <div class="card-header">
+                        <h3 class="text-pink tier-name">STRATEGY SESSION</h3>
+                        <div class="price">$50</div>
+                        <div class="price-label">One-time payment</div>
+                        <div class="tagline italic bold">30 Minutes, 1-on-1 on Zoom</div>
+                    </div>
+                    <div class="card-body">
+                        <p>You get a clear plan. Real advice. No guesswork. Just strategy.</p>
+                        <ul class="custom-bullets text-white tier-features">
+                            <li>Live feedback on your sound &amp; potential</li>
+                            <li>Video strategy tips &amp; branding insights</li>
+                            <li>Stream analysis: your numbers &amp; growth opportunities</li>
+                            <li>Press &amp; SEO check: online presence &amp; media visibility</li>
+                            <li>A custom roadmap to grow using Digiwaxx &amp; other key services</li>
+                        </ul>
+                        <a href="#" class="btn-buy" onclick="event.preventDefault(); openSessionFunnel();"><span>BOOK MY SESSION &rarr;</span></a>
+                        <div class="paypal-note">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm0-8h2v6h-2V9z"/></svg>
+                            Secure PayPal checkout
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
