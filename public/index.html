@@ -2713,7 +2713,7 @@
             fnlState.guestpost = false;
             fnlState.downsellOnly = false;
             fnl('funnelOverlay').classList.add('active');
-            fnlEnterGuest();
+            fnlEnterSummary();
         }
         function closeFunnel() { fnl('funnelOverlay').classList.remove('active'); }
 
@@ -2734,7 +2734,7 @@
         function fnlEnterAddons() {
             const rank = FNL_RANK[fnlCurrentTierKey()];
             const singles = FNL_SINGLES.filter(s => FNL_RANK[s.fromTier] > rank);
-            if (!singles.length) { fnlEnterGuest(); return; }
+            if (!singles.length) { fnlAfterAddons(); return; }
             fnl('fnlAddonGrid').innerHTML = singles.map(s => `
                 <div class="fnl-addon ${fnlState.addons.includes(s.id) ? 'added' : ''}" data-id="${s.id}">
                     <div class="a-tag">${fnlTierData(s.fromTier).name} feature</div>
@@ -2790,6 +2790,13 @@
             fnlShowPane('fnlGuest');
         }
 
+        // Guest post is only offered on the Starter ($99) and Pro ($149) packages.
+        function fnlAfterAddons() {
+            const key = fnlCurrentTierKey();
+            if (key === 'starter' || key === 'pro') fnlEnterGuest();
+            else fnlEnterSummary();
+        }
+
         function fnlEnterSummary() {
             const items = fnlOrderItems();
             const total = items.reduce((sum, i) => sum + i.price, 0);
@@ -2834,8 +2841,8 @@
 
         fnl('fnlUpsellAccept').onclick = () => { fnlState.upgraded = true; fnlEnterAddons(); };
         fnl('fnlUpsellDecline').onclick = () => fnlEnterAddons();
-        fnl('fnlAddonsContinue').onclick = () => fnlEnterGuest();
-        fnl('fnlAddonsSkip').onclick = () => fnlEnterGuest();
+        fnl('fnlAddonsContinue').onclick = () => fnlAfterAddons();
+        fnl('fnlAddonsSkip').onclick = () => fnlAfterAddons();
         fnl('fnlGuestAccept').onclick = () => { fnlState.guestpost = true; fnlEnterSummary(); };
         fnl('fnlGuestDecline').onclick = () => { fnlState.guestpost = false; fnlEnterSummary(); };
         fnl('fnlPayBtn').onclick = () => fnlCheckout();
