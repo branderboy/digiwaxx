@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Release Budget Calculator for Independent Artists | Digiwaxx</title>
+    <meta name="description" content="Enter your budget and release stage — get a recommended allocation across packaging, DJ service, content, and pitching, in priority order.">
+    <link rel="canonical" href="https://digiwaxx.com/tools/release-budget-calculator">
+    <meta property="og:title" content="Free Release Budget Calculator for Independent Artists | Digiwaxx">
+    <meta property="og:description" content="Enter your budget and release stage — get a recommended allocation across packaging, DJ service, content, and pitching, in priority order.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://digiwaxx.com/tools/release-budget-calculator">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/content.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Release Budget Calculator","description":"Enter your budget and release stage — get a recommended allocation across packaging, DJ service, content, and pitching, in priority order.","url":"https://digiwaxx.com/tools/release-budget-calculator","author":{"@type":"Organization","name":"Digiwaxx","url":"https://digiwaxx.com"},"publisher":{"@type":"Organization","name":"Digiwaxx","url":"https://digiwaxx.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Digiwaxx","item":"https://digiwaxx.com/"},{"@type":"ListItem","position":2,"name":"University","item":"https://digiwaxx.com/university"},{"@type":"ListItem","position":3,"name":"Tools","item":"https://digiwaxx.com/university#tools"},{"@type":"ListItem","position":4,"name":"Release Budget Calculator","item":"https://digiwaxx.com/tools/release-budget-calculator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does DJ service rank above ads in this calculator?","acceptedAnswer":{"@type":"Answer","text":"Because ads amplify momentum but rarely create it. DJ service generates real-world plays, honest feedback, and reusable proof — assets that make every later dollar (including ad dollars) work harder."}},{"@type":"Question","name":"What if my budget is under $100?","acceptedAnswer":{"@type":"Answer","text":"Spend it on packaging: a clean edit and a solid master. A properly packaged record can be serviced and pitched credibly; an unmastered explicit-only file cannot — at any promotion budget."}}]}</script>
+
+</head>
+<body>
+
+<nav class="cnav">
+  <div class="cnav-inner">
+    <a class="cnav-logo" href="/">DIGI<span>WAXX</span></a>
+    <div class="cnav-links">
+      <a href="/university">University</a>
+      <a href="/university#guides">Guides</a>
+      <a href="/university#answers">Answers</a>
+      <a href="/university#promotion">Cities &amp; Platforms</a>
+      <a href="/university#tools">Tools</a>
+    </div>
+    <a class="cnav-cta" href="/#pricing">Submit Your Record &rarr;</a>
+  </div>
+</nav>
+<main class="cmain">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/university">University</a> / <a href="/university#tools">Tools</a>
+  </div>
+  <article>
+    <h1>Release Budget Calculator</h1>
+    <p class="page-question">How should I split my music promotion budget?</p>
+
+<div class="quick-answer">
+  <p class="qa-label">Quick Answer</p>
+  <p class="qa-text">Allocate in priority order: packaging first (mastering, clean and instrumental versions), DJ service second (real-world exposure and proof), then content, then pitching. Enter your numbers below for a concrete split.</p>
+</div>
+
+
+<div class="tool-card">
+  <h3>Your Release Budget</h3>
+  <div class="calc-field">
+    <label for="budget">Total budget for this release ($)</label>
+    <input type="number" id="budget" min="0" step="25" value="500" inputmode="numeric">
+  </div>
+  <div class="calc-field">
+    <label for="stage">Where is the record right now?</label>
+    <select id="stage">
+      <option value="pre">Not released yet</option>
+      <option value="post">Already released</option>
+    </select>
+  </div>
+  <div class="calc-field">
+    <label for="mastered">Is it professionally mastered with clean &amp; instrumental versions?</label>
+    <select id="mastered">
+      <option value="no">Not yet</option>
+      <option value="yes">Yes, all versions ready</option>
+    </select>
+  </div>
+</div>
+<div class="calc-result" id="calcResult">
+  <h3>Recommended Allocation</h3>
+  <div id="calcLines"></div>
+  <div class="calc-total"><span>Total</span><span class="v" id="calcTotal"></span></div>
+  <p id="calcNote" style="margin:1rem 0 0;font-size:0.9rem;"></p>
+</div>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function money(n) { return '$' + Math.round(n); }
+  function update() {
+    var budget = Math.max(0, parseFloat($('budget').value) || 0);
+    var needsPackaging = $('mastered').value === 'no';
+    var pre = $('stage').value === 'pre';
+    var lines = [];
+    var remaining = budget;
+
+    if (needsPackaging) {
+      var pack = Math.min(remaining, Math.max(100, budget * 0.3));
+      lines.push(['Packaging: mastering + clean/instrumental edits', pack,
+        'Non-negotiable — this multiplies who can play the record.']);
+      remaining -= pack;
+    }
+    var dj = Math.min(remaining, Math.max(99, remaining * 0.45));
+    if (remaining > 0) {
+      lines.push(['DJ service (record pool campaign)', dj,
+        'Real-world exposure and the proof every other channel responds to.']);
+      remaining -= dj;
+    }
+    if (remaining > 0) {
+      var content = remaining * (pre ? 0.55 : 0.65);
+      lines.push(['Content: clips, visualizer, reaction footage', content, '']);
+      remaining -= content;
+    }
+    if (remaining > 0) {
+      lines.push([pre ? 'Pre-save push & curator pitching' : 'Curator & mixshow pitching with your proof', remaining, '']);
+    }
+
+    $('calcLines').innerHTML = lines.map(function (l) {
+      return '<div class="calc-line"><span>' + l[0] + '</span><span class="v">' + money(l[1]) + '</span></div>';
+    }).join('');
+    $('calcTotal').textContent = money(budget);
+    $('calcNote').textContent = budget < 200
+      ? 'Tight budget? Prioritize packaging and DJ service — skip paid content until the record has real reactions to film.'
+      : (pre ? 'Spend the DJ service line 2–3 weeks before release day so rooms are testing the record in week one.'
+             : 'Released records take DJ service every day — the pool doesn’t care about your release date, only whether the record works.');
+  }
+  ['budget', 'stage', 'mastered'].forEach(function (id) {
+    $(id).addEventListener('input', update);
+    $(id).addEventListener('change', update);
+  });
+  update();
+})();
+</script>
+
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-n">30,000+</div><div class="stat-l">DJs in the Digiwaxx network</div></div>
+  <div class="stat"><div class="stat-n">1998</div><div class="stat-l">Serving records to DJs since</div></div>
+  <div class="stat"><div class="stat-n">~100K</div><div class="stat-l">Tracks uploaded to streaming daily — you need more than an upload</div></div>
+</div>
+
+<section class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <details><summary>Why does DJ service rank above ads in this calculator?</summary><div class="faq-a"><p>Because ads amplify momentum but rarely create it. DJ service generates real-world plays, honest feedback, and reusable proof — assets that make every later dollar (including ad dollars) work harder.</p></div></details>
+  <details><summary>What if my budget is under $100?</summary><div class="faq-a"><p>Spend it on packaging: a clean edit and a solid master. A properly packaged record can be serviced and pitched credibly; an unmastered explicit-only file cannot — at any promotion budget.</p></div></details>
+</section>
+
+<section class="related">
+  <h2>Keep Going</h2>
+  <div class="related-grid">
+    <a class="related-card" href="/tools/release-day-checklist"><span class="related-cat">Tools</span><span class="related-t">Release Day Checklist</span></a>
+    <a class="related-card" href="/guides/music-promotion-for-beginners"><span class="related-cat">Guides</span><span class="related-t">Music Promotion for Beginners</span></a>
+    <a class="related-card" href="/answers/is-spotify-playlist-promotion-worth-it"><span class="related-cat">Answers</span><span class="related-t">Is Spotify Playlist Promotion Worth It?</span></a>
+    <a class="related-card" href="/guides/how-to-promote-a-single-after-release"><span class="related-cat">Guides</span><span class="related-t">How to Promote a Single After Release</span></a>
+  </div>
+</section>
+
+<section class="cta-block">
+  <p class="cta-kicker">Need help?</p>
+  <h2>Submit your record.</h2>
+  <p class="cta-sub">Put the DJ-service line of your budget to work — 30,000+ DJs, one submission.</p>
+  <a class="cta-btn" href="/#pricing">Submit Your Record &rarr;</a>
+  <p class="cta-tiers">Starter $99 &middot; Pro $149 &middot; Elite $199 &mdash; one-time payment, no contracts.</p>
+</section>
+
+<div class="funnel-strip">
+  <span>Question</span><i>&rarr;</i><span>Guide</span><i>&rarr;</i>
+  <a href="/university">University</a><i>&rarr;</i>
+  <a href="/#pricing">Pricing</a><i>&rarr;</i>
+  <a href="/#pricing"><b>Submit Your Record</b></a>
+</div>
+  </article>
+</main>
+
+<footer class="cfooter">
+  <div class="cfooter-inner">
+    <div class="cfooter-brand">DIGI<span>WAXX</span><p>Trusted by 30,000+ DJs since 1998.</p>
+      <a class="cfooter-cta" href="/#pricing">Submit Your Record &rarr;</a>
+      <a class="cfooter-hub" href="/university">Browse Digiwaxx University &rarr;</a>
+    </div>
+    <div class="cfooter-cols">
+      <div class="cfooter-col"><h4><a href="/university#guides">Release &amp; Promotion Guides</a></h4>
+        <a href="/guides/my-song-isnt-getting-streams">Song Isn't Getting Streams</a>
+        <a href="/guides/how-to-promote-a-single-after-release">Promote After Release</a>
+        <a href="/guides/how-to-release-a-single">How to Release a Single</a>
+        <a href="/guides/how-to-promote-a-rap-song">Promote a Rap Song</a>
+        <a href="/guides/how-to-get-djs-to-play-my-song">Get DJs to Play Your Song</a>
+        <a class="cfooter-more" href="/university#guides">View all 18 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/university#goals">Artist Goals</a></h4>
+        <a href="/goals/get-more-fans">Get More Fans</a>
+        <a href="/goals/get-club-plays">Get Club Plays</a>
+        <a href="/goals/get-booked-for-shows">Get Booked</a>
+        <a href="/goals/grow-spotify-listeners">Grow Spotify Listeners</a>
+        <a href="/goals/get-playlist-placement">Get Playlist Placement</a>
+        <a class="cfooter-more" href="/university#goals">View all 6 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/university#answers">Straight Answers</a></h4>
+        <a href="/answers/does-dj-promotion-still-work">Does DJ Promotion Still Work?</a>
+        <a href="/answers/how-record-pools-work">How Record Pools Work</a>
+        <a href="/answers/is-spotify-playlist-promotion-worth-it">Is Playlist Promotion Worth It?</a>
+        <a href="/answers/do-djs-still-break-records">Do DJs Still Break Records?</a>
+        <a href="/answers/what-is-a-record-pool">What Is a Record Pool?</a>
+        <a class="cfooter-more" href="/university#answers">View all 8 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/university#promotion">Promotion Hubs</a></h4>
+        <a href="/promotion/spotify-playlist-promotion">Spotify Promotion</a>
+        <a href="/promotion/music-promotion-atlanta">Music Promotion Atlanta</a>
+        <a href="/promotion/music-promotion-new-york">Music Promotion New York</a>
+        <a href="/promotion/hip-hop-promotion-atlanta">Hip Hop — Atlanta</a>
+        <a href="/promotion/apple-music-promotion">Apple Music Promotion</a>
+        <a class="cfooter-more" href="/university#promotion">View all 22 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/university#journey">The Artist Journey</a></h4>
+        <a href="/journey/i-made-a-song">Stage 1: I Made a Song</a>
+        <a href="/journey/i-need-people">Stage 3: I Need People</a>
+        <a href="/journey/i-released-it">Stage 2: I Released It</a>
+        <a href="/journey/im-getting-traction">Stage 4: Getting Traction</a></div>
+      <div class="cfooter-col"><h4><a href="/university#tools">Free Artist Tools</a></h4>
+        <a href="/tools/release-day-checklist">Release Day Checklist (Tool)</a>
+        <a href="/tools/release-budget-calculator">Release Budget Calculator</a></div>
+    </div>
+  </div>
+  <p class="cfooter-copy">&copy; 2026 Digiwaxx Media. All rights reserved.</p>
+</footer>
+</body>
+</html>

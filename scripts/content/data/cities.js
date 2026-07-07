@@ -1,0 +1,121 @@
+// Layer 1 (location pages) + Layer 5 fuel: per-city scene data.
+// Each city object generates a "Music Promotion {City}" page, and is reused
+// by combos.js for genre × city pages. Add a city here → pages appear.
+const CITIES = [
+  {
+    slug: 'atlanta',
+    name: 'Atlanta',
+    state: 'GA',
+    featured: true,
+    scene: 'Atlanta has been hip hop’s de facto capital for two decades — the city where club reaction is the A&R department. Records break out of Atlanta’s club ecosystem and strip-club circuit before radio or playlists ever commit, and the industry watches the city’s DJs specifically to see what is next.',
+    djCulture: 'Atlanta DJ culture is a professional pipeline: club DJs, mixshow jocks, and party promoters operate as one connected scene, and a record that works in Atlanta rooms travels the entire South within weeks. The city’s DJs are famous for breaking records early — being first is the Atlanta DJ brand.',
+    radio: 'The market is anchored by heritage urban stations and their mixshows, where weekend DJ slots have historically been the entry point for local records on their way to rotation.',
+    move: 'Get the record into Atlanta DJ crates before spending anything else — this is the single most DJ-driven market in the country, and floor reaction here is a national signal.',
+  },
+  {
+    slug: 'houston',
+    name: 'Houston',
+    state: 'TX',
+    scene: 'Houston is one of hip hop’s great self-contained ecosystems — the city that built its own sound (chopped and screwed), its own economy of independent sales, and its own star system long before streaming. Houston audiences ride hard for local music, and the city supports a huge club, car-culture, and mixtape scene.',
+    djCulture: 'Houston DJ culture descends from Screw tape tradition into a modern network of club and slab-culture DJs who take pride in local records. A Houston co-sign travels across Texas — Dallas, Austin, San Antonio — and into the broader South.',
+    radio: 'Houston’s urban radio market is among the largest in the country, with mixshows and local-show slots that have a long history of putting hometown records into rotation.',
+    move: 'Service DJs with both standard and slowed/chopped-friendly versions — Houston rewards artists who respect its formats, and Texas club reaction is exceptionally durable once earned.',
+  },
+  {
+    slug: 'chicago',
+    name: 'Chicago',
+    state: 'IL',
+    scene: 'Chicago birthed house music and drill — two genres that conquered the world from its neighborhoods. It is a huge, segmented market: the drill and hip hop ecosystem, the house/dance lineage, R&B and steppers culture, all with their own rooms and DJs.',
+    djCulture: 'Chicago DJ culture is deep and format-specific: house DJs with four decades of lineage, drill and hip hop club DJs, and the steppers-set DJs who own grown-folks R&B rooms. Knowing which lane your record fits is half the Chicago strategy.',
+    radio: 'A major urban radio market with influential mixshows that have historically been early on local drill, hip hop, and R&B records.',
+    move: 'Pick your lane precisely — a drill record, a steppers record, and a house record live in different Chicago ecosystems. Service the right DJs and the city’s density does the rest.',
+  },
+  {
+    slug: 'miami',
+    name: 'Miami',
+    state: 'FL',
+    scene: 'Miami is a global club capital where hip hop, Latin, Caribbean, and dance music share the same night. It is a break market with international reach — records that work in Miami rooms jump to Latin America, the Caribbean, and Europe — and the industry descends on the city for Miami Music Week and beyond.',
+    djCulture: 'Miami DJs are open-format by necessity and world-class by competition: a working night can demand hip hop, reggaeton, dancehall, and house in one set. DJs here are exceptionally receptive to records that bridge genres.',
+    radio: 'The market’s urban and rhythmic stations program for one of the most bilingual, club-driven audiences in the country, with mixshows that mirror the city’s open-format club culture.',
+    move: 'Lead with the club: Miami is a room-first market where a reacting record gets heard by tastemakers from three continents in the same weekend.',
+  },
+  {
+    slug: 'new-york',
+    name: 'New York',
+    state: 'NY',
+    featured: true,
+    scene: 'New York is hip hop’s birthplace and still its media capital — the home of the record pool concept itself, invented by NYC club DJs in 1975. The market is brutally competitive but carries unmatched leverage: NYC radio, clubs, and press remain the industry’s loudest megaphone, and Digiwaxx itself grew out of this ecosystem in 1998.',
+    djCulture: 'NYC DJ culture spans legendary radio jocks, club residencies across five boroughs, and the drill generation’s party circuit. It is dense, tribal, and relationship-driven — but a record moving in New York rooms gets industry attention faster than anywhere else.',
+    radio: 'Home to some of the most influential urban radio in the world, where mixshow DJs have broken records for generations and a co-sign still changes careers.',
+    move: 'Precision beats spray: target the borough scenes and DJ circles that match your sound, and let pool service put the record in front of the wider NYC network at once.',
+  },
+  {
+    slug: 'washington-dc',
+    name: 'Washington DC',
+    state: 'DC',
+    scene: 'DC anchors the DMV — a region with its own indigenous sound (go-go), a booming rap scene that produced national stars, and one of the most loyal local audiences in the country. The DMV supports its own: records with genuine local traction get carried by the whole region.',
+    djCulture: 'DMV DJ culture blends go-go heritage with a modern club and rap circuit spanning DC, Maryland, and Northern Virginia. DJs here program for hometown pride — local records that work become fixtures, not one-week tests.',
+    radio: 'A strong urban radio market with deep local-music tradition and mixshows that actively platform DMV artists.',
+    move: 'Work the region as one market — DC, PG County, Baltimore-adjacent, NoVA — and lean into the DMV’s local loyalty: this is one of the best places in America to build a hometown base.',
+  },
+  {
+    slug: 'dallas',
+    name: 'Dallas',
+    state: 'TX',
+    scene: 'Dallas is a massive, underrated music market with its own dance-driven rap culture — Dallas boogie made national waves — and a club scene that turns local records into regional anthems. Together with Fort Worth it forms one of the largest metros in the country, with an audience that shows up for Texas music.',
+    djCulture: 'Dallas DJ culture is party-forward: club and mobile DJs who prize records that move floors, plugged into the statewide Texas circuit alongside Houston, Austin, and San Antonio.',
+    radio: 'A top-five-scale radio market with urban stations whose mixshows have long served as the proving ground for local and Southern records.',
+    move: 'Danceable records win Dallas — service the club and mobile DJ layer hard, and use Texas’s connected city circuit to turn one metro’s reaction into a statewide run.',
+  },
+  {
+    slug: 'los-angeles',
+    name: 'Los Angeles',
+    state: 'CA',
+    scene: 'LA is the industry’s West Coast headquarters and a sprawling market of scenes: mainstream hip hop and R&B, the West Coast lineage, Latin music’s US capital, and a huge dance/electronic ecosystem. Every label, sync house, and platform has decision-makers living where your record might get played.',
+    djCulture: 'LA DJ culture runs from celebrity club residencies to backyard function DJs to internationally influential radio jocks — plus the world’s densest concentration of industry ears in the rooms. A record reacting in LA gets seen by the business, not just the crowd.',
+    radio: 'One of the country’s flagship urban and rhythmic radio markets, where mixshow support has launched West Coast careers for decades.',
+    move: 'Treat LA as both audience and industry showcase: club and mixshow traction here doubles as an A&R demo, so make sure your packaging, profiles, and story are ready before the record starts moving.',
+  },
+];
+
+function cityPage(c) {
+  return {
+    slug: `music-promotion-${c.slug}`,
+    category: 'promotion',
+    featured: c.featured,
+    title: `Music Promotion in ${c.name}`,
+    navLabel: `Music Promotion ${c.name}`,
+    metaTitle: `Music Promotion ${c.name}: DJs, Clubs & Radio | Digiwaxx`,
+    description: `How music promotion works in ${c.name}: the club and DJ ecosystem, radio landscape, and how to get your record serviced to ${c.name} DJs.`,
+    question: `How do I promote my music in ${c.name}?`,
+    quickAnswer: `Promote in ${c.name} the way records actually break there: get the song into the crates of working ${c.name} DJs — club, mixshow, and mobile — let rooms test it, then amplify the reaction into radio, playlists, and bookings. ${c.move}`,
+    longAnswer: c.scene,
+    sections: [
+      { h2: `The ${c.name} DJ Ecosystem`, html: `<p>${c.djCulture}</p>` },
+      { h2: `Radio in ${c.name}`, html: `<p>${c.radio} As in every market, the mixshow — where DJs pick their own records — is the independent artist's entrance, and mixshow DJs discover music through the same pools and peer networks as the club DJs.</p>` },
+      {
+        h2: `Getting Your Record to ${c.name} DJs`,
+        html: `<p>You do not need to know ${c.name}'s DJs personally — you need to be in the channels they check. Servicing your record through the Digiwaxx pool puts it in front of working DJs in ${c.name} and every other major market at once: ${'30,000+'} DJs, serviced since 1998, with clean/dirty/instrumental packaging so club, radio, and mobile jocks can all use it.</p>
+<p>Then concentrate: when ${c.name} DJs react, feed that market specifically — repost the clips, tag the venues, pitch the local mixshows with local proof, and book the city while the record is warm.</p>`,
+      },
+    ],
+    stats: [
+      { n: '30,000+', l: `DJs in the Digiwaxx network, including ${c.name}` },
+      { n: '1998', l: 'Servicing records to DJs since' },
+      { n: '3', l: `Versions DJs need (clean, dirty, instrumental) to work your record in ${c.name}` },
+    ],
+    faq: [
+      { q: `How do I find DJs in ${c.name}?`, a: `Two layers: service a record pool to reach ${c.name}'s working DJs at scale, and build personal relationships with the handful of DJs at the rooms your crowd actually attends. The pool creates the reach; the relationships deepen it.` },
+      { q: `How do I get radio play in ${c.name}?`, a: `Through the mixshows first. ${c.name} mixshow DJs pull from pools and peer crates, and they favor records already reacting in local clubs — club service is the setup for the radio ask.` },
+      { q: `Does local buzz in ${c.name} actually matter in the streaming era?`, a: `More than ever: streaming platforms read geographic engagement spikes (searches, Shazams, saves concentrated in a metro) as authentic demand — a hot record in one city is the most credible growth story an independent artist can have.` },
+    ],
+    related: [
+      c.slug === 'atlanta' ? 'hip-hop-promotion-atlanta' : 'music-promotion-atlanta',
+      'how-to-get-djs-to-play-my-song',
+      'get-club-plays',
+      'how-to-get-radio-play',
+    ],
+  };
+}
+
+module.exports = { CITIES, pages: CITIES.map(cityPage) };
