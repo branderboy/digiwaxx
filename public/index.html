@@ -1533,6 +1533,35 @@
             color: var(--text-muted);
         }
 
+        /* --- STRATEGY SESSION PRODUCT --- */
+        .session-section { padding: 4rem 0; }
+        .session-card {
+            max-width: 640px; margin: 0 auto; text-align: center;
+            background: rgba(255, 255, 255, 0.03); border: 2px solid var(--accent-yellow);
+            border-radius: 16px; padding: 2.5rem 2rem;
+        }
+        .session-eyebrow {
+            display: inline-block; background: rgba(255,184,0,0.15); color: var(--accent-yellow);
+            font-family: var(--font-head); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            font-size: 0.85rem; padding: 5px 16px; border-radius: 20px; margin-bottom: 1rem;
+        }
+        .session-card h2 { color: #fff; margin-bottom: 0.6rem; }
+        .session-price { font-family: var(--font-head); font-size: 2.6rem; font-weight: 800; color: var(--accent-yellow); margin-bottom: 0.8rem; }
+        .session-price span { font-size: 1rem; color: var(--text-muted); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-left: 0.3rem; }
+        .session-desc { color: var(--text-muted); margin-bottom: 1.3rem; }
+        .session-list { list-style: none; text-align: left; max-width: 420px; margin: 0 auto 1.6rem; padding: 0; }
+        .session-list li { padding: 0.3rem 0 0.3rem 1.6rem; position: relative; color: #fff; font-size: 0.95rem; }
+        .session-list li::before { content: '+'; position: absolute; left: 0; color: var(--accent-yellow); font-weight: 700; }
+        .session-btn {
+            display: inline-block; font-family: var(--font-head); font-weight: 800; font-size: 1.35rem;
+            letter-spacing: 1px; text-transform: uppercase;
+            background: linear-gradient(180deg, #FFE066 0%, var(--accent-yellow) 100%);
+            color: var(--bg-dark); border-radius: 10px; padding: 0.95rem 2.2rem; text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .session-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,184,0,0.4); }
+        .session-note { font-family: var(--font-head); font-weight: 700; color: var(--accent-yellow); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-top: 0.9rem; }
+
         /* --- SALES FUNNEL (modal only - scoped so it doesn't leak onto the
            Problem/Solution boxes, which share the .funnel-box class) --- */
         #funnelOverlay .funnel-box {
@@ -2133,6 +2162,27 @@
             </div>
         </section>
 
+        <!-- STRATEGY SESSION - STANDALONE PRODUCT -->
+        <section class="session-section" id="strategy-session">
+            <div class="container">
+                <div class="session-card animate-in">
+                    <div class="session-eyebrow">1-on-1 With the CEO</div>
+                    <h2 class="font-head">ARTIST BOOST STRATEGY SESSION</h2>
+                    <div class="session-price">$50 <span>30-min Zoom session</span></div>
+                    <p class="session-desc">A 1-on-1 strategy session with CL Llewellyn, music marketing expert, founder &amp; CEO of Digiwaxx. You get a clear plan. Real advice. No guesswork. Just strategy.</p>
+                    <ul class="session-list">
+                        <li>I listen to your music &mdash; live feedback on your sound &amp; potential</li>
+                        <li>We review your visuals &mdash; video strategy tips &amp; branding insights</li>
+                        <li>We analyze your streams &mdash; understand your numbers &amp; growth opportunities</li>
+                        <li>We check your press &amp; SEO &mdash; evaluate your online presence &amp; media visibility</li>
+                        <li>You get a roadmap &mdash; a custom plan to grow using Digiwaxx &amp; other key services</li>
+                    </ul>
+                    <a href="#" class="session-btn" onclick="event.preventDefault(); openSessionFunnel();">Book My Session &mdash; $50 &rarr;</a>
+                    <p class="session-note">Spaces are limited.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- TRUST SECTION -->
         <!-- BOOST CTA -->
         <section class="boost-cta">
@@ -2287,26 +2337,9 @@
                 <button class="fnl-decline" id="fnlAddonsSkip">Skip add-ons</button>
             </div>
 
-            <!-- STRATEGY SESSION UPSELL -->
-            <div class="funnel-pane" id="fnlStrategy">
-                <div class="fnl-eyebrow">One-Time Offer</div>
-                <h2>Add an Artist Boost Strategy Session?</h2>
-                <p class="fnl-desc">A 1-on-1 strategy session on Zoom with CL Llewellyn, music marketing expert, founder &amp; CEO of Digiwaxx. You get a clear plan. Real advice. No guesswork. Just strategy.</p>
-                <ul class="fnl-list">
-                    <li>I listen to your music &mdash; live feedback on your sound &amp; potential</li>
-                    <li>We review your visuals &mdash; video strategy tips &amp; branding insights</li>
-                    <li>We analyze your streams &mdash; understand your numbers &amp; growth opportunities</li>
-                    <li>We check your press &amp; SEO &mdash; evaluate your online presence &amp; media visibility</li>
-                    <li>You get a roadmap &mdash; a custom plan to grow using Digiwaxx &amp; other key services</li>
-                </ul>
-                <div class="fnl-price-line"><span class="now" id="fnlStrategyNow"></span> <span class="sub">30-min Zoom session</span></div>
-                <button class="fnl-accept" id="fnlStrategyAccept"></button>
-                <button class="fnl-decline" id="fnlStrategyDecline">No thanks, continue to checkout</button>
-            </div>
-
             <!-- GUEST POST UPSELL -->
             <div class="funnel-pane" id="fnlGuest">
-                <div class="fnl-eyebrow">One Last Thing</div>
+                <div class="fnl-eyebrow">One-Time Offer</div>
                 <h2>Get a Guest Post on Digiwaxx.com?</h2>
                 <p class="fnl-desc">Your own feature published on Digiwaxx.com &mdash; the platform trusted by 30,000+ DJs since 1998. A permanent page about you and your record that works for you around the clock.</p>
                 <ul class="fnl-list">
@@ -2647,7 +2680,7 @@
         };
         const FNL_GUEST = {
             name: 'Guest Post on Digiwaxx.com',
-            price: 35
+            price: 25
         };
         const FNL_DOWNSELL = {
             name: 'DJ Blast Email Feature (Solo)',
@@ -2655,7 +2688,7 @@
             price: 75,
             desc: 'Skip the full package for now. Get your record in front of the DJ network with the DJ blast email feature on its own, at a one-time discount.'
         };
-        const fnlState = { tier: null, upgraded: false, addons: [], strategy: false, guestpost: false, downsellOnly: false };
+        const fnlState = { tier: null, upgraded: false, addons: [], sessionOnly: false, guestpost: false, downsellOnly: false };
         const fnl = id => document.getElementById(id);
         const fnlMoney = n => '$' + n;
 
@@ -2681,11 +2714,21 @@
             fnlState.tier = tierKey;
             fnlState.upgraded = false;
             fnlState.addons = [];
-            fnlState.strategy = false;
+            fnlState.sessionOnly = false;
             fnlState.guestpost = false;
             fnlState.downsellOnly = false;
             fnl('funnelOverlay').classList.add('active');
             if (FNL_NEXT[tierKey]) fnlEnterUpsell(); else fnlEnterAddons();
+        }
+        function openSessionFunnel() {
+            fnlState.tier = null;
+            fnlState.upgraded = false;
+            fnlState.addons = [];
+            fnlState.sessionOnly = true;
+            fnlState.guestpost = false;
+            fnlState.downsellOnly = false;
+            fnl('funnelOverlay').classList.add('active');
+            fnlEnterGuest();
         }
         function closeFunnel() { fnl('funnelOverlay').classList.remove('active'); }
 
@@ -2706,7 +2749,7 @@
         function fnlEnterAddons() {
             const rank = FNL_RANK[fnlCurrentTierKey()];
             const singles = FNL_SINGLES.filter(s => FNL_RANK[s.fromTier] > rank);
-            if (!singles.length) { fnlEnterStrategy(); return; }
+            if (!singles.length) { fnlEnterGuest(); return; }
             fnl('fnlAddonGrid').innerHTML = singles.map(s => `
                 <div class="fnl-addon ${fnlState.addons.includes(s.id) ? 'added' : ''}" data-id="${s.id}">
                     <div class="a-tag">${fnlTierData(s.fromTier).name} feature</div>
@@ -2733,6 +2776,13 @@
             if (fnlState.downsellOnly) {
                 return [{ tag: 'Special Offer', name: FNL_DOWNSELL.name, price: FNL_DOWNSELL.price }];
             }
+            if (fnlState.sessionOnly) {
+                const items = [{ tag: 'Product', name: FNL_STRATEGY.name, price: FNL_STRATEGY.price }];
+                if (fnlState.guestpost) {
+                    items.push({ tag: 'Guest Post', name: FNL_GUEST.name, price: FNL_GUEST.price });
+                }
+                return items;
+            }
             const tier = fnlTierData(fnlCurrentTierKey());
             const items = [{
                 tag: fnlState.upgraded ? 'Package (Upgraded)' : 'Package',
@@ -2743,19 +2793,10 @@
                 const s = FNL_SINGLES.find(x => x.id === id);
                 if (s) items.push({ tag: 'Add-On', name: s.name, price: s.price });
             });
-            if (fnlState.strategy) {
-                items.push({ tag: 'Strategy Session', name: FNL_STRATEGY.name, price: FNL_STRATEGY.price });
-            }
             if (fnlState.guestpost) {
                 items.push({ tag: 'Guest Post', name: FNL_GUEST.name, price: FNL_GUEST.price });
             }
             return items;
-        }
-
-        function fnlEnterStrategy() {
-            fnl('fnlStrategyNow').textContent = fnlMoney(FNL_STRATEGY.price);
-            fnl('fnlStrategyAccept').textContent = `Yes, Add My Strategy Session for ${fnlMoney(FNL_STRATEGY.price)}`;
-            fnlShowPane('fnlStrategy');
         }
 
         function fnlEnterGuest() {
@@ -2786,7 +2827,7 @@
         function fnlCheckout() {
             const items = fnlOrderItems();
             const total = items.reduce((sum, i) => sum + i.price, 0);
-            const tierKey = fnlState.downsellOnly ? 'downsell' : fnlCurrentTierKey();
+            const tierKey = fnlState.downsellOnly ? 'downsell' : fnlState.sessionOnly ? 'artist_boost' : fnlCurrentTierKey();
 
             // Track the click (keepalive so it survives the navigation below)
             fetch('/api/paypal-click', {
@@ -2808,14 +2849,14 @@
 
         fnl('fnlUpsellAccept').onclick = () => { fnlState.upgraded = true; fnlEnterAddons(); };
         fnl('fnlUpsellDecline').onclick = () => fnlEnterAddons();
-        fnl('fnlAddonsContinue').onclick = () => fnlEnterStrategy();
-        fnl('fnlAddonsSkip').onclick = () => fnlEnterStrategy();
-        fnl('fnlStrategyAccept').onclick = () => { fnlState.strategy = true; fnlEnterGuest(); };
-        fnl('fnlStrategyDecline').onclick = () => { fnlState.strategy = false; fnlEnterGuest(); };
+        fnl('fnlAddonsContinue').onclick = () => fnlEnterGuest();
+        fnl('fnlAddonsSkip').onclick = () => fnlEnterGuest();
         fnl('fnlGuestAccept').onclick = () => { fnlState.guestpost = true; fnlEnterSummary(); };
         fnl('fnlGuestDecline').onclick = () => { fnlState.guestpost = false; fnlEnterSummary(); };
         fnl('fnlPayBtn').onclick = () => fnlCheckout();
-        fnl('fnlAbandon').onclick = () => fnlShowDownsell();
+        // The DJ-blast downsell replaces the whole order, which makes no sense
+        // for the standalone session purchase - just close the funnel there.
+        fnl('fnlAbandon').onclick = () => { if (fnlState.sessionOnly) closeFunnel(); else fnlShowDownsell(); };
         fnl('fnlDownsellAccept').onclick = () => { fnlState.downsellOnly = true; fnlEnterSummary(); };
         fnl('fnlDownsellDecline').onclick = () => { fnlState.downsellOnly = false; fnlEnterSummary(); };
         fnl('funnelOverlay').addEventListener('click', e => {
