@@ -49,8 +49,16 @@ function jsonLd(page, faq) {
     headline: page.title,
     description: page.description,
     url,
+    image: SITE_URL + '/assets/share-card.png',
+    datePublished: page.datePublished,
+    dateModified: page.dateModified,
     author: { '@type': 'Organization', name: 'Digiwaxx', url: SITE_URL },
-    publisher: { '@type': 'Organization', name: 'Digiwaxx', url: SITE_URL },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Digiwaxx',
+      url: SITE_URL,
+      logo: { '@type': 'ImageObject', url: SITE_URL + '/assets/icon-512.png' },
+    },
   });
   blocks.push({
     '@context': 'https://schema.org',
@@ -221,6 +229,13 @@ ${s.html}
     <meta property="og:description" content="${esc(page.description)}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="${url}">
+    <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:image" content="${SITE_URL}/assets/share-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${esc(page.metaTitle || page.title)}">
+    <meta name="twitter:image" content="${SITE_URL}/assets/share-card.png">
+    <meta name="robots" content="max-image-preview:large">
+    <meta name="theme-color" content="#1a0a18">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">

@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIGIWAXX | New Music Boost | Get Your Record to DJs</title>
     <meta name="description" content="Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Spotify playlists, radio rotation, and more.">
+    <link rel="canonical" href="https://www.digiwaxxrecordpool.com/">
+    <meta name="robots" content="max-image-preview:large">
+    <meta name="theme-color" content="#1a0a18">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:title" content="DIGIWAXX | New Music Boost | Get Your Record to DJs">
+    <meta property="og:description" content="Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Spotify playlists, radio rotation, and more.">
+    <meta property="og:url" content="https://www.digiwaxxrecordpool.com/">
+    <meta property="og:image" content="https://www.digiwaxxrecordpool.com/assets/share-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DIGIWAXX | New Music Boost | Get Your Record to DJs">
+    <meta name="twitter:description" content="Your record in front of 30,000+ DJs. Trusted since 1998.">
+    <meta name="twitter:image" content="https://www.digiwaxxrecordpool.com/assets/share-card.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Digiwaxx","alternateName":"Digiwaxx Media","url":"https://www.digiwaxxrecordpool.com","logo":"https://www.digiwaxxrecordpool.com/assets/icon-512.png","foundingDate":"1998","description":"Record pool and music promotion service connecting artists' records to a network of 30,000+ working DJs since 1998.","sameAs":["https://www.instagram.com/digiwaxx"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Digiwaxx","url":"https://www.digiwaxxrecordpool.com"}</script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -309,7 +324,10 @@
             animation: pulse 2s infinite;
         }
 
-        .hero h3 {
+        .hero h3, .hero .hero-kicker {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            line-height: 1.05;
             font-size: clamp(1.1rem, 2vw, 1.5rem);
             margin-bottom: 0.5rem;
             color: rgba(255,255,255,0.9);
@@ -1757,7 +1775,7 @@
             .container, .container-wide { padding: 0 1.2rem; }
             .hero { padding-top: 100px; padding-bottom: 3rem; }
             .hero h1 { font-size: clamp(3rem, 12vw, 4.5rem); }
-            .hero h3 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); }
+            .hero h3, .hero .hero-kicker { font-size: clamp(1.1rem, 3.5vw, 1.5rem); }
             .hero-subtitle { font-size: 1rem; max-width: 100%; }
             .funnel-box { padding: 2rem 1.5rem; }
             .btn { font-size: 1.2rem; padding: 1rem 1.5rem; width: 100%; max-width: 400px; }
@@ -1809,7 +1827,7 @@
             .container, .container-wide { padding: 0 0.8rem; }
             .hero { padding-top: 80px; padding-bottom: 2rem; }
             .hero h1 { font-size: clamp(2.5rem, 14vw, 3.5rem); }
-            .hero h3 { font-size: clamp(1rem, 4vw, 1.3rem); }
+            .hero h3, .hero .hero-kicker { font-size: clamp(1rem, 4vw, 1.3rem); }
             .hero-subtitle { font-size: 0.95rem; line-height: 1.6; }
             .eyebrow-badge { font-size: 0.7rem; padding: 6px 14px; letter-spacing: 1px; }
             .hero-stats { gap: 0.8rem; }
@@ -1900,13 +1918,13 @@
                         <span class="pulse-dot"></span>
                         <span>The New Music Boost</span>
                     </div>
-                    <h3 class="text-white" data-key="hero_h3">YOUR RECORD DESERVES MORE THAN STREAMS.</h3>
+                    <p class="hero-kicker text-white bold" data-key="hero_h3">YOUR RECORD DESERVES MORE THAN STREAMS.</p>
                     <h1 class="text-white" data-key="site_headline">YOUR MUSIC DESERVES<br>A REAL PUSH</h1>
                     <p class="hero-subtitle" data-key="site_subheadline">
                         Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs. Stop uploading into the void.
                     </p>
 
-                    <img src="/100000SONGS.png" alt="100,000 songs uploaded. Most never reach the DJs who matter." class="hero-image">
+                    <img src="/assets/100000SONGS.webp" alt="100,000 songs uploaded. Most never reach the DJs who matter." class="hero-image" width="1536" height="1024" fetchpriority="high">
 
                     <div class="btn-wrapper">
                         <a href="#optin" class="btn" data-key="hero_cta_text">DROP YOUR RECORD NOW</a>
@@ -1937,7 +1955,7 @@
                 <h2 class="text-white" data-key="video_heading">WHY CHOOSE DIGIWAXX?</h2>
                 <p class="video-subtitle" data-key="video_subtitle">Watch how we connect independent artists with the DJs who break records.</p>
                 <div class="video-wrapper">
-                    <video class="video-player" id="siteVideo" preload="metadata" playsinline poster="/video_thumbnail1.png">
+                    <video class="video-player" id="siteVideo" preload="metadata" playsinline poster="/assets/video_thumbnail1.webp">
                         <source src="/Digiwaxx__The_New_Music_Boost%202.mp4" type="video/mp4">
                         Your browser doesn&rsquo;t support embedded video.
                     </video>
@@ -2181,7 +2199,7 @@
                         <h2 class="font-head" data-key="boost_cta_heading" data-raw="1">Go to Instagram<br>and visit <span class="boost-word">@digiwaxx</span></h2>
                     </div>
                     <div class="boost-cta-mockup">
-                        <img src="/comment-boost.jpg" alt="Comment BOOST to start now" class="boost-cta-image">
+                        <img src="/assets/comment-boost.webp" alt="Comment BOOST to start now" class="boost-cta-image" width="1000" height="1000" loading="lazy">
                     </div>
                 </div>
             </div>

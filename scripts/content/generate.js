@@ -5,6 +5,7 @@
 // plus the /university hub, sitemap.xml, and robots.txt.
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { SITE_URL, CATEGORIES, esc, pageUrl, renderPage, nav, footer } = require('./lib');
 
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -40,6 +41,24 @@ for (const p of pages) {
     if (!bySlug[r]) { console.warn(`warn: ${p.slug} -> unknown related slug "${r}"`); brokenLinks++; }
   }
 }
+
+// Publication dates: content-hash manifest so datePublished is stable and
+// dateModified/lastmod only move when a page's content actually changes.
+const DATES_FILE = path.join(__dirname, 'dates.json');
+let dates = {};
+try { dates = JSON.parse(fs.readFileSync(DATES_FILE, 'utf8')); } catch (e) {}
+const today = new Date().toISOString().slice(0, 10);
+for (const p of pages) {
+  const hash = crypto.createHash('sha1').update(JSON.stringify({
+    t: p.title, d: p.description, q: p.quickAnswer, l: p.longAnswer,
+    s: p.sections, f: p.faq, b: p.bodyHtml,
+  })).digest('hex');
+  if (!dates[p.slug]) dates[p.slug] = { published: today, modified: today, hash };
+  else if (dates[p.slug].hash !== hash) Object.assign(dates[p.slug], { modified: today, hash });
+  p.datePublished = dates[p.slug].published;
+  p.dateModified = dates[p.slug].modified;
+}
+fs.writeFileSync(DATES_FILE, JSON.stringify(dates, null, 1));
 
 // Render all pages.
 let count = 0;
@@ -89,6 +108,12 @@ const hubHtml = `<!DOCTYPE html>
     <meta property="og:description" content="Free guides, answers, and tools on DJ promotion, radio, playlists, and breaking records.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${SITE_URL}/university">
+    <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:image" content="${SITE_URL}/assets/share-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="${SITE_URL}/assets/share-card.png">
+    <meta name="robots" content="max-image-preview:large">
+    <meta name="theme-color" content="#1a0a18">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -114,21 +139,22 @@ fs.writeFileSync(path.join(ROOT, 'university.html'), hubHtml);
 
 // ---- sitemap.xml & robots.txt ----
 const urls = [
-  { loc: `${SITE_URL}/`, priority: '1.0' },
-  { loc: `${SITE_URL}/university`, priority: '0.9' },
-  ...pages.map((p) => ({ loc: SITE_URL + pageUrl(p), priority: p.category === 'tools' ? '0.8' : '0.7' })),
+  { loc: `${SITE_URL}/`, priority: '1.0', lastmod: today },
+  { loc: `${SITE_URL}/university`, priority: '0.9', lastmod: today },
+  ...pages.map((p) => ({ loc: SITE_URL + pageUrl(p), priority: p.category === 'tools' ? '0.8' : '0.7', lastmod: p.dateModified })),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url><loc>${u.loc}</loc><priority>${u.priority}</priority></url>`).join('\n')}
+${urls.map((u) => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod}</lastmod><priority>${u.priority}</priority></url>`).join('\n')}
 </urlset>
 `;
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);
 
+// /submit and /admin carry noindex meta tags; only /admin is also
+// crawl-blocked (no reason to invite bots into the admin UI).
 fs.writeFileSync(path.join(ROOT, 'robots.txt'), `User-agent: *
 Allow: /
 Disallow: /admin
-Disallow: /submit
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `);
