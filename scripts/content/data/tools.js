@@ -313,4 +313,155 @@ module.exports = [
     related: ['dj-pitch-generator', 'get-more-fans', 'i-made-a-song', 'music-marketing-checklist'],
     cta: { kicker: 'Bio done?', headline: 'Give it a record worth reading about.', sub: 'A Digiwaxx campaign adds the proof line every bio needs: serviced to 30,000+ DJs, featured on Digiwaxx.com.', button: 'Submit Your Record' },
   },
+  {
+    slug: 'epk-builder',
+    category: 'tools',
+    title: 'EPK Builder',
+    navLabel: 'EPK Builder',
+    metaTitle: 'Free EPK Builder: One-Page Electronic Press Kit in Minutes | Digiwaxx',
+    description: 'Free tool: build a clean one-page EPK — bio, record, proof, links, contact — formatted the way promoters, programmers, and press actually read them.',
+    question: 'What goes in an artist EPK?',
+    quickAnswer: 'A working EPK is one page: who you are (bio + city + sound), the current record, your best proof (spins, streams, coverage), two or three links, and a direct contact. Fill in the fields and copy the formatted kit below.',
+    bodyHtml: `
+<div class="tool-card">
+  <h3>Your Details</h3>
+  <div class="calc-field"><label for="eName">Artist name</label><input type="text" id="eName" placeholder="e.g. J Rome"></div>
+  <div class="calc-field"><label for="eCity">City / region</label><input type="text" id="eCity" placeholder="e.g. Houston, TX"></div>
+  <div class="calc-field"><label for="eGenre">Genre / sound</label><input type="text" id="eGenre" placeholder="e.g. melodic rap with Southern bounce"></div>
+  <div class="calc-field"><label for="eBio">Two-sentence bio</label><textarea id="eBio" rows="2" style="width:100%;padding:0.8rem 1rem;border-radius:10px;border:1px solid var(--card-border);background:#0d050d;color:#fff;font-family:var(--font-body);font-size:1rem;" placeholder="Who you are and what makes your sound yours."></textarea></div>
+  <div class="calc-field"><label for="eRecord">Current record / project</label><input type="text" id="eRecord" placeholder='e.g. "Late Nights" (single, out now)'></div>
+  <div class="calc-field"><label for="eProof">Proof points — one per line</label><textarea id="eProof" rows="3" style="width:100%;padding:0.8rem 1rem;border-radius:10px;border:1px solid var(--card-border);background:#0d050d;color:#fff;font-family:var(--font-body);font-size:1rem;" placeholder="Club spins across Texas&#10;200K independent streams&#10;Featured on Digiwaxx.com"></textarea></div>
+  <div class="calc-field"><label for="eLinks">Links — one per line (music, video, socials)</label><textarea id="eLinks" rows="3" style="width:100%;padding:0.8rem 1rem;border-radius:10px;border:1px solid var(--card-border);background:#0d050d;color:#fff;font-family:var(--font-body);font-size:1rem;" placeholder="https://open.spotify.com/artist/...&#10;https://youtube.com/...&#10;https://instagram.com/..."></textarea></div>
+  <div class="calc-field"><label for="eContact">Booking / contact</label><input type="text" id="eContact" placeholder="e.g. bookings@artist.com · 555-555-5555"></div>
+</div>
+<div class="calc-result">
+  <h3>Your EPK</h3>
+  <pre id="epkOut" style="white-space:pre-wrap;font-family:inherit;color:var(--text-white);margin:0 0 1rem;line-height:1.6;"></pre>
+  <button type="button" id="epkCopy" class="cta-btn" style="border:none;cursor:pointer;font-size:1.05rem;padding:0.7rem 1.6rem;">Copy EPK</button>
+  <p style="margin:1rem 0 0;font-size:0.85rem;">Paste into an email, a doc, or a one-pager PDF. Keep it to one page — promoters decide in 30 seconds, and the kit's job is making those 30 seconds easy.</p>
+</div>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var ids = ['eName','eCity','eGenre','eBio','eRecord','eProof','eLinks','eContact'];
+  function lineify(v, bullet) {
+    return v.split('\\n').map(function (s) { return s.trim(); }).filter(Boolean)
+      .map(function (s) { return bullet + s; }).join('\\n');
+  }
+  function build() {
+    var name = $('eName').value.trim() || '[ARTIST NAME]';
+    var city = $('eCity').value.trim() || '[City]';
+    var genre = $('eGenre').value.trim() || '[genre]';
+    var bio = $('eBio').value.trim() || '[Two-sentence bio]';
+    var record = $('eRecord').value.trim() || '[Current record]';
+    var proof = lineify($('eProof').value, '  • ') || '  • [Your best proof point]';
+    var links = lineify($('eLinks').value, '  ') || '  [links]';
+    var contact = $('eContact').value.trim() || '[contact]';
+    $('epkOut').textContent = [
+      name.toUpperCase(), genre + ' — ' + city, '',
+      'ABOUT', bio, '',
+      'CURRENT RECORD', record, '',
+      'HIGHLIGHTS', proof, '',
+      'LISTEN & WATCH', links, '',
+      'BOOKING & CONTACT', contact,
+    ].join('\\n');
+  }
+  ids.forEach(function (id) { $(id).addEventListener('input', build); });
+  $('epkCopy').addEventListener('click', function () {
+    navigator.clipboard.writeText($('epkOut').textContent).then(function () {
+      $('epkCopy').textContent = 'Copied!';
+      setTimeout(function () { $('epkCopy').textContent = 'Copy EPK'; }, 1500);
+    });
+  });
+  build();
+})();
+</script>`,
+    faq: [
+      { q: 'Do I need a designed PDF EPK or a website?', a: 'The content matters more than the container. This one-pager pasted into an email outperforms a beautiful PDF nobody opens. When you do design it, keep it to one page with these exact sections.' },
+      { q: 'What if I don’t have proof points yet?', a: 'That is the signal to run a campaign before pitching promoters: DJ service, spins, and a published feature are exactly the highlight lines an empty EPK is missing.' },
+    ],
+    related: ['artist-bio-generator', 'press-release-generator', 'get-booked-for-shows', 'dj-pitch-generator'],
+    cta: { kicker: 'EPK looking thin?', headline: 'Earn the highlight lines.', sub: 'A Digiwaxx campaign fills the Highlights section: serviced to 30,000+ DJs, radio rotation, and a published Digiwaxx.com feature.', button: 'Submit Your Record' },
+  },
+  {
+    slug: 'press-release-generator',
+    category: 'tools',
+    title: 'Press Release Generator',
+    navLabel: 'Press Release Generator',
+    metaTitle: 'Free Music Press Release Generator | Digiwaxx',
+    description: 'Free tool: generate a properly formatted press release for your single or project — headline, dateline, quote, boilerplate — ready to send to blogs and media.',
+    question: 'How do I write a press release for a music release?',
+    quickAnswer: 'Follow the standard structure media expects: a headline stating the news, a dateline, a lead paragraph with who/what/when, one strong quote, supporting detail, a boilerplate about the artist, and contact info. Fill in the fields and it’s formatted below.',
+    bodyHtml: `
+<div class="tool-card">
+  <h3>The News</h3>
+  <div class="calc-field"><label for="rArtist">Artist name</label><input type="text" id="rArtist" placeholder="e.g. J Rome"></div>
+  <div class="calc-field"><label for="rTitle">Release title</label><input type="text" id="rTitle" placeholder='e.g. Late Nights'></div>
+  <div class="calc-field"><label for="rType">Release type</label><select id="rType"><option>single</option><option>EP</option><option>album</option><option>mixtape</option><option>music video</option></select></div>
+  <div class="calc-field"><label for="rDate">Release date</label><input type="text" id="rDate" placeholder="e.g. March 14, 2026"></div>
+  <div class="calc-field"><label for="rCity">City</label><input type="text" id="rCity" placeholder="e.g. Houston, TX"></div>
+  <div class="calc-field"><label for="rGenre">Genre / sound</label><input type="text" id="rGenre" placeholder="e.g. melodic Southern rap"></div>
+  <div class="calc-field"><label for="rHook">What makes this release a story? (one sentence)</label><input type="text" id="rHook" placeholder="e.g. the follow-up to a record that earned club spins across Texas"></div>
+  <div class="calc-field"><label for="rQuote">A quote from you about the record</label><textarea id="rQuote" rows="2" style="width:100%;padding:0.8rem 1rem;border-radius:10px;border:1px solid var(--card-border);background:#0d050d;color:#fff;font-family:var(--font-body);font-size:1rem;" placeholder="I made this record for..."></textarea></div>
+  <div class="calc-field"><label for="rBoiler">One-sentence artist boilerplate</label><input type="text" id="rBoiler" placeholder="e.g. J Rome is a Houston artist blending melodic rap with Southern bounce."></div>
+  <div class="calc-field"><label for="rContact">Media contact</label><input type="text" id="rContact" placeholder="e.g. press@artist.com"></div>
+</div>
+<div class="calc-result">
+  <h3>Your Press Release</h3>
+  <pre id="prOut" style="white-space:pre-wrap;font-family:inherit;color:var(--text-white);margin:0 0 1rem;line-height:1.6;"></pre>
+  <button type="button" id="prCopy" class="cta-btn" style="border:none;cursor:pointer;font-size:1.05rem;padding:0.7rem 1.6rem;">Copy Press Release</button>
+</div>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var ids = ['rArtist','rTitle','rType','rDate','rCity','rGenre','rHook','rQuote','rBoiler','rContact'];
+  function build() {
+    var artist = $('rArtist').value.trim() || '[Artist]';
+    var title = $('rTitle').value.trim() || '[Title]';
+    var type = $('rType').value;
+    var date = $('rDate').value.trim() || '[release date]';
+    var city = $('rCity').value.trim() || '[CITY]';
+    var genre = $('rGenre').value.trim() || '[genre]';
+    var hook = $('rHook').value.trim();
+    var quote = $('rQuote').value.trim() || '[Quote about the record]';
+    var boiler = $('rBoiler').value.trim() || artist + ' is a ' + genre + ' artist based in ' + city + '.';
+    var contact = $('rContact').value.trim() || '[media contact]';
+    $('prOut').textContent = [
+      'FOR IMMEDIATE RELEASE', '',
+      artist.toUpperCase() + ' ANNOUNCES NEW ' + type.toUpperCase() + ' “' + title.toUpperCase() + '” — OUT ' + date.toUpperCase(),
+      '',
+      city.toUpperCase() + ' — ' + artist + ' releases the new ' + type + ' “' + title + '” on ' + date + '.'
+        + (hook ? ' The release marks ' + hook + '.' : '')
+        + ' The ' + genre + ' record is available on all streaming platforms.',
+      '',
+      '“' + quote.replace(/^"|"$/g, '') + ',” says ' + artist + '.',
+      '',
+      'The record has been serviced to the Digiwaxx DJ network of 30,000+ club, mixshow, and radio DJs.',
+      '',
+      'ABOUT ' + artist.toUpperCase(),
+      boiler,
+      '',
+      'MEDIA CONTACT',
+      contact,
+      '',
+      '###',
+    ].join('\\n');
+  }
+  ids.forEach(function (id) { $(id).addEventListener('input', build); $(id).addEventListener('change', build); });
+  $('prCopy').addEventListener('click', function () {
+    navigator.clipboard.writeText($('prOut').textContent).then(function () {
+      $('prCopy').textContent = 'Copied!';
+      setTimeout(function () { $('prCopy').textContent = 'Copy Press Release'; }, 1500);
+    });
+  });
+  build();
+})();
+</script>`,
+    faq: [
+      { q: 'Who do I send a music press release to?', a: 'Targeted, small lists beat blasts: local outlets in your city, genre blogs that cover your lane, college papers, and the newsletters DJs and curators read. Personal one-line intros with the release pasted below convert best.' },
+      { q: 'Note: the generated release mentions Digiwaxx servicing — should I keep that line?', a: 'Keep it if your record has actually been serviced through a campaign — it is a real, verifiable distribution fact media can cite. Delete it if not; never claim promotion that didn’t happen.' },
+    ],
+    related: ['epk-builder', 'artist-bio-generator', 'how-to-release-a-single', 'i-need-people'],
+    cta: { kicker: 'Want the line to be true?', headline: 'Service the record first.', sub: 'One submission makes the distribution claim real: 30,000+ DJs, radio rotation, and a published feature to link in the release.', button: 'Submit Your Record' },
+  },
 ];

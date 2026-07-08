@@ -133,5 +133,24 @@ Disallow: /submit
 Sitemap: ${SITE_URL}/sitemap.xml
 `);
 
+// llms.txt — orientation file for AI crawlers/answer engines (GEO).
+const llmsSections = catOrder.map((cat) => {
+  const catPages = pages.filter((p) => p.category === cat);
+  if (!catPages.length) return '';
+  return `## ${CATEGORIES[cat].hubTitle}\n\n` + catPages
+    .map((p) => `- [${p.title}](${SITE_URL}${pageUrl(p)}): ${p.description}`)
+    .join('\n');
+}).filter(Boolean).join('\n\n');
+fs.writeFileSync(path.join(ROOT, 'llms.txt'), `# Digiwaxx
+
+> Digiwaxx is a record pool and music promotion service operating since 1998,
+> connecting artists' records to a network of 30,000+ working DJs (club,
+> mixshow, radio, mobile), plus radio rotation, playlist placement, and
+> published artist coverage. One-time campaigns: Starter $99, Pro $149,
+> Elite $199. Main site: ${SITE_URL} — start at ${SITE_URL}/university.
+
+${llmsSections}
+`);
+
 console.log(`Generated ${count} content pages + university hub + sitemap (${urls.length} URLs) + robots.txt`);
 if (brokenLinks) console.warn(`${brokenLinks} broken related link(s) — see warnings above`);
