@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Artist Bio Generator: Short, Medium &amp; Press Bios | Digiwaxx</title>
+    <meta name="description" content="Free tool: enter your details and get three ready-to-paste artist bios — 1-line social, short streaming-profile, and full press/EPK versions.">
+    <link rel="canonical" href="https://digiwaxx.com/tools/artist-bio-generator">
+    <meta property="og:title" content="Free Artist Bio Generator: Short, Medium &amp; Press Bios | Digiwaxx">
+    <meta property="og:description" content="Free tool: enter your details and get three ready-to-paste artist bios — 1-line social, short streaming-profile, and full press/EPK versions.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://digiwaxx.com/tools/artist-bio-generator">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/content.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Artist Bio Generator","description":"Free tool: enter your details and get three ready-to-paste artist bios — 1-line social, short streaming-profile, and full press/EPK versions.","url":"https://digiwaxx.com/tools/artist-bio-generator","author":{"@type":"Organization","name":"Digiwaxx","url":"https://digiwaxx.com"},"publisher":{"@type":"Organization","name":"Digiwaxx","url":"https://digiwaxx.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Digiwaxx","item":"https://digiwaxx.com/"},{"@type":"ListItem","position":2,"name":"University","item":"https://digiwaxx.com/university"},{"@type":"ListItem","position":3,"name":"Tools","item":"https://digiwaxx.com/university#tools"},{"@type":"ListItem","position":4,"name":"Artist Bio Generator","item":"https://digiwaxx.com/tools/artist-bio-generator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long should an artist bio be?","acceptedAnswer":{"@type":"Answer","text":"Three lengths cover every use: a one-liner for social profiles, 2–3 sentences for streaming platforms, and 100–150 words for press and EPKs. Longer than that, nobody reads."}},{"@type":"Question","name":"What makes a bio actually work?","acceptedAnswer":{"@type":"Answer","text":"Specifics: your city, your sound named precisely, and one verifiable proof point. \"Versatile artist making waves\" says nothing; \"Houston melodic rap with club spins across Texas\" books shows."}}]}</script>
+
+</head>
+<body>
+
+<nav class="cnav">
+  <div class="cnav-inner">
+    <a class="cnav-logo" href="/">DIGI<span>WAXX</span></a>
+    <div class="cnav-links">
+      <a href="/university">University</a>
+      <a href="/university#campaigns">Campaigns</a>
+      <a href="/university#guides">Guides</a>
+      <a href="/university#answers">Answers</a>
+      <a href="/university#promotion">Cities &amp; Platforms</a>
+      <a href="/university#tools">Tools</a>
+    </div>
+    <a class="cnav-cta" href="/#pricing">Submit Your Record &rarr;</a>
+  </div>
+</nav>
+<main class="cmain">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/university">University</a> / <a href="/university#tools">Tools</a>
+  </div>
+  <article>
+    <h1>Artist Bio Generator</h1>
+    <p class="page-question">How do I write an artist bio?</p>
+
+<div class="quick-answer">
+  <p class="qa-label">Quick Answer</p>
+  <p class="qa-text">A working bio answers four things fast: who you are, where you’re from, what you sound like, and one thing that proves motion. Fill in the fields and get all three lengths — social one-liner, streaming profile, and press/EPK.</p>
+</div>
+
+
+<div class="tool-card">
+  <h3>Your Details</h3>
+  <div class="calc-field"><label for="bName">Artist name</label><input type="text" id="bName" placeholder="e.g. J Rome"></div>
+  <div class="calc-field"><label for="bCity">City / region</label><input type="text" id="bCity" placeholder="e.g. Houston, TX"></div>
+  <div class="calc-field"><label for="bGenre">Genre / sound</label><input type="text" id="bGenre" placeholder="e.g. melodic rap with Southern bounce"></div>
+  <div class="calc-field"><label for="bInfl">Influences or comparisons (optional)</label><input type="text" id="bInfl" placeholder="e.g. early Drake, UGK"></div>
+  <div class="calc-field"><label for="bWork">Current release or project</label><input type="text" id="bWork" placeholder='e.g. the single "Late Nights"'></div>
+  <div class="calc-field"><label for="bProof">Best achievement or proof so far (optional)</label><input type="text" id="bProof" placeholder="e.g. club spins across Texas and 200K independent streams"></div>
+</div>
+<div class="calc-result">
+  <h3>Your Bios</h3>
+  <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--pink);margin-bottom:0.3rem;">One-liner (social profiles)</p>
+  <p id="bioShort" style="color:var(--text-white);"></p>
+  <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--pink);margin:1rem 0 0.3rem;">Short (streaming profiles)</p>
+  <p id="bioMed" style="color:var(--text-white);"></p>
+  <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--pink);margin:1rem 0 0.3rem;">Full (press / EPK)</p>
+  <p id="bioLong" style="color:var(--text-white);margin-bottom:1rem;"></p>
+  <button type="button" id="bioCopy" class="cta-btn" style="border:none;cursor:pointer;font-size:1.05rem;padding:0.7rem 1.6rem;">Copy All Three</button>
+</div>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var ids = ['bName','bCity','bGenre','bInfl','bWork','bProof'];
+  function build() {
+    var name = $('bName').value.trim() || '[Artist]';
+    var city = $('bCity').value.trim() || '[City]';
+    var genre = $('bGenre').value.trim() || '[genre]';
+    var infl = $('bInfl').value.trim();
+    var work = $('bWork').value.trim() || 'new music';
+    var proof = $('bProof').value.trim();
+    $('bioShort').textContent = name + ' · ' + genre + ' · ' + city + ' · ' + work + ' out now';
+    $('bioMed').textContent = name + ' is a ' + genre + ' artist from ' + city + '.'
+      + (proof ? ' ' + proof.charAt(0).toUpperCase() + proof.slice(1) + '.' : '')
+      + ' Now pushing ' + work + '.';
+    $('bioLong').textContent = name + ' is a ' + genre + ' artist out of ' + city + '.'
+      + (infl ? ' Drawing on ' + infl + ', ' + name + ' has built a sound that belongs to ' + city + ' and travels beyond it.' : '')
+      + (proof ? ' ' + proof.charAt(0).toUpperCase() + proof.slice(1) + '.' : '')
+      + ' The current focus is ' + work + ' — a record built for real rooms and serviced to working DJs.'
+      + ' For bookings, press, and music, all links are in the artist’s bio.';
+  }
+  ids.forEach(function (id) { $(id).addEventListener('input', build); });
+  $('bioCopy').addEventListener('click', function () {
+    var all = ['ONE-LINER:', $('bioShort').textContent, '', 'SHORT:', $('bioMed').textContent, '', 'FULL:', $('bioLong').textContent].join('\n');
+    navigator.clipboard.writeText(all).then(function () {
+      $('bioCopy').textContent = 'Copied!';
+      setTimeout(function () { $('bioCopy').textContent = 'Copy All Three'; }, 1500);
+    });
+  });
+  build();
+})();
+</script>
+
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-n">30,000+</div><div class="stat-l">DJs in the Digiwaxx network</div></div>
+  <div class="stat"><div class="stat-n">1998</div><div class="stat-l">Serving records to DJs since</div></div>
+  <div class="stat"><div class="stat-n">~100K</div><div class="stat-l">Tracks uploaded to streaming daily — you need more than an upload</div></div>
+</div>
+
+<section class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <details><summary>How long should an artist bio be?</summary><div class="faq-a"><p>Three lengths cover every use: a one-liner for social profiles, 2–3 sentences for streaming platforms, and 100–150 words for press and EPKs. Longer than that, nobody reads.</p></div></details>
+  <details><summary>What makes a bio actually work?</summary><div class="faq-a"><p>Specifics: your city, your sound named precisely, and one verifiable proof point. "Versatile artist making waves" says nothing; "Houston melodic rap with club spins across Texas" books shows.</p></div></details>
+</section>
+
+<section class="related">
+  <h2>Keep Going</h2>
+  <div class="related-grid">
+    <a class="related-card" href="/tools/dj-pitch-generator"><span class="related-cat">Tools</span><span class="related-t">DJ Pitch Generator</span></a>
+    <a class="related-card" href="/goals/get-more-fans"><span class="related-cat">Artist Goals</span><span class="related-t">How to Get More Fans as an Artist</span></a>
+    <a class="related-card" href="/journey/i-made-a-song"><span class="related-cat">Artist Journey</span><span class="related-t">“I Made a Song.” — Now What?</span></a>
+    <a class="related-card" href="/guides/music-marketing-checklist"><span class="related-cat">Guides</span><span class="related-t">The Music Marketing Checklist</span></a>
+  </div>
+</section>
+
+<section class="cta-block">
+  <p class="cta-kicker">Bio done?</p>
+  <h2>Give it a record worth reading about.</h2>
+  <p class="cta-sub">A Digiwaxx campaign adds the proof line every bio needs: serviced to 30,000+ DJs, featured on Digiwaxx.com.</p>
+  <a class="cta-btn" href="/#pricing">Submit Your Record &rarr;</a>
+  <p class="cta-tiers">Starter $99 &middot; Pro $149 &middot; Elite $199 &mdash; one-time payment, no contracts.</p>
+</section>
+
+<div class="funnel-strip">
+  <span>Question</span><i>&rarr;</i><span>Guide</span><i>&rarr;</i>
+  <a href="/university">University</a><i>&rarr;</i>
+  <a href="/#pricing">Pricing</a><i>&rarr;</i>
+  <a href="/#pricing"><b>Submit Your Record</b></a>
+</div>
+  </article>
+</main>
+
+<footer class="cfooter">
+  <div class="cfooter-inner">
+    <div class="cfooter-brand">DIGI<span>WAXX</span><p>Trusted by 30,000+ DJs since 1998.</p>
+      <a class="cfooter-cta" href="/#pricing">Submit Your Record &rarr;</a>
+      <a class="cfooter-hub" href="/university">Browse Digiwaxx University &rarr;</a>
+    </div>
+    <div class="cfooter-cols">
+      <div class="cfooter-col"><h4><a href="/university#services">Promotion Services</a></h4>
+        <a href="/promote/promote-my-single">Promote My Single</a>
+        <a href="/promote/music-promotion-service">Music Promotion Service</a>
+        <a href="/promote/independent-music-promotion">Independent Music Promotion</a>
+        <a href="/promote/promote-my-album">Promote My Album</a>
+        <a href="/promote/promote-my-ep">Promote My EP</a>
+        <a class="cfooter-more" href="/university#services">View all 10 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/university#campaigns">Campaign Blueprints</a></h4>
+        <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a>
+        <a href="/campaigns/30-day-post-release-sprint">30-Day Post-Release Sprint</a>
+        <a href="/campaigns/club-record-campaign">Club Record Campaign</a>
+        <a href="/campaigns/90-day-new-artist-launch">90-Day New Artist Launch</a></div>
+      <div class="cfooter-col"><h4><a href="/university#guides">Release &amp; Promotion Guides</a></h4>
+        <a href="/guides/my-song-isnt-getting-streams">Song Isn't Getting Streams</a>
+        <a href="/guides/how-to-promote-a-single-after-release">Promote After Release</a>
+        <a href="/guides/how-to-release-a-single">How to Release a Single</a>
+        <a href="/guides/how-to-promote-a-rap-song">Promote a Rap Song</a>
+        <a href="/guides/how-to-get-djs-to-play-my-song">Get DJs to Play Your Song</a>
+        <a class="cfooter-more" href="/university#guides">View all 18 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/university#goals">Artist Goals</a></h4>
+        <a href="/goals/get-more-fans">Get More Fans</a>
+        <a href="/goals/get-club-plays">Get Club Plays</a>
+        <a href="/goals/get-booked-for-shows">Get Booked</a>
+        <a href="/goals/grow-spotify-listeners">Grow Spotify Listeners</a>
+        <a href="/goals/get-playlist-placement">Get Playlist Placement</a>
+        <a class="cfooter-more" href="/university#goals">View all 6 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/university#answers">Straight Answers</a></h4>
+        <a href="/answers/does-dj-promotion-still-work">Does DJ Promotion Still Work?</a>
+        <a href="/answers/how-record-pools-work">How Record Pools Work</a>
+        <a href="/answers/how-much-does-music-promotion-cost">Promotion Costs</a>
+        <a href="/answers/is-spotify-playlist-promotion-worth-it">Is Playlist Promotion Worth It?</a>
+        <a href="/answers/do-djs-still-break-records">Do DJs Still Break Records?</a>
+        <a class="cfooter-more" href="/university#answers">View all 16 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/university#promotion">Promotion Hubs</a></h4>
+        <a href="/promotion/spotify-playlist-promotion">Spotify Promotion</a>
+        <a href="/promotion/hip-hop-promotion">Hip Hop Promotion</a>
+        <a href="/promotion/afrobeats-promotion">Afrobeats Promotion</a>
+        <a href="/promotion/music-promotion-atlanta">Music Promotion Atlanta</a>
+        <a href="/promotion/music-promotion-new-york">Music Promotion New York</a>
+        <a class="cfooter-more" href="/university#promotion">View all 29 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/university#compare">Comparisons</a></h4>
+        <a href="/compare/digiwaxx-vs-playlist-push">vs. Playlist Push</a>
+        <a href="/compare/digiwaxx-vs-submithub">vs. SubmitHub</a>
+        <a href="/compare/digiwaxx-vs-groover">vs. Groover</a>
+        <a href="/compare/best-record-pools">Best Record Pools</a></div>
+      <div class="cfooter-col"><h4><a href="/university#journey">The Artist Journey</a></h4>
+        <a href="/journey/i-made-a-song">Stage 1: I Made a Song</a>
+        <a href="/journey/i-released-it">Stage 2: I Released It</a>
+        <a href="/journey/i-need-people">Stage 3: I Need People</a>
+        <a href="/journey/im-getting-traction">Stage 4: Getting Traction</a></div>
+      <div class="cfooter-col"><h4><a href="/university#tools">Free Artist Tools</a></h4>
+        <a href="/tools/release-day-checklist">Release Day Checklist (Tool)</a>
+        <a href="/tools/release-budget-calculator">Release Budget Calculator</a>
+        <a href="/tools/dj-pitch-generator">DJ Pitch Generator</a>
+        <a href="/tools/artist-bio-generator">Artist Bio Generator</a></div>
+    </div>
+  </div>
+  <p class="cfooter-copy">&copy; 2026 Digiwaxx Media. All rights reserved.</p>
+</footer>
+</body>
+</html>
