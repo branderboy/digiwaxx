@@ -1,0 +1,627 @@
+{
+ "promote-my-single": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "6cf49b8cccc39b24737addd2a8d8ca3849c8ddf1"
+ },
+ "promote-my-album": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "ea39a730c748c63774e40d6d9dd4bbb7210511b4"
+ },
+ "promote-my-ep": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "d52eeda814c9dacf09e61c860ac78760e08c9317"
+ },
+ "promote-my-mixtape": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "e60c61a366abbc53087955baee7359e56bcf8b18"
+ },
+ "music-promotion-service": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "b87adbba337c03d4fe35b513f5d6c6416788ef1e"
+ },
+ "independent-music-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "7eb975b5a4d70153ce76b4ac3f8c4adaa1dfe99e"
+ },
+ "music-promotion-for-record-labels": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "798f3fffbf90b3ae1928682be372cd056dd743db"
+ },
+ "music-promotion-for-managers": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "21d31fe64ddcd53d62467e5c4e3c27a4c39cc6c1"
+ },
+ "music-promotion-for-producers": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "90c6b9c16a62340a675be8a9e6d365be0bc4196c"
+ },
+ "music-promotion-for-djs": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "d421d5612f4b8cf9200b8c9800ecf98085acf725"
+ },
+ "60-day-release-plan": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "70d6e86c3bc233d1efe8da443d55bd6d04538dd1"
+ },
+ "30-day-post-release-sprint": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "34786d07944b275b9eca2e03e229039fd23ee30a"
+ },
+ "club-record-campaign": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "7c31e601dfe3c0d7eba1fc647e53aa497a1d949c"
+ },
+ "90-day-new-artist-launch": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "f75745b74b13ca86f6bacbee2784a16798b14796"
+ },
+ "how-to-release-a-single": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "6b538c21436117af4e1773be4247ee9f7779d365"
+ },
+ "how-to-promote-a-rap-song": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "dd7c2d83c945a74f655ab6d3aac8e8c067644d2e"
+ },
+ "how-to-get-djs-to-play-my-song": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "ad7018aa283b57ecbe493b9cffbed05a17d98431"
+ },
+ "music-marketing-checklist": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "7c610592dbae28e0a558b96adededae29f806e85"
+ },
+ "release-day-checklist-guide": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "922538343b28879b780d775a7a9c1ee67cbd63fb"
+ },
+ "song-rollout-timeline": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "3671406c1a4158304c5dec7da2c80e571ea4d938"
+ },
+ "best-day-to-release-music": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "e9177dc3003cd729876bb4ee5c1ae070a8a4c383"
+ },
+ "music-promotion-for-beginners": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "06b67bac5ce3f7b9fa325959b5711b4535b62744"
+ },
+ "how-many-songs-should-i-release": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "fe6c53fe9155b679d2d095cc1a9fe0f7bf46849b"
+ },
+ "how-to-build-anticipation": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "1a083d2e183ae47fecf7d6a0ae7322f604d637fb"
+ },
+ "my-song-isnt-getting-streams": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "5dacb22988bc791a0c6ee3643158ddde223f7cdf"
+ },
+ "why-nobody-listens-to-my-music": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "a9a2c56b263bfe12a7c337e1fd0c6006472aa3b5"
+ },
+ "spotify-algorithm-tips": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "955a12b8323300db029ec82dabc73a97b4d1cebb"
+ },
+ "how-to-get-more-playlist-adds": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "8382eac6b1469b78732ffdbc6d1dad3f9b980e47"
+ },
+ "how-to-reach-djs": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "5f2c9dfb10bdc43556c32c7774b0368b05bc685a"
+ },
+ "how-to-get-radio-play": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "c201ece1a592af6f142b3911334b55cc281a4c03"
+ },
+ "why-my-song-stopped-growing": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "1df2e09842aab810620cb64b3521dbe1a686efde"
+ },
+ "how-to-promote-a-single-after-release": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "390574341f3b214d0ff11a7a4012b33f4d72c429"
+ },
+ "get-more-fans": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "1e5aaad9c3a98d3f303175a432bb6108a0a00f0a"
+ },
+ "get-booked-for-shows": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "3598f0195166d8b6f7d520d3fce7b514f834464e"
+ },
+ "get-club-plays": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "71867754a40a366f92258d157a07f744473fafd2"
+ },
+ "grow-spotify-listeners": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "e868eb69bce24c7f487ad5a72c2b413d2fdaddf9"
+ },
+ "get-playlist-placement": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "3ec74237099bbd211138f98357930110584fd160"
+ },
+ "get-radio-spins": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "a4c6b1ac0a2a2285ce7aae62b98167c3477664ce"
+ },
+ "does-dj-promotion-still-work": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "67d021459ec2122be36c18466307be3f444197a6"
+ },
+ "is-spotify-playlist-promotion-worth-it": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "62bf205ab4b2c567e905582e1ac851bd5c89a159"
+ },
+ "do-djs-still-break-records": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "f30d044ec8dde3868df91b14ad83b7b65cbd6ae1"
+ },
+ "how-record-pools-work": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "22998a141177015cbb0d251600674a63c9627432"
+ },
+ "what-is-a-record-pool": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "81fe831ca0c03d1cc5673753575cc8ba5b5c32cb"
+ },
+ "what-happens-after-you-submit-music": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "98a97cf591604566881866dc612b108405dc09de"
+ },
+ "how-club-djs-discover-new-songs": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "b2a1dbd96b369ba5ed2547d3082d37f81c63d3d5"
+ },
+ "how-do-djs-find-new-music": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "afb046d4c2fff53d1cc184cc3832e983c218a6b9"
+ },
+ "does-music-promotion-work": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "a215d47965bbc35bea8a1d1c7d61bf0e7ab8b96b"
+ },
+ "how-much-does-music-promotion-cost": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "097cea684a8a84d6d776ff3ad97e8f40bc053508"
+ },
+ "should-i-pay-for-music-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "cf8363a6991551585e41d382b3b036c59db7aa39"
+ },
+ "how-long-does-music-promotion-take": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "de3296b8b75200cbf6017583d0dea702dc6be75e"
+ },
+ "how-many-djs-receive-my-record": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "cb9fa72ce319bc492678014434fdff4fa1e7f601"
+ },
+ "can-independent-artists-use-digiwaxx": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "a84c51c4e19364fdfd0964b0e7ff809ea2c2fc99"
+ },
+ "will-promotion-increase-streams": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "d31ddbf2652b0a958455229fda34f5adb6b31612"
+ },
+ "does-radio-promotion-still-work": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "404a4418ba42be4d0ba6dd498633b888ae3f1114"
+ },
+ "spotify-playlist-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "4a7979264011746f78b41e4b31210e7d3dfad516"
+ },
+ "apple-music-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "66876cf0f2adb2739f925238eb4d99510a600306"
+ },
+ "audiomack-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "3f49263adc6c6d03f042e68bea93e0ef4eae68f8"
+ },
+ "tidal-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "8f20d9ee0c4ff9a6689478be5002d760ef85c93f"
+ },
+ "youtube-music-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "d58c5d4b4b874fb16c0c6351a6ccc1f09a53a0f7"
+ },
+ "hip-hop-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "fa0ff6eed553a49d552bf150445062e066f723f1"
+ },
+ "rnb-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "f96f65d7deb7338596dfb4a494f898151fe39624"
+ },
+ "afrobeats-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "b83b081be2dc36e346aee1b9cf8807ad96edbf08"
+ },
+ "dancehall-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "5e74eca0a9aa4b19c76ce1cc7a471d7f21a6a65b"
+ },
+ "reggae-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "db4a9148945881d880b3ba3a996098f202037c97"
+ },
+ "latin-music-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "318846f37cfddc1e04a5805e0f96a77f3e678122"
+ },
+ "gospel-promotion": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "894b37337e8616d18ad0d7c39dce8d1ea570a27a"
+ },
+ "music-promotion-atlanta": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "18a6fabf0dc7a0f010f2cfba6efa7cdf0f3a8f8d"
+ },
+ "music-promotion-houston": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "52b645e650d80d3e4283f581fb23541468289371"
+ },
+ "music-promotion-chicago": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "68c86945f8b9a2f21efb499643980cd81ce5b991"
+ },
+ "music-promotion-miami": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "3fac8384ada9c20241991b8a9d812331b369ef91"
+ },
+ "music-promotion-new-york": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "f4dd3ed5ea88d5e2e537c879581879a8576818e9"
+ },
+ "music-promotion-washington-dc": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "2791639e582330607471c545535d472119d72614"
+ },
+ "music-promotion-dallas": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "89ec423c8d8075e52dc0bda9b67e69e36e4e3edb"
+ },
+ "music-promotion-philadelphia": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "b52fa89bee7b0fd78c2b7a64a4294e015611d4d6"
+ },
+ "music-promotion-detroit": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "088444b8fe343ce262b16257617128502ca8e7e3"
+ },
+ "music-promotion-memphis": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "d00f196dfdbc47f6d8185d8c775ee913078dbb20"
+ },
+ "music-promotion-new-orleans": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "b683dd568fc9f1556fe4895a8119465968d753f3"
+ },
+ "music-promotion-baltimore": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "bd7b4e634d447787f22d4318b28c910337e25cb1"
+ },
+ "music-promotion-charlotte": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "fdbbc1c7f880c6164274e9b0b8b43143d4e437ef"
+ },
+ "music-promotion-nashville": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "37593ea6d4abb5657598fae5b73e77392233becf"
+ },
+ "music-promotion-oakland": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "acbcb894ec5f7e67ace9c81fd4b44107f98ffffb"
+ },
+ "music-promotion-los-angeles": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "3259086d18785377bb1d4e3c8843f135ce21bc0a"
+ },
+ "hip-hop-promotion-atlanta": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "4b742462f5a3c95526f46b7b26234837655169be"
+ },
+ "hip-hop-promotion-chicago": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "c9f26e90ea6c1c0b04ae79cd78ee3d1cdd0a98b0"
+ },
+ "hip-hop-promotion-houston": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "8f5ee81abe3f045d9c7e79a3aa3e52328e06cc8d"
+ },
+ "hip-hop-promotion-miami": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "58e6528f43b49e5ceb41047c9971917bc95c5f08"
+ },
+ "hip-hop-promotion-los-angeles": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "150357923b54857c561b368a1d946ce60d1783ce"
+ },
+ "hip-hop-promotion-new-york": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "6566afa1f9f3bc102503713e78d44073409f6919"
+ },
+ "hip-hop-promotion-philadelphia": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "241c74cc7933a8ee3b32078333cd69101ab0410f"
+ },
+ "hip-hop-promotion-detroit": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "4553ca2bdb5a763141669b6f00d076059030a16e"
+ },
+ "hip-hop-promotion-memphis": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "4df86d587880c3a44ea61cdb4f7a67d186ec83c7"
+ },
+ "hip-hop-promotion-new-orleans": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "90519869475d2bd17c63151b6e689e7fa97a69c2"
+ },
+ "hip-hop-promotion-dallas": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "0d2888eb8e8f6e516b30993d477a14917448f416"
+ },
+ "hip-hop-promotion-dmv": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "4d162197f4e655f008000863cf9decdf739e3571"
+ },
+ "hip-hop-promotion-bay-area": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "5514d8f5df5061283c4b3a64c4b9fa5d64a4e8de"
+ },
+ "rnb-promotion-atlanta": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "54831b2a28b5a6cf4510ccddfa60413c32a77767"
+ },
+ "rnb-promotion-chicago": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "e1ecef1a1567a972550490a38e1eaa18d16e8ea5"
+ },
+ "rnb-promotion-houston": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "def2800cf4fb96957284e7643e1a17027d808b2b"
+ },
+ "rnb-promotion-dmv": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "afa4e8f7f29c05baa000b7d2cdc0c206a9a09b4b"
+ },
+ "afrobeats-promotion-houston": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "34ba3c82608aad09e68e7f486ad8a82012875698"
+ },
+ "afrobeats-promotion-new-york": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "b2f14d6a2a7da2aa3a5fd5e0531a757130e7df7f"
+ },
+ "afrobeats-promotion-atlanta": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "371b2bbbc489c0b88a579ff08b9c801a2095c20c"
+ },
+ "afrobeats-promotion-dmv": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "82210e1102389551b0a9dacfcad0766b643d405c"
+ },
+ "reggae-promotion-new-york": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "0224d3f804c16fa2e4c02716e36c63c068aecba1"
+ },
+ "reggae-promotion-miami": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "28a2d3e0291ff022b8a51aaa498c1ded2b6f8da8"
+ },
+ "drill-promotion-brooklyn": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "7f1db3ebcc959e6979d24c5b30e317cabba756f9"
+ },
+ "drill-promotion-chicago": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "a35379465e703608ad915aa635a794bb28af11fe"
+ },
+ "latin-promotion-miami": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "5df8fb3667133995ef6adf6db3870f0f6e2d1f7a"
+ },
+ "latin-promotion-houston": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "e0e86422b6f8e333a6705592d22fab22f8ef857a"
+ },
+ "gospel-promotion-atlanta": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "90cd639249552ec006ec5402b93cd1ca39c6b03a"
+ },
+ "gospel-promotion-chicago": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "31fb97d8b209e98109922a91952ae075552da78a"
+ },
+ "digiwaxx-vs-playlist-push": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "cbf3b60ae9e200f5eb700dc25067dd0641a532e1"
+ },
+ "digiwaxx-vs-submithub": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "56f425d45a472631fb611c133447f82a148964ce"
+ },
+ "digiwaxx-vs-groover": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "091cd5079478ff5dfaaa84b1041c85aab811f05d"
+ },
+ "best-record-pools": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "3ff69e73734caf4400ef60dcfeeaed6122ecd923"
+ },
+ "i-made-a-song": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "4a01900bec9e99486f0604d7453d4bf4fb8fd0bf"
+ },
+ "i-released-it": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "7dcdc485499b7af96c9666e103e02bebc877d577"
+ },
+ "i-need-people": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "dc9a8cd6528623b7d6f7b52a1a6535a399c5b935"
+ },
+ "im-getting-traction": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "f8ae2ace2f094a161159d60c42ed29182dd7e0f1"
+ },
+ "release-day-checklist": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "a39e0697042f9f8fafd5d76d323a057cb60a3a89"
+ },
+ "release-budget-calculator": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "cf5c59c5364bae270777022151df9bae19b24d1f"
+ },
+ "dj-pitch-generator": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "4a74ac2c11779df2d888804959044bbb9413f2a4"
+ },
+ "artist-bio-generator": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "67f1ea62f3273ac3442c45b3b53045ca1b3ca9a6"
+ },
+ "epk-builder": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "4a2e36176a8a44c03c2deefc52f63f89074740ae"
+ },
+ "press-release-generator": {
+  "published": "2026-07-08",
+  "modified": "2026-07-08",
+  "hash": "52d15faa1746cbfd2556a5f38f235a9b4a65dfe6"
+ }
+}
