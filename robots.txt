@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /submit
 
-Sitemap: https://digiwaxx.com/sitemap.xml
+Sitemap: https://www.digiwaxxrecordpool.com/sitemap.xml
