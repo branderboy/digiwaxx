@@ -28,6 +28,16 @@ const GENRES = {
     how: 'Drill is hyper-local by nature — records rep blocks and boroughs — and it moves through a young club-and-party circuit plus a voracious online ecosystem of reaction channels and edits. The DJs who run drill parties and mixshow segments are the bridge from neighborhood anthem to city-wide record.',
     djNote: 'Clean versions are decisive in drill: radio and many rooms cannot run the explicit, and the records that cross over are the ones DJs can actually program everywhere.',
   },
+  'latin': {
+    name: 'Latin Music',
+    how: 'Latin music breaks through a full-stack ecosystem of its own: Latin club nights, Spanish-language radio, and bilingual open-format DJs who now treat reggaeton and urbano as core repertoire. Lane precision matters — urbano, regional mexican, and tropical each have their own rooms and tastemakers.',
+    djNote: 'Lane-correct tags are essential so DJs file the record right, plus clean edits for radio and mixable structure. Bilingual records should be packaged for both markets they serve.',
+  },
+  'gospel': {
+    name: 'Gospel',
+    how: 'Gospel moves through the most loyal infrastructure in music: gospel radio and announcers with decades of trust, the church and conference circuit, and gospel DJs running Sunday shows, brunches, and events. Relationships and message-fit matter more than in any other genre — and support, once earned, lasts.',
+    djNote: 'Broadcast-clean by definition, correct metadata for chart tracking, and a one-sheet with your story — gospel programmers care who the artist is, not just how the record sounds.',
+  },
 };
 
 // city extras for combos that reference sub-markets
@@ -35,12 +45,32 @@ const COMBOS = [
   { genre: 'hip-hop', city: 'atlanta', featured: true },
   { genre: 'hip-hop', city: 'chicago' },
   { genre: 'hip-hop', city: 'houston' },
+  { genre: 'hip-hop', city: 'miami' },
+  { genre: 'hip-hop', city: 'los-angeles' },
+  { genre: 'hip-hop', city: 'new-york' },
+  { genre: 'hip-hop', city: 'philadelphia' },
+  { genre: 'hip-hop', city: 'detroit' },
+  { genre: 'hip-hop', city: 'memphis' },
+  { genre: 'hip-hop', city: 'new-orleans' },
+  { genre: 'hip-hop', city: 'dallas' },
+  { genre: 'hip-hop', city: 'washington-dc', citySuffix: 'the DMV', slugOverride: 'hip-hop-promotion-dmv', title: 'Hip Hop Promotion in the DMV' },
+  { genre: 'hip-hop', city: 'oakland', citySuffix: 'the Bay Area', slugOverride: 'hip-hop-promotion-bay-area', title: 'Hip Hop Promotion in the Bay Area' },
   { genre: 'rnb', city: 'atlanta' },
+  { genre: 'rnb', city: 'chicago' },
+  { genre: 'rnb', city: 'houston' },
   { genre: 'rnb', city: 'washington-dc', citySuffix: 'DMV', slugOverride: 'rnb-promotion-dmv', title: 'R&B Promotion in the DMV' },
   { genre: 'afrobeats', city: 'houston' },
   { genre: 'afrobeats', city: 'new-york' },
+  { genre: 'afrobeats', city: 'atlanta' },
+  { genre: 'afrobeats', city: 'washington-dc', citySuffix: 'the DMV', slugOverride: 'afrobeats-promotion-dmv', title: 'Afrobeats Promotion in the DMV' },
   { genre: 'reggae', city: 'new-york' },
+  { genre: 'reggae', city: 'miami' },
   { genre: 'drill', city: 'new-york', citySuffix: 'Brooklyn', slugOverride: 'drill-promotion-brooklyn', title: 'Drill Music Promotion in Brooklyn' },
+  { genre: 'drill', city: 'chicago' },
+  { genre: 'latin', city: 'miami' },
+  { genre: 'latin', city: 'houston' },
+  { genre: 'gospel', city: 'atlanta' },
+  { genre: 'gospel', city: 'chicago' },
 ];
 
 function comboPage(combo) {
@@ -80,7 +110,7 @@ function comboPage(combo) {
     related: [
       `music-promotion-${c.slug}`,
       'how-to-get-djs-to-play-my-song',
-      combo.genre === 'hip-hop' ? 'how-to-promote-a-rap-song' : 'get-club-plays',
+      { 'hip-hop': 'how-to-promote-a-rap-song', 'gospel': 'how-to-get-radio-play', 'latin': 'latin-music-promotion' }[combo.genre] || 'get-club-plays',
       'does-dj-promotion-still-work',
     ],
   };

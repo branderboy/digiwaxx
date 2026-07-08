@@ -75,16 +75,44 @@
   <url><loc>https://digiwaxx.com/promotion/music-promotion-new-york</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/music-promotion-washington-dc</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/music-promotion-dallas</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/music-promotion-philadelphia</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/music-promotion-detroit</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/music-promotion-memphis</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/music-promotion-new-orleans</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/music-promotion-baltimore</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/music-promotion-charlotte</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/music-promotion-nashville</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/music-promotion-oakland</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/music-promotion-los-angeles</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-atlanta</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-chicago</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-houston</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-miami</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-los-angeles</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-new-york</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-philadelphia</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-detroit</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-memphis</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-new-orleans</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-dallas</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-dmv</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/hip-hop-promotion-bay-area</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/rnb-promotion-atlanta</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/rnb-promotion-chicago</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/rnb-promotion-houston</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/rnb-promotion-dmv</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/afrobeats-promotion-houston</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/afrobeats-promotion-new-york</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/afrobeats-promotion-atlanta</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/afrobeats-promotion-dmv</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/reggae-promotion-new-york</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/reggae-promotion-miami</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/promotion/drill-promotion-brooklyn</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/drill-promotion-chicago</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/latin-promotion-miami</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/latin-promotion-houston</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/gospel-promotion-atlanta</loc><priority>0.7</priority></url>
+  <url><loc>https://digiwaxx.com/promotion/gospel-promotion-chicago</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/compare/digiwaxx-vs-playlist-push</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/compare/digiwaxx-vs-submithub</loc><priority>0.7</priority></url>
   <url><loc>https://digiwaxx.com/compare/digiwaxx-vs-groover</loc><priority>0.7</priority></url>
@@ -97,4 +125,6 @@
   <url><loc>https://digiwaxx.com/tools/release-budget-calculator</loc><priority>0.8</priority></url>
   <url><loc>https://digiwaxx.com/tools/dj-pitch-generator</loc><priority>0.8</priority></url>
   <url><loc>https://digiwaxx.com/tools/artist-bio-generator</loc><priority>0.8</priority></url>
+  <url><loc>https://digiwaxx.com/tools/epk-builder</loc><priority>0.8</priority></url>
+  <url><loc>https://digiwaxx.com/tools/press-release-generator</loc><priority>0.8</priority></url>
 </urlset>
