@@ -18,12 +18,14 @@ const BRAND = {
 };
 
 const CATEGORIES = {
+  services: { dir: 'promote', label: 'Promote', hubTitle: 'Promotion Services' },
   guides: { dir: 'guides', label: 'Guides', hubTitle: 'Release & Promotion Guides' },
   goals: { dir: 'goals', label: 'Artist Goals', hubTitle: 'Artist Goals' },
   answers: { dir: 'answers', label: 'Answers', hubTitle: 'Straight Answers' },
   promotion: { dir: 'promotion', label: 'Promotion', hubTitle: 'Promotion Hubs' },
   journey: { dir: 'journey', label: 'Artist Journey', hubTitle: 'The Artist Journey' },
   campaigns: { dir: 'campaigns', label: 'Campaigns', hubTitle: 'Campaign Blueprints' },
+  compare: { dir: 'compare', label: 'Compare', hubTitle: 'Comparisons' },
   tools: { dir: 'tools', label: 'Tools', hubTitle: 'Free Artist Tools' },
   stories: { dir: 'stories', label: 'Success Stories', hubTitle: 'Success Stories' },
 };
@@ -96,7 +98,7 @@ function nav() {
 // "View all" into the University hub, which is the full directory.
 const FOOTER_LINK_LIMIT = 5;
 function footer(allPages) {
-  const order = ['campaigns', 'guides', 'goals', 'answers', 'promotion', 'journey', 'tools', 'stories'];
+  const order = ['services', 'campaigns', 'guides', 'goals', 'answers', 'promotion', 'compare', 'journey', 'tools', 'stories'];
   const cols = order.map((cat) => {
     const pages = (allPages || []).filter((p) => p.category === cat);
     if (!pages.length) return '';

@@ -10,14 +10,18 @@ const { SITE_URL, CATEGORIES, esc, pageUrl, renderPage, nav, footer } = require(
 const ROOT = path.resolve(__dirname, '..', '..');
 
 const pages = [
+  ...require('./data/services'),
   ...require('./data/campaigns'),
   ...require('./data/guides-before'),
   ...require('./data/guides-after'),
   ...require('./data/goals'),
   ...require('./data/answers'),
+  ...require('./data/faq'),
   ...require('./data/platforms'),
+  ...require('./data/genres'),
   ...require('./data/cities').pages,
   ...require('./data/combos'),
+  ...require('./data/compare'),
   ...require('./data/journey'),
   ...require('./data/tools'),
   ...require('./data/stories'),
@@ -47,9 +51,11 @@ for (const p of pages) {
 }
 
 // ---- University hub (Layer 10 authority cluster index) ----
-const catOrder = ['campaigns', 'guides', 'goals', 'answers', 'promotion', 'journey', 'tools', 'stories'];
+const catOrder = ['services', 'campaigns', 'guides', 'goals', 'answers', 'promotion', 'compare', 'journey', 'tools', 'stories'];
 const catDescriptions = {
+  services: 'What a Digiwaxx campaign does for your single, album, EP, or mixtape — and for labels, managers, producers, and DJs.',
   campaigns: 'Complete sample campaigns you can launch as-is — dated, step-by-step, from Day 1 to done.',
+  compare: 'Honest comparisons: where Digiwaxx fits next to playlist and pitching platforms, and how to choose a record pool.',
   guides: 'Step-by-step playbooks for every stage of a release — before the drop and after it.',
   goals: 'Start from what you want — fans, bookings, club plays, spins — and work backward.',
   answers: 'One page, one question, answered straight: DJs, record pools, playlists, radio.',
