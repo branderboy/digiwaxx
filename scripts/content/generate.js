@@ -10,6 +10,7 @@ const { SITE_URL, CATEGORIES, esc, pageUrl, renderPage, nav, footer } = require(
 const ROOT = path.resolve(__dirname, '..', '..');
 
 const pages = [
+  ...require('./data/campaigns'),
   ...require('./data/guides-before'),
   ...require('./data/guides-after'),
   ...require('./data/goals'),
@@ -46,8 +47,9 @@ for (const p of pages) {
 }
 
 // ---- University hub (Layer 10 authority cluster index) ----
-const catOrder = ['guides', 'goals', 'answers', 'promotion', 'journey', 'tools', 'stories'];
+const catOrder = ['campaigns', 'guides', 'goals', 'answers', 'promotion', 'journey', 'tools', 'stories'];
 const catDescriptions = {
+  campaigns: 'Complete sample campaigns you can launch as-is — dated, step-by-step, from Day 1 to done.',
   guides: 'Step-by-step playbooks for every stage of a release — before the drop and after it.',
   goals: 'Start from what you want — fans, bookings, club plays, spins — and work backward.',
   answers: 'One page, one question, answered straight: DJs, record pools, playlists, radio.',
@@ -81,6 +83,9 @@ const hubHtml = `<!DOCTYPE html>
     <meta property="og:description" content="Free guides, answers, and tools on DJ promotion, radio, playlists, and breaking records.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${SITE_URL}/university">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">

@@ -23,6 +23,7 @@ const CATEGORIES = {
   answers: { dir: 'answers', label: 'Answers', hubTitle: 'Straight Answers' },
   promotion: { dir: 'promotion', label: 'Promotion', hubTitle: 'Promotion Hubs' },
   journey: { dir: 'journey', label: 'Artist Journey', hubTitle: 'The Artist Journey' },
+  campaigns: { dir: 'campaigns', label: 'Campaigns', hubTitle: 'Campaign Blueprints' },
   tools: { dir: 'tools', label: 'Tools', hubTitle: 'Free Artist Tools' },
   stories: { dir: 'stories', label: 'Success Stories', hubTitle: 'Success Stories' },
 };
@@ -80,6 +81,7 @@ function nav() {
     <a class="cnav-logo" href="/">DIGI<span>WAXX</span></a>
     <div class="cnav-links">
       <a href="/university">University</a>
+      <a href="/university#campaigns">Campaigns</a>
       <a href="/university#guides">Guides</a>
       <a href="/university#answers">Answers</a>
       <a href="/university#promotion">Cities &amp; Platforms</a>
@@ -94,13 +96,16 @@ function nav() {
 // "View all" into the University hub, which is the full directory.
 const FOOTER_LINK_LIMIT = 5;
 function footer(allPages) {
-  const order = ['guides', 'goals', 'answers', 'promotion', 'journey', 'tools', 'stories'];
+  const order = ['campaigns', 'guides', 'goals', 'answers', 'promotion', 'journey', 'tools', 'stories'];
   const cols = order.map((cat) => {
     const pages = (allPages || []).filter((p) => p.category === cat);
     if (!pages.length) return '';
+    // Keep data-file order when everything fits; otherwise surface featured first.
     const featured = pages.filter((p) => p.featured);
     const rest = pages.filter((p) => !p.featured);
-    const shown = featured.concat(rest).slice(0, FOOTER_LINK_LIMIT);
+    const shown = pages.length <= FOOTER_LINK_LIMIT
+      ? pages
+      : featured.concat(rest).slice(0, FOOTER_LINK_LIMIT);
     const links = shown.map((p) => `        <a href="${pageUrl(p)}">${esc(p.navLabel || p.title)}</a>`).join('\n');
     const viewAll = pages.length > shown.length
       ? `\n        <a class="cfooter-more" href="/university#${cat}">View all ${pages.length} &rarr;</a>` : '';
@@ -214,6 +219,9 @@ ${s.html}
     <meta property="og:description" content="${esc(page.description)}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="${url}">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
