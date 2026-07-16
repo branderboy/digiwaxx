@@ -7,8 +7,10 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
-const TOKEN_SECRET = process.env.ADMIN_PASSWORD || 'admin123';
+// No fallback: if ADMIN_PASSWORD is unset, admin login and token checks fail
+// closed (public routes are unaffected).
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || null;
+const TOKEN_SECRET = process.env.ADMIN_PASSWORD || null;
 
 let dbInitialized = false;
 async function initDB() {
@@ -321,6 +323,7 @@ function signToken() {
 }
 
 function checkAdmin(req) {
+  if (!TOKEN_SECRET) return false;
   const auth = req.headers.authorization;
   if (!auth || !auth.startsWith('Bearer ')) return false;
   const token = auth.slice(7);
@@ -358,6 +361,9 @@ module.exports = async (req, res) => {
   try {
     // ===== ADMIN LOGIN =====
     if (url === '/api/admin/login' && req.method === 'POST') {
+      if (!ADMIN_PASSWORD) {
+        return json(res, { error: 'Admin access is not configured (ADMIN_PASSWORD env var is missing)' }, 503);
+      }
       if (body.password === ADMIN_PASSWORD) {
         const token = signToken();
         return json(res, { ok: true, token });
