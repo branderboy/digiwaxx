@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIGIWAXX | Boost Funnel (Demo)</title>
-    <meta name="description" content="Demo sales funnel — main offer, upsell, cross-sell, downsell. Mock prices only.">
+    <meta name="description" content="Demo sales funnel, main offer, upsell, cross-sell, downsell. Mock prices only.">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Google Fonts -->
@@ -520,7 +520,7 @@
 </head>
 <body>
 
-    <div class="demo-banner">Demo Funnel &mdash; Mock Prices Only &mdash; No Real Payments</div>
+    <div class="demo-banner">Demo Funnel, Mock Prices Only, No Real Payments</div>
 
     <header class="funnel-header">
         <img src="images/logo.jpg" alt="Digiwaxx">
@@ -548,7 +548,7 @@
         <!-- ============ STEP 2: UPSELL ============ -->
         <section class="funnel-step" id="step2">
             <div class="offer-box">
-                <div class="eyebrow">Wait &mdash; One-Time Upgrade</div>
+                <div class="eyebrow">Wait, One-Time Upgrade</div>
                 <h2 id="upsellHeading"></h2>
                 <p class="offer-desc" id="upsellDesc"></p>
                 <ul id="upsellFeatures"></ul>
@@ -565,7 +565,7 @@
         <!-- ============ STEP 3: CROSS-SELL (single products) ============ -->
         <section class="funnel-step" id="step3">
             <h2 class="step-heading">Level Up Your Campaign</h2>
-            <p class="step-sub">Grab features from the <span class="hl">higher packages</span> as one-off add-ons &mdash; without upgrading your whole tier.</p>
+            <p class="step-sub">Grab features from the <span class="hl">higher packages</span> as one-off add-ons, without upgrading your whole tier.</p>
             <div class="addon-grid" id="addonGrid"></div>
             <div class="step-actions">
                 <button class="btn-accept" id="crossSellContinue">Continue to Checkout &rarr;</button>
@@ -585,7 +585,7 @@
                     <span class="amount" id="orderTotal"></span>
                 </div>
                 <button class="btn-accept" id="payBtn">Pay Now (Demo)</button>
-                <p class="secure-note">&#128274; Mock checkout &mdash; no real payment is processed.</p>
+                <p class="secure-note">&#128274; Mock checkout, no real payment is processed.</p>
             </div>
             <div class="step-actions">
                 <button class="btn-decline" id="abandonBtn">I'm not ready to order</button>
@@ -635,10 +635,10 @@
 
     <script>
         // ==========================================================
-        // MOCK PRODUCT CATALOG — all prices are fake / demo only
+        // MOCK PRODUCT CATALOG, all prices are fake / demo only
         // ==========================================================
 
-        // Product GROUPS (bundles) — the main offer
+        // Product GROUPS (bundles), the main offer
         const TIERS = {
             starter: {
                 name: 'Starter',
@@ -683,7 +683,7 @@
             }
         };
 
-        // SINGLE products — the features of the UPGRADED tiers, sold as
+        // SINGLE products, the features of the UPGRADED tiers, sold as
         // individual add-ons. fromTier: the package this item belongs to;
         // it's offered as an add-on to anyone buying a lower tier.
         const SINGLES = [
@@ -700,12 +700,12 @@
         ];
         const TIER_RANK = { starter: 1, pro: 2, elite: 3 };
 
-        // DOWNSELL — a single Starter-level feature, discounted
+        // DOWNSELL, a single Starter-level feature, discounted
         const DOWNSELL = {
             name: 'DJ Blast Email Feature (Solo)',
             wasPrice: 99,
             price: 75,
-            desc: 'Skip the full package for now. Get your record in front of the DJ network with the DJ blast email feature on its own — at a one-time discount.'
+            desc: 'Skip the full package for now. Get your record in front of the DJ network with the DJ blast email feature on its own, at a one-time discount.'
         };
 
         // ==========================================================
@@ -741,7 +741,7 @@
         }
 
         // ==========================================================
-        // STEP 1: MAIN OFFER — render tier cards
+        // STEP 1: MAIN OFFER, render tier cards
         // ==========================================================
         function renderTiers() {
             $('tierGrid').innerHTML = Object.entries(TIERS).map(([key, t]) => `
@@ -767,14 +767,14 @@
         }
 
         // ==========================================================
-        // STEP 2: UPSELL — offer the next tier up for the difference
+        // STEP 2: UPSELL, offer the next tier up for the difference
         // ==========================================================
         function enterUpsell() {
             const base = TIERS[state.tier];
             const nextKey = base.next;
 
             if (!nextKey) {
-                // Elite is the top package and already includes every product —
+                // Elite is the top package and already includes every product
                 // nothing to upsell or cross-sell, go straight to checkout.
                 enterSummary();
                 return;
@@ -783,7 +783,7 @@
                 const diff = next.price - base.price;
                 const extras = next.features.filter(f => !f.toLowerCase().startsWith('everything'));
                 $('upsellHeading').textContent = `Upgrade to ${next.name} for just ${money(diff)} more?`;
-                $('upsellDesc').textContent = `You chose ${base.name} (${money(base.price)}). For ${money(diff)} more you unlock everything below — cheaper than adding any one of these later.`;
+                $('upsellDesc').textContent = `You chose ${base.name} (${money(base.price)}). For ${money(diff)} more you unlock everything below, cheaper than adding any one of these later.`;
                 $('upsellFeatures').innerHTML = extras.map(f => `<li>${f}</li>`).join('');
                 $('upsellWas').textContent = money(next.price);
                 $('upsellNow').textContent = '+' + money(diff);
@@ -797,7 +797,7 @@
         }
 
         // ==========================================================
-        // STEP 3: CROSS-SELL — singles not already in the bundle
+        // STEP 3: CROSS-SELL, singles not already in the bundle
         // ==========================================================
         function enterCrossSell() {
             const tierKey = currentTierKey();
@@ -848,7 +848,7 @@
             const tier = TIERS[tierKey];
             items.push({
                 tag: state.upgraded ? 'Package (Upgraded)' : 'Package',
-                name: `${tier.name} Boost — ${tier.tagline}`,
+                name: `${tier.name} Boost, ${tier.tagline}`,
                 price: tier.price
             });
             state.addons.forEach(id => {
@@ -875,7 +875,7 @@
         }
 
         // ==========================================================
-        // DOWNSELL — triggered on abandoning the order
+        // DOWNSELL, triggered on abandoning the order
         // ==========================================================
         function showDownsell() {
             $('downsellDesc').textContent = DOWNSELL.desc;
@@ -924,7 +924,7 @@
         $('abandonBtn').onclick = () => showDownsell();
 
         // ==========================================================
-        // INIT — support ?tier=pro deep links from the pricing page
+        // INIT, support ?tier=pro deep links from the pricing page
         // ==========================================================
         renderTiers();
         const params = new URLSearchParams(window.location.search);

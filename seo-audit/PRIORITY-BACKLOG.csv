@@ -1,0 +1,26 @@
+task,category,page_or_file,severity,business_impact_1-5,seo_impact_1-5,lead_impact_1-5,confidence_1-5,effort_1-5,priority_score,recommended_order,can_claude_implement
+Verify GSC + Bing and submit sitemap,Indexation,site-wide,Critical,5,5,3,5,1,18.0,1,partially (needs your account; can commit token)
+Add GA4 snippet to all pages + event map,Measurement,all templates,Critical,4,2,5,5,1,16.0,2,partially (needs GA4 property ID)
+Confirm apex-to-www 301 in Vercel,Technical,Vercel dashboard,Critical,2,4,1,4,1,11.0,3,no (dashboard)
+Create About/History + Contact + Privacy + Terms and footer links,Trust/EEAT,new pages + all footers,High,5,4,5,5,2,9.5,4,partially (drafts; facts from you)
+Replace PayPal.me with real checkout + /thank-you + purchase event,Conversion,index.html + api,High,5,1,5,4,3,5.0,5,partially (needs PayPal business account)
+Add support email + contact into funnel summary,Conversion,index.html,High,4,1,4,5,1,14.0,6,partially (needs mailbox created)
+Publish 3 case studies under /results,Content/Proof,new pages,High,5,4,5,4,3,6.0,7,partially (needs real campaign data)
+Email-capture lead magnet on 125 content pages,Lead gen,content template + api,High,5,1,5,4,2,7.5,8,yes
+Homepage footer Learn block,Internal linking,index.html,Medium,2,3,2,5,1,12.0,9,yes
+Trim 15 long titles,On-page,see PAGE-INVENTORY.csv,Low,1,2,1,5,1,9.0,10,yes
+Delete 5.8MB unused images and re-encode 12MB video,Performance,repo root,Medium,1,1,1,5,1,8.0,11,yes
+Localize 6 major-metro city page sets,Content,promotion/*,High,4,5,4,3,4,4.0,12,partially (local facts from you)
+Standalone /pricing page with offer FAQ,Content/BOFU,new page,High,4,3,4,4,2,7.5,13,yes (copy approval from you)
+Contextual internal-link mesh (~25 links),Internal linking,answers/ guides/ promotion/,Medium,2,3,2,5,2,6.0,14,yes
+Record-pool-vs-playlist-promotion + vs-radio-promoters compare pages,Content/BOFU,new pages,High,4,4,4,4,2,8.0,15,yes (review by you)
+Email nurture sequence for captured leads,Lead gen,ESP,High,5,1,5,4,3,5.0,16,partially (ESP choice + sending domain)
+House/EDM amapiano reggaeton genre pages,Content,new pages,Medium,3,3,3,3,2,6.0,17,yes
+Monthly records-moving roundup #1,Content/Freshness,new page,Medium,3,2,3,4,2,6.0,18,partially (needs real pool data)
+Original data study from the 100k-songs funnel numbers,Link asset,new page,Medium,4,4,3,3,3,4.7,19,partially (needs your data)
+Digital PR pitch of history + data study,Authority,external,High,5,5,3,3,4,4.0,20,no (relationships/outreach)
+DJ interview series (3),Authority/Content,new pages,Medium,3,3,2,4,3,4.0,21,partially
+Post-purchase review/testimonial collection,Trust,email + site,Medium,4,2,4,4,2,7.0,22,partially (depends on checkout fix)
+GSC-driven title/CTR iteration,Iteration,various,High,3,4,3,4,2,7.0,23,yes (needs GSC access)
+Per-cluster OG images,On-page,assets,Low,1,1,1,4,2,3.5,24,partially (design)
+Expand sameAs entity links in Organization schema,On-page,index.html,Low,1,2,1,4,1,8.0,25,partially (needs profile URLs)

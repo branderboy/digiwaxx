@@ -61,6 +61,12 @@ strong { color: var(--text-white); }
 }
 .cnav-cta:hover { background: var(--accent-yellow-hover); color: var(--bg-dark); }
 @media (max-width: 860px) { .cnav-links { display: none; } .cnav-inner { justify-content: space-between; } }
+/* Small phones: shrink logo + CTA so the nav never overflows the viewport */
+@media (max-width: 480px) {
+    .cnav-inner { padding: 0.7rem 0.9rem; gap: 0.6rem; }
+    .cnav-logo { font-size: 1.2rem; }
+    .cnav-cta { font-size: 0.8rem; padding: 0.45rem 0.55rem; letter-spacing: 0.02em; }
+}
 
 /* --- LAYOUT --- */
 .cmain { max-width: var(--content-width); margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
