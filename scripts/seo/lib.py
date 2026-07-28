@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""Shared helpers for the SEO build scripts.
+
+Holds the site constants, the taxonomy that maps /promotion/ slugs onto
+(genre, city) pairs, and the chrome (nav/footer) lifted verbatim from the
+existing content pages so generated pages are indistinguishable from
+hand-written ones.
+"""
+import os, re, json, glob
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+SITE = "https://www.digiwaxxrecordpool.com"
+SECTIONS = ["promote", "campaigns", "guides", "goals", "answers",
+            "promotion", "compare", "journey", "tools"]
+
+# ---------------------------------------------------------------- taxonomy
+
+PLATFORMS = {
+    "spotify-playlist-promotion": "Spotify",
+    "apple-music-promotion": "Apple Music",
+    "audiomack-promotion": "Audiomack",
+    "tidal-promotion": "TIDAL",
+    "youtube-music-promotion": "YouTube",
+}
+GENRE_HUBS = {
+    "hip-hop-promotion": "hip-hop",
+    "afrobeats-promotion": "afrobeats",
+    "rnb-promotion": "rnb",
+    "latin-music-promotion": "latin",
+    "reggae-promotion": "reggae",
+    "gospel-promotion": "gospel",
+    "dancehall-promotion": "dancehall",
+}
+GENRE_NAMES = {
+    "hip-hop": "Hip Hop", "afrobeats": "Afrobeats", "rnb": "R&amp;B",
+    "latin": "Latin", "reggae": "Reggae &amp; Dancehall", "gospel": "Gospel",
+    "drill": "Drill", "dancehall": "Dancehall",
+}
+CITY_NAMES = {
+    "atlanta": "Atlanta", "baltimore": "Baltimore", "bay-area": "the Bay Area",
+    "brooklyn": "Brooklyn", "charlotte": "Charlotte", "chicago": "Chicago",
+    "dallas": "Dallas", "detroit": "Detroit", "dmv": "the DMV",
+    "houston": "Houston", "los-angeles": "Los Angeles", "memphis": "Memphis",
+    "miami": "Miami", "nashville": "Nashville", "new-orleans": "New Orleans",
+    "new-york": "New York", "oakland": "Oakland",
+    "philadelphia": "Philadelphia", "washington-dc": "Washington, D.C.",
+}
+# schema.org addressRegion for each market, used by the Service/areaServed graph.
+CITY_REGION = {
+    "atlanta": "GA", "baltimore": "MD", "bay-area": "CA", "brooklyn": "NY",
+    "charlotte": "NC", "chicago": "IL", "dallas": "TX", "detroit": "MI",
+    "dmv": "DC", "houston": "TX", "los-angeles": "CA", "memphis": "TN",
+    "miami": "FL", "nashville": "TN", "new-orleans": "LA", "new-york": "NY",
+    "oakland": "CA", "philadelphia": "PA", "washington-dc": "DC",
+}
+# Longest-first so "latin-music-promotion" is not shadowed by "latin-promotion".
+_GENRE_PREFIXES = sorted(
+    ["hip-hop", "afrobeats", "rnb", "latin", "reggae", "gospel", "drill", "dancehall"],
+    key=len, reverse=True)
+
+
+def classify(slug):
+    """Map a /promotion/ slug to {kind, genre, city}.
+
+    kind is one of: platform, genre, city, genre-city.
+    """
+    if slug in PLATFORMS:
+        return {"kind": "platform", "genre": None, "city": None}
+    if slug in GENRE_HUBS:
+        return {"kind": "genre", "genre": GENRE_HUBS[slug], "city": None}
+    if slug.startswith("music-promotion-"):
+        return {"kind": "city", "genre": None, "city": slug[len("music-promotion-"):]}
+    for g in _GENRE_PREFIXES:
+        for infix in (f"{g}-music-promotion-", f"{g}-promotion-"):
+            if slug.startswith(infix):
+                return {"kind": "genre-city", "genre": g, "city": slug[len(infix):]}
+    return {"kind": "other", "genre": None, "city": None}
+
+
+def city_label(key):
+    """Display name with no leading article, for use in link text and headings."""
+    return CITY_NAMES.get(key, key.replace("-", " ").title()).replace("the ", "")
+
+
+# ------------------------------------------------------------------ chrome
+
+def _extract(pattern, text):
+    m = re.search(pattern, text, re.S)
+    if not m:
+        raise SystemExit(f"chrome extraction failed for {pattern[:40]}")
+    return m.group(0)
+
+
+def chrome():
+    """Return (nav, footer) HTML copied from an existing content page."""
+    src = open(f"{ROOT}/promotion/hip-hop-promotion-houston.html", encoding="utf-8").read()
+    return (_extract(r'<nav class="cnav">.*?</nav>', src),
+            _extract(r'<footer class="cfooter">.*?</footer>', src))
+
+
+HEAD_ASSETS = """    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/content.css">"""
+
+
+def head(title, desc, url, og_type="website", extra_ld=()):
+    ld = "\n".join(f'<script type="application/ld+json">{json.dumps(b, separators=(",", ":"), ensure_ascii=False)}</script>'
+                   for b in extra_ld)
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content="{desc}">
+    <link rel="canonical" href="{SITE}{url}">
+    <meta property="og:title" content="{title}">
+    <meta property="og:description" content="{desc}">
+    <meta property="og:type" content="{og_type}">
+    <meta property="og:url" content="{SITE}{url}">
+    <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:image" content="{SITE}/assets/share-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Digiwaxx, DJ promotion since 1998">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{title}">
+    <meta name="twitter:description" content="{desc}">
+    <meta name="twitter:image" content="{SITE}/assets/share-card.png">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#1a0a18">
+{HEAD_ASSETS}
+{ld}
+</head>"""
+
+
+def catalog():
+    """Read title/description/h1/quick-answer for every content page on disk."""
+    out = {}
+    for d in SECTIONS:
+        for f in sorted(glob.glob(f"{ROOT}/{d}/*.html")):
+            slug = os.path.basename(f)[:-5]
+            if slug == "index":
+                continue
+            s = open(f, encoding="utf-8").read()
+
+            def g(p):
+                m = re.search(p, s, re.I | re.S)
+                return m.group(1).strip() if m else ""
+
+            out.setdefault(d, {})[slug] = {
+                "title": g(r"<title[^>]*>(.*?)</title>"),
+                "desc": g(r'name="description"\s+content="([^"]*)"'),
+                "h1": re.sub(r"<[^>]+>", "", g(r"<h1[^>]*>(.*?)</h1>")).strip(),
+                "q": re.sub(r"<[^>]+>", "", g(r'class="page-question"[^>]*>(.*?)</p>')).strip(),
+                "qa": re.sub(r"<[^>]+>", "", g(r'class="qa-text"[^>]*>(.*?)</p>')).strip(),
+            }
+    return out
+
+
+def breadcrumb_ld(trail):
+    """trail: list of (name, path) pairs."""
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList",
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n,
+                                 "item": f"{SITE}{p}"} for i, (n, p) in enumerate(trail)]}
