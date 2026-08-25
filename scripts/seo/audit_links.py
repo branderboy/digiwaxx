@@ -11,7 +11,7 @@ import os, re, sys, json, glob, html
 from collections import defaultdict, deque, Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-SITE = "https://www.digiwaxxrecordpool.com"
+SITE = "https://promote.digiwaxx.com"
 SKIP = ("/api/", "/scripts/", "/seo-audit/")
 
 

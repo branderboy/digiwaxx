@@ -27,8 +27,8 @@ import os, re, sys, csv, json, glob, signal, argparse, urllib.request, urllib.er
 signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-SITE = "https://www.digiwaxxrecordpool.com"
-HOST = "www.digiwaxxrecordpool.com"
+SITE = "https://promote.digiwaxx.com"
+HOST = "promote.digiwaxx.com"
 # Static key; the matching file must be served at {SITE}/{KEY}.txt containing this value.
 KEY_FILE = os.path.join(ROOT, "indexnow-key.txt")
 

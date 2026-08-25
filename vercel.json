@@ -5,6 +5,10 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/[...path]" }
   ],
+  "redirects": [
+    { "source": "/ko", "destination": "/ko/us-dj-promotion-for-korean-labels", "permanent": false },
+    { "source": "/es", "destination": "/es/promocion-dj-estados-unidos", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/",

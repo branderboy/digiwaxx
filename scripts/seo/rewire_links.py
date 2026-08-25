@@ -33,7 +33,7 @@ def rewire(s):
     # Covers both href="/university#promotion" and "item":"https://.../university#promotion".
     s = re.sub(r'(?<=")/university#([a-z]+)(?=")', sub, s)
     s = re.sub(r'(?<=")https://www\.digiwaxxrecordpool\.com/university#([a-z]+)(?=")',
-               lambda m: "https://www.digiwaxxrecordpool.com" + ANCHOR_TO_HUB.get(m.group(1), "/university#" + m.group(1)),
+               lambda m: "https://promote.digiwaxx.com" + ANCHOR_TO_HUB.get(m.group(1), "/university#" + m.group(1)),
                s)
     return s
 

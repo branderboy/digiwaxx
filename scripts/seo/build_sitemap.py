@@ -96,7 +96,11 @@ def main():
         groups[section] = sorted(pages)
     groups["core"] = core
 
-    order = ["core"] + lib.SECTIONS
+    # The international conversion pages are hand-authored rather than
+    # section-globbed, so they ride in from the explicit list in lib.py.
+    groups["international"] = sorted(entry(f"{ROOT}/{rel}") for rel in lib.INTERNATIONAL)
+
+    order = ["core"] + lib.SECTIONS + ["international"]
     written = []
     for name in order:
         entries = [(u, d) for u, d in groups[name] if u not in EXCLUDE]

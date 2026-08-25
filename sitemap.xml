@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/core.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/promote.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/campaigns.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/guides.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/goals.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/answers.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/promotion.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/compare.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/journey.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
-  <sitemap><loc>https://www.digiwaxxrecordpool.com/sitemaps/tools.xml</loc><lastmod>2026-07-28</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/core.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/promote.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/campaigns.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/guides.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/goals.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/answers.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/promotion.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/compare.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/journey.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/tools.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
+  <sitemap><loc>https://promote.digiwaxx.com/sitemaps/international.xml</loc><lastmod>2026-08-25</lastmod></sitemap>
 </sitemapindex>
