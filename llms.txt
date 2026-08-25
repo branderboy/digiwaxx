@@ -12,7 +12,7 @@ Every section has a full index page listing all of its articles:
 
 - [Promotion Services](https://promote.digiwaxx.com/promote): 10 pages
 - [Campaign Blueprints](https://promote.digiwaxx.com/campaigns): 4 pages
-- [Release & Promotion Guides](https://promote.digiwaxx.com/guides): 24 pages
+- [Release & Promotion Guides](https://promote.digiwaxx.com/guides): 29 pages
 - [Artist Goals](https://promote.digiwaxx.com/goals): 6 pages
 - [Straight Answers](https://promote.digiwaxx.com/answers): 16 pages
 - [Promotion Hubs: Cities, Genres & Platforms](https://promote.digiwaxx.com/promotion): 57 pages
@@ -54,6 +54,8 @@ Index: https://promote.digiwaxx.com/guides
 - [From Lagos and Accra to New York, Atlanta and London: A DJ Promotion Plan](https://promote.digiwaxx.com/guides/lagos-accra-to-new-york-dj-promotion-plan): A six week servicing plan for taking an African release into the diaspora cities, in the order the rooms actually work.
 - [How Many Songs Should You Release?](https://promote.digiwaxx.com/guides/how-many-songs-should-i-release): Singles vs. EPs vs. albums for independent artists: the release cadence that builds catalogs, feeds algorithms, and doesn’t burn you out.
 - [How Nigerian Artists Can Promote Afrobeats to DJs in the United States](https://promote.digiwaxx.com/guides/how-nigerian-artists-promote-afrobeats-to-us-djs): The streams say Nigeria already won. The rooms are the part you still have to work, and the rooms belong to DJs. A practical guide.
+- [How Shazam Works for Artists: From the Club Floor to the Charts](https://promote.digiwaxx.com/guides/how-shazam-works-for-artists): A Shazam is a stranger hunting down your record seconds after a DJ played it. Why that makes it one of the most honest demand signals in music.
+- [How Songs Break City by City: Viral Charts, Shazam Maps and Local Heat](https://promote.digiwaxx.com/guides/how-songs-break-city-by-city): Charts are national but breakouts are local. How viral and city charts work, and why the ignition point is almost always a DJ booth.
 - [How to Build Anticipation Before a Release](https://promote.digiwaxx.com/guides/how-to-build-anticipation): How to make people care before your song drops: teasers that work, pre-saves, DJ pre-service, and the two-week countdown plan.
 - [How to Get DJs to Play Your Song](https://promote.digiwaxx.com/guides/how-to-get-djs-to-play-my-song): What working DJs need before they play your record: proper files, easy delivery, and the record pool system that reaches thousands of DJs at once.
 - [How to Get More Playlist Adds](https://promote.digiwaxx.com/guides/how-to-get-more-playlist-adds): The three kinds of playlists, editorial, independent curator, and algorithmic, and the realistic playbook for getting added to each.
@@ -63,11 +65,14 @@ Index: https://promote.digiwaxx.com/guides
 - [How to Reach DJs With Your Music](https://promote.digiwaxx.com/guides/how-to-reach-djs): The channels that actually reach working DJs, record pools, events, radio staff, and the outreach mistakes that get artists ignored.
 - [How to Release African Music to U.S. DJs: Clean Versions, DJ Edits and EPK Requirements](https://promote.digiwaxx.com/guides/how-to-release-african-music-to-us-djs): The unglamorous checklist that decides whether American DJs can actually play your record. Most campaigns that fail, fail here.
 - [How to Release a Single](https://promote.digiwaxx.com/guides/how-to-release-a-single): The full step-by-step plan for releasing a single as an independent artist: distribution, metadata, rollout timeline, DJ service, and release day.
+- [Mixshow vs. Rotation: How Radio Airplay Really Works](https://promote.digiwaxx.com/guides/mixshow-vs-rotation): The two-tier radio system nobody explains to artists: what a mixshow is, how spins get counted, and how records graduate to rotation.
 - [Music Promotion for Beginners](https://promote.digiwaxx.com/guides/music-promotion-for-beginners): New to promoting your music? The beginner’s map: what promotion actually is, the channels that matter, what to ignore, and your first 30 days.
 - [My Song Isn't Getting Streams](https://promote.digiwaxx.com/guides/my-song-isnt-getting-streams): Why your song isn’t getting streams: the discovery gap, the four causes, and the fixes that actually move plays, in order of impact.
 - [Release Day Checklist](https://promote.digiwaxx.com/guides/release-day-checklist-guide): Hour-by-hour release day checklist for independent artists: verification, links, content, outreach, and what to do that night.
 - [Spotify Algorithm Tips That Actually Work](https://promote.digiwaxx.com/guides/spotify-algorithm-tips): How the Spotify algorithm actually decides to push a song, the signals it reads, how to feed them legitimately, and what gets records shelved.
+- [Streaming Numbers Lie, Rooms Don’t: The Music Metrics That Actually Matter](https://promote.digiwaxx.com/guides/music-metrics-that-actually-matter): The effort test: metrics a listener has to earn, saves, searches, Shazams, repeat spins, beat any number that can be bought. Here is why.
 - [The Best Day to Release Music](https://promote.digiwaxx.com/guides/best-day-to-release-music): Friday is the industry standard release day, but the best day depends on your goals: playlists, charts, clubs, or attention. Here is how to choose.
+- [The Data Trail DJs Leave: Spins, Crates, Charts and What They Tell You](https://promote.digiwaxx.com/guides/dj-data-spins-crates-charts): Record pool downloads, detected spins and DJ charts are the earliest data in music. How each layer works and how to read a campaign report.
 - [The Music Marketing Checklist](https://promote.digiwaxx.com/guides/music-marketing-checklist): The complete music marketing checklist for independent artists, assets, profiles, pre-release, DJ service, release week, and post-release, in one list.
 - [The Song Rollout Timeline](https://promote.digiwaxx.com/guides/song-rollout-timeline): A week-by-week rollout timeline for an independent single: what happens at 6 weeks out, 4 weeks, 2 weeks, release week, and after.
 - [Why Nobody Listens to Your Music (Yet)](https://promote.digiwaxx.com/guides/why-nobody-listens-to-my-music): The honest reasons nobody is listening to your music yet, exposure math, trust signals, and the fixable gap between good songs and heard songs.
