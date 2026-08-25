@@ -3,24 +3,105 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/[...path]" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/[...path]"
+    }
   ],
   "redirects": [
-    { "source": "/ko", "destination": "/ko/us-dj-promotion-for-korean-labels", "permanent": false },
-    { "source": "/es", "destination": "/es/promocion-dj-estados-unidos", "permanent": false }
+    {
+      "source": "/ko",
+      "destination": "/ko/us-dj-promotion-for-korean-labels",
+      "permanent": false
+    },
+    {
+      "source": "/es",
+      "destination": "/es/promocion-dj-estados-unidos",
+      "permanent": false
+    },
+    {
+      "source": "/mx",
+      "destination": "/mx/promocion-musica-mexicana-eeuu",
+      "permanent": false
+    },
+    {
+      "source": "/br",
+      "destination": "/br/promocao-dj-eua",
+      "permanent": false
+    },
+    {
+      "source": "/co",
+      "destination": "/co/promocion-musica-urbana-eeuu",
+      "permanent": false
+    },
+    {
+      "source": "/conosur",
+      "destination": "/conosur/promocion-dj-eeuu",
+      "permanent": false
+    },
+    {
+      "source": "/uk",
+      "destination": "/uk/us-dj-promotion-for-uk-labels",
+      "permanent": false
+    },
+    {
+      "source": "/fr",
+      "destination": "/fr/promotion-dj-etats-unis",
+      "permanent": false
+    },
+    {
+      "source": "/ca",
+      "destination": "/ca/us-dj-promotion-for-canadian-artists",
+      "permanent": false
+    },
+    {
+      "source": "/jp",
+      "destination": "/jp/us-dj-promotion",
+      "permanent": false
+    },
+    {
+      "source": "/india",
+      "destination": "/india/us-dj-promotion-for-indian-artists",
+      "permanent": false
+    },
+    {
+      "source": "/id",
+      "destination": "/id/promosi-musik-dj-amerika",
+      "permanent": false
+    },
+    {
+      "source": "/ph",
+      "destination": "/ph/us-dj-promotion-for-filipino-artists",
+      "permanent": false
+    }
   ],
   "headers": [
     {
       "source": "/",
-      "headers": [{ "key": "Cache-Control", "value": "no-cache, must-revalidate" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, must-revalidate"
+        }
+      ]
     },
     {
       "source": "/(admin|funnel|index|submit)",
-      "headers": [{ "key": "Cache-Control", "value": "no-cache, must-revalidate" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, must-revalidate"
+        }
+      ]
     },
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }

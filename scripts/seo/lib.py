@@ -28,6 +28,17 @@ INTERNATIONAL = [
     "africa/ghana-afrobeats-dj-promotion.html",
     "africa/kenya-east-africa-music-promotion.html",
     "africa/afrobeats-dj-promotion-usa.html",
+    "mx/promocion-musica-mexicana-eeuu.html",
+    "br/promocao-dj-eua.html",
+    "co/promocion-musica-urbana-eeuu.html",
+    "conosur/promocion-dj-eeuu.html",
+    "uk/us-dj-promotion-for-uk-labels.html",
+    "fr/promotion-dj-etats-unis.html",
+    "ca/us-dj-promotion-for-canadian-artists.html",
+    "jp/us-dj-promotion.html",
+    "india/us-dj-promotion-for-indian-artists.html",
+    "id/promosi-musik-dj-amerika.html",
+    "ph/us-dj-promotion-for-filipino-artists.html",
 ]
 
 # ---------------------------------------------------------------- taxonomy

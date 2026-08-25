@@ -248,6 +248,17 @@ const TAX_COUNTRY = [
   { href: '/africa/south-africa-amapiano-dj-promotion', t: 'South Africa' },
   { href: '/africa/ghana-afrobeats-dj-promotion', t: 'Ghana' },
   { href: '/africa/kenya-east-africa-music-promotion', t: 'Kenya & East Africa' },
+  { href: '/mx/promocion-musica-mexicana-eeuu', t: 'Mexico' },
+  { href: '/br/promocao-dj-eua', t: 'Brazil' },
+  { href: '/co/promocion-musica-urbana-eeuu', t: 'Colombia' },
+  { href: '/conosur/promocion-dj-eeuu', t: 'Chile & Argentina' },
+  { href: '/uk/us-dj-promotion-for-uk-labels', t: 'United Kingdom' },
+  { href: '/fr/promotion-dj-etats-unis', t: 'France & Francophone Africa' },
+  { href: '/ca/us-dj-promotion-for-canadian-artists', t: 'Canada' },
+  { href: '/jp/us-dj-promotion', t: 'Japan' },
+  { href: '/india/us-dj-promotion-for-indian-artists', t: 'India & South Asia' },
+  { href: '/id/promosi-musik-dj-amerika', t: 'Indonesia' },
+  { href: '/ph/us-dj-promotion-for-filipino-artists', t: 'Philippines' },
 ];
 
 const TAX_GENRE = [
@@ -261,6 +272,10 @@ const TAX_GENRE = [
   { href: '/promotion/dancehall-promotion', t: 'Dancehall' },
   { href: '/africa/ghana-afrobeats-dj-promotion', t: 'Highlife & Hiplife' },
   { href: '/africa/kenya-east-africa-music-promotion', t: 'Bongo Flava & Gengetone' },
+  { href: '/mx/promocion-musica-mexicana-eeuu', t: 'Regional Mexicano & Corridos' },
+  { href: '/br/promocao-dj-eua', t: 'Brazilian Funk & Trap' },
+  { href: '/uk/us-dj-promotion-for-uk-labels', t: 'UK Rap & Drill' },
+  { href: '/india/us-dj-promotion-for-indian-artists', t: 'Punjabi & South Asian' },
 ];
 
 function taxonomyBlocks(self) {
@@ -391,7 +406,7 @@ const PAGES = [
     ],
     stats: [STAT_DJS, STAT_SINCE, STAT_UPLOADS],
     form: EN_FORM('Request a Label Campaign', 'Request U.S. DJ Promotion',
-      [{ name: 'market', label: 'Market', options: ['International / global', 'Korea', 'Latin America / Spain', 'Africa', 'Europe', 'Other'] }]),
+      [{ name: 'market', label: 'Market', options: ['International / global', 'Korea', 'Mexico', 'Brazil', 'Colombia', 'Chile / Argentina', 'Latin America / Spain', 'United Kingdom', 'France / Francophone', 'Canada', 'Japan', 'India / South Asia', 'Indonesia', 'Philippines', 'Africa', 'Europe', 'Other'] }]),
     relatedBlocks: () => [
       related('Keep Going', [
         { href: '/answers/how-record-pools-work', cat: 'Straight Answers', t: 'How Record Pools Work' },
@@ -410,6 +425,7 @@ const PAGES = [
     serviceName: 'U.S. DJ Promotion for Korean Labels',
     audience: 'Korean record labels, management companies and distributors',
     crumb: ['한국 레이블', '/ko/us-dj-promotion-for-korean-labels'],
+    qaLabel: '요약',
     h1: '미국 DJ, 믹스쇼 및 음악 테이스트메이커에게 귀사의 아티스트 음악을 직접 전달하세요',
     question: '한국 레이블은 어떻게 미국 DJ에게 음원을 전달할 수 있나요?',
     quick: 'Digiwaxx는 한국 레이블, 매니지먼트사 및 유통사를 위해 미국 DJ 프로모션, DJ 서비스 및 캠페인 리포팅을 제공합니다. 1998년부터 클럽, 믹스쇼, 라디오, 모바일 DJ 3만 명 이상에게 음원을 서비스해 온 레코드 풀입니다.',
@@ -464,6 +480,7 @@ const PAGES = [
     serviceName: 'Promoción de música para DJs en Estados Unidos',
     audience: 'Sellos discográficos, managers y distribuidoras de música latina',
     crumb: ['Para Sellos Latinos', '/es/promocion-dj-estados-unidos'],
+    qaLabel: 'Respuesta rápida',
     h1: 'Promoción de música para DJs profesionales en Estados Unidos',
     question: '¿Cómo llega un lanzamiento latino a los DJs en Estados Unidos?',
     quick: 'Digiwaxx ayuda a sellos, managers y artistas latinos a llevar nuevos lanzamientos a DJs, mixshows y tastemakers en el mercado estadounidense: un record pool con más de 30,000 DJs de club, mixshow, radio y mobile, activo desde 1998.',
@@ -764,6 +781,634 @@ const PAGES = [
     ],
     artistCta: { kicker: 'One artist, one record?', h2: 'The standard campaign starts at $99.', sub: 'The form above is for labels and teams. A single record reaches the same 30,000+ DJs through the standard funnel.', btn: 'Promote My Record' },
   },
+
+  /* ================================================================ world
+   * The viral-market pages: the cities whose communities consume music at
+   * scale on Spotify and YouTube, ranked by budget and each addressed in
+   * its own language. Standalone offers, no hreflang cluster and no pill
+   * row; the Campaigns by Country rail is their shared navigation. Market
+   * statistics print only with their source named (IFPI 2025 rankings,
+   * Spotify's Africa reporting); everything else is the site's own claims.
+   */
+
+  /* ---- /mx : regional mexicano and corridos to the U.S. */
+  {
+    slug: 'mx/promocion-musica-mexicana-eeuu', file: 'mx/promocion-musica-mexicana-eeuu.html', lang: 'es',
+    title: 'Promoción de Música Mexicana en EE. UU. | Digiwaxx',
+    description: 'Digiwaxx lleva regional mexicano, corridos y música mexicana a más de 30,000 DJs en Estados Unidos: bailes, clubes y mixshows, con reportes de campaña.',
+    serviceName: 'Promoción de música mexicana en Estados Unidos',
+    audience: 'Sellos, managers y artistas de música mexicana',
+    crumb: ['México', '/mx/promocion-musica-mexicana-eeuu'],
+    qaLabel: 'Respuesta rápida',
+    h1: 'Promoción de música mexicana con DJs en Estados Unidos',
+    question: '¿Cómo llega la música mexicana a los DJs en Estados Unidos?',
+    quick: 'El público mexicano en Estados Unidos llena bailes, jaripeos y clubes cada fin de semana, y los DJs de esos eventos deciden qué suena. Digiwaxx entrega tu lanzamiento a su red de más de 30,000 DJs, con los especialistas en regional y música latina de cada mercado, y te reporta los resultados.',
+    long: 'El regional mexicano y los corridos ya son de los sonidos más grandes de Estados Unidos, no solo del público latino. La audiencia vive en Los Ángeles, Houston, Dallas, Chicago y Phoenix, gira en dólares y consume a escala en Spotify y YouTube. Lo que decide cuál canción se vuelve la del momento sigue siendo el DJ del baile.',
+    sections: [
+      { h2: 'Qué incluye la campaña', html: `<ul>
+<li><b>Lista de DJs regional y latina:</b> los DJs que tocan en bailes, clubes y fiestas mexicanas en EE. UU., dentro de una red de más de 30,000</li>
+<li><b>Entrega digital:</b> WAV o MP3 de 320 kbps con arte de portada, en los formatos que los DJs realmente usan</li>
+<li><b>Bailes, clubes y mixshows:</b> los eventos donde el público mexicano realmente escucha música nueva</li>
+<li><b>Reporte de campaña:</b> entrega y respuesta, por lanzamiento</li>
+<li><b>Feedback de DJs:</b> recopilado y entregado cuando está disponible</li>
+</ul>` },
+      { h2: 'Para sellos y managers', html: `<p>Planificamos según tu calendario, por sencillo o por catálogo: corridos tumbados, banda, norteño, sierreño, cumbia y el urbano mexa corren por el mismo embudo con listas armadas por disco. Puedes escribirnos en español o en inglés. Respondemos dentro de dos días hábiles.</p>` },
+      { h2: 'Materiales necesarios', html: `<ul>
+<li>Audio de alta calidad: WAV o MP3 de 320 kbps</li>
+<li>Versión limpia para mixshow y radio</li>
+<li>DJ edits o intros extendidos (si existen)</li>
+<li>Arte en alta resolución, biografía y press kit (EPK)</li>
+<li>Fecha de lanzamiento y enlaces oficiales</li>
+</ul>` },
+    ],
+    stats: [
+      { n: '30,000+', l: 'DJs en la red Digiwaxx en EE. UU.' },
+      { n: '1998', l: 'Sirviendo música a DJs desde' },
+      { n: '#10', l: 'México en el ranking mundial de mercados musicales (IFPI 2025)' },
+    ],
+    form: {
+      title: 'Solicitar una campaña', submit: 'Solicitar campaña en EE. UU.',
+      company: 'Sello o empresa', name: 'Tu nombre', email: 'Correo electrónico',
+      phone: 'WhatsApp o teléfono', role: 'Tipo de empresa',
+      roles: ['Sello', 'Management', 'Distribuidora', 'Artista', 'Otro'],
+      artist: 'Artista y lanzamiento', link: 'Enlace a la música',
+      timing: 'Inicio', timings: ['Este mes', 'El próximo mes', 'Dentro de tres meses', 'Sin fecha definida'],
+      intent: 'Qué necesitas', intents: ['Campaña para DJs en EE. UU.', 'Media kit para sellos', 'Enviar un próximo lanzamiento'],
+      extras: [
+        { name: 'market', label: 'Mercado', options: ['México', 'EE. UU. latino', 'Latinoamérica', 'Global'] },
+        { name: 'genre', label: 'Género', options: ['Regional mexicano', 'Corridos tumbados', 'Banda', 'Norteño / sierreño', 'Reggaetón / urbano', 'Pop', 'Hip-hop', 'Otro'] },
+        { name: 'target', label: 'Mercado principal', options: ['Estados Unidos', 'México', 'Global'] },
+      ],
+      message: 'Algo más', optional: 'opcional',
+      note: 'Respondemos dentro de dos días hábiles.',
+      sending: 'Enviando…', ok: 'Recibido. Te respondemos dentro de dos días hábiles.',
+      fail: 'No se pudo enviar. Intenta de nuevo en un momento.',
+      invalid: 'Completa los campos obligatorios.',
+    },
+    relatedBlocks: () => [
+      related('Más de Digiwaxx', [
+        { href: '/promotion/latin-promotion-houston', cat: 'Género × Ciudad', t: 'Latin Promotion in Houston' },
+        { href: '/promotion/latin-music-promotion', cat: 'Género', t: 'Latin Music Promotion' },
+        { href: '/es/promocion-dj-estados-unidos', cat: 'Latinoamérica', t: 'Promoción para DJs en EE. UU.' },
+      ]),
+    ],
+    artistCta: { kicker: '¿Artista independiente?', h2: 'La campaña estándar empieza en $99.', sub: 'El formulario de arriba es para sellos y managers. Un sencillo llega a la misma red de más de 30,000 DJs por el proceso estándar.', btn: 'Promote My Record' },
+  },
+
+  /* ---- /br : Brazil, in Portuguese. The biggest unserved market on the list. */
+  {
+    slug: 'br/promocao-dj-eua', file: 'br/promocao-dj-eua.html', lang: 'pt-BR',
+    title: 'Promoção de Música para DJs nos EUA | Digiwaxx',
+    description: 'A Digiwaxx entrega lançamentos brasileiros a mais de 30.000 DJs nos Estados Unidos: funk, trap, sertanejo e pagode, com entrega digital e relatório de campanha.',
+    serviceName: 'Promoção de música brasileira para DJs nos EUA',
+    audience: 'Selos, equipes de artistas e distribuidoras do Brasil',
+    crumb: ['Brasil', '/br/promocao-dj-eua'],
+    qaLabel: 'Resposta rápida',
+    h1: 'Leve sua música aos DJs profissionais dos Estados Unidos',
+    question: 'Como um lançamento brasileiro chega aos DJs americanos?',
+    quick: 'O Brasil é o 8º maior mercado de música do mundo e o funk já é som global. A Digiwaxx entrega seu lançamento à rede de mais de 30.000 DJs nos EUA, das noites brasileiras e latinas aos mixshows, com relatório de volta para sua equipe. Um record pool servindo DJs desde 1998.',
+    long: 'Entre um hit em São Paulo e uma pista nos Estados Unidos existe um passo prático: o DJ precisa do arquivo certo. A diáspora brasileira lota festas em Boston, Newark, Orlando e Miami todo fim de semana, e o funk, o trap BR e o sertanejo entram no set de quem recebe o material do jeito certo: WAV, versão limpa, edit com intro.',
+    sections: [
+      { h2: 'O que a campanha inclui', html: `<ul>
+<li><b>Lista de DJs certa:</b> as noites brasileiras e latinas nos EUA, mais os DJs de mixshow abertos ao crossover, dentro de uma rede de mais de 30.000</li>
+<li><b>Entrega digital:</b> WAV ou MP3 320 kbps com capa, nos formatos que os DJs americanos realmente usam</li>
+<li><b>Foco em pista e rádio:</b> DJs que tocam em festas e no ar, não números inflados</li>
+<li><b>Relatório de campanha:</b> entrega e resposta, por lançamento</li>
+<li><b>Feedback de DJs:</b> coletado e repassado quando disponível</li>
+</ul>` },
+      { h2: 'Para selos e distribuidoras', html: `<p>Planejamos pela sua agenda de lançamentos, por single ou por catálogo: funk, trap, sertanejo, pagode e eletrônica correm pelo mesmo funil com listas montadas por faixa. Pode escrever em português ou inglês. Respondemos em até dois dias úteis.</p>` },
+      { h2: 'O que seu lançamento precisa', html: `<ul>
+<li>Áudio em alta qualidade: WAV ou MP3 320 kbps</li>
+<li>Versão limpa: a porta do mixshow e da rádio americana</li>
+<li>DJ edits ou intro estendida (se existirem)</li>
+<li>Capa em alta resolução, bio do artista e press kit (EPK)</li>
+<li>Data de lançamento e links oficiais</li>
+</ul>` },
+    ],
+    stats: [
+      { n: '30.000+', l: 'DJs na rede Digiwaxx nos EUA' },
+      { n: '1998', l: 'Servindo música a DJs desde' },
+      { n: '8º', l: 'Lugar do Brasil entre os mercados mundiais de música (IFPI 2025)' },
+    ],
+    form: {
+      title: 'Solicitar uma campanha', submit: 'Solicitar campanha nos EUA',
+      company: 'Selo ou empresa', name: 'Seu nome', email: 'E-mail de trabalho',
+      phone: 'WhatsApp ou telefone', role: 'Tipo de empresa',
+      roles: ['Selo', 'Management', 'Distribuidora', 'Artista', 'Outro'],
+      artist: 'Artista e lançamento', link: 'Link da música',
+      timing: 'Início', timings: ['Este mês', 'Mês que vem', 'Em até três meses', 'Sem data'],
+      intent: 'O que você precisa', intents: ['Campanha de DJs nos EUA', 'Media kit para selos', 'Enviar um lançamento'],
+      extras: [
+        { name: 'market', label: 'Mercado', options: ['Brasil', 'Diáspora brasileira nos EUA', 'Global'] },
+        { name: 'genre', label: 'Gênero', options: ['Funk', 'Trap / hip-hop', 'Sertanejo', 'Pagode / samba', 'Eletrônica', 'Pop', 'Outro'] },
+        { name: 'target', label: 'Mercado principal', options: ['Estados Unidos', 'Europa', 'Global'] },
+      ],
+      message: 'Algo mais', optional: 'opcional',
+      note: 'Respondemos em até dois dias úteis.',
+      sending: 'Enviando…', ok: 'Recebido. Respondemos em até dois dias úteis.',
+      fail: 'Não foi possível enviar. Tente de novo em instantes.',
+      invalid: 'Preencha os campos obrigatórios.',
+    },
+    relatedBlocks: () => [
+      related('Mais da Digiwaxx', [
+        { href: '/labels', cat: 'International', t: 'U.S. DJ Promotion for International Labels' },
+        { href: '/promotion/latin-promotion-miami', cat: 'Cidade', t: 'Latin Promotion in Miami' },
+      ]),
+    ],
+    artistCta: { kicker: 'Artista com uma faixa?', h2: 'A campanha padrão começa em US$ 99.', sub: 'O formulário acima é para selos e equipes. Uma faixa chega à mesma rede de mais de 30.000 DJs pelo processo padrão.', btn: 'Promote My Record' },
+  },
+
+  /* ---- /co : Colombia, the urbano hit factory. */
+  {
+    slug: 'co/promocion-musica-urbana-eeuu', file: 'co/promocion-musica-urbana-eeuu.html', lang: 'es',
+    title: 'Promoción de Música Urbana en EE. UU. | Digiwaxx',
+    description: 'Digiwaxx lleva el urbano colombiano a más de 30,000 DJs en Estados Unidos: clubes latinos, mixshows y radio, con entrega digital y reportes de campaña.',
+    serviceName: 'Promoción de música urbana colombiana en Estados Unidos',
+    audience: 'Sellos, managers y artistas urbanos de Colombia',
+    crumb: ['Colombia', '/co/promocion-musica-urbana-eeuu'],
+    qaLabel: 'Respuesta rápida',
+    h1: 'Del estudio en Medellín a los DJs de Estados Unidos',
+    question: '¿Cómo llega el urbano colombiano a los DJs en Estados Unidos?',
+    quick: 'Colombia exporta el sonido urbano del mundo, y el siguiente paso después del estudio sigue siendo la pista. Digiwaxx entrega tu lanzamiento a más de 30,000 DJs en EE. UU., con los DJs latinos y urbanos de Nueva York, Miami, Houston y Chicago al frente, y te reporta qué pasó.',
+    long: 'Medellín y Bogotá producen éxitos globales en serie, y América Latina fue la región musical que más creció en 2025 según IFPI. Pero un lanzamiento no se vuelve himno de club en Estados Unidos por streaming: se vuelve himno cuando los DJs de los clubes latinos lo tienen, en el formato correcto, con la versión limpia para el mixshow.',
+    sections: [
+      { h2: 'Qué incluye la campaña', html: `<ul>
+<li><b>Lista de DJs urbana y latina:</b> los residentes de clubes latinos y los DJs de mixshow que llevan un tema del club a la radio</li>
+<li><b>Entrega digital:</b> WAV o MP3 de 320 kbps con arte, como los DJs americanos reciben música</li>
+<li><b>Club primero:</b> la pista es donde un tema urbano demuestra que funciona</li>
+<li><b>Reporte de campaña:</b> entrega y respuesta, por lanzamiento, para tu reunión de sello</li>
+<li><b>Feedback de DJs:</b> recopilado cuando está disponible</li>
+</ul>` },
+      { h2: 'Para sellos y managers', html: `<p>Por sencillo o por catálogo, con el calendario de lanzamientos que ya tienes. Reggaetón, trap, dancehall en español y afrobeat latino corren por el mismo embudo con listas armadas por disco. Escríbenos en español o inglés; respondemos dentro de dos días hábiles.</p>` },
+      { h2: 'Materiales necesarios', html: `<ul>
+<li>Audio de alta calidad: WAV o MP3 de 320 kbps</li>
+<li>Versión limpia para mixshow y radio</li>
+<li>DJ edits, instrumental o acapella (si existen)</li>
+<li>Arte en alta resolución, biografía y press kit (EPK)</li>
+<li>Fecha de lanzamiento y enlaces oficiales</li>
+</ul>` },
+    ],
+    stats: [
+      { n: '30,000+', l: 'DJs en la red Digiwaxx en EE. UU.' },
+      { n: '1998', l: 'Sirviendo música a DJs desde' },
+      { n: '17.1%', l: 'Crecimiento de la música grabada en América Latina en 2025 (IFPI)' },
+    ],
+    form: {
+      title: 'Solicitar una campaña', submit: 'Solicitar campaña en EE. UU.',
+      company: 'Sello o empresa', name: 'Tu nombre', email: 'Correo electrónico',
+      phone: 'WhatsApp o teléfono', role: 'Tipo de empresa',
+      roles: ['Sello', 'Management', 'Distribuidora', 'Artista', 'Otro'],
+      artist: 'Artista y lanzamiento', link: 'Enlace a la música',
+      timing: 'Inicio', timings: ['Este mes', 'El próximo mes', 'Dentro de tres meses', 'Sin fecha definida'],
+      intent: 'Qué necesitas', intents: ['Campaña para DJs en EE. UU.', 'Media kit para sellos', 'Enviar un próximo lanzamiento'],
+      extras: [
+        { name: 'market', label: 'Mercado', options: ['Colombia', 'EE. UU. latino', 'Latinoamérica', 'Global'] },
+        { name: 'genre', label: 'Género', options: ['Reggaetón', 'Urbano / trap', 'Dancehall', 'Afrobeat latino', 'Salsa', 'Pop', 'Otro'] },
+        { name: 'target', label: 'Mercado principal', options: ['Estados Unidos', 'Latinoamérica', 'Global'] },
+      ],
+      message: 'Algo más', optional: 'opcional',
+      note: 'Respondemos dentro de dos días hábiles.',
+      sending: 'Enviando…', ok: 'Recibido. Te respondemos dentro de dos días hábiles.',
+      fail: 'No se pudo enviar. Intenta de nuevo en un momento.',
+      invalid: 'Completa los campos obligatorios.',
+    },
+    relatedBlocks: () => [
+      related('Más de Digiwaxx', [
+        { href: '/promotion/latin-music-promotion', cat: 'Género', t: 'Latin Music Promotion' },
+        { href: '/es/promocion-dj-estados-unidos', cat: 'Latinoamérica', t: 'Promoción para DJs en EE. UU.' },
+      ]),
+    ],
+    artistCta: { kicker: '¿Artista independiente?', h2: 'La campaña estándar empieza en $99.', sub: 'El formulario de arriba es para sellos y managers. Un sencillo llega a la misma red de más de 30,000 DJs por el proceso estándar.', btn: 'Promote My Record' },
+  },
+
+  /* ---- /conosur : Chile and Argentina, the per-capita viral champions. */
+  {
+    slug: 'conosur/promocion-dj-eeuu', file: 'conosur/promocion-dj-eeuu.html', lang: 'es',
+    title: 'Promoción para DJs en EE. UU.: Chile y Argentina | Digiwaxx',
+    description: 'Digiwaxx lleva el trap y el urbano de Chile y Argentina a más de 30,000 DJs en Estados Unidos, con entrega digital y reporte de campaña por lanzamiento.',
+    serviceName: 'Promoción de música del Cono Sur en Estados Unidos',
+    audience: 'Sellos, managers y artistas de Chile y Argentina',
+    crumb: ['Chile y Argentina', '/conosur/promocion-dj-eeuu'],
+    qaLabel: 'Respuesta rápida',
+    h1: 'Trap y urbano del Cono Sur hacia los DJs de Estados Unidos',
+    question: '¿Cómo llega la música de Chile y Argentina a los DJs americanos?',
+    quick: 'Santiago y Buenos Aires marcan tendencia viral en toda la región, y el paso que convierte esa fuerza en presencia real en Estados Unidos es el DJ booth. Digiwaxx entrega tu lanzamiento a más de 30,000 DJs en EE. UU., con reporte de vuelta para tu equipo. Un record pool sirviendo DJs desde 1998.',
+    long: 'El trap argentino y el urbano chileno ya demostraron que no necesitan permiso de nadie: se escuchan a escala en Spotify y YouTube en todo el continente. Lo que falta entre esa escala y una pista en Nueva York o Miami es logística: el archivo correcto, la versión limpia, y el DJ latino que lo reciba de alguien que responde.',
+    sections: [
+      { h2: 'Qué incluye la campaña', html: `<ul>
+<li><b>Lista de DJs latina y urbana:</b> los clubes latinos y mixshows de Nueva York, Miami, Houston y Chicago, dentro de una red de más de 30,000</li>
+<li><b>Entrega digital:</b> WAV o MP3 de 320 kbps con arte, en los formatos correctos</li>
+<li><b>Seguimiento:</b> el segundo contacto que convierte un archivo entregado en un tema sonando</li>
+<li><b>Reporte de campaña:</b> entrega y respuesta, por lanzamiento</li>
+</ul>` },
+      { h2: 'Para sellos, managers y artistas', html: `<p>Escena que crece rápido con presupuesto medido: por eso existen dos puertas. El formulario de abajo escala campañas de sello por sencillo o catálogo, y la campaña estándar de $99 pone un solo tema en la misma red sin más vueltas. Escríbenos en español o inglés; respondemos dentro de dos días hábiles.</p>` },
+      { h2: 'Materiales necesarios', html: `<ul>
+<li>Audio de alta calidad: WAV o MP3 de 320 kbps</li>
+<li>Versión limpia para mixshow y radio</li>
+<li>DJ edits, instrumental o acapella (si existen)</li>
+<li>Arte en alta resolución, biografía y press kit (EPK)</li>
+<li>Fecha de lanzamiento y enlaces oficiales</li>
+</ul>` },
+    ],
+    stats: [
+      { n: '30,000+', l: 'DJs en la red Digiwaxx en EE. UU.' },
+      { n: '1998', l: 'Sirviendo música a DJs desde' },
+      { n: '17.1%', l: 'Crecimiento de la música grabada en América Latina en 2025 (IFPI)' },
+    ],
+    form: {
+      title: 'Solicitar una campaña', submit: 'Solicitar campaña en EE. UU.',
+      company: 'Sello o empresa', name: 'Tu nombre', email: 'Correo electrónico',
+      phone: 'WhatsApp o teléfono', role: 'Tipo de empresa',
+      roles: ['Sello', 'Management', 'Distribuidora', 'Artista', 'Otro'],
+      artist: 'Artista y lanzamiento', link: 'Enlace a la música',
+      timing: 'Inicio', timings: ['Este mes', 'El próximo mes', 'Dentro de tres meses', 'Sin fecha definida'],
+      intent: 'Qué necesitas', intents: ['Campaña para DJs en EE. UU.', 'Media kit para sellos', 'Enviar un próximo lanzamiento'],
+      extras: [
+        { name: 'market', label: 'Mercado', options: ['Chile', 'Argentina', 'Latinoamérica', 'Global'] },
+        { name: 'genre', label: 'Género', options: ['Trap / urbano', 'Reggaetón', 'RKT', 'Electrónica', 'Pop', 'Rock', 'Otro'] },
+        { name: 'target', label: 'Mercado principal', options: ['Estados Unidos', 'Latinoamérica', 'Global'] },
+      ],
+      message: 'Algo más', optional: 'opcional',
+      note: 'Respondemos dentro de dos días hábiles.',
+      sending: 'Enviando…', ok: 'Recibido. Te respondemos dentro de dos días hábiles.',
+      fail: 'No se pudo enviar. Intenta de nuevo en un momento.',
+      invalid: 'Completa los campos obligatorios.',
+    },
+    relatedBlocks: () => [
+      related('Más de Digiwaxx', [
+        { href: '/es/promocion-dj-estados-unidos', cat: 'Latinoamérica', t: 'Promoción para DJs en EE. UU.' },
+        { href: '/promotion/latin-music-promotion', cat: 'Género', t: 'Latin Music Promotion' },
+      ]),
+    ],
+    artistCta: { kicker: '¿Artista independiente?', h2: 'La campaña estándar empieza en $99.', sub: 'Un sencillo llega a la misma red de más de 30,000 DJs por el proceso estándar, sin formularios de sello.', btn: 'Promote My Record' },
+  },
+
+  /* ---- /uk : London holds budgets for UK rap and half the diaspora. */
+  {
+    slug: 'uk/us-dj-promotion-for-uk-labels', file: 'uk/us-dj-promotion-for-uk-labels.html', lang: 'en-GB',
+    title: 'U.S. DJ Promotion for UK Labels and Artists | Digiwaxx',
+    description: 'Digiwaxx services UK rap, drill, afroswing and dance releases to 30,000+ U.S. DJs, clubs and mixshows, with campaign reporting back to London.',
+    serviceName: 'U.S. DJ promotion for UK releases',
+    audience: 'UK record labels, managers and artist teams',
+    crumb: ['United Kingdom', '/uk/us-dj-promotion-for-uk-labels'],
+    h1: 'U.S. DJ promotion for UK rap, drill, afroswing and dance',
+    question: 'How does a UK release actually cross to American rooms?',
+    quick: 'The UK is the third biggest music market on earth, and its records cross the Atlantic through DJ booths: drill up through New York, afroswing through the African and Caribbean nights, UK dance through the club circuit. Digiwaxx services your release to a network of 30,000+ U.S. DJs, with a report back to your team.',
+    long: 'London holds the budgets for UK rap and for half the diaspora, and the transatlantic problem is always the same one: American DJs play what lands in their library in the right format. A UK record with a clean version, an intro edit and a contact who answers gets worked; a Spotify link gets mentioned.',
+    sections: [
+      { h2: 'What a UK Campaign Includes', html: `<ul>
+<li><b>The right U.S. rooms:</b> drill and rap DJs in New York and the East Coast, African and Caribbean nights for afroswing, the club circuit for UK dance and garage</li>
+<li><b>Digital delivery:</b> WAV or 320kbps MP3 with artwork, the way U.S. DJs take music</li>
+<li><b>Mixshow and radio servicing:</b> clean versions to the DJs who bridge the club and the air</li>
+<li><b>Campaign reporting:</b> delivery and response, written for a label meeting in London</li>
+<li><b>DJ feedback:</b> collected and passed back where available</li>
+</ul>` },
+      { h2: 'For UK Labels and Managers', html: `<p>Per single or across a roster, planned around your release schedule. If the record is aimed at a U.S. tour window or a stateside feature, tell us the dates and the servicing lands inside them. We reply within two business days.</p>` },
+      { h2: 'What Your Release Needs', html: `<ul>
+<li>High quality audio: WAV or 320kbps MP3</li>
+<li>A clean version: U.S. mixshow and radio play depends on it</li>
+<li>DJ edits and extended intros where they exist</li>
+<li>Instrumental or acapella if one exists</li>
+<li>High resolution artwork, artist bio and press kit (EPK), release date and official links</li>
+</ul>` },
+    ],
+    stats: [STAT_DJS, STAT_SINCE, { n: '#3', l: 'The UK among world music markets (IFPI 2025)' }],
+    form: EN_FORM('Request a UK Campaign', 'Request U.S. DJ Promotion', [
+      { name: 'market', label: 'Market', options: ['United Kingdom', 'Africa diaspora / global', 'Europe', 'Global'] },
+      { name: 'genre', label: 'Genre', options: ['UK rap / drill', 'Afroswing / afrobeats', 'Dance / UK garage', 'Grime', 'R&B', 'Pop', 'Other'] },
+      { name: 'target', label: 'Primary target market', options: ['United States', 'Canada', 'Global'] },
+    ]),
+    relatedBlocks: () => [
+      related('Keep Going', [
+        { href: '/labels', cat: 'International', t: 'U.S. DJ Promotion for International Labels' },
+        { href: '/promotion/afrobeats-promotion', cat: 'Genre', t: 'Afrobeats Promotion' },
+        { href: '/promotion/hip-hop-promotion', cat: 'Genre', t: 'Hip Hop Promotion' },
+      ]),
+    ],
+    artistCta: { kicker: 'One artist, one record?', h2: 'The standard campaign starts at $99.', sub: 'The form above is for labels and managers. A single record reaches the same 30,000+ DJs through the standard funnel.', btn: 'Promote My Record' },
+  },
+
+  /* ---- /fr : Paris and the Francophone bridge, in French. */
+  {
+    slug: 'fr/promotion-dj-etats-unis', file: 'fr/promotion-dj-etats-unis.html', lang: 'fr',
+    title: 'Promotion Musique vers les DJs aux États-Unis | Digiwaxx',
+    description: 'Digiwaxx fait parvenir vos sorties rap, afro et coupé-décalé à plus de 30 000 DJs américains, clubs, mixshows et diaspora, avec rapport de campagne.',
+    serviceName: 'Promotion de musique francophone vers les DJs américains',
+    audience: 'Labels, managers et équipes francophones, de Paris à Abidjan',
+    crumb: ['Francophonie', '/fr/promotion-dj-etats-unis'],
+    qaLabel: 'En bref',
+    h1: 'Faites jouer vos sorties par les DJs américains',
+    question: 'Comment une sortie francophone atteint-elle les DJs aux États-Unis ?',
+    quick: 'Le rap français, l’afro et le coupé-décalé traversent l’Atlantique par les cabines : les nuits africaines et caribéennes de New York, DC et Atlanta, et les mixshows qui font passer un titre du club à l’antenne. Digiwaxx sert vos sorties à un réseau de plus de 30 000 DJs américains depuis 1998, rapport de campagne inclus.',
+    long: 'De Paris à Abidjan, Dakar et Kinshasa, la musique francophone tourne déjà à grande échelle sur Spotify et YouTube, et la diaspora remplit des salles de Bruxelles à Montréal. Ce qui manque entre cette échelle et une vraie présence américaine est logistique : le bon fichier, la version clean, et le DJ qui le reçoit de quelqu’un qui répond.',
+    sections: [
+      { h2: 'Ce que comprend la campagne', html: `<ul>
+<li><b>La bonne liste de DJs :</b> nuits africaines et caribéennes, sélecteurs de la diaspora et DJs de mixshow, dans un réseau de plus de 30 000</li>
+<li><b>Livraison numérique :</b> WAV ou MP3 320 kbps avec pochette, dans les formats que les DJs américains utilisent vraiment</li>
+<li><b>Clubs et mixshows d’abord :</b> les salles où un titre fait ses preuves, pas des chiffres gonflés</li>
+<li><b>Rapport de campagne :</b> livraison et retours, par sortie, pour votre réunion de label</li>
+<li><b>Retours DJs :</b> collectés et transmis quand ils existent</li>
+</ul>` },
+      { h2: 'Pour les labels et distributeurs', html: `<p>Par single ou par catalogue, calé sur votre calendrier de sorties : rap FR, afro, coupé-décalé, rumba et dancehall passent par le même entonnoir avec des listes montées par disque. Écrivez-nous en français ou en anglais ; nous répondons sous deux jours ouvrés. Les labels d’Afrique francophone trouveront aussi le hub Afrique ci-dessous.</p>` },
+      { h2: 'Ce qu’il faut préparer', html: `<ul>
+<li>Audio haute qualité : WAV ou MP3 320 kbps</li>
+<li>Version clean : la clé du mixshow et de la radio américaine</li>
+<li>DJ edits, instrumental ou acapella (s’ils existent)</li>
+<li>Pochette haute résolution, bio et press kit (EPK)</li>
+<li>Date de sortie et liens officiels</li>
+</ul>` },
+    ],
+    stats: [
+      { n: '30 000+', l: 'DJs dans le réseau Digiwaxx aux États-Unis' },
+      { n: '1998', l: 'Au service des DJs depuis' },
+      { n: '15,2 %', l: 'Croissance 2025 de la musique en Afrique subsaharienne (IFPI)' },
+    ],
+    form: {
+      title: 'Demander une campagne', submit: 'Demander une campagne DJ aux USA',
+      company: 'Label ou société', name: 'Votre nom', email: 'E-mail professionnel',
+      phone: 'WhatsApp ou téléphone', role: 'Type de société',
+      roles: ['Label', 'Management', 'Distributeur', 'Artiste', 'Autre'],
+      artist: 'Artiste et sortie', link: 'Lien vers la musique',
+      timing: 'Début', timings: ['Ce mois-ci', 'Le mois prochain', 'Dans les trois mois', 'Pas encore de date'],
+      intent: 'Votre besoin', intents: ['Campagne DJ aux États-Unis', 'Media kit label', 'Soumettre une sortie à venir'],
+      extras: [
+        { name: 'market', label: 'Marché', options: ['Afrique francophone', 'France / Belgique', 'Canada francophone', 'Diaspora / global'] },
+        { name: 'genre', label: 'Genre', options: ['Rap FR', 'Afro / afrobeats', 'Coupé-décalé', 'Rumba / ndombolo', 'Dancehall', 'Pop', 'Autre'] },
+        { name: 'target', label: 'Marché principal', options: ['États-Unis', 'Canada', 'Europe', 'Global'] },
+      ],
+      message: 'Autre chose', optional: 'optionnel',
+      note: 'Nous répondons sous deux jours ouvrés.',
+      sending: 'Envoi…', ok: 'Bien reçu. Nous répondons sous deux jours ouvrés.',
+      fail: 'Échec de l’envoi. Réessayez dans un instant.',
+      invalid: 'Merci de remplir les champs obligatoires.',
+    },
+    relatedBlocks: () => [
+      related('Aussi chez Digiwaxx', [
+        { href: '/africa', cat: 'Afrique', t: 'African Music Promotion Hub' },
+        { href: '/promotion/afrobeats-promotion-new-york', cat: 'Genre × Ville', t: 'Afrobeats Promotion in New York' },
+      ]),
+    ],
+    artistCta: { kicker: 'Artiste avec un seul titre ?', h2: 'La campagne standard commence à 99 $.', sub: 'Le formulaire ci-dessus est pour les labels et équipes. Un titre seul atteint le même réseau de plus de 30 000 DJs par le parcours standard.', btn: 'Promote My Record' },
+  },
+
+  /* ---- /ca : Toronto, the Punjabi wave HQ and diaspora capital. */
+  {
+    slug: 'ca/us-dj-promotion-for-canadian-artists', file: 'ca/us-dj-promotion-for-canadian-artists.html', lang: 'en',
+    title: 'U.S. DJ Promotion for Canadian Artists | Digiwaxx',
+    description: 'Digiwaxx services Canadian releases, rap, Punjabi, dancehall, soca and afrobeats, to 30,000+ U.S. DJs and mixshows, with campaign reporting.',
+    serviceName: 'U.S. DJ promotion for Canadian releases',
+    audience: 'Canadian labels, managers and artist teams',
+    crumb: ['Canada', '/ca/us-dj-promotion-for-canadian-artists'],
+    h1: 'From Toronto to U.S. DJ booths',
+    question: 'How does a Canadian release cross into American rooms?',
+    quick: 'Toronto runs three of the most exportable scenes in music: rap, the Punjabi wave, and the Caribbean and African diaspora sounds. The border they all cross is the DJ booth. Digiwaxx services your release to a network of 30,000+ U.S. DJs, with a report back to your team.',
+    long: 'A Canadian record does not need convincing arguments in the U.S., it needs presence in the rooms: the desi parties and Punjabi nights from New Jersey to the Bay Area, the Caribbean rooms of New York and Miami for dancehall and soca, and the rap and mixshow circuit everywhere. Servicing puts it there in the right formats.',
+    sections: [
+      { h2: 'What a Canada Campaign Includes', html: `<ul>
+<li><b>Scene-matched U.S. lists:</b> Punjabi and South Asian nights, Caribbean rooms, rap and mixshow DJs, from a 30,000+ DJ network</li>
+<li><b>Digital delivery:</b> WAV or 320kbps MP3 with artwork, the way U.S. DJs take music</li>
+<li><b>Clean versions to mixshow DJs:</b> the bridge from the club to the air</li>
+<li><b>Campaign reporting:</b> delivery and response per release</li>
+<li><b>DJ feedback:</b> collected and passed back where available</li>
+</ul>` },
+      { h2: 'For Canadian Labels and Managers', html: `<p>Per single or across a roster. The Punjabi scene especially moves on tour windows and wedding seasons; tell us the dates and the servicing lands inside them. We reply within two business days.</p>` },
+      { h2: 'What Your Release Needs', html: `<ul>
+<li>High quality audio: WAV or 320kbps MP3</li>
+<li>A clean version for mixshow and radio DJs</li>
+<li>DJ edits and extended intros where they exist</li>
+<li>Instrumental or acapella if one exists</li>
+<li>High resolution artwork, artist bio and press kit (EPK), release date and official links</li>
+</ul>` },
+    ],
+    stats: [STAT_DJS, STAT_SINCE, STAT_UPLOADS],
+    form: EN_FORM('Request a Canada Campaign', 'Request U.S. DJ Promotion', [
+      { name: 'market', label: 'Market', options: ['Canada', 'Punjabi / South Asian diaspora', 'Caribbean diaspora', 'Global'] },
+      { name: 'genre', label: 'Genre', options: ['Hip-hop / rap', 'Punjabi', 'Dancehall / soca', 'Afrobeats', 'R&B', 'Pop', 'Other'] },
+      { name: 'target', label: 'Primary target market', options: ['United States', 'Canada', 'Global'] },
+    ]),
+    relatedBlocks: () => [
+      related('Keep Going', [
+        { href: '/india/us-dj-promotion-for-indian-artists', cat: 'Country', t: 'U.S. DJ Promotion for Indian Artists' },
+        { href: '/promotion/dancehall-promotion', cat: 'Genre', t: 'Dancehall Promotion' },
+        { href: '/labels', cat: 'International', t: 'U.S. DJ Promotion for International Labels' },
+      ]),
+    ],
+    artistCta: { kicker: 'One artist, one record?', h2: 'The standard campaign starts at $99.', sub: 'The form above is for labels and teams. A single record reaches the same 30,000+ DJs through the standard funnel.', btn: 'Promote My Record' },
+  },
+
+  /* ---- /jp : Japan, the #2 market. High budget, patient intent. */
+  {
+    slug: 'jp/us-dj-promotion', file: 'jp/us-dj-promotion.html', lang: 'ja',
+    title: '米国DJプロモーション | Digiwaxx',
+    description: 'Digiwaxxは日本のレーベル・マネジメント・ディストリビューターのために、米国の3万人以上のDJへ音源をサービスし、キャンペーンレポートをお届けします。1998年創業のレコードプールです。',
+    serviceName: '日本のリリースの米国DJプロモーション',
+    audience: '日本のレーベル、マネジメント、ディストリビューター',
+    crumb: ['日本', '/jp/us-dj-promotion'],
+    qaLabel: '要点',
+    h1: 'あなたのリリースをアメリカのDJへ',
+    question: '日本の楽曲はどうすれば米国のDJに届きますか？',
+    quick: 'シティポップの再評価やアニメ発のヒットが示す通り、日本の音楽はすでに米国で聴かれています。次の一歩はDJブースです。Digiwaxxは1998年から3万人以上の米国DJに音源をサービスしてきたレコードプールで、キャンペーンごとにレポートをお返しします。',
+    long: 'J-pop、シティポップ、日本のヒップホップやエレクトロニックが米国で実際に再生されるかどうかは、クラブとミックスショーのDJのライブラリに正しいフォーマットで入っているかで決まります。ストリーミングのリンクではなくファイルを、正しいメタデータとクリーンバージョンと共に届けることがサービシングです。',
+    sections: [
+      { h2: 'キャンペーンの内容', html: `<ul>
+<li><b>DJターゲティング：</b>ジャンルとフォーマットに合わせ、3万人以上のネットワークから米国DJのリストを作成します</li>
+<li><b>デジタルデリバリー：</b>WAVまたは320kbps MP3とアートワークを、米国のDJが実際に使う形式で届けます</li>
+<li><b>クラブとミックスショー重視：</b>水増しされた数字ではなく、現場と放送で楽曲をかけるDJに集中します</li>
+<li><b>キャンペーンレポート：</b>配信状況と反応をリリースごとにまとめてお届けします</li>
+</ul>` },
+      { h2: 'レーベルの方へ', html: `<p>シングル単位でもカタログ単位でも、御社のリリース計画に合わせて進行します。お問い合わせは日本語または英語でどうぞ。2営業日以内にご返信します。</p>` },
+      { h2: '必要な素材', html: `<ul>
+<li>高音質音源：WAVまたは320kbps MP3</li>
+<li>クリーンバージョン：米国のミックスショーとラジオには必須です</li>
+<li>DJエディットやインストゥルメンタル（あれば）</li>
+<li>高解像度アートワーク、アーティスト紹介とプレスキット（EPK）</li>
+<li>リリース日と公式リンク</li>
+</ul>` },
+    ],
+    stats: [
+      { n: '30,000+', l: 'Digiwaxxネットワークの米国DJ数' },
+      { n: '1998', l: 'DJへの音源サービス開始年' },
+      { n: '第2位', l: '日本の音楽市場の世界順位（IFPI 2025）' },
+    ],
+    form: {
+      title: 'キャンペーンのお問い合わせ', submit: '米国DJプロモーションを相談する',
+      company: '会社名', name: 'ご担当者名', email: 'メールアドレス',
+      phone: 'WhatsAppまたは電話番号', role: '会社の種類',
+      roles: ['レーベル', 'マネジメント', 'ディストリビューター', 'アーティスト', 'その他'],
+      artist: 'アーティストとリリース', link: '音源リンク',
+      timing: '開始時期', timings: ['今月', '来月', '3か月以内', '未定'],
+      intent: 'ご希望内容', intents: ['米国DJプロモーション', 'メディアキット希望', 'リリース提出'],
+      extras: [
+        { name: 'market', label: '市場', options: ['日本', 'グローバル', 'その他'] },
+        { name: 'genre', label: 'ジャンル', options: ['J-pop', 'シティポップ', 'ヒップホップ', 'エレクトロニック', 'ロック', 'アニメ関連', 'その他'] },
+        { name: 'target', label: '主なターゲット市場', options: ['アメリカ', 'グローバル'] },
+      ],
+      message: 'その他', optional: '任意',
+      note: '2営業日以内にご返信します。',
+      sending: '送信中…', ok: '受け付けました。2営業日以内にご返信します。',
+      fail: '送信できませんでした。しばらくしてからもう一度お試しください。',
+      invalid: '必須項目をご入力ください。',
+    },
+    relatedBlocks: () => [
+      related('Other Markets', [
+        { href: '/labels', cat: 'International', t: 'U.S. DJ Promotion for International Labels' },
+        { href: '/ko/us-dj-promotion-for-korean-labels', cat: '한국어', t: '한국 레이블을 위한 미국 DJ 프로모션' },
+      ]),
+    ],
+    artistCta: { kicker: 'アーティストの方へ', h2: '標準キャンペーンは$99から。', sub: '上のフォームはレーベル向けです。1曲のリリースは標準の提出手順で同じ3万人のDJネットワークに届きます。', btn: 'Promote My Record' },
+  },
+
+  /* ---- /india : Punjabi-forward, the budgeted lane of a huge market. */
+  {
+    slug: 'india/us-dj-promotion-for-indian-artists', file: 'india/us-dj-promotion-for-indian-artists.html', lang: 'en',
+    title: 'U.S. DJ Promotion for Indian Artists | Digiwaxx',
+    description: 'Digiwaxx services Punjabi, Bollywood and South Asian releases to 30,000+ U.S. DJs: desi nights, mixshows and diaspora rooms, with campaign reporting.',
+    serviceName: 'U.S. DJ promotion for Indian and South Asian releases',
+    audience: 'Indian and South Asian labels, managers and artist teams',
+    crumb: ['India', '/india/us-dj-promotion-for-indian-artists'],
+    h1: 'U.S. DJ promotion for Punjabi, Bollywood and South Asian releases',
+    question: 'How does an Indian release reach American desi rooms?',
+    quick: 'The Punjabi wave proved it: South Asian records break globally through the diaspora floor, the desi nights and wedding circuits of New Jersey, the Bay Area, Chicago, Houston and New York. The DJs who run those rooms are reachable, and servicing them properly is the whole job. Digiwaxx delivers to a network of 30,000+ U.S. DJs, with a report back to your team.',
+    long: 'At home the audience consumes at a scale few markets can match, YouTube first. Abroad, the same audience is in rooms run by DJs, and a record that arrives as files with a clean version and a contact who answers gets played; a link gets forgotten. That gap between streaming scale and room presence is exactly what a campaign closes.',
+    sections: [
+      { h2: 'What an India Campaign Includes', html: `<ul>
+<li><b>Desi night and wedding circuit DJs:</b> the rooms where South Asian records actually break in America, from a 30,000+ DJ network</li>
+<li><b>Crossover servicing:</b> hip-hop and mixshow DJs for records built to travel past the community</li>
+<li><b>Digital delivery:</b> WAV or 320kbps MP3 with artwork, the way U.S. DJs take music</li>
+<li><b>Campaign reporting:</b> delivery and response per release, written for your team</li>
+<li><b>DJ feedback:</b> collected and passed back where available</li>
+</ul>` },
+      { h2: 'For Labels and Artist Teams', html: `<p>Per single or across a roster: Punjabi, Bollywood and film soundtracks, hip-hop, indie and devotional catalogues all run through the same funnel with lists built per record. The Punjabi lane moves on tour and wedding seasons; tell us the dates. We reply within two business days.</p>` },
+      { h2: 'What Your Release Needs', html: `<ul>
+<li>High quality audio: WAV or 320kbps MP3</li>
+<li>A clean version for mixshow and radio DJs</li>
+<li>DJ edits and extended intros where they exist</li>
+<li>Instrumental or acapella if one exists</li>
+<li>High resolution artwork, artist bio and press kit (EPK), release date and official links</li>
+</ul>` },
+    ],
+    stats: [STAT_DJS, STAT_SINCE, STAT_UPLOADS],
+    form: EN_FORM('Request an India Campaign', 'Request U.S. DJ Promotion', [
+      { name: 'market', label: 'Market', options: ['India / South Asia', 'South Asian diaspora (US / Canada / UK)', 'Global'] },
+      { name: 'genre', label: 'Genre', options: ['Punjabi', 'Bollywood / film', 'Hip-hop / rap', 'Indie / pop', 'Electronic', 'Bhangra', 'Other'] },
+      { name: 'target', label: 'Primary target market', options: ['United States', 'Canada', 'United Kingdom', 'Global'] },
+    ]),
+    relatedBlocks: () => [
+      related('Keep Going', [
+        { href: '/ca/us-dj-promotion-for-canadian-artists', cat: 'Country', t: 'U.S. DJ Promotion for Canadian Artists' },
+        { href: '/promotion/hip-hop-promotion', cat: 'Genre', t: 'Hip Hop Promotion' },
+        { href: '/labels', cat: 'International', t: 'U.S. DJ Promotion for International Labels' },
+      ]),
+    ],
+    artistCta: { kicker: 'One artist, one record?', h2: 'The standard campaign starts at $99.', sub: 'The form above is for labels and teams. A single record reaches the same 30,000+ DJs through the standard funnel.', btn: 'Promote My Record' },
+  },
+
+  /* ---- /id : Indonesia, in Bahasa. Scale-consumption market, early funnel. */
+  {
+    slug: 'id/promosi-musik-dj-amerika', file: 'id/promosi-musik-dj-amerika.html', lang: 'id',
+    title: 'Promosi Musik ke DJ Amerika Serikat | Digiwaxx',
+    description: 'Digiwaxx mengantarkan rilisan Indonesia ke jaringan lebih dari 30.000 DJ di Amerika Serikat, klub dan mixshow, dengan laporan kampanye untuk tim Anda.',
+    serviceName: 'Promosi musik Indonesia ke DJ Amerika Serikat',
+    audience: 'Label, manajemen, dan artis Indonesia',
+    crumb: ['Indonesia', '/id/promosi-musik-dj-amerika'],
+    qaLabel: 'Jawaban singkat',
+    h1: 'Bawa rilisan Anda ke DJ profesional di Amerika Serikat',
+    question: 'Bagaimana rilisan Indonesia sampai ke DJ di Amerika?',
+    quick: 'Pendengar Indonesia termasuk yang terbesar di dunia di YouTube dan Spotify. Langkah berikutnya untuk sebuah rilisan adalah lantai dansa Amerika, dan pintunya adalah DJ. Digiwaxx melayani rilisan ke jaringan lebih dari 30.000 DJ AS sejak 1998, dengan laporan kampanye untuk tim Anda.',
+    long: 'DJ Amerika memutar apa yang ada di library mereka, dalam format yang benar: WAV atau MP3 320 kbps, versi bersih untuk mixshow dan radio, artwork, dan kontak yang membalas. Itulah servicing, dan itulah yang dilakukan sebuah record pool.',
+    sections: [
+      { h2: 'Isi kampanye', html: `<ul>
+<li><b>Daftar DJ yang tepat:</b> disusun per rilisan berdasarkan genre dan pasar, dari jaringan lebih dari 30.000 DJ</li>
+<li><b>Pengiriman digital:</b> audio berkualitas tinggi dan artwork, dalam format yang benar-benar dipakai DJ</li>
+<li><b>Fokus klub dan mixshow:</b> DJ yang memutar musik di lantai dansa dan di udara, bukan angka palsu</li>
+<li><b>Laporan kampanye:</b> pengiriman dan respons, per rilisan</li>
+</ul>` },
+      { h2: 'Untuk label dan manajemen', html: `<p>Per single atau per katalog, mengikuti jadwal rilis Anda. Silakan menulis dalam bahasa Indonesia atau Inggris; kami membalas dalam dua hari kerja.</p>` },
+      { h2: 'Materi yang dibutuhkan', html: `<ul>
+<li>Audio berkualitas tinggi: WAV atau MP3 320 kbps</li>
+<li>Versi bersih untuk mixshow dan radio</li>
+<li>DJ edit atau intro panjang (jika ada)</li>
+<li>Artwork resolusi tinggi, bio artis dan press kit (EPK)</li>
+<li>Tanggal rilis dan tautan resmi</li>
+</ul>` },
+    ],
+    stats: [
+      { n: '30.000+', l: 'DJ dalam jaringan Digiwaxx di AS' },
+      { n: '1998', l: 'Melayani DJ sejak' },
+      { n: '~100K', l: 'Lagu diunggah ke streaming setiap hari. Mengunggah saja tidak cukup' },
+    ],
+    form: {
+      title: 'Ajukan kampanye', submit: 'Ajukan kampanye DJ di AS',
+      company: 'Label atau perusahaan', name: 'Nama Anda', email: 'Email kerja',
+      phone: 'WhatsApp atau telepon', role: 'Jenis perusahaan',
+      roles: ['Label', 'Manajemen', 'Distributor', 'Artis', 'Lainnya'],
+      artist: 'Artis dan rilisan', link: 'Tautan musik',
+      timing: 'Mulai', timings: ['Bulan ini', 'Bulan depan', 'Dalam tiga bulan', 'Belum pasti'],
+      intent: 'Kebutuhan Anda', intents: ['Kampanye DJ di AS', 'Media kit label', 'Kirim rilisan'],
+      extras: [
+        { name: 'market', label: 'Pasar', options: ['Indonesia', 'Asia Tenggara', 'Global'] },
+        { name: 'genre', label: 'Genre', options: ['Pop', 'Hip-hop', 'Dangdut / koplo', 'Elektronik', 'Indie', 'R&B', 'Lainnya'] },
+        { name: 'target', label: 'Pasar utama', options: ['Amerika Serikat', 'Global'] },
+      ],
+      message: 'Lainnya', optional: 'opsional',
+      note: 'Kami membalas dalam dua hari kerja.',
+      sending: 'Mengirim…', ok: 'Diterima. Kami membalas dalam dua hari kerja.',
+      fail: 'Gagal mengirim. Coba lagi sebentar lagi.',
+      invalid: 'Lengkapi kolom wajib.',
+    },
+    relatedBlocks: () => [
+      related('Other Markets', [
+        { href: '/labels', cat: 'International', t: 'U.S. DJ Promotion for International Labels' },
+        { href: '/ph/us-dj-promotion-for-filipino-artists', cat: 'Country', t: 'U.S. DJ Promotion for Filipino Artists' },
+      ]),
+    ],
+    artistCta: { kicker: 'Artis dengan satu lagu?', h2: 'Kampanye standar mulai dari $99.', sub: 'Formulir di atas untuk label dan tim. Satu lagu mencapai jaringan 30.000+ DJ yang sama lewat jalur standar.', btn: 'Promote My Record' },
+  },
+
+  /* ---- /ph : the Philippines. OPM, and the most storied DJ diaspora in America. */
+  {
+    slug: 'ph/us-dj-promotion-for-filipino-artists', file: 'ph/us-dj-promotion-for-filipino-artists.html', lang: 'en',
+    title: 'U.S. DJ Promotion for Filipino Artists | Digiwaxx',
+    description: 'Digiwaxx services OPM and Filipino releases to 30,000+ U.S. DJs, from the diaspora party circuit to mixshows, with campaign reporting to Manila.',
+    serviceName: 'U.S. DJ promotion for Filipino releases',
+    audience: 'OPM labels and Filipino artist teams',
+    crumb: ['Philippines', '/ph/us-dj-promotion-for-filipino-artists'],
+    h1: 'OPM and Filipino releases to U.S. DJs and mixshows',
+    question: 'How does a Filipino release reach American rooms?',
+    quick: 'Filipino-American communities are among the largest in Los Angeles, the Bay Area, Las Vegas, Hawaii and Seattle, and Filipino-American DJs are some of the most storied in American club culture. Digiwaxx services your release to a network of 30,000+ U.S. DJs, with a report back to Manila.',
+    long: 'The Philippines streams at enormous scale, and OPM is finally exporting. The practical path into the U.S. is the one every genre uses: the diaspora party circuit first, the debuts and gatherings and club nights where the community actually dances, then mixshows for the crossover. DJs run all of it, and they play what lands in their library in the right format.',
+    sections: [
+      { h2: 'What a Philippines Campaign Includes', html: `<ul>
+<li><b>Diaspora circuit DJs:</b> the Filipino-American party and club DJs of the West Coast, Vegas and Hawaii, from a 30,000+ DJ network</li>
+<li><b>Crossover servicing:</b> R&B, pop and mixshow DJs for records built to travel past the community</li>
+<li><b>Digital delivery:</b> WAV or 320kbps MP3 with artwork, the way U.S. DJs take music</li>
+<li><b>Campaign reporting:</b> delivery and response per release</li>
+<li><b>DJ feedback:</b> collected and passed back where available</li>
+</ul>` },
+      { h2: 'For OPM Labels and Teams', html: `<p>Per single or across a roster. Write in English or Filipino; we reply within two business days.</p>` },
+      { h2: 'What Your Release Needs', html: `<ul>
+<li>High quality audio: WAV or 320kbps MP3</li>
+<li>A clean version for mixshow and radio DJs</li>
+<li>DJ edits and extended intros where they exist</li>
+<li>Instrumental or acapella if one exists</li>
+<li>High resolution artwork, artist bio and press kit (EPK), release date and official links</li>
+</ul>` },
+    ],
+    stats: [STAT_DJS, STAT_SINCE, STAT_UPLOADS],
+    form: EN_FORM('Request a Philippines Campaign', 'Request U.S. DJ Promotion', [
+      { name: 'market', label: 'Market', options: ['Philippines', 'Filipino diaspora (US)', 'Global'] },
+      { name: 'genre', label: 'Genre', options: ['OPM / pop', 'Hip-hop', 'R&B', 'Dance / electronic', 'Rock', 'Other'] },
+      { name: 'target', label: 'Primary target market', options: ['United States', 'Global'] },
+    ]),
+    relatedBlocks: () => [
+      related('Keep Going', [
+        { href: '/promotion/rnb-promotion', cat: 'Genre', t: 'R&B Promotion' },
+        { href: '/id/promosi-musik-dj-amerika', cat: 'Country', t: 'Promosi Musik ke DJ Amerika' },
+        { href: '/labels', cat: 'International', t: 'U.S. DJ Promotion for International Labels' },
+      ]),
+    ],
+    artistCta: { kicker: 'One artist, one record?', h2: 'The standard campaign starts at $99.', sub: 'The form above is for labels and teams. A single record reaches the same 30,000+ DJs through the standard funnel.', btn: 'Promote My Record' },
+  },
 ];
 
 /* ------------------------------------------------------------------ guides */
@@ -900,6 +1545,7 @@ const TRIO_HREFLANG = `    <link rel="alternate" hreflang="ko" href="${SITE}/ko/
     <link rel="alternate" hreflang="x-default" href="${SITE}/labels">`;
 
 function langRow(p) {
+  if (!p.family) return '';
   const family = p.family === 'africa' ? AFRICA_FAMILY : TRIO_FAMILY;
   const self = `/${p.slug}`;
   return `<div class="lang-row">
@@ -951,7 +1597,7 @@ ${NAV}
     <p class="page-question">${esc(p.question)}</p>
 
 <div class="quick-answer">
-  <p class="qa-label">Quick Answer</p>
+  <p class="qa-label">${esc(p.qaLabel || 'Quick Answer')}</p>
   <p class="qa-text">${esc(p.quick)}</p>
 </div>
 <p class="long-answer">${p.long}</p>
