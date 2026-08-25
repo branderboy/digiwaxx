@@ -65,7 +65,7 @@ const FOOTER = `<footer class="cfooter">
     <div class="cfooter-brand"><img src="/assets/logo.png" alt="Digiwaxx" width="180" height="30" decoding="async"><p>Trusted by 30,000+ DJs since 1998.</p>
       <a class="cfooter-cta" href="/#pricing">Submit Your Record &rarr;</a>
       <a class="cfooter-hub" href="/university">Browse Digiwaxx University &rarr;</a>
-      <p class="cfooter-contact">Campaigns: Kay Ali · <a href="mailto:kawani@digiwaxx.com">kawani@digiwaxx.com</a><br>Partnerships: “CL” Llewellyn · <a href="mailto:cl@digiwaxx.com">cl@digiwaxx.com</a><br>Artists: Will Gordon · <a href="mailto:will@digiwaxx.com">will@digiwaxx.com</a></p>
+      <a class="cfooter-hub" href="/contact">Contact Us &rarr;</a>
     </div>
     <div class="cfooter-cols">
       <div class="cfooter-col"><h4><a href="/promote">Promotion Services</a></h4>
@@ -74,9 +74,22 @@ const FOOTER = `<footer class="cfooter">
         <a href="/promote/independent-music-promotion">Independent Music Promotion</a>
         <a href="/promote/promote-my-album">Promote My Album</a>
         <a href="/promote/promote-my-ep">Promote My EP</a>
-        <a href="/labels">For International Labels</a>
-        <a href="/africa">For African Labels</a>
         <a class="cfooter-more" href="/promote">View all 10 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/labels">Global Campaigns</a></h4>
+        <a href="/labels">International Labels</a>
+        <a href="/africa">Africa Hub</a>
+        <a href="/ko/us-dj-promotion-for-korean-labels">Korea</a>
+        <a href="/es/promocion-dj-estados-unidos">Latin America</a>
+        <a href="/br/promocao-dj-eua">Brazil</a>
+        <a href="/mx/promocion-musica-mexicana-eeuu">Mexico</a>
+        <a class="cfooter-more" href="/labels">All markets &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/guides">Blog &amp; Press</a></h4>
+        <a href="/guides">Music Promotion Blog</a>
+        <a href="/africa/afrobeats-dj-promotion-usa">Afrobeats DJ Promotion USA</a>
+        <a href="/africa/south-africa-amapiano-dj-promotion">Amapiano Promotion</a>
+        <a href="/india/us-dj-promotion-for-indian-artists">Punjabi Music Promotion</a>
+        <a href="/mx/promocion-musica-mexicana-eeuu">Regional Mexicano Promotion</a>
+        <a href="https://addaguestpost.com/newsroom/digiwaxx-goes-global-us-dj-promotion-international" target="_blank" rel="noopener">Press: Digiwaxx Goes Global</a></div>
       <div class="cfooter-col"><h4><a href="/campaigns">Campaign Blueprints</a></h4>
         <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a>
         <a href="/campaigns/30-day-post-release-sprint">30-Day Post-Release Sprint</a>
@@ -103,13 +116,28 @@ const FOOTER = `<footer class="cfooter">
         <a href="/answers/is-spotify-playlist-promotion-worth-it">Is Playlist Promotion Worth It?</a>
         <a href="/answers/do-djs-still-break-records">Do DJs Still Break Records?</a>
         <a class="cfooter-more" href="/answers">View all 16 &rarr;</a></div>
-      <div class="cfooter-col"><h4><a href="/promotion">Promotion Hubs</a></h4>
-        <a href="/promotion/spotify-playlist-promotion">Spotify Promotion</a>
+      <div class="cfooter-col"><h4><a href="/promotion">Promotion by Genre</a></h4>
         <a href="/promotion/hip-hop-promotion">Hip Hop Promotion</a>
         <a href="/promotion/afrobeats-promotion">Afrobeats Promotion</a>
-        <a href="/promotion/music-promotion-atlanta">Music Promotion Atlanta</a>
+        <a href="/promotion/rnb-promotion">R&amp;B Promotion</a>
+        <a href="/promotion/latin-music-promotion">Latin Music Promotion</a>
+        <a href="/promotion/dancehall-promotion">Dancehall Promotion</a>
+        <a href="/promotion/gospel-promotion">Gospel Promotion</a>
+        <a href="/promotion/reggae-promotion">Reggae Promotion</a></div>
+      <div class="cfooter-col"><h4><a href="/promotion">Promotion by City</a></h4>
         <a href="/promotion/music-promotion-new-york">Music Promotion New York</a>
+        <a href="/promotion/music-promotion-atlanta">Music Promotion Atlanta</a>
+        <a href="/promotion/music-promotion-los-angeles">Music Promotion Los Angeles</a>
+        <a href="/promotion/music-promotion-houston">Music Promotion Houston</a>
+        <a href="/promotion/music-promotion-chicago">Music Promotion Chicago</a>
+        <a href="/promotion/music-promotion-miami">Music Promotion Miami</a>
         <a class="cfooter-more" href="/promotion">View all 57 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/promotion">Promotion by Platform</a></h4>
+        <a href="/promotion/spotify-playlist-promotion">Spotify Playlist Promotion</a>
+        <a href="/promotion/youtube-music-promotion">YouTube Music Promotion</a>
+        <a href="/promotion/apple-music-promotion">Apple Music Promotion</a>
+        <a href="/promotion/audiomack-promotion">Audiomack Promotion</a>
+        <a href="/promotion/tidal-promotion">TIDAL Promotion</a></div>
       <div class="cfooter-col"><h4><a href="/compare">Comparisons</a></h4>
         <a href="/compare/digiwaxx-vs-playlist-push">vs. Playlist Push</a>
         <a href="/compare/digiwaxx-vs-submithub">vs. SubmitHub</a>
@@ -1737,6 +1765,135 @@ ${FOOTER}
 `;
 }
 
+/* ----------------------------------------------------------- contact page
+ * The one page the footer's Contact link points at. The three desks with
+ * their names and addresses live here, and only here plus the card under
+ * each campaign form; the footer carries the link, not the rolodex.
+ */
+function contactPageHtml() {
+  const url = `${SITE}/contact`;
+  const title = 'Contact Digiwaxx';
+  const desc = 'Who to contact at Digiwaxx: Kay Ali for campaigns, "CL" Llewellyn for partnerships and distributors, Will Gordon for artists. Or call 1-800-665-1259.';
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <meta name="description" content="${attr(desc)}">
+    <link rel="canonical" href="${url}">
+    <meta property="og:title" content="${title}">
+    <meta property="og:description" content="${attr(desc)}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="${url}">
+    <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:image" content="${SITE}/assets/share-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${title}">
+    <meta name="twitter:image" content="${SITE}/assets/share-card.png">
+    <meta name="robots" content="max-image-preview:large">
+    <meta name="theme-color" content="#1a0a18">
+${HEAD_FONTS}
+${FORM_CSS}
+<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'ContactPage',
+    name: title, url, description: desc,
+    isPartOf: { '@id': `${SITE}#website` }, inLanguage: 'en-US',
+  })}</script>
+<script type="application/ld+json">${breadcrumbLd([['Digiwaxx', '/'], ['Contact', '/contact']])}</script>
+</head>
+<body class="light-page">
+
+${NAV}
+<main class="cmain">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / Contact
+  </div>
+  <article>
+    <h1>Contact Digiwaxx</h1>
+    <p class="page-question">Three desks. Write to the one that fits, and a person answers within two business days.</p>
+
+<section class="body-section contact-card">
+  <h2>Campaigns</h2>
+  <p><b>Kay Ali</b>, Campaign Manager<br>
+  <a href="mailto:kawani@digiwaxx.com">kawani@digiwaxx.com</a></p>
+  <p style="margin-top:0.6rem">Label, management and distributor campaigns: U.S. DJ servicing, international releases, media kits and campaign reporting.</p>
+</section>
+
+<section class="body-section contact-card">
+  <h2>Partnerships &amp; Distributors</h2>
+  <p><b>“CL” Llewellyn</b>, Partner Manager<br>
+  <a href="mailto:cl@digiwaxx.com">cl@digiwaxx.com</a></p>
+  <p style="margin-top:0.6rem">Distribution deals, platform and brand partnerships, and anything that is bigger than one campaign.</p>
+</section>
+
+<section class="body-section contact-card">
+  <h2>Artists</h2>
+  <p><b>Will Gordon</b>, Artist Manager<br>
+  <a href="mailto:will@digiwaxx.com">will@digiwaxx.com</a></p>
+  <p style="margin-top:0.6rem">Questions about the standard campaign, your submission, or what package fits your record.</p>
+</section>
+
+<section class="body-section">
+  <h2>Prefer the Phone?</h2>
+  <p><a href="tel:+18006651259"><b>1-(800) 665-1259</b></a></p>
+</section>
+
+<section class="body-section" id="contact-form">
+  <h2>Or Send a Message</h2>
+  <form id="cf" novalidate>
+    <div class="cf-grid">
+      <div class="calc-field"><label for="cf-name">Your name</label><input id="cf-name" name="name" type="text" required></div>
+      <div class="calc-field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required></div>
+      <div class="calc-field"><label for="cf-company">Company <span class="cf-opt">optional</span></label><input id="cf-company" name="company" type="text"></div>
+      <div class="calc-field"><label for="cf-intent">Topic</label><select id="cf-intent" name="intent"><option>Campaigns</option><option>Partnerships &amp; distribution</option><option>Artist support</option><option>Press</option><option>Other</option></select></div>
+      <div class="calc-field cf-wide"><label for="cf-message">Message</label><textarea id="cf-message" name="message" required></textarea></div>
+    </div>
+    <input class="cf-hp" type="text" name="company_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="cta-btn cf-btn" type="submit">Send Message &rarr;</button>
+    <p class="cf-note" id="cf-note">A person replies within two business days.</p>
+  </form>
+</section>
+<script>(function(){
+  var form=document.getElementById('cf');if(!form)return;
+  var note=document.getElementById('cf-note'),btn=form.querySelector('button'),busy=false;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();if(busy)return;
+    if(!form.reportValidity||form.reportValidity()){
+      busy=true;btn.disabled=true;var was=btn.textContent;btn.textContent='Sending…';
+      var d={page:'/contact'};new FormData(form).forEach(function(v,k){d[k]=v;});
+      if(!d.company)d.company=d.name;
+      fetch('/api/campaign-leads',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(d)})
+        .then(function(r){return r.json();})
+        .then(function(j){if(j&&j.ok){form.reset();note.textContent='Got it. A person replies within two business days.';}else{note.textContent=(j&&j.error)||'We could not send that. Email one of the desks above instead.';}})
+        .catch(function(){note.textContent='Network trouble. Email one of the desks above instead.';})
+        .finally(function(){busy=false;btn.disabled=false;btn.textContent=was;});
+    } else { note.textContent='Please fill in the required fields.'; }
+  });
+})();</script>
+
+<section class="body-section">
+  <h2>Find Us</h2>
+  <div style="position:relative;overflow:hidden;border-radius:16px;border:1px solid #f0e0e9;padding-top:56.25%">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d386750.3451761157!2d-73.91186094999999!3d40.773304949999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259d11c03ea23%3A0x4cac38765f7bc59b!2sDigiwaxx%20DJ%20Service!5e0!3m2!1sen!2sus!4v1787699953048!5m2!1sen!2sus" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Digiwaxx DJ Service on Google Maps"></iframe>
+  </div>
+</section>
+
+${related('Start Something', [
+    { href: '/#pricing', cat: 'Artists', t: 'Submit Your Record, from $99' },
+    { href: '/labels', cat: 'Labels', t: 'Request a Label Campaign' },
+    { href: '/africa', cat: 'Africa', t: 'African Music Promotion Hub' },
+    { href: '/university', cat: 'Free', t: 'Digiwaxx University' },
+  ])}
+  </article>
+</main>
+
+${FOOTER}
+</body>
+</html>
+`;
+}
+
 /* ------------------------------------------------------------------- write */
 
 let written = 0;
@@ -1753,4 +1910,7 @@ for (const g of GUIDES) {
   console.log('wrote', `guides/${g.slug}.html`);
   written++;
 }
+fs.writeFileSync(path.join(ROOT, 'contact.html'), contactPageHtml());
+console.log('wrote contact.html');
+written++;
 console.log(`${written} pages`);
