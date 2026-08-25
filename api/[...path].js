@@ -221,6 +221,25 @@ async function initDB() {
       status TEXT DEFAULT 'new',
       created_at TIMESTAMPTZ DEFAULT NOW()
     );
+    CREATE TABLE IF NOT EXISTS campaign_leads (
+      id TEXT PRIMARY KEY,
+      company TEXT NOT NULL,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      phone TEXT,
+      role TEXT,
+      artist TEXT,
+      link TEXT,
+      timing TEXT,
+      intent TEXT,
+      market TEXT,
+      genre TEXT,
+      target TEXT,
+      message TEXT,
+      page TEXT,
+      status TEXT DEFAULT 'new',
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
   `);
   dbInitialized = true;
 }
@@ -431,6 +450,28 @@ module.exports = async (req, res) => {
       return json(res, { ok: true, lead_id: id });
     }
 
+    // Label and distributor campaign requests, from /labels, /ko, /es and
+    // the /africa cluster. A different buyer from the artist funnel, so a
+    // different table: these leads carry a market, a genre and a target
+    // market instead of a tier, and they get a human reply, not the
+    // automated drip.
+    if (url === '/api/campaign-leads' && req.method === 'POST') {
+      // Bots fill every field they find, including the one no person is shown.
+      if (body.company_hp) return json(res, { ok: true });
+      const { company, name, email } = body;
+      if (!company || !name || !email) {
+        return json(res, { error: 'Company, name and email are required' }, 400);
+      }
+      const fields = ['phone', 'role', 'artist', 'link', 'timing', 'intent', 'market', 'genre', 'target', 'message', 'page'];
+      const values = fields.map((f) => (body[f] ? String(body[f]).slice(0, 2000) : null));
+      await pool.query(
+        `INSERT INTO campaign_leads (id, company, name, email, ${fields.join(', ')})
+         VALUES ($1, $2, $3, $4, ${fields.map((_, i) => `$${i + 5}`).join(', ')})`,
+        [uuid(), String(company).slice(0, 500), String(name).slice(0, 500), String(email).slice(0, 500), ...values]
+      );
+      return json(res, { ok: true });
+    }
+
     if (url === '/api/paypal-click' && req.method === 'POST') {
       const { tier, price, lead_id } = body;
       if (!tier || !price) return json(res, { error: 'Tier and price are required' }, 400);
@@ -525,6 +566,24 @@ module.exports = async (req, res) => {
     }
 
     // ===== ADMIN ROUTES =====
+    if (url === '/api/admin/campaign-leads' && req.method === 'GET') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const { rows } = await pool.query(
+        'SELECT * FROM campaign_leads ORDER BY created_at DESC LIMIT $1 OFFSET $2',
+        [parseInt(query.limit) || 100, parseInt(query.offset) || 0]
+      );
+      const { rows: [{ count: total }] } = await pool.query('SELECT COUNT(*) as count FROM campaign_leads');
+      return json(res, { leads: rows, total: parseInt(total) });
+    }
+
+    if (url.startsWith('/api/admin/campaign-leads/') && req.method === 'PATCH') {
+      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
+      const id = url.split('/api/admin/campaign-leads/')[1];
+      const result = await pool.query('UPDATE campaign_leads SET status = $1 WHERE id = $2', [body.status, id]);
+      if (result.rowCount === 0) return json(res, { error: 'Lead not found' }, 404);
+      return json(res, { ok: true });
+    }
+
     if (url === '/api/admin/leads' && req.method === 'GET') {
       if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
       const { status, search, limit, offset } = query;

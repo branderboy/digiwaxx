@@ -4,188 +4,194 @@
 > connecting artists' records to a network of 30,000+ working DJs (club,
 > mixshow, radio, mobile), plus radio rotation, playlist placement, and
 > published artist coverage. One-time campaigns: Starter $99, Pro $149,
-> Elite $199. Main site: https://www.digiwaxxrecordpool.com, start at https://www.digiwaxxrecordpool.com/university.
+> Elite $199. Main site: https://promote.digiwaxx.com, start at https://promote.digiwaxx.com/university.
 
 ## Section Indexes
 
 Every section has a full index page listing all of its articles:
 
-- [Promotion Services](https://www.digiwaxxrecordpool.com/promote): 10 pages
-- [Campaign Blueprints](https://www.digiwaxxrecordpool.com/campaigns): 4 pages
-- [Release & Promotion Guides](https://www.digiwaxxrecordpool.com/guides): 18 pages
-- [Artist Goals](https://www.digiwaxxrecordpool.com/goals): 6 pages
-- [Straight Answers](https://www.digiwaxxrecordpool.com/answers): 16 pages
-- [Promotion Hubs: Cities, Genres & Platforms](https://www.digiwaxxrecordpool.com/promotion): 57 pages
-- [Comparisons](https://www.digiwaxxrecordpool.com/compare): 4 pages
-- [The Artist Journey](https://www.digiwaxxrecordpool.com/journey): 4 pages
-- [Free Artist Tools](https://www.digiwaxxrecordpool.com/tools): 6 pages
+- [Promotion Services](https://promote.digiwaxx.com/promote): 10 pages
+- [Campaign Blueprints](https://promote.digiwaxx.com/campaigns): 4 pages
+- [Release & Promotion Guides](https://promote.digiwaxx.com/guides): 24 pages
+- [Artist Goals](https://promote.digiwaxx.com/goals): 6 pages
+- [Straight Answers](https://promote.digiwaxx.com/answers): 16 pages
+- [Promotion Hubs: Cities, Genres & Platforms](https://promote.digiwaxx.com/promotion): 57 pages
+- [Comparisons](https://promote.digiwaxx.com/compare): 4 pages
+- [The Artist Journey](https://promote.digiwaxx.com/journey): 4 pages
+- [Free Artist Tools](https://promote.digiwaxx.com/tools): 6 pages
 
 ## Promotion Services
 
-Index: https://www.digiwaxxrecordpool.com/promote
+Index: https://promote.digiwaxx.com/promote
 
-- [Independent Music Promotion](https://www.digiwaxxrecordpool.com/promote/independent-music-promotion): Independent music promotion that rents you the label machine: DJ servicing to 30,000+ DJs, radio, playlists, and published coverage, while you keep 100%.
-- [Music Promotion Service](https://www.digiwaxxrecordpool.com/promote/music-promotion-service): A music promotion service built on access: 30,000+ DJs, radio rotation, playlist placement, and published artist coverage. One-time payment, no contracts.
-- [Music Promotion for DJs](https://www.digiwaxxrecordpool.com/promote/music-promotion-for-djs): What Digiwaxx offers DJs: a curated feed of new, DJ-ready records since 1998, and how DJs in the network shape which records break.
-- [Music Promotion for Managers](https://www.digiwaxxrecordpool.com/promote/music-promotion-for-managers): How artist managers use Digiwaxx: a repeatable promotion system per release, proof kits for pitching, and DJ data that guides booking and routing.
-- [Music Promotion for Producers](https://www.digiwaxxrecordpool.com/promote/music-promotion-for-producers): How producers use Digiwaxx: break records you produced, put instrumentals in DJ crates, and build the producer name DJs and artists recognize.
-- [Music Promotion for Record Labels](https://www.digiwaxxrecordpool.com/promote/music-promotion-for-record-labels): How indie labels use Digiwaxx: DJ servicing for the whole roster, per-release campaigns without per-release infrastructure, and reaction data for A&R decisions.
-- [Promote My Album](https://www.digiwaxxrecordpool.com/promote/promote-my-album): Promote your album to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
-- [Promote My EP](https://www.digiwaxxrecordpool.com/promote/promote-my-ep): Promote your ep to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
-- [Promote My Mixtape](https://www.digiwaxxrecordpool.com/promote/promote-my-mixtape): Promote your mixtape to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
-- [Promote My Single](https://www.digiwaxxrecordpool.com/promote/promote-my-single): Promote your single to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
+- [Independent Music Promotion](https://promote.digiwaxx.com/promote/independent-music-promotion): Independent music promotion that rents you the label machine: DJ servicing to 30,000+ DJs, radio, playlists, and published coverage, while you keep 100%.
+- [Music Promotion Service](https://promote.digiwaxx.com/promote/music-promotion-service): A music promotion service built on access: 30,000+ DJs, radio rotation, playlist placement, and published artist coverage. One-time payment, no contracts.
+- [Music Promotion for DJs](https://promote.digiwaxx.com/promote/music-promotion-for-djs): What Digiwaxx offers DJs: a curated feed of new, DJ-ready records since 1998, and how DJs in the network shape which records break.
+- [Music Promotion for Managers](https://promote.digiwaxx.com/promote/music-promotion-for-managers): How artist managers use Digiwaxx: a repeatable promotion system per release, proof kits for pitching, and DJ data that guides booking and routing.
+- [Music Promotion for Producers](https://promote.digiwaxx.com/promote/music-promotion-for-producers): How producers use Digiwaxx: break records you produced, put instrumentals in DJ crates, and build the producer name DJs and artists recognize.
+- [Music Promotion for Record Labels](https://promote.digiwaxx.com/promote/music-promotion-for-record-labels): How indie labels use Digiwaxx: DJ servicing for the whole roster, per-release campaigns without per-release infrastructure, and reaction data for A&R decisions.
+- [Promote My Album](https://promote.digiwaxx.com/promote/promote-my-album): Promote your album to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
+- [Promote My EP](https://promote.digiwaxx.com/promote/promote-my-ep): Promote your ep to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
+- [Promote My Mixtape](https://promote.digiwaxx.com/promote/promote-my-mixtape): Promote your mixtape to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
+- [Promote My Single](https://promote.digiwaxx.com/promote/promote-my-single): Promote your single to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
 
 ## Campaign Blueprints
 
-Index: https://www.digiwaxxrecordpool.com/campaigns
+Index: https://promote.digiwaxx.com/campaigns
 
-- [The 30-Day Post-Release Sprint](https://www.digiwaxxrecordpool.com/campaigns/30-day-post-release-sprint): A dated 30-day campaign for a record that is already out: packaging fixes, DJ service, a two-week content burst, and proof-backed pitching.
-- [The 60-Day Release Plan](https://www.digiwaxxrecordpool.com/campaigns/60-day-release-plan): A complete 60-day single campaign, week by week: assets, distribution, DJ service, pre-save push, release week, and two post-release waves. Copy it and launch.
-- [The 90-Day New Artist Launch](https://www.digiwaxxrecordpool.com/campaigns/90-day-new-artist-launch): Launching from zero: a 90-day plan covering foundation (profiles, sound, first record), first release with DJ service, and the second-release compounding cycle.
-- [The Club Record Campaign](https://www.digiwaxxrecordpool.com/campaigns/club-record-campaign): A focused 6-week campaign to get a record tested and spinning in club rooms: packaging, DJ service, reaction harvesting, and converting spins into bookings.
+- [The 30-Day Post-Release Sprint](https://promote.digiwaxx.com/campaigns/30-day-post-release-sprint): A dated 30-day campaign for a record that is already out: packaging fixes, DJ service, a two-week content burst, and proof-backed pitching.
+- [The 60-Day Release Plan](https://promote.digiwaxx.com/campaigns/60-day-release-plan): A complete 60-day single campaign, week by week: assets, distribution, DJ service, pre-save push, release week, and two post-release waves. Copy it and launch.
+- [The 90-Day New Artist Launch](https://promote.digiwaxx.com/campaigns/90-day-new-artist-launch): Launching from zero: a 90-day plan covering foundation (profiles, sound, first record), first release with DJ service, and the second-release compounding cycle.
+- [The Club Record Campaign](https://promote.digiwaxx.com/campaigns/club-record-campaign): A focused 6-week campaign to get a record tested and spinning in club rooms: packaging, DJ service, reaction harvesting, and converting spins into bookings.
 
 ## Release & Promotion Guides
 
-Index: https://www.digiwaxxrecordpool.com/guides
+Index: https://promote.digiwaxx.com/guides
 
-- [How Many Songs Should You Release?](https://www.digiwaxxrecordpool.com/guides/how-many-songs-should-i-release): Singles vs. EPs vs. albums for independent artists: the release cadence that builds catalogs, feeds algorithms, and doesn’t burn you out.
-- [How to Build Anticipation Before a Release](https://www.digiwaxxrecordpool.com/guides/how-to-build-anticipation): How to make people care before your song drops: teasers that work, pre-saves, DJ pre-service, and the two-week countdown plan.
-- [How to Get DJs to Play Your Song](https://www.digiwaxxrecordpool.com/guides/how-to-get-djs-to-play-my-song): What working DJs need before they play your record: proper files, easy delivery, and the record pool system that reaches thousands of DJs at once.
-- [How to Get More Playlist Adds](https://www.digiwaxxrecordpool.com/guides/how-to-get-more-playlist-adds): The three kinds of playlists, editorial, independent curator, and algorithmic, and the realistic playbook for getting added to each.
-- [How to Get Radio Play](https://www.digiwaxxrecordpool.com/guides/how-to-get-radio-play): The realistic path to radio for independents: mixshows first, clean versions always, and the DJ activity programmers look for before adding a record.
-- [How to Promote a Rap Song](https://www.digiwaxxrecordpool.com/guides/how-to-promote-a-rap-song): How rap records actually break: club and mixshow DJs, record pools, radio, playlists, and content, in the order that works.
-- [How to Promote a Single After Release](https://www.digiwaxxrecordpool.com/guides/how-to-promote-a-single-after-release): Missed the pre-release window? The post-release promotion plan: DJ service, curator pitching, content waves, and second-wind tactics that work on live records.
-- [How to Reach DJs With Your Music](https://www.digiwaxxrecordpool.com/guides/how-to-reach-djs): The channels that actually reach working DJs, record pools, events, radio staff, and the outreach mistakes that get artists ignored.
-- [How to Release a Single](https://www.digiwaxxrecordpool.com/guides/how-to-release-a-single): The full step-by-step plan for releasing a single as an independent artist: distribution, metadata, rollout timeline, DJ service, and release day.
-- [Music Promotion for Beginners](https://www.digiwaxxrecordpool.com/guides/music-promotion-for-beginners): New to promoting your music? The beginner’s map: what promotion actually is, the channels that matter, what to ignore, and your first 30 days.
-- [My Song Isn't Getting Streams](https://www.digiwaxxrecordpool.com/guides/my-song-isnt-getting-streams): Why your song isn’t getting streams: the discovery gap, the four causes, and the fixes that actually move plays, in order of impact.
-- [Release Day Checklist](https://www.digiwaxxrecordpool.com/guides/release-day-checklist-guide): Hour-by-hour release day checklist for independent artists: verification, links, content, outreach, and what to do that night.
-- [Spotify Algorithm Tips That Actually Work](https://www.digiwaxxrecordpool.com/guides/spotify-algorithm-tips): How the Spotify algorithm actually decides to push a song, the signals it reads, how to feed them legitimately, and what gets records shelved.
-- [The Best Day to Release Music](https://www.digiwaxxrecordpool.com/guides/best-day-to-release-music): Friday is the industry standard release day, but the best day depends on your goals: playlists, charts, clubs, or attention. Here is how to choose.
-- [The Music Marketing Checklist](https://www.digiwaxxrecordpool.com/guides/music-marketing-checklist): The complete music marketing checklist for independent artists, assets, profiles, pre-release, DJ service, release week, and post-release, in one list.
-- [The Song Rollout Timeline](https://www.digiwaxxrecordpool.com/guides/song-rollout-timeline): A week-by-week rollout timeline for an independent single: what happens at 6 weeks out, 4 weeks, 2 weeks, release week, and after.
-- [Why Nobody Listens to Your Music (Yet)](https://www.digiwaxxrecordpool.com/guides/why-nobody-listens-to-my-music): The honest reasons nobody is listening to your music yet, exposure math, trust signals, and the fixable gap between good songs and heard songs.
-- [Why Your Song Stopped Growing](https://www.digiwaxxrecordpool.com/guides/why-my-song-stopped-growing): Streams flatlined after a good start? The four reasons songs plateau and the second-wave playbook for restarting momentum without re-uploading.
+- [Afrobeats DJ Promotion: What Labels Need for U.S. DJ Servicing](https://promote.digiwaxx.com/guides/afrobeats-dj-promotion-what-labels-need): A checklist for the label side of a U.S. Afrobeats campaign: what to prepare, what a servicing partner should do, and what to refuse to pay for.
+- [Afrobeats vs. Amapiano Promotion: Different DJ Campaigns for Different Markets](https://promote.digiwaxx.com/guides/afrobeats-vs-amapiano-promotion): One is a song format, one is a set format, and a campaign that treats them the same will underserve both.
+- [Amapiano Promotion in the U.S.: DJs, Clubs, Mixshows and Diaspora Audiences](https://promote.digiwaxx.com/guides/amapiano-promotion-in-the-us): A format born in the DJ booth breaks abroad through DJ booths. How a South African release actually reaches American floors.
+- [From Lagos and Accra to New York, Atlanta and London: A DJ Promotion Plan](https://promote.digiwaxx.com/guides/lagos-accra-to-new-york-dj-promotion-plan): A six week servicing plan for taking an African release into the diaspora cities, in the order the rooms actually work.
+- [How Many Songs Should You Release?](https://promote.digiwaxx.com/guides/how-many-songs-should-i-release): Singles vs. EPs vs. albums for independent artists: the release cadence that builds catalogs, feeds algorithms, and doesn’t burn you out.
+- [How Nigerian Artists Can Promote Afrobeats to DJs in the United States](https://promote.digiwaxx.com/guides/how-nigerian-artists-promote-afrobeats-to-us-djs): The streams say Nigeria already won. The rooms are the part you still have to work, and the rooms belong to DJs. A practical guide.
+- [How to Build Anticipation Before a Release](https://promote.digiwaxx.com/guides/how-to-build-anticipation): How to make people care before your song drops: teasers that work, pre-saves, DJ pre-service, and the two-week countdown plan.
+- [How to Get DJs to Play Your Song](https://promote.digiwaxx.com/guides/how-to-get-djs-to-play-my-song): What working DJs need before they play your record: proper files, easy delivery, and the record pool system that reaches thousands of DJs at once.
+- [How to Get More Playlist Adds](https://promote.digiwaxx.com/guides/how-to-get-more-playlist-adds): The three kinds of playlists, editorial, independent curator, and algorithmic, and the realistic playbook for getting added to each.
+- [How to Get Radio Play](https://promote.digiwaxx.com/guides/how-to-get-radio-play): The realistic path to radio for independents: mixshows first, clean versions always, and the DJ activity programmers look for before adding a record.
+- [How to Promote a Rap Song](https://promote.digiwaxx.com/guides/how-to-promote-a-rap-song): How rap records actually break: club and mixshow DJs, record pools, radio, playlists, and content, in the order that works.
+- [How to Promote a Single After Release](https://promote.digiwaxx.com/guides/how-to-promote-a-single-after-release): Missed the pre-release window? The post-release promotion plan: DJ service, curator pitching, content waves, and second-wind tactics that work on live records.
+- [How to Reach DJs With Your Music](https://promote.digiwaxx.com/guides/how-to-reach-djs): The channels that actually reach working DJs, record pools, events, radio staff, and the outreach mistakes that get artists ignored.
+- [How to Release African Music to U.S. DJs: Clean Versions, DJ Edits and EPK Requirements](https://promote.digiwaxx.com/guides/how-to-release-african-music-to-us-djs): The unglamorous checklist that decides whether American DJs can actually play your record. Most campaigns that fail, fail here.
+- [How to Release a Single](https://promote.digiwaxx.com/guides/how-to-release-a-single): The full step-by-step plan for releasing a single as an independent artist: distribution, metadata, rollout timeline, DJ service, and release day.
+- [Music Promotion for Beginners](https://promote.digiwaxx.com/guides/music-promotion-for-beginners): New to promoting your music? The beginner’s map: what promotion actually is, the channels that matter, what to ignore, and your first 30 days.
+- [My Song Isn't Getting Streams](https://promote.digiwaxx.com/guides/my-song-isnt-getting-streams): Why your song isn’t getting streams: the discovery gap, the four causes, and the fixes that actually move plays, in order of impact.
+- [Release Day Checklist](https://promote.digiwaxx.com/guides/release-day-checklist-guide): Hour-by-hour release day checklist for independent artists: verification, links, content, outreach, and what to do that night.
+- [Spotify Algorithm Tips That Actually Work](https://promote.digiwaxx.com/guides/spotify-algorithm-tips): How the Spotify algorithm actually decides to push a song, the signals it reads, how to feed them legitimately, and what gets records shelved.
+- [The Best Day to Release Music](https://promote.digiwaxx.com/guides/best-day-to-release-music): Friday is the industry standard release day, but the best day depends on your goals: playlists, charts, clubs, or attention. Here is how to choose.
+- [The Music Marketing Checklist](https://promote.digiwaxx.com/guides/music-marketing-checklist): The complete music marketing checklist for independent artists, assets, profiles, pre-release, DJ service, release week, and post-release, in one list.
+- [The Song Rollout Timeline](https://promote.digiwaxx.com/guides/song-rollout-timeline): A week-by-week rollout timeline for an independent single: what happens at 6 weeks out, 4 weeks, 2 weeks, release week, and after.
+- [Why Nobody Listens to Your Music (Yet)](https://promote.digiwaxx.com/guides/why-nobody-listens-to-my-music): The honest reasons nobody is listening to your music yet, exposure math, trust signals, and the fixable gap between good songs and heard songs.
+- [Why Your Song Stopped Growing](https://promote.digiwaxx.com/guides/why-my-song-stopped-growing): Streams flatlined after a good start? The four reasons songs plateau and the second-wave playbook for restarting momentum without re-uploading.
 
 ## Artist Goals
 
-Index: https://www.digiwaxxrecordpool.com/goals
+Index: https://promote.digiwaxx.com/goals
 
-- [How to Get Booked for Shows](https://www.digiwaxxrecordpool.com/goals/get-booked-for-shows): How bookings actually happen for independent artists: the proof promoters need, the role of DJs and club records, and building a bookable package.
-- [How to Get Club Plays](https://www.digiwaxxrecordpool.com/goals/get-club-plays): What makes a record club-playable, how club DJs pick songs, and the service pipeline that gets your record tested in real rooms.
-- [How to Get More Fans as an Artist](https://www.digiwaxxrecordpool.com/goals/get-more-fans): Fans come from repeated exposure plus connection. The fan-building loop: borrowed audiences, capture points, and turning listeners into people who show up.
-- [How to Get Playlist Placement](https://www.digiwaxxrecordpool.com/goals/get-playlist-placement): The legitimate routes to playlist placement, editorial, curator, algorithmic, and how to spot the pay-for-placement scams that damage your profile.
-- [How to Get Radio Spins](https://www.digiwaxxrecordpool.com/goals/get-radio-spins): The spin-building ladder: college and community radio, mixshows, then rotation, and how DJ activity converts into reported spins.
-- [How to Grow Spotify Monthly Listeners](https://www.digiwaxxrecordpool.com/goals/grow-spotify-listeners): Growing monthly listeners sustainably: the three inputs (catalog, external exposure, engagement), and why real-world play moves Spotify numbers.
+- [How to Get Booked for Shows](https://promote.digiwaxx.com/goals/get-booked-for-shows): How bookings actually happen for independent artists: the proof promoters need, the role of DJs and club records, and building a bookable package.
+- [How to Get Club Plays](https://promote.digiwaxx.com/goals/get-club-plays): What makes a record club-playable, how club DJs pick songs, and the service pipeline that gets your record tested in real rooms.
+- [How to Get More Fans as an Artist](https://promote.digiwaxx.com/goals/get-more-fans): Fans come from repeated exposure plus connection. The fan-building loop: borrowed audiences, capture points, and turning listeners into people who show up.
+- [How to Get Playlist Placement](https://promote.digiwaxx.com/goals/get-playlist-placement): The legitimate routes to playlist placement, editorial, curator, algorithmic, and how to spot the pay-for-placement scams that damage your profile.
+- [How to Get Radio Spins](https://promote.digiwaxx.com/goals/get-radio-spins): The spin-building ladder: college and community radio, mixshows, then rotation, and how DJ activity converts into reported spins.
+- [How to Grow Spotify Monthly Listeners](https://promote.digiwaxx.com/goals/grow-spotify-listeners): Growing monthly listeners sustainably: the three inputs (catalog, external exposure, engagement), and why real-world play moves Spotify numbers.
 
 ## Straight Answers
 
-Index: https://www.digiwaxxrecordpool.com/answers
+Index: https://promote.digiwaxx.com/answers
 
-- [Can Independent Artists Use Digiwaxx?](https://www.digiwaxxrecordpool.com/answers/can-independent-artists-use-digiwaxx): Yes, most Digiwaxx campaigns are for independent artists. What you need, what it costs ($99 to $199 one-time), and what happens after you submit.
-- [Do DJs Still Break Records?](https://www.digiwaxxrecordpool.com/answers/do-djs-still-break-records): DJs still break records, the venue changed, not the mechanism. How club, mixshow, and radio DJs turn unknown songs into regional and national hits.
-- [Does DJ Promotion Still Work?](https://www.digiwaxxrecordpool.com/answers/does-dj-promotion-still-work): Yes, DJ promotion still works, and streaming made it more measurable. How club and mixshow play converts into searches, streams, and algorithmic pickup.
-- [Does Music Promotion Work?](https://www.digiwaxxrecordpool.com/answers/does-music-promotion-work): Music promotion works when it buys real exposure to new audiences, and fails when it buys fake numbers. How to tell the difference before spending.
-- [Does Radio Promotion Still Work?](https://www.digiwaxxrecordpool.com/answers/does-radio-promotion-still-work): Radio still reaches most adults weekly and converts to streams, legitimacy, and bookings. What radio promotion does in 2026 and how independents access it.
-- [How Club DJs Discover New Songs](https://www.digiwaxxrecordpool.com/answers/how-club-djs-discover-new-songs): Inside a working DJ’s discovery routine: record pools, DJ crews, floor intel, Shazam-and-charts, and where artist submissions actually fit.
-- [How Do DJs Find New Music?](https://www.digiwaxxrecordpool.com/answers/how-do-djs-find-new-music): Every channel DJs use to find new music, record pools, promos, peers, digging platforms, charts, ranked by how much working DJs rely on them.
-- [How Long Does Music Promotion Take?](https://www.digiwaxxrecordpool.com/answers/how-long-does-music-promotion-take): Realistic promotion timelines: what happens in week one, weeks 2 to 6, and months 2 to 6, and how long before a record shows real results.
-- [How Many DJs Receive My Record?](https://www.digiwaxxrecordpool.com/answers/how-many-djs-receive-my-record): A Digiwaxx campaign services your record to a network of 30,000+ verified working DJs, club, mixshow, radio, and mobile. What that number means in practice.
-- [How Much Does Music Promotion Cost?](https://www.digiwaxxrecordpool.com/answers/how-much-does-music-promotion-cost): Real music promotion price ranges: DJ service, playlist campaigns, radio pushes, PR, what each costs, what’s worth it first, and where budgets get wasted.
-- [How Record Pools Work](https://www.digiwaxxrecordpool.com/answers/how-record-pools-work): What a record pool is, how music flows from artists to working DJs, what each side gets, and why pools have anchored music promotion since the 1970s.
-- [Is Spotify Playlist Promotion Worth It?](https://www.digiwaxxrecordpool.com/answers/is-spotify-playlist-promotion-worth-it): Playlist promotion is worth it when it targets real, engaged playlists as one layer of a campaign, and worthless (or harmful) when it buys placements and bots.
-- [Should I Pay for Music Promotion?](https://www.digiwaxxrecordpool.com/answers/should-i-pay-for-music-promotion): When paying for promotion makes sense, when it doesn’t, and the checklist your record should pass before you spend a dollar.
-- [What Happens After You Submit Music to a Record Pool](https://www.digiwaxxrecordpool.com/answers/what-happens-after-you-submit-music): The step-by-step of what happens after submission: review, packaging, servicing to the DJ network, pickup, spins, and the feedback that comes back to you.
-- [What Is a Record Pool?](https://www.digiwaxxrecordpool.com/answers/what-is-a-record-pool): Record pool, defined: a membership service distributing new music to verified working DJs. Its 1970s origins, digital shift, and role in breaking records.
-- [Will Promotion Increase My Streams?](https://www.digiwaxxrecordpool.com/answers/will-promotion-increase-streams): How promotion converts to streams: exposure → searches and saves → algorithmic pickup. What to expect, what not to, and why bought streams destroy the loop.
+- [Can Independent Artists Use Digiwaxx?](https://promote.digiwaxx.com/answers/can-independent-artists-use-digiwaxx): Yes, most Digiwaxx campaigns are for independent artists. What you need, what it costs ($99 to $199 one-time), and what happens after you submit.
+- [Do DJs Still Break Records?](https://promote.digiwaxx.com/answers/do-djs-still-break-records): DJs still break records, the venue changed, not the mechanism. How club, mixshow, and radio DJs turn unknown songs into regional and national hits.
+- [Does DJ Promotion Still Work?](https://promote.digiwaxx.com/answers/does-dj-promotion-still-work): Yes, DJ promotion still works, and streaming made it more measurable. How club and mixshow play converts into searches, streams, and algorithmic pickup.
+- [Does Music Promotion Work?](https://promote.digiwaxx.com/answers/does-music-promotion-work): Music promotion works when it buys real exposure to new audiences, and fails when it buys fake numbers. How to tell the difference before spending.
+- [Does Radio Promotion Still Work?](https://promote.digiwaxx.com/answers/does-radio-promotion-still-work): Radio still reaches most adults weekly and converts to streams, legitimacy, and bookings. What radio promotion does in 2026 and how independents access it.
+- [How Club DJs Discover New Songs](https://promote.digiwaxx.com/answers/how-club-djs-discover-new-songs): Inside a working DJ’s discovery routine: record pools, DJ crews, floor intel, Shazam-and-charts, and where artist submissions actually fit.
+- [How Do DJs Find New Music?](https://promote.digiwaxx.com/answers/how-do-djs-find-new-music): Every channel DJs use to find new music, record pools, promos, peers, digging platforms, charts, ranked by how much working DJs rely on them.
+- [How Long Does Music Promotion Take?](https://promote.digiwaxx.com/answers/how-long-does-music-promotion-take): Realistic promotion timelines: what happens in week one, weeks 2 to 6, and months 2 to 6, and how long before a record shows real results.
+- [How Many DJs Receive My Record?](https://promote.digiwaxx.com/answers/how-many-djs-receive-my-record): A Digiwaxx campaign services your record to a network of 30,000+ verified working DJs, club, mixshow, radio, and mobile. What that number means in practice.
+- [How Much Does Music Promotion Cost?](https://promote.digiwaxx.com/answers/how-much-does-music-promotion-cost): Real music promotion price ranges: DJ service, playlist campaigns, radio pushes, PR, what each costs, what’s worth it first, and where budgets get wasted.
+- [How Record Pools Work](https://promote.digiwaxx.com/answers/how-record-pools-work): What a record pool is, how music flows from artists to working DJs, what each side gets, and why pools have anchored music promotion since the 1970s.
+- [Is Spotify Playlist Promotion Worth It?](https://promote.digiwaxx.com/answers/is-spotify-playlist-promotion-worth-it): Playlist promotion is worth it when it targets real, engaged playlists as one layer of a campaign, and worthless (or harmful) when it buys placements and bots.
+- [Should I Pay for Music Promotion?](https://promote.digiwaxx.com/answers/should-i-pay-for-music-promotion): When paying for promotion makes sense, when it doesn’t, and the checklist your record should pass before you spend a dollar.
+- [What Happens After You Submit Music to a Record Pool](https://promote.digiwaxx.com/answers/what-happens-after-you-submit-music): The step-by-step of what happens after submission: review, packaging, servicing to the DJ network, pickup, spins, and the feedback that comes back to you.
+- [What Is a Record Pool?](https://promote.digiwaxx.com/answers/what-is-a-record-pool): Record pool, defined: a membership service distributing new music to verified working DJs. Its 1970s origins, digital shift, and role in breaking records.
+- [Will Promotion Increase My Streams?](https://promote.digiwaxx.com/answers/will-promotion-increase-streams): How promotion converts to streams: exposure → searches and saves → algorithmic pickup. What to expect, what not to, and why bought streams destroy the loop.
 
 ## Promotion Hubs: Cities, Genres & Platforms
 
-Index: https://www.digiwaxxrecordpool.com/promotion
+Index: https://promote.digiwaxx.com/promotion
 
-- [Afrobeats Promotion](https://www.digiwaxxrecordpool.com/promotion/afrobeats-promotion): Promoting afrobeats: the diaspora party circuit, specialist DJs, Audiomack’s African reach, and riding the genre’s global momentum.
-- [Afrobeats Promotion in Atlanta](https://www.digiwaxxrecordpool.com/promotion/afrobeats-promotion-atlanta): How afrobeats records break in Atlanta: the DJ circuit, the rooms that matter, and how to get your record serviced to Atlanta DJs.
-- [Afrobeats Promotion in Houston](https://www.digiwaxxrecordpool.com/promotion/afrobeats-promotion-houston): How afrobeats records break in Houston: the DJ circuit, the rooms that matter, and how to get your record serviced to Houston DJs.
-- [Afrobeats Promotion in New York](https://www.digiwaxxrecordpool.com/promotion/afrobeats-promotion-new-york): How afrobeats records break in New York: the DJ circuit, the rooms that matter, and how to get your record serviced to New York DJs.
-- [Afrobeats Promotion in the DMV](https://www.digiwaxxrecordpool.com/promotion/afrobeats-promotion-dmv): How afrobeats records break in the DMV: the DJ circuit, the rooms that matter, and how to get your record serviced to the DMV DJs.
-- [Apple Music Promotion](https://www.digiwaxxrecordpool.com/promotion/apple-music-promotion): How to promote your music on Apple Music: Apple Music for Artists, editorial pitching, Shazam’s role, and why Apple listeners are worth targeting.
-- [Audiomack Promotion](https://www.digiwaxxrecordpool.com/promotion/audiomack-promotion): How to promote music on Audiomack: free unlimited uploads, trending charts, the hip hop and afrobeats audience, and using Audiomack as your testing ground.
-- [Dancehall Promotion](https://www.digiwaxxrecordpool.com/promotion/dancehall-promotion): Promoting dancehall: sound-system culture, selectors and juggling sets, riddim economics, and the diaspora circuit from Kingston to New York.
-- [Drill Music Promotion in Brooklyn](https://www.digiwaxxrecordpool.com/promotion/drill-promotion-brooklyn): How drill records break in Brooklyn: the DJ circuit, the rooms that matter, and how to get your record serviced to Brooklyn DJs.
-- [Drill Promotion in Chicago](https://www.digiwaxxrecordpool.com/promotion/drill-promotion-chicago): How drill records break in Chicago: the DJ circuit, the rooms that matter, and how to get your record serviced to Chicago DJs.
-- [Gospel Promotion](https://www.digiwaxxrecordpool.com/promotion/gospel-promotion): Promoting gospel and inspirational music: gospel radio’s unmatched loyalty, the church network, gospel DJs and mix shows, and playlist lanes.
-- [Gospel Promotion in Atlanta](https://www.digiwaxxrecordpool.com/promotion/gospel-promotion-atlanta): How gospel records break in Atlanta: the DJ circuit, the rooms that matter, and how to get your record serviced to Atlanta DJs.
-- [Gospel Promotion in Chicago](https://www.digiwaxxrecordpool.com/promotion/gospel-promotion-chicago): How gospel records break in Chicago: the DJ circuit, the rooms that matter, and how to get your record serviced to Chicago DJs.
-- [Hip Hop Promotion](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion): How hip hop records break: club and mixshow DJs first, then playlists and radio on top of real reaction. The full genre playbook.
-- [Hip Hop Promotion in Atlanta](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-atlanta): How hip hop records break in Atlanta: the DJ circuit, the rooms that matter, and how to get your record serviced to Atlanta DJs.
-- [Hip Hop Promotion in Chicago](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-chicago): How hip hop records break in Chicago: the DJ circuit, the rooms that matter, and how to get your record serviced to Chicago DJs.
-- [Hip Hop Promotion in Dallas](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-dallas): How hip hop records break in Dallas: the DJ circuit, the rooms that matter, and how to get your record serviced to Dallas DJs.
-- [Hip Hop Promotion in Detroit](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-detroit): How hip hop records break in Detroit: the DJ circuit, the rooms that matter, and how to get your record serviced to Detroit DJs.
-- [Hip Hop Promotion in Houston](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-houston): How hip hop records break in Houston: the DJ circuit, the rooms that matter, and how to get your record serviced to Houston DJs.
-- [Hip Hop Promotion in Los Angeles](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-los-angeles): How hip hop records break in Los Angeles: the DJ circuit, the rooms that matter, and how to get your record serviced to Los Angeles DJs.
-- [Hip Hop Promotion in Memphis](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-memphis): How hip hop records break in Memphis: the DJ circuit, the rooms that matter, and how to get your record serviced to Memphis DJs.
-- [Hip Hop Promotion in Miami](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-miami): How hip hop records break in Miami: the DJ circuit, the rooms that matter, and how to get your record serviced to Miami DJs.
-- [Hip Hop Promotion in New Orleans](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-new-orleans): How hip hop records break in New Orleans: the DJ circuit, the rooms that matter, and how to get your record serviced to New Orleans DJs.
-- [Hip Hop Promotion in New York](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-new-york): How hip hop records break in New York: the DJ circuit, the rooms that matter, and how to get your record serviced to New York DJs.
-- [Hip Hop Promotion in Philadelphia](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-philadelphia): How hip hop records break in Philadelphia: the DJ circuit, the rooms that matter, and how to get your record serviced to Philadelphia DJs.
-- [Hip Hop Promotion in the Bay Area](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-bay-area): How hip hop records break in the Bay Area: the DJ circuit, the rooms that matter, and how to get your record serviced to the Bay Area DJs.
-- [Hip Hop Promotion in the DMV](https://www.digiwaxxrecordpool.com/promotion/hip-hop-promotion-dmv): How hip hop records break in the DMV: the DJ circuit, the rooms that matter, and how to get your record serviced to the DMV DJs.
-- [Latin Music Promotion](https://www.digiwaxxrecordpool.com/promotion/latin-music-promotion): Promoting Latin music: the fastest-growing US market, club and radio lanes across reggaeton, regional mexican and tropical, and the bilingual DJ circuit.
-- [Latin Music Promotion in Houston](https://www.digiwaxxrecordpool.com/promotion/latin-promotion-houston): How latin music records break in Houston: the DJ circuit, the rooms that matter, and how to get your record serviced to Houston DJs.
-- [Latin Music Promotion in Miami](https://www.digiwaxxrecordpool.com/promotion/latin-promotion-miami): How latin music records break in Miami: the DJ circuit, the rooms that matter, and how to get your record serviced to Miami DJs.
-- [Music Promotion in Atlanta](https://www.digiwaxxrecordpool.com/promotion/music-promotion-atlanta): How music promotion works in Atlanta: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Atlanta DJs.
-- [Music Promotion in Baltimore](https://www.digiwaxxrecordpool.com/promotion/music-promotion-baltimore): How music promotion works in Baltimore: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Baltimore DJs.
-- [Music Promotion in Charlotte](https://www.digiwaxxrecordpool.com/promotion/music-promotion-charlotte): How music promotion works in Charlotte: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Charlotte DJs.
-- [Music Promotion in Chicago](https://www.digiwaxxrecordpool.com/promotion/music-promotion-chicago): How music promotion works in Chicago: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Chicago DJs.
-- [Music Promotion in Dallas](https://www.digiwaxxrecordpool.com/promotion/music-promotion-dallas): How music promotion works in Dallas: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Dallas DJs.
-- [Music Promotion in Detroit](https://www.digiwaxxrecordpool.com/promotion/music-promotion-detroit): How music promotion works in Detroit: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Detroit DJs.
-- [Music Promotion in Houston](https://www.digiwaxxrecordpool.com/promotion/music-promotion-houston): How music promotion works in Houston: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Houston DJs.
-- [Music Promotion in Los Angeles](https://www.digiwaxxrecordpool.com/promotion/music-promotion-los-angeles): How music promotion works in Los Angeles: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Los Angeles DJs.
-- [Music Promotion in Memphis](https://www.digiwaxxrecordpool.com/promotion/music-promotion-memphis): How music promotion works in Memphis: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Memphis DJs.
-- [Music Promotion in Miami](https://www.digiwaxxrecordpool.com/promotion/music-promotion-miami): How music promotion works in Miami: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Miami DJs.
-- [Music Promotion in Nashville](https://www.digiwaxxrecordpool.com/promotion/music-promotion-nashville): How music promotion works in Nashville: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Nashville DJs.
-- [Music Promotion in New Orleans](https://www.digiwaxxrecordpool.com/promotion/music-promotion-new-orleans): How music promotion works in New Orleans: the club and DJ ecosystem, radio landscape, and how to get your record serviced to New Orleans DJs.
-- [Music Promotion in New York](https://www.digiwaxxrecordpool.com/promotion/music-promotion-new-york): How music promotion works in New York: the club and DJ ecosystem, radio landscape, and how to get your record serviced to New York DJs.
-- [Music Promotion in Oakland](https://www.digiwaxxrecordpool.com/promotion/music-promotion-oakland): How music promotion works in Oakland: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Oakland DJs.
-- [Music Promotion in Philadelphia](https://www.digiwaxxrecordpool.com/promotion/music-promotion-philadelphia): How music promotion works in Philadelphia: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Philadelphia DJs.
-- [Music Promotion in Washington DC](https://www.digiwaxxrecordpool.com/promotion/music-promotion-washington-dc): How music promotion works in Washington DC: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Washington DC DJs.
-- [R&B Promotion](https://www.digiwaxxrecordpool.com/promotion/rnb-promotion): Promoting R&B: the grown-and-sexy circuit, steppers sets, quiet storm radio, mood playlists, and the loyal audience R&B builds.
-- [R&B Promotion in Atlanta](https://www.digiwaxxrecordpool.com/promotion/rnb-promotion-atlanta): How r&b records break in Atlanta: the DJ circuit, the rooms that matter, and how to get your record serviced to Atlanta DJs.
-- [R&B Promotion in Chicago](https://www.digiwaxxrecordpool.com/promotion/rnb-promotion-chicago): How r&b records break in Chicago: the DJ circuit, the rooms that matter, and how to get your record serviced to Chicago DJs.
-- [R&B Promotion in Houston](https://www.digiwaxxrecordpool.com/promotion/rnb-promotion-houston): How r&b records break in Houston: the DJ circuit, the rooms that matter, and how to get your record serviced to Houston DJs.
-- [R&B Promotion in the DMV](https://www.digiwaxxrecordpool.com/promotion/rnb-promotion-dmv): How r&b records break in DMV: the DJ circuit, the rooms that matter, and how to get your record serviced to DMV DJs.
-- [Reggae & Dancehall Promotion in Miami](https://www.digiwaxxrecordpool.com/promotion/reggae-promotion-miami): How reggae & dancehall records break in Miami: the DJ circuit, the rooms that matter, and how to get your record serviced to Miami DJs.
-- [Reggae & Dancehall Promotion in New York](https://www.digiwaxxrecordpool.com/promotion/reggae-promotion-new-york): How reggae & dancehall records break in New York: the DJ circuit, the rooms that matter, and how to get your record serviced to New York DJs.
-- [Reggae Promotion](https://www.digiwaxxrecordpool.com/promotion/reggae-promotion): Promoting reggae: the sound-system tradition, reggae radio’s deep loyalty, festival circuits, and the global rooms where the genre lives.
-- [Spotify Playlist Promotion](https://www.digiwaxxrecordpool.com/promotion/spotify-playlist-promotion): How Spotify playlist promotion really works: editorial, curator, and algorithmic playlists, the engagement signals that matter, and the legitimate playbook.
-- [Tidal Promotion](https://www.digiwaxxrecordpool.com/promotion/tidal-promotion): How to promote music on Tidal: higher payouts, editorial playlists, Tidal Rising for emerging artists, and where Tidal fits in an independent release strategy.
-- [YouTube Music Promotion](https://www.digiwaxxrecordpool.com/promotion/youtube-music-promotion): How to promote music on YouTube: the second-biggest search engine, Shorts as a discovery engine, visualizers vs. videos, and turning views into fans.
+- [Afrobeats Promotion](https://promote.digiwaxx.com/promotion/afrobeats-promotion): Promoting afrobeats: the diaspora party circuit, specialist DJs, Audiomack’s African reach, and riding the genre’s global momentum.
+- [Afrobeats Promotion in Atlanta](https://promote.digiwaxx.com/promotion/afrobeats-promotion-atlanta): How afrobeats records break in Atlanta: the DJ circuit, the rooms that matter, and how to get your record serviced to Atlanta DJs.
+- [Afrobeats Promotion in Houston](https://promote.digiwaxx.com/promotion/afrobeats-promotion-houston): How afrobeats records break in Houston: the DJ circuit, the rooms that matter, and how to get your record serviced to Houston DJs.
+- [Afrobeats Promotion in New York](https://promote.digiwaxx.com/promotion/afrobeats-promotion-new-york): How afrobeats records break in New York: the DJ circuit, the rooms that matter, and how to get your record serviced to New York DJs.
+- [Afrobeats Promotion in the DMV](https://promote.digiwaxx.com/promotion/afrobeats-promotion-dmv): How afrobeats records break in the DMV: the DJ circuit, the rooms that matter, and how to get your record serviced to the DMV DJs.
+- [Apple Music Promotion](https://promote.digiwaxx.com/promotion/apple-music-promotion): How to promote your music on Apple Music: Apple Music for Artists, editorial pitching, Shazam’s role, and why Apple listeners are worth targeting.
+- [Audiomack Promotion](https://promote.digiwaxx.com/promotion/audiomack-promotion): How to promote music on Audiomack: free unlimited uploads, trending charts, the hip hop and afrobeats audience, and using Audiomack as your testing ground.
+- [Dancehall Promotion](https://promote.digiwaxx.com/promotion/dancehall-promotion): Promoting dancehall: sound-system culture, selectors and juggling sets, riddim economics, and the diaspora circuit from Kingston to New York.
+- [Drill Music Promotion in Brooklyn](https://promote.digiwaxx.com/promotion/drill-promotion-brooklyn): How drill records break in Brooklyn: the DJ circuit, the rooms that matter, and how to get your record serviced to Brooklyn DJs.
+- [Drill Promotion in Chicago](https://promote.digiwaxx.com/promotion/drill-promotion-chicago): How drill records break in Chicago: the DJ circuit, the rooms that matter, and how to get your record serviced to Chicago DJs.
+- [Gospel Promotion](https://promote.digiwaxx.com/promotion/gospel-promotion): Promoting gospel and inspirational music: gospel radio’s unmatched loyalty, the church network, gospel DJs and mix shows, and playlist lanes.
+- [Gospel Promotion in Atlanta](https://promote.digiwaxx.com/promotion/gospel-promotion-atlanta): How gospel records break in Atlanta: the DJ circuit, the rooms that matter, and how to get your record serviced to Atlanta DJs.
+- [Gospel Promotion in Chicago](https://promote.digiwaxx.com/promotion/gospel-promotion-chicago): How gospel records break in Chicago: the DJ circuit, the rooms that matter, and how to get your record serviced to Chicago DJs.
+- [Hip Hop Promotion](https://promote.digiwaxx.com/promotion/hip-hop-promotion): How hip hop records break: club and mixshow DJs first, then playlists and radio on top of real reaction. The full genre playbook.
+- [Hip Hop Promotion in Atlanta](https://promote.digiwaxx.com/promotion/hip-hop-promotion-atlanta): How hip hop records break in Atlanta: the DJ circuit, the rooms that matter, and how to get your record serviced to Atlanta DJs.
+- [Hip Hop Promotion in Chicago](https://promote.digiwaxx.com/promotion/hip-hop-promotion-chicago): How hip hop records break in Chicago: the DJ circuit, the rooms that matter, and how to get your record serviced to Chicago DJs.
+- [Hip Hop Promotion in Dallas](https://promote.digiwaxx.com/promotion/hip-hop-promotion-dallas): How hip hop records break in Dallas: the DJ circuit, the rooms that matter, and how to get your record serviced to Dallas DJs.
+- [Hip Hop Promotion in Detroit](https://promote.digiwaxx.com/promotion/hip-hop-promotion-detroit): How hip hop records break in Detroit: the DJ circuit, the rooms that matter, and how to get your record serviced to Detroit DJs.
+- [Hip Hop Promotion in Houston](https://promote.digiwaxx.com/promotion/hip-hop-promotion-houston): How hip hop records break in Houston: the DJ circuit, the rooms that matter, and how to get your record serviced to Houston DJs.
+- [Hip Hop Promotion in Los Angeles](https://promote.digiwaxx.com/promotion/hip-hop-promotion-los-angeles): How hip hop records break in Los Angeles: the DJ circuit, the rooms that matter, and how to get your record serviced to Los Angeles DJs.
+- [Hip Hop Promotion in Memphis](https://promote.digiwaxx.com/promotion/hip-hop-promotion-memphis): How hip hop records break in Memphis: the DJ circuit, the rooms that matter, and how to get your record serviced to Memphis DJs.
+- [Hip Hop Promotion in Miami](https://promote.digiwaxx.com/promotion/hip-hop-promotion-miami): How hip hop records break in Miami: the DJ circuit, the rooms that matter, and how to get your record serviced to Miami DJs.
+- [Hip Hop Promotion in New Orleans](https://promote.digiwaxx.com/promotion/hip-hop-promotion-new-orleans): How hip hop records break in New Orleans: the DJ circuit, the rooms that matter, and how to get your record serviced to New Orleans DJs.
+- [Hip Hop Promotion in New York](https://promote.digiwaxx.com/promotion/hip-hop-promotion-new-york): How hip hop records break in New York: the DJ circuit, the rooms that matter, and how to get your record serviced to New York DJs.
+- [Hip Hop Promotion in Philadelphia](https://promote.digiwaxx.com/promotion/hip-hop-promotion-philadelphia): How hip hop records break in Philadelphia: the DJ circuit, the rooms that matter, and how to get your record serviced to Philadelphia DJs.
+- [Hip Hop Promotion in the Bay Area](https://promote.digiwaxx.com/promotion/hip-hop-promotion-bay-area): How hip hop records break in the Bay Area: the DJ circuit, the rooms that matter, and how to get your record serviced to the Bay Area DJs.
+- [Hip Hop Promotion in the DMV](https://promote.digiwaxx.com/promotion/hip-hop-promotion-dmv): How hip hop records break in the DMV: the DJ circuit, the rooms that matter, and how to get your record serviced to the DMV DJs.
+- [Latin Music Promotion](https://promote.digiwaxx.com/promotion/latin-music-promotion): Promoting Latin music: the fastest-growing US market, club and radio lanes across reggaeton, regional mexican and tropical, and the bilingual DJ circuit.
+- [Latin Music Promotion in Houston](https://promote.digiwaxx.com/promotion/latin-promotion-houston): How latin music records break in Houston: the DJ circuit, the rooms that matter, and how to get your record serviced to Houston DJs.
+- [Latin Music Promotion in Miami](https://promote.digiwaxx.com/promotion/latin-promotion-miami): How latin music records break in Miami: the DJ circuit, the rooms that matter, and how to get your record serviced to Miami DJs.
+- [Music Promotion in Atlanta](https://promote.digiwaxx.com/promotion/music-promotion-atlanta): How music promotion works in Atlanta: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Atlanta DJs.
+- [Music Promotion in Baltimore](https://promote.digiwaxx.com/promotion/music-promotion-baltimore): How music promotion works in Baltimore: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Baltimore DJs.
+- [Music Promotion in Charlotte](https://promote.digiwaxx.com/promotion/music-promotion-charlotte): How music promotion works in Charlotte: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Charlotte DJs.
+- [Music Promotion in Chicago](https://promote.digiwaxx.com/promotion/music-promotion-chicago): How music promotion works in Chicago: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Chicago DJs.
+- [Music Promotion in Dallas](https://promote.digiwaxx.com/promotion/music-promotion-dallas): How music promotion works in Dallas: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Dallas DJs.
+- [Music Promotion in Detroit](https://promote.digiwaxx.com/promotion/music-promotion-detroit): How music promotion works in Detroit: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Detroit DJs.
+- [Music Promotion in Houston](https://promote.digiwaxx.com/promotion/music-promotion-houston): How music promotion works in Houston: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Houston DJs.
+- [Music Promotion in Los Angeles](https://promote.digiwaxx.com/promotion/music-promotion-los-angeles): How music promotion works in Los Angeles: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Los Angeles DJs.
+- [Music Promotion in Memphis](https://promote.digiwaxx.com/promotion/music-promotion-memphis): How music promotion works in Memphis: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Memphis DJs.
+- [Music Promotion in Miami](https://promote.digiwaxx.com/promotion/music-promotion-miami): How music promotion works in Miami: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Miami DJs.
+- [Music Promotion in Nashville](https://promote.digiwaxx.com/promotion/music-promotion-nashville): How music promotion works in Nashville: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Nashville DJs.
+- [Music Promotion in New Orleans](https://promote.digiwaxx.com/promotion/music-promotion-new-orleans): How music promotion works in New Orleans: the club and DJ ecosystem, radio landscape, and how to get your record serviced to New Orleans DJs.
+- [Music Promotion in New York](https://promote.digiwaxx.com/promotion/music-promotion-new-york): How music promotion works in New York: the club and DJ ecosystem, radio landscape, and how to get your record serviced to New York DJs.
+- [Music Promotion in Oakland](https://promote.digiwaxx.com/promotion/music-promotion-oakland): How music promotion works in Oakland: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Oakland DJs.
+- [Music Promotion in Philadelphia](https://promote.digiwaxx.com/promotion/music-promotion-philadelphia): How music promotion works in Philadelphia: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Philadelphia DJs.
+- [Music Promotion in Washington DC](https://promote.digiwaxx.com/promotion/music-promotion-washington-dc): How music promotion works in Washington DC: the club and DJ ecosystem, radio landscape, and how to get your record serviced to Washington DC DJs.
+- [R&B Promotion](https://promote.digiwaxx.com/promotion/rnb-promotion): Promoting R&B: the grown-and-sexy circuit, steppers sets, quiet storm radio, mood playlists, and the loyal audience R&B builds.
+- [R&B Promotion in Atlanta](https://promote.digiwaxx.com/promotion/rnb-promotion-atlanta): How r&b records break in Atlanta: the DJ circuit, the rooms that matter, and how to get your record serviced to Atlanta DJs.
+- [R&B Promotion in Chicago](https://promote.digiwaxx.com/promotion/rnb-promotion-chicago): How r&b records break in Chicago: the DJ circuit, the rooms that matter, and how to get your record serviced to Chicago DJs.
+- [R&B Promotion in Houston](https://promote.digiwaxx.com/promotion/rnb-promotion-houston): How r&b records break in Houston: the DJ circuit, the rooms that matter, and how to get your record serviced to Houston DJs.
+- [R&B Promotion in the DMV](https://promote.digiwaxx.com/promotion/rnb-promotion-dmv): How r&b records break in DMV: the DJ circuit, the rooms that matter, and how to get your record serviced to DMV DJs.
+- [Reggae & Dancehall Promotion in Miami](https://promote.digiwaxx.com/promotion/reggae-promotion-miami): How reggae & dancehall records break in Miami: the DJ circuit, the rooms that matter, and how to get your record serviced to Miami DJs.
+- [Reggae & Dancehall Promotion in New York](https://promote.digiwaxx.com/promotion/reggae-promotion-new-york): How reggae & dancehall records break in New York: the DJ circuit, the rooms that matter, and how to get your record serviced to New York DJs.
+- [Reggae Promotion](https://promote.digiwaxx.com/promotion/reggae-promotion): Promoting reggae: the sound-system tradition, reggae radio’s deep loyalty, festival circuits, and the global rooms where the genre lives.
+- [Spotify Playlist Promotion](https://promote.digiwaxx.com/promotion/spotify-playlist-promotion): How Spotify playlist promotion really works: editorial, curator, and algorithmic playlists, the engagement signals that matter, and the legitimate playbook.
+- [Tidal Promotion](https://promote.digiwaxx.com/promotion/tidal-promotion): How to promote music on Tidal: higher payouts, editorial playlists, Tidal Rising for emerging artists, and where Tidal fits in an independent release strategy.
+- [YouTube Music Promotion](https://promote.digiwaxx.com/promotion/youtube-music-promotion): How to promote music on YouTube: the second-biggest search engine, Shorts as a discovery engine, visualizers vs. videos, and turning views into fans.
 
 ## Comparisons
 
-Index: https://www.digiwaxxrecordpool.com/compare
+Index: https://promote.digiwaxx.com/compare
 
-- [Best Record Pools: How to Choose](https://www.digiwaxxrecordpool.com/compare/best-record-pools): The record pool landscape: what DJcity, BPM Supreme, and others do for DJs, what artist-side servicing means, and how to choose a pool for your goal.
-- [Digiwaxx vs. Groover](https://www.digiwaxxrecordpool.com/compare/digiwaxx-vs-groover): Groover sells guaranteed-feedback pitches to curators, radio, and labels; Digiwaxx services records to 30,000+ US-rooted DJs. An honest comparison.
-- [Digiwaxx vs. Playlist Push](https://www.digiwaxxrecordpool.com/compare/digiwaxx-vs-playlist-push): An honest comparison: Playlist Push runs playlist curator and TikTok creator campaigns; Digiwaxx services records to a 30,000+ DJ network. Different jobs.
-- [Digiwaxx vs. SubmitHub](https://www.digiwaxxrecordpool.com/compare/digiwaxx-vs-submithub): SubmitHub sells per-pitch access to curators, blogs, and labels with guaranteed feedback; Digiwaxx services your record to 30,000+ DJs. Honest comparison.
+- [Best Record Pools: How to Choose](https://promote.digiwaxx.com/compare/best-record-pools): The record pool landscape: what DJcity, BPM Supreme, and others do for DJs, what artist-side servicing means, and how to choose a pool for your goal.
+- [Digiwaxx vs. Groover](https://promote.digiwaxx.com/compare/digiwaxx-vs-groover): Groover sells guaranteed-feedback pitches to curators, radio, and labels; Digiwaxx services records to 30,000+ US-rooted DJs. An honest comparison.
+- [Digiwaxx vs. Playlist Push](https://promote.digiwaxx.com/compare/digiwaxx-vs-playlist-push): An honest comparison: Playlist Push runs playlist curator and TikTok creator campaigns; Digiwaxx services records to a 30,000+ DJ network. Different jobs.
+- [Digiwaxx vs. SubmitHub](https://promote.digiwaxx.com/compare/digiwaxx-vs-submithub): SubmitHub sells per-pitch access to curators, blogs, and labels with guaranteed feedback; Digiwaxx services your record to 30,000+ DJs. Honest comparison.
 
 ## The Artist Journey
 
-Index: https://www.digiwaxxrecordpool.com/journey
+Index: https://promote.digiwaxx.com/journey
 
-- [“I Made a Song.”, Now What?](https://www.digiwaxxrecordpool.com/journey/i-made-a-song): You finished a song. The exact next steps: mastering, versions, artwork, metadata, ISRC, distribution, and lining up the people who will play it.
-- [“I Need People.”, Building Your Amplification Network](https://www.digiwaxxrecordpool.com/journey/i-need-people): The people layer of music promotion: DJs, radio, playlist curators, blogs, and influencers, what each one does, in what order, and how to reach them.
-- [“I Released It… and Nothing Happened.”](https://www.digiwaxxrecordpool.com/journey/i-released-it): No streams, no saves, no playlist adds after release? Why silence is the default for unpromoted records, and the exact recovery plan.
-- [“I’m Getting Traction.”, Converting Momentum Into a Career](https://www.digiwaxxrecordpool.com/journey/im-getting-traction): The record is moving, now convert: bookings, complete royalty collection, publishing, performance rights, sync, and the next-release flywheel.
+- [“I Made a Song.”, Now What?](https://promote.digiwaxx.com/journey/i-made-a-song): You finished a song. The exact next steps: mastering, versions, artwork, metadata, ISRC, distribution, and lining up the people who will play it.
+- [“I Need People.”, Building Your Amplification Network](https://promote.digiwaxx.com/journey/i-need-people): The people layer of music promotion: DJs, radio, playlist curators, blogs, and influencers, what each one does, in what order, and how to reach them.
+- [“I Released It… and Nothing Happened.”](https://promote.digiwaxx.com/journey/i-released-it): No streams, no saves, no playlist adds after release? Why silence is the default for unpromoted records, and the exact recovery plan.
+- [“I’m Getting Traction.”, Converting Momentum Into a Career](https://promote.digiwaxx.com/journey/im-getting-traction): The record is moving, now convert: bookings, complete royalty collection, publishing, performance rights, sync, and the next-release flywheel.
 
 ## Free Artist Tools
 
-Index: https://www.digiwaxxrecordpool.com/tools
+Index: https://promote.digiwaxx.com/tools
 
-- [Artist Bio Generator](https://www.digiwaxxrecordpool.com/tools/artist-bio-generator): Free tool: enter your details and get three ready-to-paste artist bios, 1-line social, short streaming-profile, and full press/EPK versions.
-- [DJ Pitch Generator](https://www.digiwaxxrecordpool.com/tools/dj-pitch-generator): Free tool: enter your record’s details and get a short, professional DJ pitch, built on what working DJs say they want from artist outreach.
-- [EPK Builder](https://www.digiwaxxrecordpool.com/tools/epk-builder): Free tool: build a clean one-page EPK, bio, record, proof, links, contact, formatted the way promoters, programmers, and press actually read them.
-- [Press Release Generator](https://www.digiwaxxrecordpool.com/tools/press-release-generator): Free tool: generate a properly formatted press release for your single or project, headline, dateline, quote, boilerplate, ready to send to blogs and media.
-- [Release Budget Calculator](https://www.digiwaxxrecordpool.com/tools/release-budget-calculator): Enter your budget and release stage, get a recommended allocation across packaging, DJ service, content, and pitching, in priority order.
-- [Release Day Checklist](https://www.digiwaxxrecordpool.com/tools/release-day-checklist): Free interactive release checklist for independent artists, 19 steps from master to momentum, with progress saved in your browser.
+- [Artist Bio Generator](https://promote.digiwaxx.com/tools/artist-bio-generator): Free tool: enter your details and get three ready-to-paste artist bios, 1-line social, short streaming-profile, and full press/EPK versions.
+- [DJ Pitch Generator](https://promote.digiwaxx.com/tools/dj-pitch-generator): Free tool: enter your record’s details and get a short, professional DJ pitch, built on what working DJs say they want from artist outreach.
+- [EPK Builder](https://promote.digiwaxx.com/tools/epk-builder): Free tool: build a clean one-page EPK, bio, record, proof, links, contact, formatted the way promoters, programmers, and press actually read them.
+- [Press Release Generator](https://promote.digiwaxx.com/tools/press-release-generator): Free tool: generate a properly formatted press release for your single or project, headline, dateline, quote, boilerplate, ready to send to blogs and media.
+- [Release Budget Calculator](https://promote.digiwaxx.com/tools/release-budget-calculator): Enter your budget and release stage, get a recommended allocation across packaging, DJ service, content, and pitching, in priority order.
+- [Release Day Checklist](https://promote.digiwaxx.com/tools/release-day-checklist): Free interactive release checklist for independent artists, 19 steps from master to momentum, with progress saved in your browser.

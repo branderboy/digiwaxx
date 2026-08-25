@@ -182,6 +182,8 @@ article h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 800; margin-bot
 .cfooter-inner { max-width: var(--wide-width); margin: 0 auto; display: grid; grid-template-columns: minmax(240px, max-content) 1fr; gap: 2.5rem; }
 .cfooter-brand { font-family: var(--font-head); font-weight: 800; font-size: 1.5rem; color: #fff; letter-spacing: 0.05em; }
 .cfooter-brand img { display: block; height: auto; max-width: 180px; margin-bottom: 0.2rem; }
+.cfooter-contact { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.9rem; line-height: 1.7; letter-spacing: 0; text-transform: none; font-family: var(--font-body); font-weight: 400; }
+.cfooter-contact a { color: var(--text-white); font-weight: 500; }
 .cfooter-brand p { font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; color: var(--text-body); margin: 0.5rem 0 1rem; letter-spacing: 0; text-transform: none; }
 .cfooter-cta, .cfooter-hub { display: block; font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
 /* Nine sections: pin to 5 columns so they wrap 5+4 instead of a lopsided 4/4/1. */

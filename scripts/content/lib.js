@@ -3,7 +3,7 @@
 // by running:  node scripts/content/generate.js
 
 // Update this when the production domain changes — canonicals & sitemap use it.
-const SITE_URL = 'https://www.digiwaxxrecordpool.com';
+const SITE_URL = 'https://promote.digiwaxx.com';
 
 const BRAND = {
   name: 'Digiwaxx',
