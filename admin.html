@@ -629,6 +629,7 @@
             <!-- Tabs -->
             <div class="tabs">
                 <div class="tab active" onclick="switchTab('leads')">Leads</div>
+                <div class="tab" onclick="switchTab('campaigns')">Campaigns</div>
                 <div class="tab" onclick="switchTab('purchases')">Sales</div>
                 <div class="tab" onclick="switchTab('assets')">Assets</div>
                 <div class="tab" onclick="switchTab('design')">Design</div>
@@ -673,6 +674,30 @@
 
             <!-- Clicks Panel -->
             <!-- Sales Panel -->
+                        <div class="panel" id="panel-campaigns">
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Company</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Page</th>
+                                <th>Market</th>
+                                <th>Genre</th>
+                                <th>Need</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="campaignLeadsBody">
+                            <tr><td colspan="10" class="empty-state">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <div class="panel" id="panel-purchases">
                 <div style="overflow-x: auto;">
                     <table class="data-table">
@@ -1637,6 +1662,45 @@
             loadStats();
         }
 
+        // ========== CAMPAIGN LEADS (labels & international forms) ==========
+        async function loadCampaignLeads() {
+            try {
+                const res = await fetch('/api/admin/campaign-leads', { headers: authHeaders() });
+                if (res.status === 401) return handleLogout();
+                const data = await res.json();
+                const tbody = document.getElementById('campaignLeadsBody');
+                if (!data.leads || data.leads.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="10" class="empty-state">No campaign requests yet.</td></tr>';
+                    return;
+                }
+                tbody.innerHTML = data.leads.map(l => `
+                    <tr>
+                        <td>${new Date(l.created_at + 'Z').toLocaleDateString()}</td>
+                        <td><strong>${esc(l.company)}</strong></td>
+                        <td>${esc(l.name)}</td>
+                        <td>${esc(l.email)}</td>
+                        <td class="truncate">${esc(l.page || '')}</td>
+                        <td>${esc(l.market || '')}</td>
+                        <td>${esc(l.genre || '')}</td>
+                        <td class="truncate">${esc(l.intent || '')}</td>
+                        <td><span class="badge badge-${l.status}">${l.status}</span></td>
+                        <td><button class="action-btn" onclick="updateCampaignLeadStatus('${l.id}', 'contacted')">Contact</button></td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                console.error('Failed to load campaign leads:', e);
+            }
+        }
+
+        async function updateCampaignLeadStatus(id, status) {
+            await fetch('/api/admin/campaign-leads/' + id, {
+                method: 'PATCH',
+                headers: authHeaders(),
+                body: JSON.stringify({ status })
+            });
+            loadCampaignLeads();
+        }
+
         // ========== LOAD SALES ==========
         async function loadPurchases() {
             try {
@@ -2043,6 +2107,7 @@
         function loadAll() {
             loadStats();
             loadLeads();
+            loadCampaignLeads();
             loadPurchases();
             loadAssets();
             loadPricing();
