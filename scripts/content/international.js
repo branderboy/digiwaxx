@@ -83,6 +83,13 @@ const FOOTER = `<footer class="cfooter">
         <a href="/br/promocao-dj-eua">Brazil</a>
         <a href="/mx/promocion-musica-mexicana-eeuu">Mexico</a>
         <a class="cfooter-more" href="/labels">All markets &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/guides">Blog &amp; Press</a></h4>
+        <a href="/guides">Music Promotion Blog</a>
+        <a href="/africa/afrobeats-dj-promotion-usa">Afrobeats DJ Promotion USA</a>
+        <a href="/africa/south-africa-amapiano-dj-promotion">Amapiano Promotion</a>
+        <a href="/india/us-dj-promotion-for-indian-artists">Punjabi Music Promotion</a>
+        <a href="/mx/promocion-musica-mexicana-eeuu">Regional Mexicano Promotion</a>
+        <a href="https://addaguestpost.com/newsroom/digiwaxx-goes-global-us-dj-promotion-international" target="_blank" rel="noopener">Press: Digiwaxx Goes Global</a></div>
       <div class="cfooter-col"><h4><a href="/campaigns">Campaign Blueprints</a></h4>
         <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a>
         <a href="/campaigns/30-day-post-release-sprint">30-Day Post-Release Sprint</a>
@@ -109,13 +116,28 @@ const FOOTER = `<footer class="cfooter">
         <a href="/answers/is-spotify-playlist-promotion-worth-it">Is Playlist Promotion Worth It?</a>
         <a href="/answers/do-djs-still-break-records">Do DJs Still Break Records?</a>
         <a class="cfooter-more" href="/answers">View all 16 &rarr;</a></div>
-      <div class="cfooter-col"><h4><a href="/promotion">Promotion Hubs</a></h4>
-        <a href="/promotion/spotify-playlist-promotion">Spotify Promotion</a>
+      <div class="cfooter-col"><h4><a href="/promotion">Promotion by Genre</a></h4>
         <a href="/promotion/hip-hop-promotion">Hip Hop Promotion</a>
         <a href="/promotion/afrobeats-promotion">Afrobeats Promotion</a>
-        <a href="/promotion/music-promotion-atlanta">Music Promotion Atlanta</a>
+        <a href="/promotion/rnb-promotion">R&amp;B Promotion</a>
+        <a href="/promotion/latin-music-promotion">Latin Music Promotion</a>
+        <a href="/promotion/dancehall-promotion">Dancehall Promotion</a>
+        <a href="/promotion/gospel-promotion">Gospel Promotion</a>
+        <a href="/promotion/reggae-promotion">Reggae Promotion</a></div>
+      <div class="cfooter-col"><h4><a href="/promotion">Promotion by City</a></h4>
         <a href="/promotion/music-promotion-new-york">Music Promotion New York</a>
+        <a href="/promotion/music-promotion-atlanta">Music Promotion Atlanta</a>
+        <a href="/promotion/music-promotion-los-angeles">Music Promotion Los Angeles</a>
+        <a href="/promotion/music-promotion-houston">Music Promotion Houston</a>
+        <a href="/promotion/music-promotion-chicago">Music Promotion Chicago</a>
+        <a href="/promotion/music-promotion-miami">Music Promotion Miami</a>
         <a class="cfooter-more" href="/promotion">View all 57 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/promotion">Promotion by Platform</a></h4>
+        <a href="/promotion/spotify-playlist-promotion">Spotify Playlist Promotion</a>
+        <a href="/promotion/youtube-music-promotion">YouTube Music Promotion</a>
+        <a href="/promotion/apple-music-promotion">Apple Music Promotion</a>
+        <a href="/promotion/audiomack-promotion">Audiomack Promotion</a>
+        <a href="/promotion/tidal-promotion">TIDAL Promotion</a></div>
       <div class="cfooter-col"><h4><a href="/compare">Comparisons</a></h4>
         <a href="/compare/digiwaxx-vs-playlist-push">vs. Playlist Push</a>
         <a href="/compare/digiwaxx-vs-submithub">vs. SubmitHub</a>
@@ -1815,6 +1837,46 @@ ${NAV}
 <section class="body-section">
   <h2>Prefer the Phone?</h2>
   <p><a href="tel:+18006651259"><b>1-(800) 665-1259</b></a></p>
+</section>
+
+<section class="body-section" id="contact-form">
+  <h2>Or Send a Message</h2>
+  <form id="cf" novalidate>
+    <div class="cf-grid">
+      <div class="calc-field"><label for="cf-name">Your name</label><input id="cf-name" name="name" type="text" required></div>
+      <div class="calc-field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required></div>
+      <div class="calc-field"><label for="cf-company">Company <span class="cf-opt">optional</span></label><input id="cf-company" name="company" type="text"></div>
+      <div class="calc-field"><label for="cf-intent">Topic</label><select id="cf-intent" name="intent"><option>Campaigns</option><option>Partnerships &amp; distribution</option><option>Artist support</option><option>Press</option><option>Other</option></select></div>
+      <div class="calc-field cf-wide"><label for="cf-message">Message</label><textarea id="cf-message" name="message" required></textarea></div>
+    </div>
+    <input class="cf-hp" type="text" name="company_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="cta-btn cf-btn" type="submit">Send Message &rarr;</button>
+    <p class="cf-note" id="cf-note">A person replies within two business days.</p>
+  </form>
+</section>
+<script>(function(){
+  var form=document.getElementById('cf');if(!form)return;
+  var note=document.getElementById('cf-note'),btn=form.querySelector('button'),busy=false;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();if(busy)return;
+    if(!form.reportValidity||form.reportValidity()){
+      busy=true;btn.disabled=true;var was=btn.textContent;btn.textContent='Sending…';
+      var d={page:'/contact'};new FormData(form).forEach(function(v,k){d[k]=v;});
+      if(!d.company)d.company=d.name;
+      fetch('/api/campaign-leads',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(d)})
+        .then(function(r){return r.json();})
+        .then(function(j){if(j&&j.ok){form.reset();note.textContent='Got it. A person replies within two business days.';}else{note.textContent=(j&&j.error)||'We could not send that. Email one of the desks above instead.';}})
+        .catch(function(){note.textContent='Network trouble. Email one of the desks above instead.';})
+        .finally(function(){busy=false;btn.disabled=false;btn.textContent=was;});
+    } else { note.textContent='Please fill in the required fields.'; }
+  });
+})();</script>
+
+<section class="body-section">
+  <h2>Find Us</h2>
+  <div style="position:relative;overflow:hidden;border-radius:16px;border:1px solid #f0e0e9;padding-top:56.25%">
+    <iframe src="https://maps.google.com/maps?q=Digiwaxx%20Media&z=14&output=embed" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Digiwaxx on Google Maps"></iframe>
+  </div>
 </section>
 
 ${related('Start Something', [
