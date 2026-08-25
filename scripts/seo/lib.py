@@ -19,6 +19,7 @@ SECTIONS = ["promote", "campaigns", "guides", "goals", "answers",
 # scripts must not rewrite — but the sitemap has to know them, so
 # build_sitemap.py reads this list explicitly.
 INTERNATIONAL = [
+    "contact.html",
     "labels.html",
     "ko/us-dj-promotion-for-korean-labels.html",
     "es/promocion-dj-estados-unidos.html",

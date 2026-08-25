@@ -65,7 +65,7 @@ const FOOTER = `<footer class="cfooter">
     <div class="cfooter-brand"><img src="/assets/logo.png" alt="Digiwaxx" width="180" height="30" decoding="async"><p>Trusted by 30,000+ DJs since 1998.</p>
       <a class="cfooter-cta" href="/#pricing">Submit Your Record &rarr;</a>
       <a class="cfooter-hub" href="/university">Browse Digiwaxx University &rarr;</a>
-      <p class="cfooter-contact">Campaigns: Kay Ali · <a href="mailto:kawani@digiwaxx.com">kawani@digiwaxx.com</a><br>Partnerships: “CL” Llewellyn · <a href="mailto:cl@digiwaxx.com">cl@digiwaxx.com</a><br>Artists: Will Gordon · <a href="mailto:will@digiwaxx.com">will@digiwaxx.com</a></p>
+      <a class="cfooter-hub" href="/contact">Contact Us &rarr;</a>
     </div>
     <div class="cfooter-cols">
       <div class="cfooter-col"><h4><a href="/promote">Promotion Services</a></h4>
@@ -74,9 +74,15 @@ const FOOTER = `<footer class="cfooter">
         <a href="/promote/independent-music-promotion">Independent Music Promotion</a>
         <a href="/promote/promote-my-album">Promote My Album</a>
         <a href="/promote/promote-my-ep">Promote My EP</a>
-        <a href="/labels">For International Labels</a>
-        <a href="/africa">For African Labels</a>
         <a class="cfooter-more" href="/promote">View all 10 &rarr;</a></div>
+      <div class="cfooter-col"><h4><a href="/labels">Global Campaigns</a></h4>
+        <a href="/labels">International Labels</a>
+        <a href="/africa">Africa Hub</a>
+        <a href="/ko/us-dj-promotion-for-korean-labels">Korea</a>
+        <a href="/es/promocion-dj-estados-unidos">Latin America</a>
+        <a href="/br/promocao-dj-eua">Brazil</a>
+        <a href="/mx/promocion-musica-mexicana-eeuu">Mexico</a>
+        <a class="cfooter-more" href="/labels">All markets &rarr;</a></div>
       <div class="cfooter-col"><h4><a href="/campaigns">Campaign Blueprints</a></h4>
         <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a>
         <a href="/campaigns/30-day-post-release-sprint">30-Day Post-Release Sprint</a>
@@ -1737,6 +1743,95 @@ ${FOOTER}
 `;
 }
 
+/* ----------------------------------------------------------- contact page
+ * The one page the footer's Contact link points at. The three desks with
+ * their names and addresses live here, and only here plus the card under
+ * each campaign form; the footer carries the link, not the rolodex.
+ */
+function contactPageHtml() {
+  const url = `${SITE}/contact`;
+  const title = 'Contact Digiwaxx';
+  const desc = 'Who to contact at Digiwaxx: Kay Ali for campaigns, "CL" Llewellyn for partnerships and distributors, Will Gordon for artists. Or call 1-800-665-1259.';
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <meta name="description" content="${attr(desc)}">
+    <link rel="canonical" href="${url}">
+    <meta property="og:title" content="${title}">
+    <meta property="og:description" content="${attr(desc)}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="${url}">
+    <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:image" content="${SITE}/assets/share-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${title}">
+    <meta name="twitter:image" content="${SITE}/assets/share-card.png">
+    <meta name="robots" content="max-image-preview:large">
+    <meta name="theme-color" content="#1a0a18">
+${HEAD_FONTS}
+${FORM_CSS}
+<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'ContactPage',
+    name: title, url, description: desc,
+    isPartOf: { '@id': `${SITE}#website` }, inLanguage: 'en-US',
+  })}</script>
+<script type="application/ld+json">${breadcrumbLd([['Digiwaxx', '/'], ['Contact', '/contact']])}</script>
+</head>
+<body class="light-page">
+
+${NAV}
+<main class="cmain">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / Contact
+  </div>
+  <article>
+    <h1>Contact Digiwaxx</h1>
+    <p class="page-question">Three desks. Write to the one that fits, and a person answers within two business days.</p>
+
+<section class="body-section contact-card">
+  <h2>Campaigns</h2>
+  <p><b>Kay Ali</b>, Campaign Manager<br>
+  <a href="mailto:kawani@digiwaxx.com">kawani@digiwaxx.com</a></p>
+  <p style="margin-top:0.6rem">Label, management and distributor campaigns: U.S. DJ servicing, international releases, media kits and campaign reporting.</p>
+</section>
+
+<section class="body-section contact-card">
+  <h2>Partnerships &amp; Distributors</h2>
+  <p><b>“CL” Llewellyn</b>, Partner Manager<br>
+  <a href="mailto:cl@digiwaxx.com">cl@digiwaxx.com</a></p>
+  <p style="margin-top:0.6rem">Distribution deals, platform and brand partnerships, and anything that is bigger than one campaign.</p>
+</section>
+
+<section class="body-section contact-card">
+  <h2>Artists</h2>
+  <p><b>Will Gordon</b>, Artist Manager<br>
+  <a href="mailto:will@digiwaxx.com">will@digiwaxx.com</a></p>
+  <p style="margin-top:0.6rem">Questions about the standard campaign, your submission, or what package fits your record.</p>
+</section>
+
+<section class="body-section">
+  <h2>Prefer the Phone?</h2>
+  <p><a href="tel:+18006651259"><b>1-(800) 665-1259</b></a></p>
+</section>
+
+${related('Start Something', [
+    { href: '/#pricing', cat: 'Artists', t: 'Submit Your Record, from $99' },
+    { href: '/labels', cat: 'Labels', t: 'Request a Label Campaign' },
+    { href: '/africa', cat: 'Africa', t: 'African Music Promotion Hub' },
+    { href: '/university', cat: 'Free', t: 'Digiwaxx University' },
+  ])}
+  </article>
+</main>
+
+${FOOTER}
+</body>
+</html>
+`;
+}
+
 /* ------------------------------------------------------------------- write */
 
 let written = 0;
@@ -1753,4 +1848,7 @@ for (const g of GUIDES) {
   console.log('wrote', `guides/${g.slug}.html`);
   written++;
 }
+fs.writeFileSync(path.join(ROOT, 'contact.html'), contactPageHtml());
+console.log('wrote contact.html');
+written++;
 console.log(`${written} pages`);
