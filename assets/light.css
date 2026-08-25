@@ -74,3 +74,8 @@ body.light-page {
     background: linear-gradient(135deg, #3a0e2a 0%, #140812 100%);
     color: var(--text-body);
 }
+
+/* The named-contact card under each campaign form. */
+.light-page .contact-card { background: #faf3f7; border: 1px solid #f0e0e9; border-radius: 16px; padding: 1.3rem 1.5rem; }
+.light-page .contact-card h2 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+.light-page .contact-card p { margin: 0; line-height: 1.9; }
