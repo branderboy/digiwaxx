@@ -42,7 +42,8 @@ const HEAD_FONTS = `    <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/content.css">`;
+    <link rel="stylesheet" href="/assets/content.css">
+    <link rel="stylesheet" href="/assets/light.css">`;
 
 const NAV = `<nav class="cnav">
   <div class="cnav-inner">
@@ -221,6 +222,57 @@ function related(title, cards) {
 </section>`;
 }
 
+/* ---------------------------------------------------------------- taxonomy
+ *
+ * The content hierarchy, per the brief: 1. music industry (who you are),
+ * 2. country (where you are), 3. music category (what you make). Every
+ * conversion page renders the same three browse rails from these lists,
+ * with itself filtered out, so the cluster reads as one organised catalogue
+ * rather than pages that happen to link each other. Genres without a page
+ * of their own point at the page that owns them.
+ */
+
+const TAX_INDUSTRY = [
+  { href: '/labels', t: 'International Labels & Distributors' },
+  { href: '/africa', t: 'African Labels & Artist Teams' },
+  { href: '/promote/music-promotion-for-record-labels', t: 'Record Labels' },
+  { href: '/promote/music-promotion-for-managers', t: 'Managers' },
+  { href: '/promote/music-promotion-for-producers', t: 'Producers' },
+  { href: '/promote/music-promotion-for-djs', t: 'DJs' },
+];
+
+const TAX_COUNTRY = [
+  { href: '/ko/us-dj-promotion-for-korean-labels', t: 'Korea' },
+  { href: '/es/promocion-dj-estados-unidos', t: 'Latin America & Spain' },
+  { href: '/africa/nigeria-us-dj-promotion', t: 'Nigeria' },
+  { href: '/africa/south-africa-amapiano-dj-promotion', t: 'South Africa' },
+  { href: '/africa/ghana-afrobeats-dj-promotion', t: 'Ghana' },
+  { href: '/africa/kenya-east-africa-music-promotion', t: 'Kenya & East Africa' },
+];
+
+const TAX_GENRE = [
+  { href: '/africa/afrobeats-dj-promotion-usa', t: 'Afrobeats' },
+  { href: '/africa/south-africa-amapiano-dj-promotion', t: 'Amapiano & Afro-House' },
+  { href: '/ko/us-dj-promotion-for-korean-labels', t: 'K-Pop & K-Hip-Hop' },
+  { href: '/es/promocion-dj-estados-unidos', t: 'Reggaet\u00f3n & Latin Urbano' },
+  { href: '/promotion/latin-music-promotion', t: 'Latin' },
+  { href: '/promotion/hip-hop-promotion', t: 'Hip Hop' },
+  { href: '/promotion/rnb-promotion', t: 'R&B' },
+  { href: '/promotion/dancehall-promotion', t: 'Dancehall' },
+  { href: '/africa/ghana-afrobeats-dj-promotion', t: 'Highlife & Hiplife' },
+  { href: '/africa/kenya-east-africa-music-promotion', t: 'Bongo Flava & Gengetone' },
+];
+
+function taxonomyBlocks(self) {
+  const rail = (title, cat, list) =>
+    related(title, list.filter((x) => x.href !== self).map((x) => ({ href: x.href, cat, t: x.t })));
+  return [
+    rail('Campaigns by Music Industry Role', 'Industry', TAX_INDUSTRY),
+    rail('Campaigns by Country', 'Country', TAX_COUNTRY),
+    rail('Campaigns by Music Category', 'Genre', TAX_GENRE),
+  ].join('\n\n');
+}
+
 function statsRow(stats) {
   return `<div class="stats-row">
   ${stats.map((s) => `<div class="stat"><div class="stat-n">${esc(s.n)}</div><div class="stat-l">${esc(s.l)}</div></div>`).join('\n  ')}
@@ -340,14 +392,8 @@ const PAGES = [
     stats: [STAT_DJS, STAT_SINCE, STAT_UPLOADS],
     form: EN_FORM('Request a Label Campaign', 'Request U.S. DJ Promotion',
       [{ name: 'market', label: 'Market', options: ['International / global', 'Korea', 'Latin America / Spain', 'Africa', 'Europe', 'Other'] }]),
-    relatedBlocks: (p) => [
-      related('This Page in Other Languages', [
-        { href: '/ko/us-dj-promotion-for-korean-labels', cat: '한국어', t: '한국 레이블을 위한 미국 DJ 프로모션' },
-        { href: '/es/promocion-dj-estados-unidos', cat: 'Español', t: 'Promoción para DJs en Estados Unidos' },
-      ]),
+    relatedBlocks: () => [
       related('Keep Going', [
-        { href: '/africa', cat: 'For African Labels', t: 'African Music Promotion to U.S. DJs' },
-        { href: '/promote/music-promotion-for-record-labels', cat: 'Services', t: 'Music Promotion for Record Labels' },
         { href: '/answers/how-record-pools-work', cat: 'Straight Answers', t: 'How Record Pools Work' },
         { href: '/guides/how-to-reach-djs', cat: 'Guides', t: 'How to Reach DJs With Your Music' },
       ]),
@@ -405,12 +451,7 @@ const PAGES = [
       invalid: '필수 항목을 입력해 주세요.',
       extras: [],
     },
-    relatedBlocks: () => [
-      related('Other Languages', [
-        { href: '/labels', cat: 'English', t: 'U.S. DJ Promotion for International Labels' },
-        { href: '/es/promocion-dj-estados-unidos', cat: 'Español', t: 'Promoción para DJs en Estados Unidos' },
-      ]),
-    ],
+    relatedBlocks: () => [],
     artistCta: { kicker: '아티스트이신가요?', h2: '싱글 한 곡의 표준 캠페인은 $99부터 시작합니다.', sub: '위 양식은 레이블과 유통사를 위한 것입니다. 한 곡의 릴리즈는 표준 제출 절차를 통해 같은 3만 DJ 네트워크에 전달됩니다.', btn: 'Promote My Record' },
   },
 
@@ -465,10 +506,6 @@ const PAGES = [
       extras: [],
     },
     relatedBlocks: () => [
-      related('Other Languages', [
-        { href: '/labels', cat: 'English', t: 'U.S. DJ Promotion for International Labels' },
-        { href: '/ko/us-dj-promotion-for-korean-labels', cat: '한국어', t: '한국 레이블을 위한 미국 DJ 프로모션' },
-      ]),
       related('Más de Digiwaxx', [
         { href: '/promotion/latin-music-promotion', cat: 'Género', t: 'Latin Music Promotion' },
         { href: '/promotion/latin-promotion-miami', cat: 'Género × Ciudad', t: 'Latin Promotion in Miami' },
@@ -516,7 +553,6 @@ const PAGES = [
         { href: '/promotion/afrobeats-promotion-atlanta', cat: 'Genre × City', t: 'Afrobeats Promotion in Atlanta' },
         { href: '/promotion/afrobeats-promotion-houston', cat: 'Genre × City', t: 'Afrobeats Promotion in Houston' },
         { href: '/promotion/afrobeats-promotion-dmv', cat: 'Genre × City', t: 'Afrobeats Promotion in the DMV' },
-        { href: '/labels', cat: 'International', t: 'U.S. DJ Promotion for International Labels' },
       ]),
     ],
     artistCta: { kicker: 'One artist, one record?', h2: 'The standard campaign starts at $99.', sub: 'The form above is for labels, teams and catalogues. A single record reaches the same 30,000+ DJs through the standard funnel.', btn: 'Promote My Record' },
@@ -902,7 +938,7 @@ ${FORM_CSS}
 <script type="application/ld+json">${serviceLd(p)}</script>
 <script type="application/ld+json">${breadcrumbLd(crumbs)}</script>
 </head>
-<body>
+<body class="light-page">
 
 ${NAV}
 <main class="cmain">
@@ -929,6 +965,8 @@ ${s.html}
 ${statsRow(p.stats)}
 
 ${campaignForm(p)}
+
+${taxonomyBlocks('/' + p.slug)}
 
 ${p.relatedBlocks(p).join('\n\n')}
 
@@ -983,7 +1021,7 @@ ${HEAD_FONTS}
   })}</script>
 <script type="application/ld+json">${breadcrumbLd([['Digiwaxx', '/'], ['University', '/university'], ['Guides', '/guides'], [g.h1, `/guides/${g.slug}`]])}</script>
 </head>
-<body>
+<body class="light-page">
 
 ${NAV}
 <main class="cmain">

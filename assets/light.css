@@ -1,0 +1,76 @@
+/* Light reading theme for the conversion pages and their guides.
+ *
+ * The university pages run dark; these pages are long-form sales copy that
+ * labels are meant to actually read, and long copy reads better as ink on
+ * white. The page becomes white space punctuated by colour: soft rose cards,
+ * deep-rose accents, and the one dark island kept on purpose, the CTA block,
+ * where the yellow button does its work.
+ *
+ * Scoping: `body.light-page` flips the page surface; the component variables
+ * are redefined on `.light-page .cmain` only, so the nav and footer outside
+ * it keep the site's dark chrome untouched. The CTA block inside the content
+ * gets its dark variables handed back explicitly.
+ *
+ * The accent is a deep raspberry (#9c2b5a) rather than the dark theme's
+ * dusty pink: #d4a0a0 on white fails contrast, and an accent nobody can
+ * read is decoration, not an accent. Yellow stays what it is everywhere on
+ * the site: the primary CTA colour, nothing else.
+ */
+
+body.light-page {
+    background: #ffffff;
+    background-image: none;
+}
+
+.light-page .cmain {
+    --card-bg: #ffffff;
+    --card-border: #ecdce5;
+    --accent: #9c2b5a;
+    --accent-hover: #7d2248;
+    --pink: #9c2b5a;
+    --text-white: #1a0a18;
+    --text-body: #43303b;
+    --text-muted: #83707c;
+    color: var(--text-body);
+}
+
+/* Soft rose washes: the colour elements between the white space. */
+.light-page .quick-answer { background: #faf3f7; }
+.light-page .stat { background: #faf3f7; border-color: #f0e0e9; }
+.light-page .related-card { background: #ffffff; border-color: #e6d5de; }
+.light-page .related-card:hover { border-color: var(--accent); }
+
+/* Form fields become paper fields. */
+.light-page .calc-field input,
+.light-page .calc-field select,
+.light-page .calc-field textarea {
+    background: #ffffff;
+    border: 1px solid #d9c3d0;
+    color: #241019;
+}
+.light-page .calc-field input:focus,
+.light-page .calc-field select:focus,
+.light-page .calc-field textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+.light-page #campaign-form {
+    background: #faf3f7;
+    border: 1px solid #f0e0e9;
+    border-radius: 16px;
+    padding: 1.6rem 1.5rem;
+}
+
+/* The language / market switcher, restyled for paper. */
+.light-page .lang-row a,
+.light-page .lang-row span { border-color: #d9c3d0; color: #43303b; }
+.light-page .lang-row span { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+.light-page .lang-row a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* The one deliberate dark moment: the closing CTA keeps the house gradient,
+ * so it gets the dark theme's variables handed back. */
+.light-page .cta-block {
+    --text-white: #ffffff;
+    --text-body: rgba(255, 255, 255, 0.82);
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --pink: #d4a0a0;
+    background: linear-gradient(135deg, #3a0e2a 0%, #140812 100%);
+    color: var(--text-body);
+}
