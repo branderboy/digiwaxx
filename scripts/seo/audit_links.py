@@ -12,7 +12,7 @@ from collections import defaultdict, deque, Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = "https://promote.digiwaxx.com"
-SKIP = ("/api/", "/scripts/", "/seo-audit/")
+SKIP = ("/api/", "/scripts/", "/seo-audit/", "google564ae809c7f9d6c9")
 
 
 def url_for(path):

@@ -79,3 +79,6 @@ body.light-page {
 .light-page .contact-card { background: #faf3f7; border: 1px solid #f0e0e9; border-radius: 16px; padding: 1.3rem 1.5rem; }
 .light-page .contact-card h2 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 .light-page .contact-card p { margin: 0; line-height: 1.9; }
+
+/* Guide bylines: the E-E-A-T line under the question. */
+.light-page .guide-byline { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.6rem; }

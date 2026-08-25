@@ -84,12 +84,13 @@ const FOOTER = `<footer class="cfooter">
         <a href="/mx/promocion-musica-mexicana-eeuu">Mexico</a>
         <a class="cfooter-more" href="/labels">All markets &rarr;</a></div>
       <div class="cfooter-col"><h4><a href="/guides">Blog &amp; Press</a></h4>
-        <a href="/guides">Music Promotion Blog</a>
-        <a href="/africa/afrobeats-dj-promotion-usa">Afrobeats DJ Promotion USA</a>
-        <a href="/africa/south-africa-amapiano-dj-promotion">Amapiano Promotion</a>
-        <a href="/india/us-dj-promotion-for-indian-artists">Punjabi Music Promotion</a>
-        <a href="/mx/promocion-musica-mexicana-eeuu">Regional Mexicano Promotion</a>
-        <a href="https://addaguestpost.com/newsroom/digiwaxx-goes-global-us-dj-promotion-international" target="_blank" rel="noopener">Press: Digiwaxx Goes Global</a></div>
+        <a href="/guides/how-shazam-works-for-artists">How Shazam Works for Artists</a>
+        <a href="/guides/mixshow-vs-rotation">Mixshow vs. Rotation</a>
+        <a href="/guides/dj-data-spins-crates-charts">DJ Data: Spins &amp; Charts</a>
+        <a href="/guides/music-metrics-that-actually-matter">Music Metrics That Matter</a>
+        <a href="/guides/how-songs-break-city-by-city">How Songs Break City by City</a>
+        <a href="https://addaguestpost.com/newsroom/digiwaxx-goes-global-us-dj-promotion-international" target="_blank" rel="noopener">Press: Digiwaxx Goes Global</a>
+        <a class="cfooter-more" href="/guides">All articles &rarr;</a></div>
       <div class="cfooter-col"><h4><a href="/campaigns">Campaign Blueprints</a></h4>
         <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a>
         <a href="/campaigns/30-day-post-release-sprint">30-Day Post-Release Sprint</a>
@@ -101,7 +102,7 @@ const FOOTER = `<footer class="cfooter">
         <a href="/guides/how-to-release-a-single">How to Release a Single</a>
         <a href="/guides/how-to-promote-a-rap-song">Promote a Rap Song</a>
         <a href="/guides/how-to-get-djs-to-play-my-song">Get DJs to Play Your Song</a>
-        <a class="cfooter-more" href="/guides">View all 24 &rarr;</a></div>
+        <a class="cfooter-more" href="/guides">View all 29 &rarr;</a></div>
       <div class="cfooter-col"><h4><a href="/goals">Artist Goals</a></h4>
         <a href="/goals/get-more-fans">Get More Fans</a>
         <a href="/goals/get-club-plays">Get Club Plays</a>
@@ -1564,6 +1565,112 @@ const GUIDES = [
     ],
     cta: { kicker: 'Ready?', h2: 'Buy the right campaign.', sub: 'Two funnels, two lists, one network of 30,000+ working DJs.', href: '/africa#campaign-form', btn: 'Request a Campaign' },
   },
+
+  {
+    slug: 'how-shazam-works-for-artists',
+    title: 'How Shazam Works for Artists | Digiwaxx',
+    h1: 'How Shazam Works for Artists: From the Club Floor to the Charts',
+    question: 'What does a Shazam actually tell an artist?',
+    description: 'A Shazam is a stranger hunting down your record seconds after a DJ played it. Why that makes it one of the most honest demand signals in music.',
+    author: { name: 'Kay Ali', title: 'Campaign Manager' },
+    quick: 'A Shazam is a stranger, in a room, pulling out their phone to hunt down your record in the seconds after a DJ played it. Nobody Shazams a song they were sent. They Shazam a song that stopped them. That makes it one of the most honest demand signals in music, and it is built almost entirely on DJ play.',
+    long: 'After nearly three decades of servicing records to DJs, we see the same sequence over and over: a record starts getting real play in rooms, and days later the artist writes to ask why their Shazam numbers are suddenly moving. The order is never the other way around. Understanding what the app actually measures tells you exactly where those numbers come from, and how to earn more of them.',
+    sections: [
+      { h2: 'What a Shazam Actually Is', html: `<p>The app records a few seconds of audio, converts it to an acoustic fingerprint, and matches it against a catalogue of tens of millions of tracks. What matters for an artist is not the technology but the context: a Shazam happens when someone hears a record they do not know, in a place they cannot ask, and wants it badly enough to reach for their phone. That is active discovery. It cannot be triggered by a banner ad or a playlist add someone scrolled past, and it is very hard to fake at any scale that matters, which is precisely why industry people watch it. Apple, which owns Shazam, publishes running <a href="https://www.shazam.com/charts" target="_blank" rel="noopener">discovery charts</a> from this data.</p>` },
+      { h2: 'The City Charts Are the Interesting Part', html: `<p>The global chart is trivia. The city charts are intelligence. Shazam publishes top tracks per city, and because a Shazam happens where the listener is physically standing, those charts are a map of where your record is being played out and reacted to. A record can sit nowhere nationally and be top twenty in Houston, and that gap is the story: somebody in Houston is playing it, and rooms full of people want to know what it is. For a label deciding where to tour, where to buy ads or where to service harder, that is exactly the kind of signal worth acting on.</p>` },
+      { h2: 'How to Earn Shazams', html: `<p>You cannot buy them in any way that survives contact with a fraud filter, and you do not need to. Shazams follow out-loud play in front of strangers: clubs, mixshows, parties, radio. The path is unglamorous and reliable, get the record into working DJs’ libraries in the formats they play from, and the discovery moments follow. One properly packaged submission through Digiwaxx reaches 30,000+ club, mixshow, mobile and radio DJs, which is another way of saying thirty thousand rooms where somebody might reach for their phone.</p>` },
+    ],
+    related: [
+      { href: '/guides/how-songs-break-city-by-city', cat: 'Blog', t: 'How Songs Break City by City' },
+      { href: '/guides/music-metrics-that-actually-matter', cat: 'Blog', t: 'The Music Metrics That Actually Matter' },
+      { href: '/goals/get-club-plays', cat: 'Artist Goals', t: 'How to Get Club Plays' },
+    ],
+    cta: { kicker: 'Ready?', h2: 'Get played in rooms.', sub: 'Shazams follow DJ play. Your record serviced to 30,000+ working DJs, the network breaking records since 1998.', href: '/#pricing', btn: 'Promote My Record' },
+  },
+  {
+    slug: 'mixshow-vs-rotation',
+    title: 'Mixshow vs. Rotation: How Radio Airplay Works | Digiwaxx',
+    h1: 'Mixshow vs. Rotation: How Radio Airplay Really Works',
+    question: 'What is the difference between mixshow play and rotation?',
+    description: 'The two-tier radio system nobody explains to artists: what a mixshow is, how spins get counted, and how records graduate to rotation.',
+    author: { name: 'Kay Ali', title: 'Campaign Manager' },
+    quick: 'A mixshow is a DJ-curated block, usually nights and weekends, where the DJ chooses the records. Rotation is the station’s programmed playlist, where a programmer chooses them. Mixshow is the tryout; rotation is the contract. Records earn the second by proving reaction in the first, and in the clubs the same DJs play.',
+    long: 'Digiwaxx has serviced mixshow DJs since 1998, and the confusion never changes: an artist hears their record on the radio at midnight on a Saturday and expects to hear it at 3pm on a Tuesday. Those are two different systems with two different gatekeepers, and understanding the handoff between them is most of understanding radio.',
+    sections: [
+      { h2: 'What a Mixshow Is', html: `<p>The mixshow is the part of the broadcast the station hands to a DJ: a live or pre-recorded mix, blended like a club set, where new records get their first spins on air. Mixshow DJs are usually also club DJs, which is the whole point, they arrive at the station already knowing what rooms react to. That makes them the single most efficient audience for a new record: one person who can put your song both on a floor on Friday and on the air on Saturday.</p>` },
+      { h2: 'How Spins Get Counted', html: `<p>Airplay is not self-reported. Monitoring services like <a href="https://www.mediabase.com/" target="_blank" rel="noopener">Mediabase</a> and <a href="https://luminatedata.com/" target="_blank" rel="noopener">Luminate</a> fingerprint broadcast audio around the clock and log every detected play, which is where airplay charts come from. A mixshow spin is a real, detected, charted spin. This is also why a clean version is non-negotiable: a record that cannot legally air never enters the count, no matter how much the DJ likes it.</p>` },
+      { h2: 'How Records Graduate', html: `<p>Program directors add records to rotation when the risk is gone, and mixshow reaction is one of the main ways risk disappears: requests after a mixshow spin, floors reacting in the club, other stations’ mixshows picking it up. No servicing company can promise rotation, and you should walk away from any that does. What servicing actually does is put the record in front of the mixshow DJs with the right versions, so the tryout can happen at all. The graduation is earned by the record.</p>` },
+    ],
+    related: [
+      { href: '/guides/how-to-get-radio-play', cat: 'Guides', t: 'How to Get Radio Play' },
+      { href: '/guides/dj-data-spins-crates-charts', cat: 'Blog', t: 'DJ Data: Spins, Crates and Charts' },
+      { href: '/promote/promote-my-single', cat: 'Services', t: 'Promote My Single' },
+    ],
+    cta: { kicker: 'Ready?', h2: 'Get in front of mixshow DJs.', sub: 'Clean versions, right formats, the DJs who bridge the club and the air. Serviced through the Digiwaxx network.', href: '/#pricing', btn: 'Promote My Record' },
+  },
+  {
+    slug: 'dj-data-spins-crates-charts',
+    title: 'DJ Data: Spins, Crates and Charts Explained | Digiwaxx',
+    h1: 'The Data Trail DJs Leave: Spins, Crates, Charts and What They Tell You',
+    question: 'What data do DJs generate, and how should a label read it?',
+    description: 'Record pool downloads, detected spins and DJ charts are the earliest data in music. How each layer works and how to read a campaign report.',
+    author: { name: 'Kay Ali', title: 'Campaign Manager' },
+    quick: 'DJs generate the earliest data a record ever has: pool downloads show professional intent, detected spins show broadcast reality, and DJ charts show what working selectors are actually reaching for. A campaign report is how that trail comes back to the label, and knowing how to read one is knowing whether a record is working.',
+    long: 'Streams tell you what listeners did last month. The DJ layer tells you what the people who program rooms are doing this week, before the public numbers move. Having run servicing campaigns since 1998, we treat these three layers as the record’s first honest reviews.',
+    sections: [
+      { h2: 'The Download Layer: Professional Intent', html: `<p>When a record is serviced through a pool, every download is a working DJ making a small professional bet: this might work in my rooms. Pool download charts are therefore a different animal from streaming charts, the audience is a few thousand professionals rather than millions of listeners, and each unit of attention costs the person something. A record that pool DJs pull hard in its first week has passed a filter most releases never even face.</p>` },
+      { h2: 'The Spin Layer: Broadcast Reality', html: `<p>Downloads show intent; spins show follow-through. Monitoring services fingerprint radio around the clock, and DJ software ecosystems publish charts of what selectors are actually playing in sets. Neither can be bought convincingly, both are watched by the industry, and together they answer the only question that matters after servicing: did the people who took the record actually play it?</p>` },
+      { h2: 'Reading a Campaign Report', html: `<p>A serious servicing report tells you three things: who was serviced (how many DJs, what kind, what markets), what was delivered (versions, formats), and what came back (pickups, spins where detected, DJ feedback where given). What it can never honestly contain is a guarantee. When we run a campaign at Digiwaxx, the report is written for a label meeting: it names what moved and what did not, because the honest version is the one you can plan the next single around. If a vendor’s report is a screenshot of a big number with no names attached, you paid for the screenshot.</p>` },
+    ],
+    related: [
+      { href: '/labels', cat: 'Labels', t: 'U.S. DJ Promotion for International Labels' },
+      { href: '/guides/afrobeats-dj-promotion-what-labels-need', cat: 'Blog', t: 'What Labels Need for U.S. DJ Servicing' },
+      { href: '/answers/how-record-pools-work', cat: 'Straight Answers', t: 'How Record Pools Work' },
+    ],
+    cta: { kicker: 'Ready?', h2: 'Run a reported campaign.', sub: 'Delivery, pickup and feedback, written up per release for your team. That is what servicing with a report means.', href: '/labels#campaign-form', btn: 'Request a Campaign' },
+  },
+  {
+    slug: 'music-metrics-that-actually-matter',
+    title: 'The Music Metrics That Actually Matter | Digiwaxx',
+    h1: 'Streaming Numbers Lie, Rooms Don’t: The Music Metrics That Actually Matter',
+    question: 'Which music metrics matter, and which are vanity?',
+    description: 'The effort test: metrics a listener has to earn, saves, searches, Shazams, repeat spins, beat any number that can be bought. Here is why.',
+    author: { name: 'Kay Ali', title: 'Campaign Manager' },
+    quick: 'Apply the effort test: does this number require a human to do something on purpose? Saves, name searches, Shazams, completions and repeat DJ spins pass. Raw stream counts, follower totals and playlist placements you paid strangers for do not. Platforms and A&Rs discount everything purchasable, because they can see exactly what you can see, plus everything you cannot.',
+    long: 'Every week somebody brings us a record with a million streams and no fingerprints: no saves to speak of, no searches, no Shazams, no DJ who has ever heard of it. The number was bought, and everyone the artist wanted to impress can tell at a glance. The metrics worth chasing are the ones that cost the listener something.',
+    sections: [
+      { h2: 'Bought vs. Earned', html: `<p>Any metric that can be purchased eventually gets discounted to zero by the people it was meant to impress. Streaming platforms model normal listener behaviour and flag what deviates; label A&Rs look straight past totals to ratios, saves per listener, skip rates, where the listeners supposedly are. A bought number does not just fail to help. It marks the project, because it shows the team either did not know or hoped nobody would check.</p>` },
+      { h2: 'The Effort Test', html: `<p>A save means someone decided to hear the record again. A name search means they remembered it. A Shazam means it stopped them in a room. A completion means it held them to the end, and a DJ keeping a record in rotation for weeks means it works on floors repeatedly. Each of these requires a human to spend attention on purpose, which is exactly why recommendation systems feed on them and why fraud cannot manufacture them in any pattern that looks human.</p>` },
+      { h2: 'What This Means for Promotion', html: `<p>Buy the campaign that creates effortful signals, not the one that prints a number. Real-world play is the most concentrated generator of earned metrics there is: one good club or mixshow run creates searches, Shazams, saves and requests all at once, from people who chose the record with their own ears. It is why our whole service is aimed at working DJs, and why every page on this site says the same thing: no bots, no bought streams, no empty playlist promises.</p>` },
+    ],
+    related: [
+      { href: '/guides/how-shazam-works-for-artists', cat: 'Blog', t: 'How Shazam Works for Artists' },
+      { href: '/answers/is-spotify-playlist-promotion-worth-it', cat: 'Straight Answers', t: 'Is Playlist Promotion Worth It?' },
+      { href: '/guides/my-song-isnt-getting-streams', cat: 'Guides', t: 'My Song Isn’t Getting Streams' },
+    ],
+    cta: { kicker: 'Ready?', h2: 'Earn signals that count.', sub: 'Real DJs, real rooms, real reactions. The metrics follow the floors.', href: '/#pricing', btn: 'Promote My Record' },
+  },
+  {
+    slug: 'how-songs-break-city-by-city',
+    title: 'How Songs Break City by City | Digiwaxx',
+    h1: 'How Songs Break City by City: Viral Charts, Shazam Maps and Local Heat',
+    question: 'Why do songs blow up in one city before everywhere else?',
+    description: 'Charts are national but breakouts are local. How viral and city charts work, and why the ignition point is almost always a DJ booth.',
+    author: { name: 'Kay Ali', title: 'Campaign Manager' },
+    quick: 'Breakouts are local before they are national: a record ignites in the rooms of one metro, Houston, Mexico City, Lagos, London, and travels outward through DJs, diasporas and playlists. Viral charts measure that early velocity per market, Shazam maps it per city, and the ignition point is almost always a booth.',
+    long: 'The charts everyone quotes are national summaries of things that happened locally weeks earlier. Having serviced records into American rooms since 1998, we watch the local layer, because by the time a record is a national story, the cities already voted.',
+    sections: [
+      { h2: 'Viral Charts Measure Velocity, Not Size', html: `<p>Spotify publishes two families of <a href="https://charts.spotify.com/" target="_blank" rel="noopener">charts</a> per market: the Top charts, which rank sheer volume, and the Viral charts, which rank momentum, how fast a record is being shared and discovered relative to its size. A song nobody has heard of can top a Viral chart in one country while sitting nowhere on any Top chart. That is not a bug; it is the entire value. Viral charts are per-market by design, which makes them an early-warning system for where a record is catching.</p>` },
+      { h2: 'The City Layer', html: `<p>Underneath national markets is the city layer, and it is where breakouts are actually visible. Shazam’s city charts show what rooms in a specific metro are reacting to. Diaspora geography explains most of the pattern: Afrobeats surges through Houston and DC, regional mexicano through Los Angeles and Dallas, amapiano through the dance floors of New York and London, because those are the cities where those communities fill rooms every weekend. A record does not break in a country. It breaks in specific rooms in specific cities, and the data has finally caught up to that fact.</p>` },
+      { h2: 'Working a Record City by City', html: `<p>The practical playbook falls out of the mechanics: choose two or three lead cities where your audience already dances, service the DJs who run those rooms, watch the local signals, searches, Shazams, requests, repeat spins, and widen to the next cities with the first ones as proof. It is how we structure campaigns for international labels, market by market rather than one undifferentiated blast, because the blast wins nowhere and the concentrated push wins somewhere, and somewhere is what travels.</p>` },
+    ],
+    related: [
+      { href: '/africa', cat: 'Campaigns', t: 'African Music Promotion Hub' },
+      { href: '/guides/lagos-accra-to-new-york-dj-promotion-plan', cat: 'Blog', t: 'Lagos to New York: A DJ Promotion Plan' },
+      { href: '/guides/how-shazam-works-for-artists', cat: 'Blog', t: 'How Shazam Works for Artists' },
+    ],
+    cta: { kicker: 'Ready?', h2: 'Run it city by city.', sub: 'Lead cities chosen for your record, DJs serviced market by market, and a report on where it caught.', href: '/africa#campaign-form', btn: 'Request a Campaign' },
+  },
 ];
 
 /* --------------------------------------------------------------- rendering */
@@ -1716,7 +1823,7 @@ ${HEAD_FONTS}
     headline: g.h1, description: g.description, url,
     image: { '@type': 'ImageObject', url: `${SITE}/assets/share-card.png`, width: 1200, height: 630 },
     datePublished: '2026-08-25', dateModified: '2026-08-25',
-    author: { '@id': `${SITE}#organization` }, publisher: { '@id': `${SITE}#organization` },
+    author: g.author ? { '@type': 'Person', name: g.author.name, jobTitle: g.author.title, worksFor: { '@id': `${SITE}#organization` }, url: `${SITE}/contact` } : { '@id': `${SITE}#organization` }, publisher: { '@id': `${SITE}#organization` },
     '@id': `${url}#article`,
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     isPartOf: { '@id': `${SITE}#website` }, inLanguage: 'en-US',
@@ -1734,6 +1841,7 @@ ${NAV}
   <article>
     <h1>${esc(g.h1)}</h1>
     <p class="page-question">${esc(g.question)}</p>
+${g.author ? `    <p class="guide-byline">By <b>${esc(g.author.name)}</b>, ${esc(g.author.title)} at Digiwaxx &middot; August 25, 2026</p>` : ''}
 
 <div class="quick-answer">
   <p class="qa-label">Quick Answer</p>
