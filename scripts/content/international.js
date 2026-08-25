@@ -65,7 +65,7 @@ const FOOTER = `<footer class="cfooter">
     <div class="cfooter-brand"><img src="/assets/logo.png" alt="Digiwaxx" width="180" height="30" decoding="async"><p>Trusted by 30,000+ DJs since 1998.</p>
       <a class="cfooter-cta" href="/#pricing">Submit Your Record &rarr;</a>
       <a class="cfooter-hub" href="/university">Browse Digiwaxx University &rarr;</a>
-      <p class="cfooter-contact">Campaigns: Kawani · <a href="mailto:kawani@digiwaxx.com">kawani@digiwaxx.com</a><br>Partnerships: <a href="mailto:cl@digiwaxx.com">cl@digiwaxx.com</a></p>
+      <p class="cfooter-contact">Campaigns: Kay Ali · <a href="mailto:kawani@digiwaxx.com">kawani@digiwaxx.com</a><br>Partnerships: “CL” Llewellyn · <a href="mailto:cl@digiwaxx.com">cl@digiwaxx.com</a><br>Artists: Will Gordon · <a href="mailto:will@digiwaxx.com">will@digiwaxx.com</a></p>
     </div>
     <div class="cfooter-cols">
       <div class="cfooter-col"><h4><a href="/promote">Promotion Services</a></h4>
@@ -1553,22 +1553,23 @@ const TRIO_HREFLANG = `    <link rel="alternate" hreflang="ko" href="${SITE}/ko/
  * footer sitewide.
  */
 const CONTACT_STRINGS = {
-  en: { title: 'Who to Contact', campaigns: 'Campaigns', partners: 'Partnerships & distributors' },
-  'en-GB': { title: 'Who to Contact', campaigns: 'Campaigns', partners: 'Partnerships & distributors' },
-  es: { title: 'A quién contactar', campaigns: 'Campañas', partners: 'Alianzas y distribuidoras' },
-  'pt-BR': { title: 'Com quem falar', campaigns: 'Campanhas', partners: 'Parcerias e distribuidoras' },
-  fr: { title: 'Qui contacter', campaigns: 'Campagnes', partners: 'Partenariats et distributeurs' },
-  ko: { title: '문의처', campaigns: '캠페인 문의', partners: '파트너십 및 유통사' },
-  ja: { title: 'お問い合わせ先', campaigns: 'キャンペーン', partners: 'パートナーシップ' },
-  id: { title: 'Kontak', campaigns: 'Kampanye', partners: 'Kemitraan & distributor' },
+  en: { title: 'Who to Contact', campaigns: 'Campaigns', partners: 'Partnerships & distributors', artists: 'Artists' },
+  'en-GB': { title: 'Who to Contact', campaigns: 'Campaigns', partners: 'Partnerships & distributors', artists: 'Artists' },
+  es: { title: 'A quién contactar', campaigns: 'Campañas', partners: 'Alianzas y distribuidoras', artists: 'Artistas' },
+  'pt-BR': { title: 'Com quem falar', campaigns: 'Campanhas', partners: 'Parcerias e distribuidoras', artists: 'Artistas' },
+  fr: { title: 'Qui contacter', campaigns: 'Campagnes', partners: 'Partenariats et distributeurs', artists: 'Artistes' },
+  ko: { title: '문의처', campaigns: '캠페인 문의', partners: '파트너십 및 유통사', artists: '아티스트 문의' },
+  ja: { title: 'お問い合わせ先', campaigns: 'キャンペーン', partners: 'パートナーシップ', artists: 'アーティスト' },
+  id: { title: 'Kontak', campaigns: 'Kampanye', partners: 'Kemitraan & distributor', artists: 'Artis' },
 };
 
 function contactCard(lang) {
   const t = CONTACT_STRINGS[lang] || CONTACT_STRINGS.en;
   return `<section class="body-section contact-card">
   <h2>${esc(t.title)}</h2>
-  <p><b>${esc(t.campaigns)}:</b> Kawani, Campaign Manager · <a href="mailto:kawani@digiwaxx.com">kawani@digiwaxx.com</a><br>
-  <b>${esc(t.partners)}:</b> Partner Manager · <a href="mailto:cl@digiwaxx.com">cl@digiwaxx.com</a></p>
+  <p><b>${esc(t.campaigns)}:</b> Kay Ali, Campaign Manager · <a href="mailto:kawani@digiwaxx.com">kawani@digiwaxx.com</a><br>
+  <b>${esc(t.partners)}:</b> “CL” Llewellyn, Partner Manager · <a href="mailto:cl@digiwaxx.com">cl@digiwaxx.com</a><br>
+  <b>${esc(t.artists)}:</b> Will Gordon, Artist Manager · <a href="mailto:will@digiwaxx.com">will@digiwaxx.com</a></p>
 </section>`;
 }
 
