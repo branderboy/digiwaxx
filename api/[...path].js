@@ -284,9 +284,9 @@ async function getSettings(keys) {
   return map;
 }
 
-function sendResendEmail(apiKey, from, to, subject, html) {
+function sendResendEmail(apiKey, from, to, subject, html, replyTo) {
   return new Promise((resolve, reject) => {
-    const data = JSON.stringify({ from, to: [to], subject, html: html.replace(/\n/g, '<br>') });
+    const data = JSON.stringify({ from, to: [to], subject, html: html.replace(/\n/g, '<br>'), ...(replyTo ? { reply_to: replyTo } : {}) });
     const req = https.request({
       hostname: 'api.resend.com',
       path: '/emails',
@@ -469,6 +469,48 @@ module.exports = async (req, res) => {
          VALUES ($1, $2, $3, $4, ${fields.map((_, i) => `$${i + 5}`).join(', ')})`,
         [uuid(), String(company).slice(0, 500), String(name).slice(0, 500), String(email).slice(0, 500), ...values]
       );
+
+      // Notify the right desk. Partnerships route to CL, artist support to
+      // Will, everything else (campaigns, media kits, releases, in every
+      // language) to Kay. Lead is saved already, so failures are non-fatal.
+      try {
+        const conf = await getSettings(['resend_api_key', 'email_from']);
+        if (conf.resend_api_key) {
+          const intent = String(body.intent || '');
+          const recipients = /partner|distribu/i.test(intent) ? ['cl@digiwaxx.com', 'kawani@digiwaxx.com']
+            : /artist support/i.test(intent) ? ['will@digiwaxx.com', 'kawani@digiwaxx.com']
+            : ['kawani@digiwaxx.com'];
+          const escHtml = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+          const row = (k, v) => v ? `<tr><td style="padding:6px 12px 6px 0;color:#888;white-space:nowrap;vertical-align:top;">${k}</td><td style="padding:6px 0;color:#111;">${v}</td></tr>` : '';
+          const html = `<div style="font-family:sans-serif;max-width:600px;">` +
+            `<h2 style="color:#111;">New Campaign Request</h2>` +
+            `<table style="font-size:14px;border-collapse:collapse;">` +
+            row('Company', `<strong>${escHtml(body.company)}</strong>`) +
+            row('Contact', escHtml(body.name)) +
+            row('Email', `<a href="mailto:${escHtml(email)}">${escHtml(email)}</a>`) +
+            row('Phone / WhatsApp', escHtml(body.phone)) +
+            row('Company type', escHtml(body.role)) +
+            row('Artist & release', escHtml(body.artist)) +
+            row('Link', body.link ? `<a href="${escHtml(body.link)}">${escHtml(body.link)}</a>` : '') +
+            row('Need', escHtml(body.intent)) +
+            row('Market', escHtml(body.market)) +
+            row('Genre', escHtml(body.genre)) +
+            row('Target market', escHtml(body.target)) +
+            row('Start', escHtml(body.timing)) +
+            row('Message', escHtml(body.message)) +
+            row('From page', escHtml(body.page)) +
+            `</table>` +
+            `<p style="font-size:13px;color:#888;">Reply goes straight to the lead. Also listed in the admin under the Campaigns tab.</p>` +
+            `</div>`;
+          const fromAddr = conf.email_from || 'Digiwaxx <noreply@digiwaxx.com>';
+          const subject = 'Campaign request: ' + String(company).slice(0, 80) + (body.market ? ' (' + String(body.market).slice(0, 40) + ')' : '');
+          for (const to of recipients) {
+            try { await sendResendEmail(conf.resend_api_key, fromAddr, to, subject, html, email); }
+            catch (e) { console.error('Campaign notification failed for ' + to + ':', e); }
+          }
+        }
+      } catch (e) { console.error('Failed to send campaign notifications:', e); }
+
       return json(res, { ok: true });
     }
 
