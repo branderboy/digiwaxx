@@ -72,7 +72,7 @@ def enrich_home(s):
             j["@id"] = ORG_ID
             j.setdefault("logo", {})
             j["logo"] = {"@type": "ImageObject", "@id": f"{SITE}#logo",
-                         "url": f"{SITE}/assets/icon-512.png", "width": 512, "height": 512}
+                         "url": f"{SITE}/assets/logo-org.png", "width": 1200, "height": 300}
             j["image"] = {"@id": f"{SITE}#logo"}
             j["slogan"] = "Breaking records since 1998."
             j["knowsAbout"] = ["Music promotion", "DJ promotion", "Record pools",
