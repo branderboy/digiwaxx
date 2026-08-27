@@ -34,6 +34,22 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..', '..');
 const SITE = 'https://promote.digiwaxx.com';
 
+// Alt text for the shared social card — one image site-wide, so the text
+// describes the card, not the page linking to it.
+const CARD_ALT = 'Digiwaxx — Get Your New Release in Front of 30,000+ DJs. '
+  + 'Clubs, radio and playlists since 1998.';
+
+// og:locale wants a region. <html lang> carries only the language on the
+// Spanish-language market pages, so the market directory picks the region.
+const LOCALES = { 'en': 'en_US', 'en-GB': 'en_GB', 'es': 'es_ES', 'pt-BR': 'pt_BR',
+  'fr': 'fr_FR', 'ja': 'ja_JP', 'ko': 'ko_KR', 'id': 'id_ID' };
+const DIR_LOCALES = { mx: 'es_MX', co: 'es_CO', conosur: 'es_AR', br: 'pt_BR',
+  ca: 'en_CA', uk: 'en_GB', india: 'en_IN', ph: 'en_PH' };
+const ogLocale = (slug, lang) => DIR_LOCALES[String(slug || '').split('/')[0]]
+  || LOCALES[lang] || LOCALES[String(lang || '').split('-')[0]] || 'en_US';
+
+const FEED_LINK = `    <link rel="alternate" type="application/rss+xml" title="Digiwaxx University" href="${SITE}/feed.xml">`;
+
 /* ------------------------------------------------------------------ chrome */
 
 const HEAD_FONTS = `    <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -1737,12 +1753,19 @@ function convertPage(p) {
     <meta property="og:type" content="website">
     <meta property="og:url" content="${url}">
     <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:locale" content="${ogLocale(p.slug, p.lang)}">
     <meta property="og:image" content="${SITE}/assets/share-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="${attr(CARD_ALT)}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${attr(p.title)}">
+    <meta name="twitter:description" content="${attr(p.description)}">
     <meta name="twitter:image" content="${SITE}/assets/share-card.png">
+    <meta name="twitter:image:alt" content="${attr(CARD_ALT)}">
     <meta name="robots" content="max-image-preview:large">
     <meta name="theme-color" content="#1a0a18">
+${FEED_LINK}
 ${p.family === 'trio' ? TRIO_HREFLANG + '\n' : ''}${HEAD_FONTS}
 ${FORM_CSS}
 <script type="application/ld+json">${serviceLd(p)}</script>
@@ -1811,12 +1834,22 @@ function guidePage(g) {
     <meta property="og:type" content="article">
     <meta property="og:url" content="${url}">
     <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-08-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-08-25T00:00:00+00:00">
+    <meta property="article:publisher" content="${SITE}">
     <meta property="og:image" content="${SITE}/assets/share-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="${attr(CARD_ALT)}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${attr(g.title)}">
+    <meta name="twitter:description" content="${attr(g.description)}">
     <meta name="twitter:image" content="${SITE}/assets/share-card.png">
+    <meta name="twitter:image:alt" content="${attr(CARD_ALT)}">
     <meta name="robots" content="max-image-preview:large">
     <meta name="theme-color" content="#1a0a18">
+${FEED_LINK}
 ${HEAD_FONTS}
 <script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org', '@type': 'Article',
@@ -1895,12 +1928,19 @@ function contactPageHtml() {
     <meta property="og:type" content="website">
     <meta property="og:url" content="${url}">
     <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:locale" content="en_US">
     <meta property="og:image" content="${SITE}/assets/share-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="${attr(CARD_ALT)}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${title}">
+    <meta name="twitter:description" content="${attr(desc)}">
     <meta name="twitter:image" content="${SITE}/assets/share-card.png">
+    <meta name="twitter:image:alt" content="${attr(CARD_ALT)}">
     <meta name="robots" content="max-image-preview:large">
     <meta name="theme-color" content="#1a0a18">
+${FEED_LINK}
 ${HEAD_FONTS}
 ${FORM_CSS}
 <script type="application/ld+json">${JSON.stringify({

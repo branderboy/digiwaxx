@@ -17,6 +17,11 @@ const BRAND = {
   ],
 };
 
+// Alt text for the shared social card — it is one image site-wide, so the
+// description is of the card itself, not of the page linking to it.
+const CARD_ALT = 'Digiwaxx — Get Your New Release in Front of 30,000+ DJs. '
+  + 'Clubs, radio and playlists since 1998.';
+
 const CATEGORIES = {
   services: { dir: 'promote', label: 'Promote', hubTitle: 'Promotion Services' },
   guides: { dir: 'guides', label: 'Guides', hubTitle: 'Release & Promotion Guides' },
@@ -230,12 +235,22 @@ ${s.html}
     <meta property="og:type" content="article">
     <meta property="og:url" content="${url}">
     <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="${page.datePublished}T00:00:00+00:00">
+    <meta property="article:modified_time" content="${page.dateModified}T00:00:00+00:00">
+    <meta property="article:publisher" content="${SITE_URL}">
     <meta property="og:image" content="${SITE_URL}/assets/share-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="${esc(CARD_ALT)}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${esc(page.metaTitle || page.title)}">
+    <meta name="twitter:description" content="${esc(page.description)}">
     <meta name="twitter:image" content="${SITE_URL}/assets/share-card.png">
+    <meta name="twitter:image:alt" content="${esc(CARD_ALT)}">
     <meta name="robots" content="max-image-preview:large">
     <meta name="theme-color" content="#1a0a18">
+    <link rel="alternate" type="application/rss+xml" title="Digiwaxx University" href="${SITE_URL}/feed.xml">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -271,4 +286,4 @@ ${footer(allBySlug.__all || [])}
 `;
 }
 
-module.exports = { SITE_URL, BRAND, CATEGORIES, esc, stripTags, pageUrl, renderPage, nav, footer, ctaBlock, statsBlock, funnelStrip };
+module.exports = { SITE_URL, BRAND, CARD_ALT, CATEGORIES, esc, stripTags, pageUrl, renderPage, nav, footer, ctaBlock, statsBlock, funnelStrip };

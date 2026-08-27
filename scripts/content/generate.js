@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { SITE_URL, CATEGORIES, esc, pageUrl, renderPage, nav, footer } = require('./lib');
+const { SITE_URL, CARD_ALT, CATEGORIES, esc, pageUrl, renderPage, nav, footer } = require('./lib');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 
@@ -109,11 +109,19 @@ const hubHtml = `<!DOCTYPE html>
     <meta property="og:type" content="website">
     <meta property="og:url" content="${SITE_URL}/university">
     <meta property="og:site_name" content="Digiwaxx">
+    <meta property="og:locale" content="en_US">
     <meta property="og:image" content="${SITE_URL}/assets/share-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="${esc(CARD_ALT)}">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digiwaxx University">
+    <meta name="twitter:description" content="Free guides, answers, and tools on DJ promotion, radio, playlists, and breaking records.">
     <meta name="twitter:image" content="${SITE_URL}/assets/share-card.png">
+    <meta name="twitter:image:alt" content="${esc(CARD_ALT)}">
     <meta name="robots" content="max-image-preview:large">
     <meta name="theme-color" content="#1a0a18">
+    <link rel="alternate" type="application/rss+xml" title="Digiwaxx University" href="${SITE_URL}/feed.xml">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -155,6 +163,7 @@ fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(ROOT, 'robots.txt'), `User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /api/
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `);

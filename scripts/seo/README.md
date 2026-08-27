@@ -41,8 +41,10 @@ titles, so metadata is fixed first; the mesh and sitemap read the hubs.
 | `rewire_links.py` | Repoints `/university#anchor` links at the real hub pages |
 | `build_mesh.py` | Injects the contextual internal-link mesh into each content page |
 | `enrich_schema.py` | Adds `@id`-linked `Organization`/`WebSite`, enriches `Article`, adds `Service` + `areaServed` to city/genre pages |
+| `enrich_social.py` | Completes the Open Graph / Twitter card block (image dimensions, alt text, `og:locale`, article times), adds RSS discovery, defines the `#organization`/`#website` nodes the `@id` references point at, prices `Service` nodes, and content-stamps the shared social images |
 | `build_llms.py` | Regenerates `llms.txt`; links `/university` headings to their hubs |
 | `build_sitemap.py` | Rebuilds `sitemap.xml` as an index over `/sitemaps/*.xml` |
+| `build_feed.py` | Builds `/feed.xml`, the RSS 2.0 feed of the newest 25 article pages, read back out of their own JSON-LD |
 | `audit_links.py` | Reports orphans, inbound-link counts, click depth, and tag problems. Exits non-zero on findings |
 | `submit_urls.py` | IndexNow / Google Indexing API submission and a ranked manual-submission list |
 
