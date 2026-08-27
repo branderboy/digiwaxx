@@ -57,7 +57,7 @@ function jsonLd(page, faq) {
       '@type': 'Organization',
       name: 'Digiwaxx',
       url: SITE_URL,
-      logo: { '@type': 'ImageObject', url: SITE_URL + '/assets/icon-512.png' },
+      logo: { '@type': 'ImageObject', url: SITE_URL + '/assets/logo-org.png', width: 1200, height: 300 },
     },
   });
   blocks.push({
