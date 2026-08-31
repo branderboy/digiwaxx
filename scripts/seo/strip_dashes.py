@@ -12,8 +12,9 @@ The three rules, matching what 712fbf8 actually did:
   spaced dash     a record - but it     ->  a record, but it
   tight dash      a record-but it       ->  a record, but it
 
-Hyphens in words, URLs, slugs and code are untouched: only U+2014 and
-U+2013 are matched, never U+002D. admin.html is excluded, as it was before.
+Hyphens in words, URLs, slugs and code are untouched: only U+2014 and U+2013
+are matched, never U+002D, and the &mdash;/&ndash; entities the templates
+write are folded to the character first. admin.html is excluded, as before.
 
 Usage: strip_dashes.py [--apply]
 """
@@ -22,6 +23,10 @@ import os, re, sys, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 EXCLUDE = {"admin.html"}
 DASH = "[—–]"
+
+# The templates write some dashes as entities, which look nothing like a dash
+# to a regex. Fold them to the character first so one set of rules covers both.
+ENTITY = re.compile(r"&(?:mdash|ndash|#8212|#8211|#x201[34]);", re.I)
 
 RULES = [
     # A range between two figures reads as "to", not as a comma.
@@ -40,6 +45,7 @@ RULES = [
 
 
 def convert(src):
+    src = ENTITY.sub("—", src)
     for pattern, repl in RULES:
         src = pattern.sub(repl, src)
     # A dash directly after a closing quote or full stop leaves ".", which
@@ -56,7 +62,7 @@ def main():
         if rel in EXCLUDE:
             continue
         src = open(path, encoding="utf-8").read()
-        n = len(re.findall(DASH, src))
+        n = len(re.findall(DASH, src)) + len(ENTITY.findall(src))
         new = convert(src)
         if new == src:
             continue
