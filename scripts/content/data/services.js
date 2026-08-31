@@ -12,7 +12,7 @@ const releaseCampaign = (fmt) => ({
   slug: `promote-my-${fmt.slug}`,
   category: 'services',
   featured: fmt.featured,
-  title: `Promote My ${fmt.name} to 30,000+ DJs`,
+  title: `Promote My ${fmt.name}`,
   navLabel: `Promote My ${fmt.name}`,
   metaTitle: `Promote My ${fmt.name}: DJ, Radio & Playlist Campaign | Digiwaxx`,
   description: `Promote your ${fmt.name.toLowerCase()} to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts — from the network trusted since 1998.`,
@@ -36,7 +36,7 @@ const FORMATS = [
   {
     slug: 'single', name: 'Single', featured: true,
     answer: 'service it to DJs before and during release week, stack playlist and radio pushes on the reaction, and keep waves coming for 60 days.',
-    intro: 'A single is the format DJs are most willing to test, and the one most likely to disappear if nobody puts it in front of them. This page is for artists with one finished track, released or about to be, who want it in working DJs\' hands rather than sitting in a release-day inbox. Your record goes into the Digiwaxx record pool, where club, mixshow and radio DJs pull new music, with radio and playlist consideration running alongside it. Campaigns are one-time payments of $99, $149 or $199, no contract and no monthly fee. Album, EP and mixtape campaigns work the same way, with the format handled differently.',
+    intro: 'The single is the unit of momentum in modern music — one record, fully worked, beats ten records uploaded quietly. A single campaign concentrates everything into one story: one hook, one artwork, one ask, serviced to every DJ format at once.',
     how: `<p>Submit the record (clean, dirty, and instrumental) and it goes out to the network while the radio, playlist, and coverage layers run alongside. Time it 1–2 weeks before release day for maximum week-one velocity, or run it on a live record — DJs care whether it works, not when it dropped. Pair it with the <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a> to run the full rollout around it.</p>`,
     faq: [
       { q: 'When should I start promoting my single?', a: 'Ideally 2–3 weeks before release so DJs have it before street date. Already out? The same campaign works — pools service live records every day.' },
@@ -47,7 +47,7 @@ const FORMATS = [
   {
     slug: 'album', name: 'Album',
     answer: 'lead with the strongest 1–2 focus tracks serviced to DJs, run the album as a story across 8–12 weeks, and let each single pull listeners into the full project.',
-    intro: 'An album is not one upload, it is a campaign with a lead. This page is for artists and labels with a finished project who want DJs working it rather than streaming it once and moving on. The lead track goes into the Digiwaxx record pool first, where 30,000+ club, mixshow and radio DJs pull new music, and the rest of the project works behind it as the reaction comes in. Radio and playlist consideration run alongside. Campaigns are one-time payments of $99, $149 or $199, with no contract and no monthly fee.',
+    intro: 'Albums fail on streaming when they are promoted as one event. They win when they are promoted as a season: focus tracks carry the campaign, the album is the destination, and every DJ spin or playlist add on a single sells the whole body of work.',
     how: `<p>Pick the one or two records DJs can actually play — club energy, radio-clean — and campaign those through the network while the album provides the depth behind them. Coverage and interview layers (Pro/Elite) do more for albums than any other format: a project gives you a story worth telling, and an SEO-indexed feature gives that story a permanent home.</p>`,
     faq: [
       { q: 'Should I promote every song on the album?', a: 'No — campaign the 1–2 focus tracks hard and let the album absorb the attention. You can run a second focus track 6–8 weeks later as a fresh wave.' },
@@ -58,7 +58,7 @@ const FORMATS = [
   {
     slug: 'ep', name: 'EP',
     answer: 'treat it as 2–3 single campaigns sharing one identity — service the lead track to DJs, follow with the second focus track, and let the EP collect the audience.',
-    intro: 'An EP gives DJs a choice, which is an advantage only if you service it properly. This page is for artists with three to six finished tracks who would rather a DJ decided which one works than guess at it themselves. You pick the lead, it goes into the Digiwaxx record pool where 30,000+ club, mixshow and radio DJs pull new music, and the other tracks sit behind it for the DJs who want something different. Radio and playlist consideration run alongside. Campaigns are one-time payments of $99, $149 or $199, with no contract.',
+    intro: 'The EP is the independent artist’s best format: enough songs to show range, few enough that every track can get real attention. The right promotion plan treats an EP as a short season of singles with a shared cover story.',
     how: `<p>Service the lead track to the DJ network 2 weeks before the EP drops; release the EP; then campaign the second focus track 4–6 weeks later as a fresh news moment on the same project. Two waves, one body of work, and every listener either wave earns lands on a page with more to play.</p>`,
     faq: [
       { q: 'How many tracks should an EP have?', a: 'Four to six is the sweet spot — enough to feel like a project, small enough that your two focus tracks are half the tracklist.' },
@@ -69,7 +69,7 @@ const FORMATS = [
   {
     slug: 'mixtape', name: 'Mixtape',
     answer: 'lean into DJ culture — the format was born there: service the standout records to DJs, use free platforms like Audiomack for reach, and let the tape build the name.',
-    intro: 'Mixtapes live or die in DJ crates, which is the one place a streaming upload cannot reach. This page is for artists with a full project who want DJs playing it in rooms, on mixshows and in radio mixes. The tape goes into the Digiwaxx record pool where 30,000+ working DJs pull new music, with the versions they can actually program: clean, dirty and instrumental. Radio and playlist consideration run alongside. Campaigns are one-time payments of $99, $149 or $199, with no contract and no monthly fee.',
+    intro: 'The mixtape is hip hop’s proving ground — the format that built careers from 50 Cent to Wayne to the blog era, and its engine was always DJs. A mixtape campaign done right goes back to that source: get the standout records into working DJ crates and let the tape do what tapes do — build a name faster than a polished single can.',
     how: `<p>Pick the 1–2 hardest records on the tape and service them to the network with clean edits and instrumentals (freestyle-friendly instrumentals are mixtape currency). Run the tape itself free and frictionless — Audiomack, YouTube, DSPs if cleared — and use the DJ activity and coverage to make the tape an event, not an upload.</p>`,
     faq: [
       { q: 'Can mixtapes go on Spotify and Apple Music?', a: 'Only with cleared samples and beats you have rights to. Uncleared material stays on mixtape-native platforms — which is fine: the tape’s job is heat and name recognition, not royalties.' },
@@ -99,13 +99,13 @@ const headTerm = (p) => ({
 const HEAD_TERMS = [
   {
     slug: 'music-promotion-service', featured: true,
-    title: 'Music Promotion Built on Access, Not Ad Spend',
+    title: 'Music Promotion Service',
     navLabel: 'Music Promotion Service',
     metaTitle: 'Music Promotion Service: DJs, Radio, Playlists — Since 1998 | Digiwaxx',
     description: 'A music promotion service built on access: 30,000+ DJs, radio rotation, playlist placement, and published artist coverage. One-time payment, no contracts.',
     question: 'What does a real music promotion service actually do?',
     quickAnswer: 'A real music promotion service delivers access, not ads: your record placed with working DJs, radio, and playlists, plus published coverage — channels you cannot reach alone. Digiwaxx has been that access point since 1998, with a network of 30,000+ DJs.',
-    intro: 'Most services sold as music promotion are buying attention on your behalf: ads, submissions, impressions you cannot trace to a person. Digiwaxx works the other way round. Since 1998 we have run a record pool, which means a standing relationship with 30,000+ working DJs who come to us for new music, and your record enters that pool as one of the records they pull. Radio rotation, playlist placement and a published artist feature run alongside it. You are not renting an audience for a fortnight, you are being handed the distribution a label would otherwise own. Campaigns are one-time payments with no contract attached.<\/p><p class="long-answer">The alternatives are one of three cheap substitutes: ad management you could run yourself, botted numbers that poison your data, or spam blasts nobody opens. The test of a real service is simple — does it put your record in front of audiences you could not reach on your own? That is what a record pool with 27 years of DJ relationships does structurally.',
+    intro: 'Most things sold as "music promotion" are one of three cheap substitutes: ad management you could run yourself, botted numbers that poison your data, or spam blasts nobody opens. The test of a real service is simple — does it put your record in front of audiences you could not reach on your own? That is what a record pool with 27 years of DJ relationships does structurally.',
     sections: [
       { h2: 'What Your Campaign Includes', html: OFFER },
       {

@@ -5,13 +5,13 @@ module.exports = [
     slug: '60-day-release-plan',
     category: 'campaigns',
     featured: true,
-    title: 'The 60-Day Single Release Plan',
+    title: 'The 60-Day Release Plan',
     navLabel: '60-Day Release Plan',
     metaTitle: 'The 60-Day Release Plan: A Complete Campaign You Can Launch Today | Digiwaxx',
     description: 'A complete 60-day single campaign, week by week: assets, distribution, DJ service, pre-save push, release week, and two post-release waves. Copy it and launch.',
     question: 'What does a complete 60-day single campaign look like?',
     quickAnswer: 'Days 1–14: lock assets and distribute. Days 15–28: pitch editorial, launch pre-saves, service the record to DJs. Days 29–35: release week — concentrate everything. Days 36–60: work reactions into playlists, radio, and bookings, then fire wave two. Every step below is dated.',
-    longAnswer: 'Day 1 is 60 days before your release date, so start by working backwards from the date you have. This is a sample campaign you can run exactly as written — a 60-day window with release day on Day 29. It assumes one finished song and a modest budget, and it front-loads the work that most campaigns skip: getting the record into DJ hands before the public can stream it. Print it, put real dates on it, and start on Day 1.',
+    longAnswer: 'This is a sample campaign you can run exactly as written — a 60-day window with release day on Day 29. It assumes one finished song and a modest budget, and it front-loads the work that most campaigns skip: getting the record into DJ hands before the public can stream it. Print it, put real dates on it, and start on Day 1.',
     sections: [
       {
         h2: 'Days 1–7: Lock the Record',

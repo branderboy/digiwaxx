@@ -145,12 +145,11 @@ module.exports = [
   {
     slug: 'get-playlist-placement',
     category: 'goals',
-    title: 'How to Get Playlist Placement Without Getting Scammed',
+    title: 'How to Get Playlist Placement',
     navLabel: 'Get Playlist Placement',
     metaTitle: 'How to Get Playlist Placement (Without Getting Scammed) | Digiwaxx',
     description: 'The legitimate routes to playlist placement — editorial, curator, algorithmic — and how to spot the pay-for-placement scams that damage your profile.',
     question: 'How do I get my music placed on playlists?',
-    longAnswer: 'There are three legitimate ways onto a playlist, and a large industry selling you a fourth that does not exist. Editorial placement comes from pitching through your distributor. Curator placement comes from independent playlist owners who accept submissions. Algorithmic placement comes from real listener behaviour, which is why it cannot be bought directly. Everything sold as guaranteed placement is buying one of those three from someone who cannot deliver it, or manufacturing plays that damage how the platform reads your track. Below: what each real route requires, in what order to attempt them, and the signals that identify a seller to walk away from.',
     quickAnswer: 'Legitimate placement comes three ways: pitch editorial free through Spotify for Artists pre-release, earn independent curator adds with fit and momentum, and trigger algorithmic playlists through engagement. Anyone selling guaranteed placement is selling policy violations or bots.',
     sections: [
       {

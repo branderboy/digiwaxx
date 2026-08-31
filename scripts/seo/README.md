@@ -30,22 +30,13 @@ titles or descriptions, no hard orphans). The crawl *architecture* was not:
 
 ## Scripts
 
-Run in this order (`build.sh` does it for you): dashes go first because the
-title trimmer splits on the punctuation they become; hubs and `llms.txt` read
-page titles, so `fix_meta` trims and `apply_titles` writes the approved copy
-before them; the mesh and sitemap read the hubs.
-
-**Do not edit the built HTML by hand.** `scripts/content/chrome.js` holds the
-site nav and footer, and everything else is generated. Commit 7334b86 edited
-136 built pages directly and the generators did not know, so regenerating
-silently deleted the work; that is what `chrome.js` exists to prevent.
+Run in this order (`build.sh` does it for you) — hubs and `llms.txt` read page
+titles, so metadata is fixed first; the mesh and sitemap read the hubs.
 
 | Script | What it does |
 |---|---|
 | `lib.py` | Shared constants, the `/promotion` slug → (genre, city) taxonomy, page catalog, and the nav/footer chrome lifted from existing pages |
-| `strip_dashes.py` | Removes punctuation em/en dashes (characters and `&mdash;`/`&ndash;` entities) from every public page, so the convention set in 712fbf8 survives regeneration |
 | `fix_meta.py` | Trims titles to ≤60 and descriptions to ≤160 chars at clause boundaries, keeping `og:`/`twitter:` in sync |
-| `apply_titles.py` | Writes the approved SERP titles and descriptions over the trimmed ones, keeping `og:`/`twitter:` in step, and refuses to write anything the 60-char trimmer would clip |
 | `build_hubs.py` | Generates `/{section}/index.html` for all 9 sections |
 | `rewire_links.py` | Repoints `/university#anchor` links at the real hub pages |
 | `build_mesh.py` | Injects the contextual internal-link mesh into each content page |

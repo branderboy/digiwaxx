@@ -3,8 +3,6 @@
 // by running:  node scripts/content/generate.js
 
 // Update this when the production domain changes — canonicals & sitemap use it.
-const { NAV, FOOTER } = require('./chrome');
-
 const SITE_URL = 'https://promote.digiwaxx.com';
 
 const BRAND = {
@@ -92,13 +90,55 @@ function jsonLd(page, faq) {
 }
 
 function nav() {
-  return '\n' + NAV;
+  return `
+<nav class="cnav">
+  <div class="cnav-inner">
+    <a class="cnav-logo" href="/">DIGI<span>WAXX</span></a>
+    <div class="cnav-links">
+      <a href="/university">University</a>
+      <a href="/university#campaigns">Campaigns</a>
+      <a href="/university#guides">Guides</a>
+      <a href="/university#answers">Answers</a>
+      <a href="/university#promotion">Cities &amp; Platforms</a>
+      <a href="/university#tools">Tools</a>
+    </div>
+    <a class="cnav-cta" href="${BRAND.pricingUrl}">Submit Your Record &rarr;</a>
+  </div>
+</nav>`;
 }
 
-// The footer is curated chrome now, held verbatim in chrome.js. It keeps its
-// parameter so every call site stays as it was.
-function footer(allPages) {  // eslint-disable-line no-unused-vars
-  return '\n' + FOOTER;
+// Footer organized by category — curated: top links per category plus a
+// "View all" into the University hub, which is the full directory.
+const FOOTER_LINK_LIMIT = 5;
+function footer(allPages) {
+  const order = ['services', 'campaigns', 'guides', 'goals', 'answers', 'promotion', 'compare', 'journey', 'tools', 'stories'];
+  const cols = order.map((cat) => {
+    const pages = (allPages || []).filter((p) => p.category === cat);
+    if (!pages.length) return '';
+    // Keep data-file order when everything fits; otherwise surface featured first.
+    const featured = pages.filter((p) => p.featured);
+    const rest = pages.filter((p) => !p.featured);
+    const shown = pages.length <= FOOTER_LINK_LIMIT
+      ? pages
+      : featured.concat(rest).slice(0, FOOTER_LINK_LIMIT);
+    const links = shown.map((p) => `        <a href="${pageUrl(p)}">${esc(p.navLabel || p.title)}</a>`).join('\n');
+    const viewAll = pages.length > shown.length
+      ? `\n        <a class="cfooter-more" href="/university#${cat}">View all ${pages.length} &rarr;</a>` : '';
+    return `      <div class="cfooter-col"><h4><a href="/university#${cat}">${esc(CATEGORIES[cat].hubTitle)}</a></h4>\n${links}${viewAll}</div>`;
+  }).filter(Boolean).join('\n');
+  return `
+<footer class="cfooter">
+  <div class="cfooter-inner">
+    <div class="cfooter-brand">DIGI<span>WAXX</span><p>Trusted by ${BRAND.djCount} DJs since ${BRAND.since}.</p>
+      <a class="cfooter-cta" href="${BRAND.pricingUrl}">Submit Your Record &rarr;</a>
+      <a class="cfooter-hub" href="/university">Browse Digiwaxx University &rarr;</a>
+    </div>
+    <div class="cfooter-cols">
+${cols}
+    </div>
+  </div>
+  <p class="cfooter-copy">&copy; ${new Date().getFullYear()} Digiwaxx Media. All rights reserved.</p>
+</footer>`;
 }
 
 // The "funnel strip" — Layer 9 internal linking: every page points upward.

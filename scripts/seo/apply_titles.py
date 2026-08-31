@@ -264,14 +264,12 @@ def main():
     if not apply:
         print("\n(dry run, pass --apply to write)")
         return
-    written = 0
     for rel, kind, _ct, title, _cd, desc, path, src in plan:
         new = rewrite(src, title, desc)
         if rel in H1:
             new = rewrite_h1(new, H1[rel])
         if new != src:
             open(path, "w", encoding="utf-8").write(new)
-            written += 1
     # An H1 fix may land on a page whose title needs no change at all.
     for rel, text in H1.items():
         path = os.path.join(ROOT, rel)
@@ -281,7 +279,7 @@ def main():
         new = rewrite_h1(src, text)
         if new != src:
             open(path, "w", encoding="utf-8").write(new)
-    print(f"\nAPPLIED: {written} pages changed ({len(plan)} in the plan)")
+    print(f"\nAPPLIED: {len(plan)} pages, {len(H1)} H1 fixes")
 
 
 if __name__ == "__main__":

@@ -140,12 +140,6 @@ HUB_TITLES = {
 
 # ------------------------------------------------------------ content pages
 
-def card_url(s):
-    """The share card as this page already references it, version and all."""
-    m = re.search(r'<meta property="og:image" content="([^"]+)">', s)
-    return m.group(1) if m else f"{SITE}/assets/share-card.png"
-
-
 def place_node(city_key):
     return {"@type": "City", "name": lib.city_label(city_key),
             "address": {"@type": "PostalAddress",
@@ -170,15 +164,8 @@ def enrich_page(path, s, section, slug, cat):
         j["inLanguage"] = "en-US"
         j["articleSection"] = SECTION_LABEL.get(section, section.title())
         j["wordCount"] = word_count(s)
-        # dateModified belongs to the page, not to the build. The generator
-        # keeps an honest per-page date in scripts/content/dates.json, moved
-        # only when that page's content hash changes; stamping TODAY over it
-        # on every run told Google all 137 pages changed again each time the
-        # build was invoked. Keep what the page already carries.
-        j.setdefault("dateModified", j.get("datePublished", TODAY))
-        # The card URL is versioned by enrich_social, so take it from the page
-        # rather than rebuilding it here and dropping the version.
-        j["image"] = {"@type": "ImageObject", "url": card_url(s),
+        j["dateModified"] = TODAY
+        j["image"] = {"@type": "ImageObject", "url": f"{SITE}/assets/share-card.png",
                       "width": 1200, "height": 630}
         about = [{"@type": "Thing", "name": "Music promotion"}]
         if kind["genre"]:
@@ -191,14 +178,6 @@ def enrich_page(path, s, section, slug, cat):
 
     # A Service node with areaServed is what connects a city page to the actual
     # offering; without it these read to Google as undifferentiated articles.
-    # The node is rebuilt from scratch each run, so anything a later step hangs
-    # off it has to be carried across: enrich_social owns the pricing, and
-    # dropping it here left the two steps overwriting each other forever.
-    carried = {}
-    for _m, existing in blocks(s):
-        if existing.get("@type") == "Service" and "offers" in existing:
-            carried["offers"] = existing["offers"]
-            break
     s = re.sub(r'<script type="application/ld\+json">\{"@context":"https://schema\.org",'
                r'"@type":"Service".*?</script>\n?', "", s, flags=re.S)
     if kind["kind"] in ("city", "genre", "genre-city"):
@@ -216,7 +195,6 @@ def enrich_page(path, s, section, slug, cat):
             svc["areaServed"] = place_node(kind["city"])
         else:
             svc["areaServed"] = {"@type": "Country", "name": "United States"}
-        svc.update(carried)
         s = s.replace("</head>", f'<script type="application/ld+json">{dumps(svc)}</script>\n</head>', 1)
     return s
 
