@@ -19,7 +19,7 @@ const BRAND = {
 
 // Alt text for the shared social card — it is one image site-wide, so the
 // description is of the card itself, not of the page linking to it.
-const CARD_ALT = 'Digiwaxx — Get Your New Release in Front of 30,000+ DJs. '
+const CARD_ALT = 'Digiwaxx: Get Your New Release in Front of 30,000+ DJs. '
   + 'Clubs, radio and playlists since 1998.';
 
 const CATEGORIES = {

@@ -36,7 +36,7 @@ const SITE = 'https://promote.digiwaxx.com';
 
 // Alt text for the shared social card — one image site-wide, so the text
 // describes the card, not the page linking to it.
-const CARD_ALT = 'Digiwaxx — Get Your New Release in Front of 30,000+ DJs. '
+const CARD_ALT = 'Digiwaxx: Get Your New Release in Front of 30,000+ DJs. '
   + 'Clubs, radio and playlists since 1998.';
 
 // og:locale wants a region. <html lang> carries only the language on the

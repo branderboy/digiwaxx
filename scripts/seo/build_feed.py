@@ -20,7 +20,7 @@ NEWEST_N = 25
 
 CHANNEL_TITLE = "Digiwaxx University"
 CHANNEL_DESC = ("Guides, straight answers and campaign playbooks on DJ promotion, "
-                "radio, playlists and breaking records — from the record pool "
+                "radio, playlists and breaking records, from the record pool "
                 "that has served working DJs since 1998.")
 
 

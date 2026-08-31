@@ -3,7 +3,7 @@
   <channel>
     <title>Digiwaxx University</title>
     <link>https://promote.digiwaxx.com/university</link>
-    <description>Guides, straight answers and campaign playbooks on DJ promotion, radio, playlists and breaking records — from the record pool that has served working DJs since 1998.</description>
+    <description>Guides, straight answers and campaign playbooks on DJ promotion, radio, playlists and breaking records, from the record pool that has served working DJs since 1998.</description>
     <language>en-us</language>
     <lastBuildDate>Tue, 25 Aug 2026 00:00:00 +0000</lastBuildDate>
     <ttl>1440</ttl>
@@ -107,7 +107,7 @@
       <category>Release &amp; Promotion Guides</category>
     </item>
     <item>
-      <title>“I’m Getting Traction.”, Converting Momentum Into a Career</title>
+      <title>“I’m Getting Traction.”: Converting Momentum Into a Career</title>
       <link>https://promote.digiwaxx.com/journey/im-getting-traction</link>
       <guid isPermaLink="true">https://promote.digiwaxx.com/journey/im-getting-traction</guid>
       <description>The record is moving, now convert: bookings, complete royalty collection, publishing, performance rights, sync, and the next-release flywheel.</description>
@@ -123,7 +123,7 @@
       <category>Artist Journey</category>
     </item>
     <item>
-      <title>“I Need People.”, Building Your Amplification Network</title>
+      <title>“I Need People.”: Building Your Amplification Network</title>
       <link>https://promote.digiwaxx.com/journey/i-need-people</link>
       <guid isPermaLink="true">https://promote.digiwaxx.com/journey/i-need-people</guid>
       <description>The people layer of music promotion: DJs, radio, playlist curators, blogs, and influencers, what each one does, in what order, and how to reach them.</description>
@@ -131,7 +131,7 @@
       <category>Artist Journey</category>
     </item>
     <item>
-      <title>“I Made a Song.”, Now What?</title>
+      <title>“I Made a Song.”: Now What?</title>
       <link>https://promote.digiwaxx.com/journey/i-made-a-song</link>
       <guid isPermaLink="true">https://promote.digiwaxx.com/journey/i-made-a-song</guid>
       <description>You finished a song. The exact next steps: mastering, versions, artwork, metadata, ISRC, distribution, and lining up the people who will play it.</description>
@@ -167,6 +167,14 @@
       <link>https://promote.digiwaxx.com/guides/why-nobody-listens-to-my-music</link>
       <guid isPermaLink="true">https://promote.digiwaxx.com/guides/why-nobody-listens-to-my-music</guid>
       <description>The honest reasons nobody is listening to your music yet, exposure math, trust signals, and the fixable gap between good songs and heard songs.</description>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
+      <category>Guides</category>
+    </item>
+    <item>
+      <title>What to Do the Day Your Song Drops</title>
+      <link>https://promote.digiwaxx.com/guides/release-day-checklist-guide</link>
+      <guid isPermaLink="true">https://promote.digiwaxx.com/guides/release-day-checklist-guide</guid>
+      <description>Hour-by-hour release day checklist for independent artists: verification, links, content, outreach, and what to do that night.</description>
       <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
       <category>Guides</category>
     </item>
@@ -209,14 +217,6 @@
       <description>The complete music marketing checklist for independent artists, assets, profiles, pre-release, DJ service, release week, and post-release, in one list.</description>
       <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
       <category>Guides</category>
-    </item>
-    <item>
-      <title>The Club Record Campaign</title>
-      <link>https://promote.digiwaxx.com/campaigns/club-record-campaign</link>
-      <guid isPermaLink="true">https://promote.digiwaxx.com/campaigns/club-record-campaign</guid>
-      <description>A focused 6-week campaign to get a record tested and spinning in club rooms: packaging, DJ service, reaction harvesting, and converting spins into bookings.</description>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
-      <category>Campaign Blueprints</category>
     </item>
   </channel>
 </rss>

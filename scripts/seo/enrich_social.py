@@ -20,7 +20,7 @@ Four passes over every built page:
             AggregateOffer.
 
 Shared images live under /assets, which vercel.json serves as immutable for a
-year — correct only if the URL changes when the bytes do, so social image URLs
+year, correct only if the URL changes when the bytes do, so social image URLs
 are stamped with a short content hash.
 
 Usage: enrich_social.py [--apply]
@@ -30,7 +30,7 @@ import os, re, sys, json, glob, hashlib
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = "https://promote.digiwaxx.com"
 
-CARD_ALT = ("Digiwaxx — Get Your New Release in Front of 30,000+ DJs. "
+CARD_ALT = ("Digiwaxx: Get Your New Release in Front of 30,000+ DJs. "
             "Clubs, radio and playlists since 1998.")
 VERSIONED = ["assets/share-card.png", "assets/logo-org.png"]
 
@@ -103,6 +103,11 @@ def article_dates(src):
 
 def enrich_social(src, rel_path):
     pad = indent_of(src, "<meta property=\"og:image\"")
+
+    # Alt text is canonical, not merely defaulted: a page carrying an older
+    # wording is brought back in line rather than left behind.
+    src = re.sub(r'(<meta (?:property="og:image:alt"|name="twitter:image:alt") content=")[^"]*(">)',
+                 lambda m: m.group(1) + esc(CARD_ALT) + m.group(2), src)
     if 'property="og:image"' in src and 'property="og:image:width"' not in src:
         src = after(src, r'^[ \t]*<meta property="og:image" content="[^"]*">',
                     f'{pad}<meta property="og:image:width" content="1200">\n'

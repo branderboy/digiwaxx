@@ -4,8 +4,10 @@
 #   ./scripts/seo/build.sh           # dry run, changes nothing
 #   ./scripts/seo/build.sh --apply   # write changes
 #
-# Order matters: the hubs and llms.txt read page titles, so metadata is fixed
-# first; the mesh and sitemap read the hubs, so those come after. enrich_social
+# Order matters: strip_dashes runs first because the source data files still
+# carry em dashes that any regeneration reintroduces, and because the title
+# trimmer downstream splits on the punctuation it produces. The hubs and
+# llms.txt read page titles, so apply_titles sets them before the hubs run; the mesh and sitemap read the hubs, so those come after. enrich_social
 # runs after enrich_schema because it reads the Article dates that step writes
 # and re-stamps the versioned asset URLs, and build_feed runs last because it
 # reads the finished Article schema. Every step is idempotent, so running this
@@ -14,7 +16,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 ARG="${1:-}"
 
-for step in fix_meta build_hubs rewire_links build_mesh enrich_schema enrich_social build_llms build_sitemap build_feed; do
+for step in strip_dashes apply_titles fix_meta build_hubs rewire_links build_mesh enrich_schema enrich_social build_llms build_sitemap build_feed; do
   echo "=== $step ==="
   python3 "$step.py" ${ARG:+"$ARG"}
 done
