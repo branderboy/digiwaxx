@@ -7,7 +7,7 @@ module.exports = [
     slug: 'digiwaxx-vs-playlist-push',
     category: 'compare',
     featured: true,
-    title: 'Digiwaxx vs. Playlist Push',
+    title: 'Digiwaxx vs. Playlist Push: Playlists or DJ Crates',
     navLabel: 'vs. Playlist Push',
     metaTitle: 'Digiwaxx vs. Playlist Push: Which Fits Your Record? | Digiwaxx',
     description: 'An honest comparison: Playlist Push runs playlist curator and TikTok creator campaigns; Digiwaxx services records to a 30,000+ DJ network. Different tools for different jobs.',
@@ -44,13 +44,13 @@ module.exports = [
   {
     slug: 'digiwaxx-vs-submithub',
     category: 'compare',
-    title: 'Digiwaxx vs. SubmitHub',
+    title: 'Digiwaxx vs. SubmitHub: Two Different Jobs',
     navLabel: 'vs. SubmitHub',
     metaTitle: 'Digiwaxx vs. SubmitHub: Pitching Platform or DJ Network? | Digiwaxx',
     description: 'SubmitHub sells per-pitch access to curators, blogs, and labels with guaranteed feedback; Digiwaxx services your record to a 30,000+ DJ network. Honest comparison.',
     question: 'Should I use Digiwaxx or SubmitHub?',
     quickAnswer: 'SubmitHub is a pitching marketplace: you pay small per-submission credits to reach individual blogs, curators, and labels, who must listen and respond. Digiwaxx is a record pool: one campaign services your record to 30,000+ working DJs. One buys conversations; the other buys distribution into professional crates.',
-    longAnswer: 'SubmitHub earned its place by fixing a real problem — it forces gatekeepers to actually listen and respond, and its per-pitch pricing lets artists test cheaply. The trade-off is scale and channel: you are buying one listener at a time, mostly in the blog/playlist world. Here is how the two models compare in practice.',
+    longAnswer: 'These two get compared constantly, and the comparison usually misses that they do different jobs. SubmitHub sells you per-pitch access to curators, blogs and labels, with feedback guaranteed whether or not anyone says yes: you are buying attention from individual gatekeepers, one submission at a time. Digiwaxx services your record into a record pool that 30,000+ working DJs pull new music from, so you are buying distribution to a standing audience rather than a set of individual pitches. Neither replaces the other. If you want written feedback and blog placements, SubmitHub is built for that. If you want your record in DJ crates, this is.',
     sections: [
       {
         h2: 'What Each Actually Does',
@@ -78,7 +78,7 @@ module.exports = [
   {
     slug: 'digiwaxx-vs-groover',
     category: 'compare',
-    title: 'Digiwaxx vs. Groover',
+    title: 'Digiwaxx vs. Groover: Curator Pitches or DJ Servicing',
     navLabel: 'vs. Groover',
     metaTitle: 'Digiwaxx vs. Groover: Curator Pitching or DJ Servicing? | Digiwaxx',
     description: 'Groover sells guaranteed-feedback pitches to curators, radio, and labels (strong in Europe); Digiwaxx services records to 30,000+ US-rooted DJs. Honest comparison.',
