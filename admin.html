@@ -631,13 +631,13 @@
                 <div class="tab active" onclick="switchTab('leads')">Leads</div>
                 <div class="tab" onclick="switchTab('campaigns')">Campaigns</div>
                 <div class="tab" onclick="switchTab('purchases')">Sales</div>
+                <div class="tab" onclick="switchTab('checkouts')">Checkouts</div>
                 <div class="tab" onclick="switchTab('assets')">Assets</div>
                 <div class="tab" onclick="switchTab('design')">Design</div>
                 <div class="tab" onclick="switchTab('meta')">SEO</div>
                 <div class="tab" onclick="switchTab('content')">Content</div>
                 <div class="tab" onclick="switchTab('pricing')">Pricing</div>
                 <div class="tab" onclick="switchTab('paypal')">Integrations</div>
-                <div class="tab" onclick="switchTab('addons')">Add-Ons</div>
                 <div class="tab" onclick="switchTab('emails')">Emails</div>
                 <div class="tab" onclick="switchTab('manychat')">Conversations</div>
             </div>
@@ -712,6 +712,26 @@
                             </tr>
                         </thead>
                         <tbody id="purchasesBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Checkouts Panel: email + phone captured in the buy funnel -->
+            <div class="panel" id="panel-checkouts">
+                <h3 style="margin-bottom: 0.5rem; color: #ffd700;">Checkout Contacts</h3>
+                <p style="color: #aaa; margin-bottom: 1.5rem;">Everyone who reached the PayPal hand-off, with the email and phone number they gave at checkout. Use this to chase anyone who started paying but never sent their files.</p>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Tier</th>
+                                <th>Price</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody id="checkoutsBody"></tbody>
                     </table>
                 </div>
             </div>
@@ -982,7 +1002,7 @@
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
                             <textarea id="set-starter_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Features (one per line)</label>
-                            <textarea id="set-starter_features" class="settings-input" rows="6" style="width: 100%;" placeholder="Record pool placement&#10;Spotify playlist placement&#10;..."></textarea>
+                            <textarea id="set-starter_features" class="settings-input" rows="6" style="width: 100%;" placeholder="Record pool placement&#10;Digiwaxx Radio &ldquo;Make It or Break It&rdquo; feature"></textarea>
                         </div>
                         <div>
                             <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PRO Name</label>
@@ -992,7 +1012,7 @@
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
                             <textarea id="set-pro_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Features (one per line)</label>
-                            <textarea id="set-pro_features" class="settings-input" rows="6" style="width: 100%;" placeholder="Everything in Starter&#10;IG feed post&#10;..."></textarea>
+                            <textarea id="set-pro_features" class="settings-input" rows="6" style="width: 100%;" placeholder="Everything in Starter&#10;IG story post on Digiwaxx&#10;..."></textarea>
                         </div>
                         <div>
                             <label style="display: block; color: #ffd700; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">ELITE Name</label>
@@ -1002,7 +1022,7 @@
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Description</label>
                             <textarea id="set-elite_description" class="settings-input" rows="2" style="width: 100%;"></textarea>
                             <label style="display: block; color: #aaa; margin-top: 0.5rem; margin-bottom: 0.3rem; font-size: 0.75rem;">Features (one per line)</label>
-                            <textarea id="set-elite_features" class="settings-input" rows="6" style="width: 100%;" placeholder="Everything in Pro&#10;Zoom interview&#10;..."></textarea>
+                            <textarea id="set-elite_features" class="settings-input" rows="6" style="width: 100%;" placeholder="Everything in Pro&#10;Performance Snapshot Report&#10;..."></textarea>
                         </div>
                     </div>
 
@@ -1288,124 +1308,6 @@
             </div>
 
             <!-- Add-Ons Panel -->
-            <div class="panel" id="panel-addons">
-                <h3 style="margin-bottom: 0.5rem; color: #ffd700;">Add-On Offers</h3>
-                <p style="color: #aaa; margin-bottom: 1.5rem;">Configure add-on services shown on the landing page. Add-ons with a name, price, and PayPal link will appear as a section below pricing. Also sent via email to purchasers.</p>
-
-                <!-- Section Heading -->
-                <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-                    <h4 style="color: #ffd700; margin-bottom: 1rem;">Landing Page Section</h4>
-                    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 700px;">
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Section Heading</label>
-                            <input type="text" id="set-addons_heading" class="settings-input" style="width: 100%;" placeholder="LEVEL UP YOUR CAMPAIGN">
-                        </div>
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Section Subtitle</label>
-                            <input type="text" id="set-addons_subtitle" class="settings-input" style="width: 100%;" placeholder="Add extra firepower to any tier.">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Email Template -->
-                <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-                    <h4 style="color: #ffd700; margin-bottom: 1rem;">Email Template</h4>
-                    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 700px;">
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Email Subject</label>
-                            <input type="text" id="set-addon_email_subject" class="settings-input" style="width: 100%;">
-                        </div>
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Intro Text (use {{artist_name}}, {{song_title}}, {{tier}}, {{site_url}})</label>
-                            <textarea id="set-addon_email_intro" class="settings-input" rows="4" style="width: 100%;"></textarea>
-                        </div>
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Outro Text</label>
-                            <textarea id="set-addon_email_outro" class="settings-input" rows="3" style="width: 100%;"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add-On 1 -->
-                <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
-                    <h4 style="color: #ffd700; margin-bottom: 1rem;">Add-On 1</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 700px;">
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Name</label>
-                            <input type="text" id="set-addon_1_name" class="settings-input" style="width: 100%;">
-                        </div>
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Price ($)</label>
-                            <input type="number" id="set-addon_1_price" class="settings-input" style="width: 100%;" min="1">
-                        </div>
-                    </div>
-                    <div style="max-width: 700px; margin-top: 1rem;">
-                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Description</label>
-                        <textarea id="set-addon_1_desc" class="settings-input" rows="2" style="width: 100%;"></textarea>
-                    </div>
-                    <div style="max-width: 700px; margin-top: 1rem;">
-                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PayPal.me Link</label>
-                        <input type="text" id="set-addon_1_paypal_link" class="settings-input" style="width: 100%;" placeholder="https://paypal.me/digiwaxx/49">
-                        <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Leave empty to exclude this add-on from the email.</p>
-                    </div>
-                </div>
-
-                <!-- Add-On 2 -->
-                <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
-                    <h4 style="color: #ffd700; margin-bottom: 1rem;">Add-On 2</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 700px;">
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Name</label>
-                            <input type="text" id="set-addon_2_name" class="settings-input" style="width: 100%;">
-                        </div>
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Price ($)</label>
-                            <input type="number" id="set-addon_2_price" class="settings-input" style="width: 100%;" min="1">
-                        </div>
-                    </div>
-                    <div style="max-width: 700px; margin-top: 1rem;">
-                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Description</label>
-                        <textarea id="set-addon_2_desc" class="settings-input" rows="2" style="width: 100%;"></textarea>
-                    </div>
-                    <div style="max-width: 700px; margin-top: 1rem;">
-                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PayPal.me Link</label>
-                        <input type="text" id="set-addon_2_paypal_link" class="settings-input" style="width: 100%;" placeholder="https://paypal.me/digiwaxx/59">
-                        <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Leave empty to exclude this add-on from the email.</p>
-                    </div>
-                </div>
-
-                <!-- Add-On 3 -->
-                <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
-                    <h4 style="color: #ffd700; margin-bottom: 1rem;">Add-On 3</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 700px;">
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Name</label>
-                            <input type="text" id="set-addon_3_name" class="settings-input" style="width: 100%;">
-                        </div>
-                        <div>
-                            <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Price ($)</label>
-                            <input type="number" id="set-addon_3_price" class="settings-input" style="width: 100%;" min="1">
-                        </div>
-                    </div>
-                    <div style="max-width: 700px; margin-top: 1rem;">
-                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">Description</label>
-                        <textarea id="set-addon_3_desc" class="settings-input" rows="2" style="width: 100%;"></textarea>
-                    </div>
-                    <div style="max-width: 700px; margin-top: 1rem;">
-                        <label style="display: block; color: #aaa; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.8rem;">PayPal.me Link</label>
-                        <input type="text" id="set-addon_3_paypal_link" class="settings-input" style="width: 100%;" placeholder="https://paypal.me/digiwaxx/79">
-                        <p style="color: #666; font-size: 0.75rem; margin-top: 0.3rem;">Leave empty to exclude this add-on from the email.</p>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-                    <button onclick="saveAddons()" style="background: #ffd700; color: #000; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer;">Save Add-On Settings</button>
-                    <button onclick="sendAddonEmails()" style="background: transparent; border: 1px solid #ffd700; color: #ffd700; padding: 0.7rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer;">Send Add-Ons to All Purchasers</button>
-                </div>
-                <div id="addonStatus" style="color: #aaa; margin-top: 1rem;"></div>
-            </div>
-
             <!-- Emails Panel -->
             <div class="panel" id="panel-emails">
                 <h3 style="margin-bottom: 1rem; color: #ffd700;">Email Automation</h3>
@@ -1702,6 +1604,32 @@
         }
 
         // ========== LOAD SALES ==========
+        async function loadCheckouts() {
+            try {
+                const res = await fetch('/api/admin/clicks', { headers: authHeaders() });
+                if (res.status === 401) return handleLogout();
+                const data = await res.json();
+                const tbody = document.getElementById('checkoutsBody');
+
+                if (!data.clicks || data.clicks.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No checkouts recorded yet.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.clicks.map(c => `
+                    <tr>
+                        <td>${new Date(c.clicked_at + 'Z').toLocaleString()}</td>
+                        <td><span class="badge badge-${c.tier}">${c.tier}</span></td>
+                        <td>$${c.price}</td>
+                        <td>${c.contact_email ? `<a href="mailto:${c.contact_email}" style="color:#ffd700;">${c.contact_email}</a>` : '—'}</td>
+                        <td>${c.contact_phone ? `<a href="tel:${c.contact_phone}" style="color:#ffd700;">${c.contact_phone}</a>` : '—'}</td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                console.error('Failed to load checkouts:', e);
+            }
+        }
+
         async function loadPurchases() {
             try {
                 const res = await fetch('/api/admin/purchases', { headers: authHeaders() });
@@ -2070,45 +1998,13 @@
             }
         }
 
-        // ========== ADD-ONS ==========
-        function saveAddons() {
-            saveSettings([
-                'addons_heading', 'addons_subtitle',
-                'addon_email_subject', 'addon_email_intro', 'addon_email_outro',
-                'addon_1_name', 'addon_1_desc', 'addon_1_price', 'addon_1_paypal_link',
-                'addon_2_name', 'addon_2_desc', 'addon_2_price', 'addon_2_paypal_link',
-                'addon_3_name', 'addon_3_desc', 'addon_3_price', 'addon_3_paypal_link'
-            ]);
-        }
-
-        async function sendAddonEmails() {
-            if (!confirm('This will send the add-on offer email to ALL customers who have completed a purchase. Continue?')) return;
-            const status = document.getElementById('addonStatus');
-            status.textContent = 'Sending emails...';
-            status.style.color = '#ffd700';
-            try {
-                const res = await fetch('/api/admin/send-addon-emails', { method: 'POST', headers: authHeaders() });
-                if (res.status === 401) return handleLogout();
-                const data = await res.json();
-                if (data.ok) {
-                    status.textContent = `Done! Sent ${data.sent} of ${data.total} emails.` + (data.failed ? ` (${data.failed} failed)` : '');
-                    status.style.color = '#22c55e';
-                } else {
-                    status.textContent = data.error || 'Failed to send.';
-                    status.style.color = '#ef4444';
-                }
-            } catch (e) {
-                status.textContent = 'Error: ' + e.message;
-                status.style.color = '#ef4444';
-            }
-        }
-
         // ========== INIT ==========
         function loadAll() {
             loadStats();
             loadLeads();
             loadCampaignLeads();
             loadPurchases();
+            loadCheckouts();
             loadAssets();
             loadPricing();
             loadSettings();

@@ -31,10 +31,14 @@ async function initDB() {
       tier TEXT NOT NULL,
       price REAL NOT NULL,
       lead_id TEXT REFERENCES leads(id),
+      contact_email TEXT,
+      contact_phone TEXT,
       clicked_at TIMESTAMPTZ DEFAULT NOW(),
       ip_address TEXT,
       user_agent TEXT
     );
+    ALTER TABLE paypal_clicks ADD COLUMN IF NOT EXISTS contact_email TEXT;
+    ALTER TABLE paypal_clicks ADD COLUMN IF NOT EXISTS contact_phone TEXT;
     CREATE TABLE IF NOT EXISTS purchases (
       id TEXT PRIMARY KEY,
       lead_id TEXT REFERENCES leads(id),
@@ -98,7 +102,7 @@ async function initDB() {
       ('heading_font_size', '100'),
       ('body_font_size', '100'),
       ('meta_title', 'DIGIWAXX | New Music Boost | Get Your Record to DJs'),
-      ('meta_description', 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Spotify playlists, radio rotation, and more.'),
+      ('meta_description', 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Digiwaxx Radio features, and official artist coverage.'),
       ('og_image_url', ''),
       ('hero_eyebrow', 'The New Music Boost'),
       ('hero_h3', 'YOUR RECORD DESERVES MORE THAN STREAMS.'),
@@ -146,9 +150,9 @@ async function initDB() {
       ('manychat_page_id', ''),
       ('fb_pixel_id', ''),
       ('ga_measurement_id', ''),
-      ('starter_features', 'Record pool placement\nSpotify playlist placement\nDigiwaxx radio rotation\nDJ blast email feature\nOfficial Digiwaxx.com artist coverage\nArtist spotlight write-up (SEO indexed)'),
-      ('pro_features', 'Everything in Starter\nIG feed post on Digiwaxx\n2 Instagram story placements\nFeatured spin on DJ Call\nLive DJ mention'),
-      ('elite_features', 'Everything in Pro\nOne-on-one Zoom interview\nTikTok post on Digiwaxx\nPerformance snapshot report\nPriority DJ call placement'),
+      ('starter_features', 'Record pool placement\nDigiwaxx Radio \u201cMake It or Break It\u201d feature'),
+      ('pro_features', 'Everything in Starter\nIG story post on Digiwaxx\nSong featured as a Make It or Break It on NEW MUSIC WEDNESDAYS DJ Call'),
+      ('elite_features', 'Everything in Pro\nPerformance Snapshot Report\nOfficial Digiwaxx.com artist coverage & write-up (SEO indexed)'),
       ('pay_button_text', 'PROMOTE MY RECORD →'),
       ('price_label', 'One-time payment'),
       ('boost_cta_heading', 'Go to Instagram<br>and visit <span class="boost-word">@digiwaxx</span>'),
@@ -195,6 +199,24 @@ async function initDB() {
     UPDATE settings SET value = 'DIGIWAXX | New Music Boost | Get Your Record to DJs' WHERE key = 'meta_title' AND value = 'DIGIWAXX | New Music Boost — Get Your Record to DJs';
     UPDATE settings SET value = 'Limited slots available. Serious artists only' WHERE key = 'hero_cta_subtext' AND value = 'Limited slots available — serious artists only';
     UPDATE settings SET value = 'Go to Instagram<br>and visit <span class="boost-word">@digiwaxx</span>' WHERE key = 'boost_cta_heading' AND value = 'If on IG<br>DM @Digiwaxx "BOOST"';
+    -- Sept 2026 repackaging: Starter/Pro/Elite are the only products sold, with
+    -- these exact inclusions. Existing installs keep whatever the admin typed by
+    -- hand; only the previously shipped defaults are migrated forward.
+    UPDATE settings SET value = 'Record pool placement\nDigiwaxx Radio \u201cMake It or Break It\u201d feature'
+      WHERE key = 'starter_features' AND value IN (
+        'Record pool placement\nSpotify playlist placement\nDigiwaxx radio rotation\nDJ blast email feature\nOfficial Digiwaxx.com artist coverage\nArtist spotlight write-up (SEO indexed)',
+        'Record pool placement\nSpotify playlist placement\nDigiwaxx radio rotation\nDJ blast email feature\nOfficial Digiwaxx.com artist coverage'
+      );
+    UPDATE settings SET value = 'Everything in Starter\nIG story post on Digiwaxx\nSong featured as a Make It or Break It on NEW MUSIC WEDNESDAYS DJ Call'
+      WHERE key = 'pro_features' AND value IN (
+        'Everything in Starter\nIG feed post on Digiwaxx\n2 Instagram story placements\nFeatured spin on DJ Call\nLive DJ mention'
+      );
+    UPDATE settings SET value = 'Everything in Pro\nPerformance Snapshot Report\nOfficial Digiwaxx.com artist coverage & write-up (SEO indexed)'
+      WHERE key = 'elite_features' AND value IN (
+        'Everything in Pro\nOne-on-one Zoom interview\nTikTok post on Digiwaxx\nPerformance snapshot report\nPriority DJ call placement'
+      );
+    UPDATE settings SET value = 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Digiwaxx Radio features, and official artist coverage.'
+      WHERE key = 'meta_description' AND value = 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Spotify playlists, radio rotation, and more.';
     CREATE TABLE IF NOT EXISTS email_queue (
       id SERIAL PRIMARY KEY,
       lead_id TEXT REFERENCES leads(id),
@@ -515,14 +537,14 @@ module.exports = async (req, res) => {
     }
 
     if (url === '/api/paypal-click' && req.method === 'POST') {
-      const { tier, price, lead_id } = body;
+      const { tier, price, lead_id, contact_email, contact_phone } = body;
       if (!tier || !price) return json(res, { error: 'Tier and price are required' }, 400);
       const id = uuid();
       const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
       const ua = req.headers['user-agent'];
       await pool.query(
-        'INSERT INTO paypal_clicks (id, tier, price, lead_id, ip_address, user_agent) VALUES ($1, $2, $3, $4, $5, $6)',
-        [id, tier, price, lead_id || null, ip, ua]
+        'INSERT INTO paypal_clicks (id, tier, price, lead_id, contact_email, contact_phone, ip_address, user_agent) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
+        [id, tier, price, lead_id || null, contact_email || null, contact_phone || null, ip, ua]
       );
       return json(res, { ok: true, click_id: id });
     }
