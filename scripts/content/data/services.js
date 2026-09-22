@@ -13,10 +13,10 @@ const releaseCampaign = (fmt) => ({
   featured: fmt.featured,
   title: `Promote My ${fmt.name}`,
   navLabel: `Promote My ${fmt.name}`,
-  metaTitle: `Promote My ${fmt.name}: DJ, Radio & Playlist Campaign | Digiwaxx`,
-  description: `Promote your ${fmt.name.toLowerCase()} to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts — from the network trusted since 1998.`,
+  metaTitle: `Promote My ${fmt.name}: DJ & Radio Campaign | Digiwaxx`,
+  description: `Promote your ${fmt.name.toLowerCase()} to 30,000+ DJs and Digiwaxx Radio in one campaign. One-time payment, no contracts — from the network trusted since 1998.`,
   question: `How do I promote my ${fmt.name.toLowerCase()}?`,
-  quickAnswer: `Promote a ${fmt.name.toLowerCase()} by putting it in front of people who play music for audiences: ${fmt.answer} One Digiwaxx campaign services it to 30,000+ DJs with radio, playlist, and coverage layers on top.`,
+  quickAnswer: `Promote a ${fmt.name.toLowerCase()} by putting it in front of people who play music for audiences: ${fmt.answer} One Digiwaxx campaign services it to 30,000+ DJs with Digiwaxx Radio and DJ Call features on top.`,
   longAnswer: fmt.intro,
   sections: [
     { h2: `What a ${fmt.name} Campaign Includes`, html: OFFER },
@@ -36,7 +36,7 @@ const FORMATS = [
     slug: 'single', name: 'Single', featured: true,
     answer: 'service it to DJs before and during release week, stack playlist and radio pushes on the reaction, and keep waves coming for 60 days.',
     intro: 'The single is the unit of momentum in modern music — one record, fully worked, beats ten records uploaded quietly. A single campaign concentrates everything into one story: one hook, one artwork, one ask, serviced to every DJ format at once.',
-    how: `<p>Submit the record (clean, dirty, and instrumental) and it goes out to the network while the radio, playlist, and coverage layers run alongside. Time it 1–2 weeks before release day for maximum week-one velocity, or run it on a live record — DJs care whether it works, not when it dropped. Pair it with the <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a> to run the full rollout around it.</p>`,
+    how: `<p>Submit the record (clean, dirty, and instrumental) and it goes out to the network while the Digiwaxx Radio feature runs alongside. Time it 1–2 weeks before release day for maximum week-one velocity, or run it on a live record — DJs care whether it works, not when it dropped. Pair it with the <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a> to run the full rollout around it.</p>`,
     faq: [
       { q: 'When should I start promoting my single?', a: 'Ideally 2–3 weeks before release so DJs have it before street date. Already out? The same campaign works — pools service live records every day.' },
       { q: 'What files do I need?', a: 'Clean, dirty, and instrumental versions, mastered, with correct metadata. No clean version cuts your radio and mixshow reach to nearly zero.' },
@@ -100,7 +100,7 @@ const HEAD_TERMS = [
     slug: 'music-promotion-service', featured: true,
     title: 'Music Promotion Service',
     navLabel: 'Music Promotion Service',
-    metaTitle: 'Music Promotion Service: DJs, Radio, Playlists — Since 1998 | Digiwaxx',
+    metaTitle: 'Music Promotion Service: DJs & Radio Since 1998 | Digiwaxx',
     description: 'A music promotion service built on access: 30,000+ DJs, Digiwaxx Radio features, and published artist coverage. One-time payment, no contracts.',
     question: 'What does a real music promotion service actually do?',
     quickAnswer: 'A real music promotion service delivers access, not ads: your record placed with working DJs and put up for a verdict on Digiwaxx Radio, with published coverage on the top tier — channels you cannot reach alone. Digiwaxx has been that access point since 1998, with a network of 30,000+ DJs.',
@@ -199,7 +199,7 @@ const AUDIENCES = [
   {
     slug: 'managers', name: 'Managers',
     description: 'How artist managers use Digiwaxx: a repeatable promotion system per release, proof kits for pitching, and DJ data that guides booking and routing.',
-    quickAnswer: 'Managers use Digiwaxx as the repeatable promotion layer in every release plan: one submission covers DJ servicing, radio, playlists, and coverage — and the reaction data becomes the manager’s ammunition for bookings, radio pitches, and label conversations.',
+    quickAnswer: 'Managers use Digiwaxx as the repeatable promotion layer in every release plan: one submission covers DJ servicing and Digiwaxx Radio, with coverage on Elite — and the reaction data becomes the manager’s ammunition for bookings, radio pitches, and label conversations.',
     intro: 'A manager’s job is leverage: turning an artist’s work into opportunities. Every opportunity conversation — promoters, programmers, editors, labels — starts with the same question: what’s moving? The pool campaign is how a manager manufactures the answer.',
     sections: [
       {
