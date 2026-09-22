@@ -117,7 +117,7 @@ module.exports = GENRE_PAGES.map((g) => ({
     { h2: `What ${g.name} DJs Need From You`, html: `<p>${g.needs}</p><p>Packaging is the gate: a properly serviced record — right versions, right tags, professional master — is the difference between a DJ who can work your song this weekend and one who closes the file.</p>` },
     {
       h2: 'The Campaign',
-      html: `<p>One submission through Digiwaxx services your record to ${'30,000+'} working DJs — including the ${g.name.toLowerCase()} specialists in every major market — with radio, playlist, and coverage layers on top. Then the play is universal: watch where it reacts, concentrate content and pitches on that market, and convert reaction into bookings and rotation. Start with the <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a> or go straight to <a href="/promote/promote-my-single">a single campaign</a>.</p>`,
+      html: `<p>One submission through Digiwaxx services your record to ${'30,000+'} working DJs — including the ${g.name.toLowerCase()} specialists in every major market — with Digiwaxx Radio and DJ Call features on top. Then the play is universal: watch where it reacts, concentrate content and pitches on that market, and convert reaction into bookings and rotation. Start with the <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a> or go straight to <a href="/promote/promote-my-single">a single campaign</a>.</p>`,
     },
   ],
   faq: g.faq,

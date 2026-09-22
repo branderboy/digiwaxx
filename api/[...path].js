@@ -31,10 +31,14 @@ async function initDB() {
       tier TEXT NOT NULL,
       price REAL NOT NULL,
       lead_id TEXT REFERENCES leads(id),
+      contact_email TEXT,
+      contact_phone TEXT,
       clicked_at TIMESTAMPTZ DEFAULT NOW(),
       ip_address TEXT,
       user_agent TEXT
     );
+    ALTER TABLE paypal_clicks ADD COLUMN IF NOT EXISTS contact_email TEXT;
+    ALTER TABLE paypal_clicks ADD COLUMN IF NOT EXISTS contact_phone TEXT;
     CREATE TABLE IF NOT EXISTS purchases (
       id TEXT PRIMARY KEY,
       lead_id TEXT REFERENCES leads(id),
@@ -98,7 +102,7 @@ async function initDB() {
       ('heading_font_size', '100'),
       ('body_font_size', '100'),
       ('meta_title', 'DIGIWAXX | New Music Boost | Get Your Record to DJs'),
-      ('meta_description', 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Spotify playlists, radio rotation, and more.'),
+      ('meta_description', 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Digiwaxx Radio features, and official artist coverage.'),
       ('og_image_url', ''),
       ('hero_eyebrow', 'The New Music Boost'),
       ('hero_h3', 'YOUR RECORD DESERVES MORE THAN STREAMS.'),
@@ -120,7 +124,7 @@ async function initDB() {
       ('step1_title', 'SUBMIT YOUR RECORD'),
       ('step1_desc', 'Fill out the form with your artist info and a link to your track. Choose your boost tier.'),
       ('step2_title', 'WE PUSH IT OUT'),
-      ('step2_desc', 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation, in days, not months of chasing contacts on your own.'),
+      ('step2_desc', 'Your record gets placed into the Digiwaxx DJ network, record pool, and Digiwaxx Radio, in days, not months of chasing contacts on your own.'),
       ('step3_title', 'DJs SPIN YOUR TRACK'),
       ('step3_desc', 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide, turning spins into fans, bookings, and royalties.'),
       ('video_heading', 'WHY CHOOSE DIGIWAXX?'),
@@ -146,9 +150,9 @@ async function initDB() {
       ('manychat_page_id', ''),
       ('fb_pixel_id', ''),
       ('ga_measurement_id', ''),
-      ('starter_features', 'Record pool placement\nSpotify playlist placement\nDigiwaxx radio rotation\nDJ blast email feature\nOfficial Digiwaxx.com artist coverage\nArtist spotlight write-up (SEO indexed)'),
-      ('pro_features', 'Everything in Starter\nIG feed post on Digiwaxx\n2 Instagram story placements\nFeatured spin on DJ Call\nLive DJ mention'),
-      ('elite_features', 'Everything in Pro\nOne-on-one Zoom interview\nTikTok post on Digiwaxx\nPerformance snapshot report\nPriority DJ call placement'),
+      ('starter_features', 'Record pool placement\nDigiwaxx Radio \u201cMake It or Break It\u201d feature'),
+      ('pro_features', 'Everything in Starter\nIG story post on Digiwaxx\nSong featured as a Make It or Break It on NEW MUSIC WEDNESDAYS DJ Call'),
+      ('elite_features', 'Everything in Pro\nPerformance Snapshot Report\nOfficial Digiwaxx.com artist coverage & write-up (SEO indexed)'),
       ('pay_button_text', 'PROMOTE MY RECORD →'),
       ('price_label', 'One-time payment'),
       ('boost_cta_heading', 'Go to Instagram<br>and visit <span class="boost-word">@digiwaxx</span>'),
@@ -166,28 +170,12 @@ async function initDB() {
       ('modal_heading', 'RECORD SUBMITTED'),
       ('modal_body', 'Your submission has been received. Our team will review your record and reach out within 24 hours.'),
       ('modal_cta', 'Ready to boost now? Choose a tier above to pay via PayPal and skip the line.'),
-      ('modal_button', 'GOT IT'),
-      ('addon_enabled', 'true'),
-      ('addon_email_subject', 'Exclusive Add-Ons for Your Digiwaxx Boost'),
-      ('addon_email_intro', 'Hey {{artist_name}},\n\nThanks for choosing Digiwaxx to boost "{{song_title}}"! We have some exclusive add-on services to take your campaign even further.'),
-      ('addon_email_outro', 'Reply to this email or visit {{site_url}} to learn more.\n\n- The Digiwaxx Team'),
-      ('addon_1_name', 'Extra IG Story Feature'),
-      ('addon_1_desc', 'Get an additional Instagram story placement on the Digiwaxx account.'),
-      ('addon_1_price', '49'),
-      ('addon_1_paypal_link', ''),
-      ('addon_2_name', 'Priority DJ Blast'),
-      ('addon_2_desc', 'Jump to the top of the DJ blast email queue for maximum exposure.'),
-      ('addon_2_price', '59'),
-      ('addon_2_paypal_link', ''),
-      ('addon_3_name', 'Custom Press Release'),
-      ('addon_3_desc', 'Professional press release written and distributed for your record.'),
-      ('addon_3_price', '79'),
-      ('addon_3_paypal_link', '')
+      ('modal_button', 'GOT IT')
     ON CONFLICT (key) DO NOTHING;
     UPDATE settings SET value = 'PROMOTE MY RECORD →' WHERE key = 'pay_button_text' AND value = 'PAY WITH PAYPAL →';
     UPDATE settings SET value = 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs. Stop uploading into the void.' WHERE key = 'site_subheadline' AND value IN ('Digiwaxx connects your records to the DJs, playlists, and platforms that matter.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. Stop uploading into the void.', 'Digiwaxx connects your music to the DJs, platforms, and communities that still move records. One submission replaces months of cold DMs — stop uploading into the void.');
     UPDATE settings SET value = 'This isn''t just promo. It''s an industry co-sign. It''s the ecosystem that turns spins into fans, bookings, and royalties.' WHERE key = 'solution_closing' AND value IN ('This isn''t just promo. It''s access to the ecosystem that launches records.', 'This isn''t just promo. It''s an industry co-sign — the ecosystem that turns spins into fans, bookings, and royalties.');
-    UPDATE settings SET value = 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation, in days, not months of chasing contacts on your own.' WHERE key = 'step2_desc' AND value IN ('Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation.', 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation — in days, not months of chasing contacts on your own.');
+    UPDATE settings SET value = 'Your record gets placed into the Digiwaxx DJ network, record pool, and Digiwaxx Radio, in days, not months of chasing contacts on your own.' WHERE key = 'step2_desc' AND value IN ('Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation.', 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation — in days, not months of chasing contacts on your own.', 'Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation, in days, not months of chasing contacts on your own.');
     UPDATE settings SET value = 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide, turning spins into fans, bookings, and royalties.' WHERE key = 'step3_desc' AND value IN ('Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide.', 'Real DJs discover, download, and play your record in clubs, on radio, and in mixes worldwide — turning spins into fans, bookings, and royalties.');
     UPDATE settings SET value = 'One submission puts your record in front of 30,000+ DJs, no contracts, no gatekeepers, reviewed within 72 hours.' WHERE key = 'final_cta_body' AND value IN ('If your song is ready, it deserves to reach the DJs who matter.', 'Get your music into the Digiwaxx DJ network today.', 'One submission puts your record in front of 30,000+ DJs — no contracts, no gatekeepers, reviewed within 72 hours.');
     UPDATE settings SET value = 'Select the tier that fits your goals. One-time payment, no contracts, secure PayPal checkout, backed by a DJ network trusted since 1998.' WHERE key = 'pricing_subtitle' AND value IN ('Every tier gets your record into the Digiwaxx DJ network. Choose how loud you want to go.', 'Select the tier that fits your goals. Every plan includes DJ network access.', 'Select the tier that fits your goals. One-time payment, no contracts, secure PayPal checkout — backed by a DJ network trusted since 1998.');
@@ -195,6 +183,24 @@ async function initDB() {
     UPDATE settings SET value = 'DIGIWAXX | New Music Boost | Get Your Record to DJs' WHERE key = 'meta_title' AND value = 'DIGIWAXX | New Music Boost — Get Your Record to DJs';
     UPDATE settings SET value = 'Limited slots available. Serious artists only' WHERE key = 'hero_cta_subtext' AND value = 'Limited slots available — serious artists only';
     UPDATE settings SET value = 'Go to Instagram<br>and visit <span class="boost-word">@digiwaxx</span>' WHERE key = 'boost_cta_heading' AND value = 'If on IG<br>DM @Digiwaxx "BOOST"';
+    -- Sept 2026 repackaging: Starter/Pro/Elite are the only products sold, with
+    -- these exact inclusions. Existing installs keep whatever the admin typed by
+    -- hand; only the previously shipped defaults are migrated forward.
+    UPDATE settings SET value = 'Record pool placement\nDigiwaxx Radio \u201cMake It or Break It\u201d feature'
+      WHERE key = 'starter_features' AND value IN (
+        'Record pool placement\nSpotify playlist placement\nDigiwaxx radio rotation\nDJ blast email feature\nOfficial Digiwaxx.com artist coverage\nArtist spotlight write-up (SEO indexed)',
+        'Record pool placement\nSpotify playlist placement\nDigiwaxx radio rotation\nDJ blast email feature\nOfficial Digiwaxx.com artist coverage'
+      );
+    UPDATE settings SET value = 'Everything in Starter\nIG story post on Digiwaxx\nSong featured as a Make It or Break It on NEW MUSIC WEDNESDAYS DJ Call'
+      WHERE key = 'pro_features' AND value IN (
+        'Everything in Starter\nIG feed post on Digiwaxx\n2 Instagram story placements\nFeatured spin on DJ Call\nLive DJ mention'
+      );
+    UPDATE settings SET value = 'Everything in Pro\nPerformance Snapshot Report\nOfficial Digiwaxx.com artist coverage & write-up (SEO indexed)'
+      WHERE key = 'elite_features' AND value IN (
+        'Everything in Pro\nOne-on-one Zoom interview\nTikTok post on Digiwaxx\nPerformance snapshot report\nPriority DJ call placement'
+      );
+    UPDATE settings SET value = 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Digiwaxx Radio features, and official artist coverage.'
+      WHERE key = 'meta_description' AND value = 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Spotify playlists, radio rotation, and more.';
     CREATE TABLE IF NOT EXISTS email_queue (
       id SERIAL PRIMARY KEY,
       lead_id TEXT REFERENCES leads(id),
@@ -515,14 +521,14 @@ module.exports = async (req, res) => {
     }
 
     if (url === '/api/paypal-click' && req.method === 'POST') {
-      const { tier, price, lead_id } = body;
+      const { tier, price, lead_id, contact_email, contact_phone } = body;
       if (!tier || !price) return json(res, { error: 'Tier and price are required' }, 400);
       const id = uuid();
       const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
       const ua = req.headers['user-agent'];
       await pool.query(
-        'INSERT INTO paypal_clicks (id, tier, price, lead_id, ip_address, user_agent) VALUES ($1, $2, $3, $4, $5, $6)',
-        [id, tier, price, lead_id || null, ip, ua]
+        'INSERT INTO paypal_clicks (id, tier, price, lead_id, contact_email, contact_phone, ip_address, user_agent) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
+        [id, tier, price, lead_id || null, contact_email || null, contact_phone || null, ip, ua]
       );
       return json(res, { ok: true, click_id: id });
     }
@@ -782,87 +788,6 @@ module.exports = async (req, res) => {
     }
 
     // ===== ADDON EMAILS TO PURCHASERS =====
-    if (url === '/api/admin/send-addon-emails' && req.method === 'POST') {
-      if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
-      const apiKey = await getSetting('resend_api_key');
-      if (!apiKey) return json(res, { error: 'Resend API key not configured. Set it in Integrations.' }, 400);
-      const fromAddr = await getSetting('email_from');
-
-      const addonSettings = await getSettings([
-        'addon_email_subject', 'addon_email_intro', 'addon_email_outro',
-        'addon_1_name', 'addon_1_desc', 'addon_1_price', 'addon_1_paypal_link',
-        'addon_2_name', 'addon_2_desc', 'addon_2_price', 'addon_2_paypal_link',
-        'addon_3_name', 'addon_3_desc', 'addon_3_price', 'addon_3_paypal_link'
-      ]);
-
-      // Build add-on HTML blocks
-      let addonsHtml = '';
-      for (let i = 1; i <= 3; i++) {
-        const name = addonSettings[`addon_${i}_name`];
-        const desc = addonSettings[`addon_${i}_desc`];
-        const price = addonSettings[`addon_${i}_price`];
-        const link = addonSettings[`addon_${i}_paypal_link`];
-        if (name && link) {
-          addonsHtml += `<div style="background:#1a1a2e;border:1px solid #333;border-radius:8px;padding:16px;margin-bottom:12px;">` +
-            `<strong style="color:#ffd700;font-size:16px;">${name}: $${price}</strong><br>` +
-            `<span style="color:#ccc;">${desc}</span><br><br>` +
-            `<a href="${link}" style="background:#ffd700;color:#000;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:700;">GET THIS ADD-ON</a>` +
-            `</div>`;
-        }
-      }
-
-      if (!addonsHtml) return json(res, { error: 'No add-ons configured with PayPal links.' }, 400);
-
-      // Get all purchasers with their lead info
-      const { rows: purchasers } = await pool.query(
-        `SELECT DISTINCT ON (l.email) p.tier, l.email, l.artist_name, l.song_title
-         FROM purchases p
-         JOIN leads l ON l.id = p.lead_id
-         WHERE p.status = 'completed' AND l.email IS NOT NULL AND l.email != ''
-         ORDER BY l.email, p.created_at DESC`
-      );
-
-      if (purchasers.length === 0) return json(res, { error: 'No completed purchases with email addresses found.' }, 400);
-
-      const siteUrl = req.headers.host ? ('https://' + req.headers.host) : '';
-      let sent = 0, failed = 0;
-
-      for (const buyer of purchasers) {
-        const replacements = {
-          '{{artist_name}}': buyer.artist_name || 'Artist',
-          '{{song_title}}': buyer.song_title || 'your record',
-          '{{tier}}': buyer.tier || '',
-          '{{site_url}}': siteUrl
-        };
-
-        let subject = addonSettings.addon_email_subject || 'Add-On Services';
-        let intro = addonSettings.addon_email_intro || '';
-        let outro = addonSettings.addon_email_outro || '';
-
-        for (const [k, v] of Object.entries(replacements)) {
-          subject = subject.split(k).join(v);
-          intro = intro.split(k).join(v);
-          outro = outro.split(k).join(v);
-        }
-
-        const emailHtml = `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#0d0d1a;padding:24px;border-radius:12px;">` +
-          `<div style="color:#fff;font-size:14px;line-height:1.6;">${intro.replace(/\n/g, '<br>')}</div>` +
-          `<div style="margin:20px 0;">${addonsHtml}</div>` +
-          `<div style="color:#fff;font-size:14px;line-height:1.6;">${outro.replace(/\n/g, '<br>')}</div>` +
-          `</div>`;
-
-        try {
-          await sendResendEmail(apiKey, fromAddr, buyer.email, subject, emailHtml);
-          sent++;
-        } catch (e) {
-          failed++;
-        }
-      }
-
-      return json(res, { ok: true, total: purchasers.length, sent, failed });
-    }
-
-    // ===== EMAIL QUEUE =====
     if (url === '/api/admin/emails' && req.method === 'GET') {
       if (!checkAdmin(req)) return json(res, { error: 'Unauthorized' }, 401);
       const { rows } = await pool.query(`

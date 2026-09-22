@@ -1647,6 +1647,26 @@
         .fnl-total .label { font-family: var(--font-head); font-size: 1.3rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
         .fnl-total .amount { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; color: var(--accent-yellow); }
         .fnl-secure { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.7rem; }
+        .fnl-fields { text-align: left; max-width: 420px; margin: 0 auto 0.4rem; }
+        .fnl-label {
+            display: block; font-family: var(--font-head); font-weight: 700; font-size: 0.8rem;
+            letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 0.35rem;
+        }
+        .fnl-req { color: var(--accent-yellow); }
+        .fnl-input {
+            display: block; width: 100%; font-family: inherit; font-size: 1rem;
+            background: rgba(255,255,255,0.06); border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 10px; padding: 0.8rem 1rem; color: #fff; margin-bottom: 1rem;
+            transition: border-color 0.2s ease;
+        }
+        .fnl-input::placeholder { color: rgba(255,255,255,0.4); }
+        .fnl-input:focus { outline: none; border-color: var(--accent-yellow); }
+        .fnl-input.invalid { border-color: #ff6b6b; }
+        .fnl-field-error {
+            display: none; color: #ff6b6b; font-size: 0.85rem; text-align: left;
+            max-width: 420px; margin: 0 auto 1rem;
+        }
+        .fnl-field-error.show { display: block; }
 
         /* Light funnel modal - readable on mobile */
         #funnelOverlay .funnel-box { background: #ffffff; border-color: rgba(0,0,0,0.12); }
@@ -1673,6 +1693,13 @@
         #funnelOverlay .fnl-total .label { color: #1a0a18; }
         #funnelOverlay .fnl-total .amount { color: #a82e5e; }
         #funnelOverlay .fnl-secure { color: #6a6a72; }
+        #funnelOverlay .fnl-label { color: #1a0a18; }
+        #funnelOverlay .fnl-req { color: #a82e5e; }
+        #funnelOverlay .fnl-input { background: #f6f6f8; border-color: rgba(0,0,0,0.15); color: #1a0a18; }
+        #funnelOverlay .fnl-input::placeholder { color: #8a8590; }
+        #funnelOverlay .fnl-input:focus { border-color: #a82e5e; }
+        #funnelOverlay .fnl-input.invalid { border-color: #d63b3b; }
+        #funnelOverlay .fnl-field-error { color: #d63b3b; }
 
         /* --- SUCCESS MODAL --- */
         .modal-overlay {
@@ -2024,8 +2051,8 @@
                 <ul class="custom-bullets text-white">
                     <li>30,000+ Digiwaxx DJs worldwide</li>
                     <li>Digiwaxx Record Pool distribution</li>
-                    <li>Spotify playlist placement</li>
-                    <li>Radio rotation opportunities</li>
+                    <li>Digiwaxx Radio &ldquo;Make It or Break It&rdquo; feature</li>
+                    <li>NEW MUSIC WEDNESDAYS DJ Call features</li>
                     <li>One submission, our team handles the outreach for you</li>
                 </ul>
 
@@ -2053,7 +2080,7 @@
                     <div class="step-card animate-in">
                         <div class="step-number">02</div>
                         <h3 data-key="step2_title">WE PUSH IT OUT</h3>
-                        <p data-key="step2_desc">Your record gets placed into the Digiwaxx DJ network, record pool, playlists, and radio rotation, in days, not months of chasing contacts on your own.</p>
+                        <p data-key="step2_desc">Your record gets placed into the Digiwaxx DJ network, record pool, and Digiwaxx Radio, in days, not months of chasing contacts on your own.</p>
                     </div>
                     <div class="step-card animate-in">
                         <div class="step-number">03</div>
@@ -2083,11 +2110,7 @@
                             <p>Perfect for artists who need their first real DJ push.</p>
                             <ul class="custom-bullets text-white tier-features" data-features-key="starter_features">
                                 <li>Record pool placement</li>
-                                <li>Spotify playlist placement</li>
-                                <li>Digiwaxx radio rotation</li>
-                                <li>DJ blast email feature</li>
-                                <li>Official Digiwaxx.com artist coverage</li>
-                                <li>Artist spotlight write-up (SEO indexed)</li>
+                                <li>Digiwaxx Radio &ldquo;Make It or Break It&rdquo; feature</li>
                             </ul>
                             <a href="#" class="btn-buy" data-tier="starter" data-price="99" onclick="handlePayPalClick(event, 'Starter', 99)"><span class="pay-btn-text">PROMOTE MY RECORD &rarr;</span></a>
                             <div class="paypal-note">
@@ -2110,10 +2133,8 @@
                             <p>Everything in Starter, plus stronger visibility.</p>
                             <ul class="custom-bullets text-white tier-features" data-features-key="pro_features">
                                 <li>Everything in Starter</li>
-                                <li>IG feed post on Digiwaxx</li>
-                                <li>2 Instagram story placements</li>
-                                <li>Featured spin on DJ Call</li>
-                                <li>Live DJ mention</li>
+                                <li>IG story post on Digiwaxx</li>
+                                <li>Song featured as a Make It or Break It on NEW MUSIC WEDNESDAYS DJ Call</li>
                             </ul>
                             <a href="#" class="btn-buy" data-tier="pro" data-price="149" onclick="handlePayPalClick(event, 'Pro', 149)"><span class="pay-btn-text">PROMOTE MY RECORD &rarr;</span></a>
                             <div class="paypal-note">
@@ -2135,10 +2156,8 @@
                             <p>Everything in Pro, plus deeper industry exposure.</p>
                             <ul class="custom-bullets text-white tier-features" data-features-key="elite_features">
                                 <li>Everything in Pro</li>
-                                <li>One-on-one Zoom interview</li>
-                                <li>TikTok post on Digiwaxx</li>
-                                <li>Performance snapshot report</li>
-                                <li>Priority DJ call placement</li>
+                                <li>Performance Snapshot Report</li>
+                                <li>Official Digiwaxx.com artist coverage &amp; write-up (SEO indexed)</li>
                             </ul>
                             <a href="#" class="btn-buy" data-tier="elite" data-price="199" onclick="handlePayPalClick(event, 'Elite', 199)"><span class="pay-btn-text">PROMOTE MY RECORD &rarr;</span></a>
                             <div class="paypal-note">
@@ -2148,17 +2167,6 @@
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </section>
-
-        <!-- ADD-ONS -->
-        <section class="addons-section" id="addons" style="display: none;">
-            <div class="container-wide">
-                <h2 class="text-white text-center" data-key="addons_heading">LEVEL UP YOUR CAMPAIGN</h2>
-                <p class="text-center addons-subtitle" data-key="addons_subtitle">Add extra firepower to any tier.</p>
-                <div class="addons-grid" id="addons-grid">
-                    <!-- Populated dynamically from API -->
                 </div>
             </div>
         </section>
@@ -2341,28 +2349,19 @@
                 <button class="fnl-decline" id="fnlUpsellDecline">No thanks, keep my current package</button>
             </div>
 
-            <!-- ADD-ONS -->
-            <div class="funnel-pane" id="fnlAddons">
-                <h2>Level Up Your Campaign</h2>
-                <p class="fnl-desc">Grab features from the higher packages as one-off add-ons, without upgrading your whole tier.</p>
-                <div class="fnl-addon-grid" id="fnlAddonGrid"></div>
-                <button class="fnl-accept" id="fnlAddonsContinue">Continue to Checkout &rarr;</button>
-                <button class="fnl-decline" id="fnlAddonsSkip">Skip add-ons</button>
-            </div>
-
-            <!-- GUEST POST UPSELL -->
-            <div class="funnel-pane" id="fnlGuest">
-                <div class="fnl-eyebrow">One-Time Offer</div>
-                <h2>Get a Guest Post on Digiwaxx.com?</h2>
-                <p class="fnl-desc">Your own feature published on Digiwaxx.com, the platform trusted by 30,000+ DJs since 1998. A permanent page about you and your record that works for you around the clock.</p>
-                <ul class="fnl-list">
-                    <li>A feature article about you &amp; your record on Digiwaxx.com</li>
-                    <li>A permanent link to share with press, playlists &amp; promoters</li>
-                    <li>Strengthens your press presence &amp; search results</li>
-                </ul>
-                <div class="fnl-price-line"><span class="now" id="fnlGuestNow"></span> <span class="sub">Published on digiwaxx.com</span></div>
-                <button class="fnl-accept" id="fnlGuestAccept"></button>
-                <button class="fnl-decline" id="fnlGuestDecline">No thanks, continue to checkout</button>
+            <!-- CONTACT DETAILS -->
+            <div class="funnel-pane" id="fnlContact">
+                <h2>Where Should We Reach You?</h2>
+                <p class="fnl-desc">We need your email and phone number to confirm your payment, collect your record, and keep you posted while the campaign runs.</p>
+                <div class="fnl-fields">
+                    <label class="fnl-label" for="fnlEmail">Email Address <span class="fnl-req">*</span></label>
+                    <input class="fnl-input" type="email" id="fnlEmail" placeholder="you@email.com" autocomplete="email" inputmode="email" required>
+                    <label class="fnl-label" for="fnlPhone">Phone Number <span class="fnl-req">*</span></label>
+                    <input class="fnl-input" type="tel" id="fnlPhone" placeholder="(555) 555-5555" autocomplete="tel" inputmode="tel" required>
+                </div>
+                <p class="fnl-field-error" id="fnlContactError"></p>
+                <button class="fnl-accept" id="fnlContactContinue">Continue to Checkout &rarr;</button>
+                <button class="fnl-decline" id="fnlContactBack">Go back</button>
             </div>
 
             <!-- ORDER SUMMARY -->
@@ -2375,15 +2374,6 @@
                 <button class="fnl-decline" id="fnlAbandon">I'm not ready to order</button>
             </div>
 
-            <!-- DOWNSELL -->
-            <div class="funnel-pane" id="fnlDownsell">
-                <div class="fnl-eyebrow">Before You Go&hellip;</div>
-                <h2>Not Ready For The Full Package?</h2>
-                <p class="fnl-desc" id="fnlDownsellDesc"></p>
-                <div class="fnl-price-line"><span class="was" id="fnlDownsellWas"></span> <span class="now" id="fnlDownsellNow"></span></div>
-                <button class="fnl-accept" id="fnlDownsellAccept"></button>
-                <button class="fnl-decline" id="fnlDownsellDecline">No thanks, back to my order</button>
-            </div>
         </div>
     </div>
 
@@ -2512,33 +2502,6 @@
             if (c.boost_dm_reply) {
                 const el = document.getElementById('boost-dm-reply');
                 if (el) el.textContent = c.boost_dm_reply;
-            }
-
-            // Add-Ons section
-            const addonsGrid = document.getElementById('addons-grid');
-            const addonsSection = document.getElementById('addons');
-            if (addonsGrid && addonsSection) {
-                let hasAddons = false;
-                let addonsHTML = '';
-                [1, 2, 3].forEach(i => {
-                    const name = c['addon_' + i + '_name'];
-                    const price = c['addon_' + i + '_price'];
-                    const desc = c['addon_' + i + '_desc'];
-                    const link = c['addon_' + i + '_paypal_link'];
-                    if (name && price && link) {
-                        hasAddons = true;
-                        addonsHTML += '<div class="addon-card animate-in">'
-                            + '<div class="addon-name">' + name + '</div>'
-                            + '<div class="addon-price">$' + price + '</div>'
-                            + '<div class="addon-desc">' + (desc || '') + '</div>'
-                            + '<a href="' + link + '" target="_blank" rel="noopener" class="btn-addon">ADD THIS</a>'
-                            + '</div>';
-                    }
-                });
-                if (hasAddons) {
-                    addonsGrid.innerHTML = addonsHTML;
-                    addonsSection.style.display = '';
-                }
             }
 
             // Form placeholders
@@ -2675,29 +2638,14 @@
         });
 
         // ============ SALES FUNNEL ============
+        // Three packages, nothing else: pick a tier, optionally upgrade to the
+        // next one, leave an email + phone, pay.
         const FNL_NEXT = { starter: 'pro', pro: 'elite', elite: null };
-        const FNL_RANK = { starter: 1, pro: 2, elite: 3 };
-        const FNL_SINGLES = [
-            { id: 'ig_feed',    name: 'IG Feed Post on Digiwaxx',     price: 45, desc: 'One post on the Digiwaxx Instagram feed.',             fromTier: 'pro' },
-            { id: 'ig_story',   name: '2 Instagram Story Placements', price: 35, desc: 'Two Instagram story placements on Digiwaxx.',          fromTier: 'pro' },
-            { id: 'dj_call',    name: 'Featured Spin on DJ Call',     price: 35, desc: 'Your record featured live on the weekly DJ call.',     fromTier: 'pro' },
-            { id: 'dj_mention', name: 'Live DJ Mention',              price: 25, desc: 'A live on-air mention from a Digiwaxx DJ.',            fromTier: 'pro' }
-        ];
         const FNL_STRATEGY = {
             name: 'Artist Boost Strategy Session (30-Min Zoom)',
             price: 50
         };
-        const FNL_GUEST = {
-            name: 'Guest Post on Digiwaxx.com',
-            price: 25
-        };
-        const FNL_DOWNSELL = {
-            name: 'DJ Blast Email Feature (Solo)',
-            wasPrice: 99,
-            price: 75,
-            desc: 'Skip the full package for now. Get your record in front of the DJ network with the DJ blast email feature on its own, at a one-time discount.'
-        };
-        const fnlState = { tier: null, upgraded: false, addons: [], sessionOnly: false, guestpost: false, downsellOnly: false };
+        const fnlState = { tier: null, upgraded: false, sessionOnly: false, email: '', phone: '' };
         const fnl = id => document.getElementById(id);
         const fnlMoney = n => '$' + n;
 
@@ -2719,25 +2667,24 @@
             fnl(id).classList.add('active');
             document.querySelector('.funnel-box').scrollTop = 0;
         }
-        function openFunnel(tierKey) {
-            fnlState.tier = tierKey;
-            fnlState.upgraded = false;
-            fnlState.addons = [];
-            fnlState.sessionOnly = false;
-            fnlState.guestpost = false;
-            fnlState.downsellOnly = false;
-            fnl('funnelOverlay').classList.add('active');
-            if (FNL_NEXT[tierKey]) fnlEnterUpsell(); else fnlEnterAddons();
-        }
-        function openSessionFunnel() {
+        function fnlReset() {
             fnlState.tier = null;
             fnlState.upgraded = false;
-            fnlState.addons = [];
-            fnlState.sessionOnly = true;
-            fnlState.guestpost = false;
-            fnlState.downsellOnly = false;
+            fnlState.sessionOnly = false;
+            fnlState.email = '';
+            fnlState.phone = '';
+        }
+        function openFunnel(tierKey) {
+            fnlReset();
+            fnlState.tier = tierKey;
             fnl('funnelOverlay').classList.add('active');
-            fnlEnterSummary();
+            if (FNL_NEXT[tierKey]) fnlEnterUpsell(); else fnlEnterContact();
+        }
+        function openSessionFunnel() {
+            fnlReset();
+            fnlState.sessionOnly = true;
+            fnl('funnelOverlay').classList.add('active');
+            fnlEnterContact();
         }
         function closeFunnel() { fnl('funnelOverlay').classList.remove('active'); }
 
@@ -2747,7 +2694,7 @@
             const diff = Math.max(1, Math.round(next.price - base.price));
             const extras = next.features.filter(f => !f.toLowerCase().startsWith('everything'));
             fnl('fnlUpsellHeading').textContent = `Upgrade to ${next.name} for just ${fnlMoney(diff)} more?`;
-            fnl('fnlUpsellDesc').textContent = `You chose ${base.name} (${fnlMoney(base.price)}). For ${fnlMoney(diff)} more you unlock everything below, cheaper than adding any one of these later.`;
+            fnl('fnlUpsellDesc').textContent = `You chose ${base.name} (${fnlMoney(base.price)}). For ${fnlMoney(diff)} more you unlock everything below.`;
             fnl('fnlUpsellFeatures').innerHTML = extras.map(f => `<li>${f}</li>`).join('');
             fnl('fnlUpsellWas').textContent = fnlMoney(next.price);
             fnl('fnlUpsellNow').textContent = '+' + fnlMoney(diff);
@@ -2755,70 +2702,54 @@
             fnlShowPane('fnlUpsell');
         }
 
-        function fnlEnterAddons() {
-            const rank = FNL_RANK[fnlCurrentTierKey()];
-            const singles = FNL_SINGLES.filter(s => FNL_RANK[s.fromTier] > rank);
-            if (!singles.length) { fnlAfterAddons(); return; }
-            fnl('fnlAddonGrid').innerHTML = singles.map(s => `
-                <div class="fnl-addon ${fnlState.addons.includes(s.id) ? 'added' : ''}" data-id="${s.id}">
-                    <div class="a-tag">${fnlTierData(s.fromTier).name} feature</div>
-                    <div class="a-name">${s.name}</div>
-                    <div class="a-price">${fnlMoney(s.price)}</div>
-                    <div class="a-desc">${s.desc}</div>
-                    <button class="a-toggle">${fnlState.addons.includes(s.id) ? 'Added ✓' : 'Add This'}</button>
-                </div>
-            `).join('');
-            document.querySelectorAll('.fnl-addon').forEach(card => {
-                card.addEventListener('click', () => {
-                    const id = card.dataset.id;
-                    const idx = fnlState.addons.indexOf(id);
-                    if (idx >= 0) fnlState.addons.splice(idx, 1);
-                    else fnlState.addons.push(id);
-                    card.classList.toggle('added', idx < 0);
-                    card.querySelector('.a-toggle').textContent = idx < 0 ? 'Added ✓' : 'Add This';
-                });
-            });
-            fnlShowPane('fnlAddons');
+        // Email + phone are captured here, at the point of purchase, so every
+        // buyer is reachable even if they never fill in the homepage form.
+        function fnlEnterContact() {
+            fnl('fnlEmail').value = fnlState.email;
+            fnl('fnlPhone').value = fnlState.phone;
+            fnlClearContactError();
+            fnl('fnlContactBack').style.display =
+                (!fnlState.sessionOnly && FNL_NEXT[fnlState.tier]) ? '' : 'none';
+            fnlShowPane('fnlContact');
+        }
+        function fnlClearContactError() {
+            fnl('fnlContactError').classList.remove('show');
+            fnl('fnlEmail').classList.remove('invalid');
+            fnl('fnlPhone').classList.remove('invalid');
+        }
+        function fnlContactFail(msg, field) {
+            const box = fnl('fnlContactError');
+            box.textContent = msg;
+            box.classList.add('show');
+            if (field) { fnl(field).classList.add('invalid'); fnl(field).focus(); }
+        }
+        function fnlSubmitContact() {
+            const email = fnl('fnlEmail').value.trim();
+            const phone = fnl('fnlPhone').value.trim();
+            fnlClearContactError();
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                return fnlContactFail('Please enter a valid email address.', 'fnlEmail');
+            }
+            // 7+ digits covers US and international numbers without being strict
+            // about punctuation, spacing, or country code.
+            if ((phone.match(/\d/g) || []).length < 7) {
+                return fnlContactFail('Please enter a valid phone number.', 'fnlPhone');
+            }
+            fnlState.email = email;
+            fnlState.phone = phone;
+            fnlEnterSummary();
         }
 
         function fnlOrderItems() {
-            if (fnlState.downsellOnly) {
-                return [{ tag: 'Special Offer', name: FNL_DOWNSELL.name, price: FNL_DOWNSELL.price }];
-            }
             if (fnlState.sessionOnly) {
-                const items = [{ tag: 'Product', name: FNL_STRATEGY.name, price: FNL_STRATEGY.price }];
-                if (fnlState.guestpost) {
-                    items.push({ tag: 'Guest Post', name: FNL_GUEST.name, price: FNL_GUEST.price });
-                }
-                return items;
+                return [{ tag: 'Product', name: FNL_STRATEGY.name, price: FNL_STRATEGY.price }];
             }
             const tier = fnlTierData(fnlCurrentTierKey());
-            const items = [{
+            return [{
                 tag: fnlState.upgraded ? 'Package (Upgraded)' : 'Package',
-                name: tier.name + ' Boost' + (tier.tagline ? ' · ' + tier.tagline : ''),
+                name: tier.name + ' Boost' + (tier.tagline ? ' \u00b7 ' + tier.tagline : ''),
                 price: tier.price
             }];
-            fnlState.addons.forEach(id => {
-                const s = FNL_SINGLES.find(x => x.id === id);
-                if (s) items.push({ tag: 'Add-On', name: s.name, price: s.price });
-            });
-            if (fnlState.guestpost) {
-                items.push({ tag: 'Guest Post', name: FNL_GUEST.name, price: FNL_GUEST.price });
-            }
-            return items;
-        }
-
-        function fnlEnterGuest() {
-            fnl('fnlGuestNow').textContent = fnlMoney(FNL_GUEST.price);
-            fnl('fnlGuestAccept').textContent = `Yes, Add My Guest Post for ${fnlMoney(FNL_GUEST.price)}`;
-            fnlShowPane('fnlGuest');
-        }
-
-        // Guest post is only offered on the Starter ($99) and Pro ($149) packages.
-        function fnlAfterAddons() {
-            const key = fnlCurrentTierKey();
-            if (key === 'starter' || key === 'pro') fnlEnterGuest();
-            else fnlEnterSummary();
         }
 
         function fnlEnterSummary() {
@@ -2828,28 +2759,26 @@
                 <div class="fnl-order-line"><span><span class="i-tag">${i.tag}</span>${i.name}</span><span class="amount">${fnlMoney(i.price)}</span></div>
             `).join('');
             fnl('fnlOrderTotal').textContent = fnlMoney(total);
-            fnl('fnlPayBtn').textContent = `Pay ${fnlMoney(total)} with PayPal →`;
+            fnl('fnlPayBtn').textContent = `Pay ${fnlMoney(total)} with PayPal \u2192`;
             fnlShowPane('fnlSummary');
-        }
-
-        function fnlShowDownsell() {
-            fnl('fnlDownsellDesc').textContent = FNL_DOWNSELL.desc;
-            fnl('fnlDownsellWas').textContent = fnlMoney(FNL_DOWNSELL.wasPrice);
-            fnl('fnlDownsellNow').textContent = fnlMoney(FNL_DOWNSELL.price);
-            fnl('fnlDownsellAccept').textContent = `Yes, Give Me the Blast for ${fnlMoney(FNL_DOWNSELL.price)}`;
-            fnlShowPane('fnlDownsell');
         }
 
         function fnlCheckout() {
             const items = fnlOrderItems();
             const total = items.reduce((sum, i) => sum + i.price, 0);
-            const tierKey = fnlState.downsellOnly ? 'downsell' : fnlState.sessionOnly ? 'artist_boost' : fnlCurrentTierKey();
+            const tierKey = fnlState.sessionOnly ? 'artist_boost' : fnlCurrentTierKey();
 
             // Track the click (keepalive so it survives the navigation below)
             fetch('/api/paypal-click', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ tier: tierKey, price: total, lead_id: currentLeadId }),
+                body: JSON.stringify({
+                    tier: tierKey,
+                    price: total,
+                    lead_id: currentLeadId,
+                    contact_email: fnlState.email,
+                    contact_phone: fnlState.phone
+                }),
                 keepalive: true
             }).catch(() => {});
 
@@ -2863,18 +2792,14 @@
             window.location.href = 'https://paypal.me/' + paypalUsername + '/' + total;
         }
 
-        fnl('fnlUpsellAccept').onclick = () => { fnlState.upgraded = true; fnlEnterAddons(); };
-        fnl('fnlUpsellDecline').onclick = () => fnlEnterAddons();
-        fnl('fnlAddonsContinue').onclick = () => fnlAfterAddons();
-        fnl('fnlAddonsSkip').onclick = () => fnlAfterAddons();
-        fnl('fnlGuestAccept').onclick = () => { fnlState.guestpost = true; fnlEnterSummary(); };
-        fnl('fnlGuestDecline').onclick = () => { fnlState.guestpost = false; fnlEnterSummary(); };
+        fnl('fnlUpsellAccept').onclick = () => { fnlState.upgraded = true; fnlEnterContact(); };
+        fnl('fnlUpsellDecline').onclick = () => { fnlState.upgraded = false; fnlEnterContact(); };
+        fnl('fnlContactContinue').onclick = () => fnlSubmitContact();
+        fnl('fnlContactBack').onclick = () => fnlEnterUpsell();
+        fnl('fnlPhone').addEventListener('keydown', e => { if (e.key === 'Enter') fnlSubmitContact(); });
+        fnl('fnlEmail').addEventListener('keydown', e => { if (e.key === 'Enter') fnl('fnlPhone').focus(); });
         fnl('fnlPayBtn').onclick = () => fnlCheckout();
-        // The DJ-blast downsell replaces the whole order, which makes no sense
-        // for the standalone session purchase - just close the funnel there.
-        fnl('fnlAbandon').onclick = () => { if (fnlState.sessionOnly) closeFunnel(); else fnlShowDownsell(); };
-        fnl('fnlDownsellAccept').onclick = () => { fnlState.downsellOnly = true; fnlEnterSummary(); };
-        fnl('fnlDownsellDecline').onclick = () => { fnlState.downsellOnly = false; fnlEnterSummary(); };
+        fnl('fnlAbandon').onclick = () => closeFunnel();
         fnl('funnelOverlay').addEventListener('click', e => {
             if (e.target === e.currentTarget) closeFunnel();
         });

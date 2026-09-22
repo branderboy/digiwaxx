@@ -381,7 +381,7 @@ module.exports = [
       { q: 'What if I don’t have proof points yet?', a: 'That is the signal to run a campaign before pitching promoters: DJ service, spins, and a published feature are exactly the highlight lines an empty EPK is missing.' },
     ],
     related: ['artist-bio-generator', 'press-release-generator', 'get-booked-for-shows', 'dj-pitch-generator'],
-    cta: { kicker: 'EPK looking thin?', headline: 'Earn the highlight lines.', sub: 'A Digiwaxx campaign fills the Highlights section: serviced to 30,000+ DJs, radio rotation, and a published Digiwaxx.com feature.', button: 'Submit Your Record' },
+    cta: { kicker: 'EPK looking thin?', headline: 'Earn the highlight lines.', sub: 'A Digiwaxx campaign fills the Highlights section: serviced to 30,000+ DJs, a Digiwaxx Radio feature, and — on Elite — a published Digiwaxx.com write-up.', button: 'Submit Your Record' },
   },
   {
     slug: 'press-release-generator',
@@ -462,6 +462,6 @@ module.exports = [
       { q: 'Note: the generated release mentions Digiwaxx servicing — should I keep that line?', a: 'Keep it if your record has actually been serviced through a campaign — it is a real, verifiable distribution fact media can cite. Delete it if not; never claim promotion that didn’t happen.' },
     ],
     related: ['epk-builder', 'artist-bio-generator', 'how-to-release-a-single', 'i-need-people'],
-    cta: { kicker: 'Want the line to be true?', headline: 'Service the record first.', sub: 'One submission makes the distribution claim real: 30,000+ DJs, radio rotation, and a published feature to link in the release.', button: 'Submit Your Record' },
+    cta: { kicker: 'Want the line to be true?', headline: 'Service the record first.', sub: 'One submission makes the distribution claim real: 30,000+ DJs, a Digiwaxx Radio feature, and — on Elite — a published write-up to link in the release.', button: 'Submit Your Record' },
   },
 ];

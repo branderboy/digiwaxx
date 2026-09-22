@@ -104,7 +104,7 @@ def edit_pages(apply):
     # Excluded by full path, not basename: the root landing/utility pages carry
     # their own inline styles and markup, while section hubs (promotion/index.html
     # and friends) share the content.css chrome and must be included.
-    skip = {f"{ROOT}/{n}.html" for n in ("index", "funnel", "submit", "admin")}
+    skip = {f"{ROOT}/{n}.html" for n in ("index", "submit", "admin")}
     files = [f for f in sorted(glob.glob(f"{ROOT}/*.html")) + sorted(glob.glob(f"{ROOT}/*/*.html"))
              if "/api/" not in f and f not in skip]
     n = 0

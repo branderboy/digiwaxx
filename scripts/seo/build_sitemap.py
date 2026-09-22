@@ -22,7 +22,7 @@ TODAY = os.environ.get("SEO_BUILD_DATE") or datetime.date.today().isoformat()
 OUTDIR = f"{ROOT}/sitemaps"
 
 # Pages that must never appear in a sitemap: noindex, admin, or error pages.
-EXCLUDE = {"/404", "/admin", "/submit", "/funnel"}
+EXCLUDE = {"/404", "/admin", "/submit"}
 
 
 def dirty_files():

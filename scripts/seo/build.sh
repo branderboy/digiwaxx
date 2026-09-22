@@ -17,6 +17,6 @@ for step in fix_meta build_hubs rewire_links build_mesh enrich_schema build_llms
 done
 
 # The audit exits non-zero when it finds problems; the utility pages (/404,
-# /admin, /funnel) are permanent expected orphans, so don't fail the build on it.
+# /admin, /submit) are permanent expected orphans, so don't fail the build on it.
 echo "=== audit ==="
 python3 audit_links.py || true

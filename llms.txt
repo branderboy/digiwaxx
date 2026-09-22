@@ -2,8 +2,8 @@
 
 > Digiwaxx is a record pool and music promotion service operating since 1998,
 > connecting artists' records to a network of 30,000+ working DJs (club,
-> mixshow, radio, mobile), plus radio rotation, playlist placement, and
-> published artist coverage. One-time campaigns: Starter $99, Pro $149,
+> mixshow, radio, mobile), plus a Digiwaxx Radio "Make It or Break It"
+> feature, and published artist coverage on the top tier. One-time campaigns: Starter $99, Pro $149,
 > Elite $199. Main site: https://promote.digiwaxx.com, start at https://promote.digiwaxx.com/university.
 
 ## Section Indexes
@@ -24,16 +24,16 @@ Every section has a full index page listing all of its articles:
 
 Index: https://promote.digiwaxx.com/promote
 
-- [Independent Music Promotion](https://promote.digiwaxx.com/promote/independent-music-promotion): Independent music promotion that rents you the label machine: DJ servicing to 30,000+ DJs, radio, playlists, and published coverage, while you keep 100%.
-- [Music Promotion Service](https://promote.digiwaxx.com/promote/music-promotion-service): A music promotion service built on access: 30,000+ DJs, radio rotation, playlist placement, and published artist coverage. One-time payment, no contracts.
+- [Independent Music Promotion](https://promote.digiwaxx.com/promote/independent-music-promotion): Independent music promotion that rents you the label machine: DJ servicing to 30,000+ DJs, Digiwaxx Radio, and published coverage, while you keep 100%.
+- [Music Promotion Service](https://promote.digiwaxx.com/promote/music-promotion-service): A music promotion service built on access: 30,000+ DJs, Digiwaxx Radio features, and published artist coverage. One-time payment, no contracts.
 - [Music Promotion for DJs](https://promote.digiwaxx.com/promote/music-promotion-for-djs): What Digiwaxx offers DJs: a curated feed of new, DJ-ready records since 1998, and how DJs in the network shape which records break.
 - [Music Promotion for Managers](https://promote.digiwaxx.com/promote/music-promotion-for-managers): How artist managers use Digiwaxx: a repeatable promotion system per release, proof kits for pitching, and DJ data that guides booking and routing.
 - [Music Promotion for Producers](https://promote.digiwaxx.com/promote/music-promotion-for-producers): How producers use Digiwaxx: break records you produced, put instrumentals in DJ crates, and build the producer name DJs and artists recognize.
 - [Music Promotion for Record Labels](https://promote.digiwaxx.com/promote/music-promotion-for-record-labels): How indie labels use Digiwaxx: DJ servicing for the whole roster, per-release campaigns without per-release infrastructure, and reaction data for A&R decisions.
-- [Promote My Album](https://promote.digiwaxx.com/promote/promote-my-album): Promote your album to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
-- [Promote My EP](https://promote.digiwaxx.com/promote/promote-my-ep): Promote your ep to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
-- [Promote My Mixtape](https://promote.digiwaxx.com/promote/promote-my-mixtape): Promote your mixtape to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
-- [Promote My Single](https://promote.digiwaxx.com/promote/promote-my-single): Promote your single to 30,000+ DJs, radio, and playlists in one campaign. One-time payment, no contracts, from the network trusted since 1998.
+- [Promote My Album](https://promote.digiwaxx.com/promote/promote-my-album): Promote your album to 30,000+ DJs and Digiwaxx Radio in one campaign. One-time payment, no contracts, from the network trusted since 1998.
+- [Promote My EP](https://promote.digiwaxx.com/promote/promote-my-ep): Promote your ep to 30,000+ DJs and Digiwaxx Radio in one campaign. One-time payment, no contracts, from the network trusted since 1998.
+- [Promote My Mixtape](https://promote.digiwaxx.com/promote/promote-my-mixtape): Promote your mixtape to 30,000+ DJs and Digiwaxx Radio in one campaign. One-time payment, no contracts, from the network trusted since 1998.
+- [Promote My Single](https://promote.digiwaxx.com/promote/promote-my-single): Promote your single to 30,000+ DJs and Digiwaxx Radio in one campaign. One-time payment, no contracts, from the network trusted since 1998.
 
 ## Campaign Blueprints
 
