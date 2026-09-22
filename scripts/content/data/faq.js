@@ -212,7 +212,7 @@ module.exports = [
       },
       {
         h2: 'What a Campaign Looks Like for an Independent',
-        html: `<p>Pick a tier (Starter $99, Pro $149, Elite $199 — one-time, no contracts), submit your files, and the record is serviced to the ${'30,000+'} DJ network with radio rotation, playlist placement, and an SEO-indexed artist feature layered in. You keep 100% of your masters, royalties, and rights — the campaign never touches ownership. Then read <a href="/answers/what-happens-after-you-submit-music">what happens after you submit</a> and work the reactions.</p>`,
+        html: `<p>Pick a tier (Starter $99, Pro $149, Elite $199 — one-time, no contracts), submit your files, and the record is serviced to the ${'30,000+'} DJ network with a Digiwaxx Radio “Make It or Break It” feature on top — and on Elite, an SEO-indexed artist write-up. You keep 100% of your masters, royalties, and rights — the campaign never touches ownership. Then read <a href="/answers/what-happens-after-you-submit-music">what happens after you submit</a> and work the reactions.</p>`,
       },
     ],
     faq: [
@@ -280,7 +280,7 @@ module.exports = [
       },
       {
         h2: 'The Independent Entry Points',
-        html: `<p>Daytime rotation is the last domino, not the first. Independents enter through mixshows (DJ-programmed hours on commercial stations), specialty and local-artist shows, and college/community radio — all programmed by DJs and hosts who pick their own records, and all reachable through DJ channels. That is why pool servicing matters for radio: mixshow DJs source from the same crates as club DJs, and Digiwaxx's network includes the radio and mixshow jocks alongside them, with the campaign's radio rotation layer on top.</p>`,
+        html: `<p>Daytime rotation is the last domino, not the first. Independents enter through mixshows (DJ-programmed hours on commercial stations), specialty and local-artist shows, and college/community radio — all programmed by DJs and hosts who pick their own records, and all reachable through DJ channels. That is why pool servicing matters for radio: mixshow DJs source from the same crates as club DJs, and Digiwaxx's network includes the radio and mixshow jocks alongside them, with the campaign's Digiwaxx Radio feature on top.</p>`,
       },
     ],
     faq: [

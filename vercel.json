@@ -86,7 +86,7 @@
       ]
     },
     {
-      "source": "/(admin|funnel|index|submit)",
+      "source": "/(admin|index|submit)",
       "headers": [
         {
           "key": "Cache-Control",

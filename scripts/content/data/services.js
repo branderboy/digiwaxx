@@ -1,11 +1,10 @@
 // Money pages (release campaigns + outcome head terms) and audience pages.
 // These are conversion pages: outcome first, the actual offer, then proof.
 const OFFER = `<ul>
-<li><strong>Record pool placement</strong> — your record serviced to the Digiwaxx network of 30,000+ club, mixshow, and radio DJs</li>
-<li><strong>Spotify playlist placement</strong> and Digiwaxx radio rotation</li>
-<li><strong>DJ blast email feature</strong> — direct to the DJ list that has trusted Digiwaxx since 1998</li>
-<li><strong>Official Digiwaxx.com artist coverage</strong> — an SEO-indexed artist spotlight that keeps working after the campaign</li>
-<li>Pro and Elite add socials pushes, featured DJ Call spins, a one-on-one interview, and a performance snapshot report</li>
+<li><strong>Record pool placement</strong> — your record serviced to the Digiwaxx network of 30,000+ club, mixshow, and radio DJs (every tier)</li>
+<li><strong>Digiwaxx Radio &ldquo;Make It or Break It&rdquo; feature</strong> — the record goes up for a verdict on air (every tier)</li>
+<li><strong>Pro adds:</strong> an IG story post on Digiwaxx, and your song featured as a Make It or Break It on the NEW MUSIC WEDNESDAYS DJ Call</li>
+<li><strong>Elite adds:</strong> a Performance Snapshot Report, plus official Digiwaxx.com artist coverage &amp; write-up — SEO-indexed, still working after the campaign</li>
 </ul>`;
 
 const releaseCampaign = (fmt) => ({
@@ -48,7 +47,7 @@ const FORMATS = [
     slug: 'album', name: 'Album',
     answer: 'lead with the strongest 1–2 focus tracks serviced to DJs, run the album as a story across 8–12 weeks, and let each single pull listeners into the full project.',
     intro: 'Albums fail on streaming when they are promoted as one event. They win when they are promoted as a season: focus tracks carry the campaign, the album is the destination, and every DJ spin or playlist add on a single sells the whole body of work.',
-    how: `<p>Pick the one or two records DJs can actually play — club energy, radio-clean — and campaign those through the network while the album provides the depth behind them. Coverage and interview layers (Pro/Elite) do more for albums than any other format: a project gives you a story worth telling, and an SEO-indexed feature gives that story a permanent home.</p>`,
+    how: `<p>Pick the one or two records DJs can actually play — club energy, radio-clean — and campaign those through the network while the album provides the depth behind them. The Elite coverage layer does more for albums than for any other format: a project gives you a story worth telling, and an SEO-indexed write-up gives that story a permanent home.</p>`,
     faq: [
       { q: 'Should I promote every song on the album?', a: 'No — campaign the 1–2 focus tracks hard and let the album absorb the attention. You can run a second focus track 6–8 weeks later as a fresh wave.' },
       { q: 'Before or after the album drops?', a: 'Start the first focus-track campaign 2–3 weeks before the album, then work post-release waves. Albums reward longer campaigns than singles.' },
@@ -102,9 +101,9 @@ const HEAD_TERMS = [
     title: 'Music Promotion Service',
     navLabel: 'Music Promotion Service',
     metaTitle: 'Music Promotion Service: DJs, Radio, Playlists — Since 1998 | Digiwaxx',
-    description: 'A music promotion service built on access: 30,000+ DJs, radio rotation, playlist placement, and published artist coverage. One-time payment, no contracts.',
+    description: 'A music promotion service built on access: 30,000+ DJs, Digiwaxx Radio features, and published artist coverage. One-time payment, no contracts.',
     question: 'What does a real music promotion service actually do?',
-    quickAnswer: 'A real music promotion service delivers access, not ads: your record placed with working DJs, radio, and playlists, plus published coverage — channels you cannot reach alone. Digiwaxx has been that access point since 1998, with a network of 30,000+ DJs.',
+    quickAnswer: 'A real music promotion service delivers access, not ads: your record placed with working DJs and put up for a verdict on Digiwaxx Radio, with published coverage on the top tier — channels you cannot reach alone. Digiwaxx has been that access point since 1998, with a network of 30,000+ DJs.',
     intro: 'Most things sold as "music promotion" are one of three cheap substitutes: ad management you could run yourself, botted numbers that poison your data, or spam blasts nobody opens. The test of a real service is simple — does it put your record in front of audiences you could not reach on your own? That is what a record pool with 27 years of DJ relationships does structurally.',
     sections: [
       { h2: 'What Your Campaign Includes', html: OFFER },
@@ -130,7 +129,7 @@ const HEAD_TERMS = [
     title: 'Independent Music Promotion',
     navLabel: 'Independent Music Promotion',
     metaTitle: 'Independent Music Promotion: Label Infrastructure, No Label | Digiwaxx',
-    description: 'Independent music promotion that rents you the label machine: DJ servicing to 30,000+ DJs, radio, playlists, and published coverage — while you keep 100% of everything.',
+    description: 'Independent music promotion that rents you the label machine: DJ servicing to 30,000+ DJs, Digiwaxx Radio, and published coverage — while you keep 100% of everything.',
     question: 'How does music promotion work for independent artists?',
     quickAnswer: 'Independent promotion means renting the infrastructure labels own — DJ servicing, radio pushes, playlist placement, press — campaign by campaign, while keeping your masters, your royalties, and your decisions. The DJ network is the piece you can access on day one.',
     intro: 'The independent advantage is real: you keep everything. The independent disadvantage is also real: labels have standing machinery — DJ servicing pipelines, radio relationships, press contacts — that took decades to build. The modern answer isn’t signing; it’s renting exactly the machinery you need, per release. That is what Digiwaxx has been for independent artists since 1998.',
@@ -141,7 +140,7 @@ const HEAD_TERMS = [
         html: `<ol>
 <li><strong>Own your foundation:</strong> masters, splits in writing, PRO registration, consistent profiles</li>
 <li><strong>Rent amplification per release:</strong> DJ service and coverage when a record is ready — no contracts, no points on your masters</li>
-<li><strong>Keep the assets:</strong> every campaign leaves you with DJ relationships, spin history, published coverage, and data — things a label would own for you</li>
+<li><strong>Keep the assets:</strong> every campaign leaves you with DJ relationships, spin history, and data — and on Elite, published coverage — things a label would own for you</li>
 <li><strong>Compound:</strong> release every 4–8 weeks into an increasingly warm network</li>
 </ol>`,
       },
@@ -182,7 +181,7 @@ const AUDIENCES = [
         html: `<ul>
 <li><strong>Priority servicing:</strong> each focus release packaged and serviced to the full network on schedule</li>
 <li><strong>Reaction data as A&R:</strong> which records DJs pull, in which cities, in which formats — before you commit marketing spend</li>
-<li><strong>Roster coverage:</strong> artist spotlights and interview placements build each act's search footprint under your label's story</li>
+<li><strong>Roster coverage:</strong> Elite write-ups on Digiwaxx.com build each act's search footprint under your label's story</li>
 <li><strong>No lock-in:</strong> per-record campaigns mean you scale servicing up and down with your release calendar</li>
 </ul>`,
       },
@@ -207,7 +206,7 @@ const AUDIENCES = [
         h2: 'The Manager’s Workflow',
         html: `<ul>
 <li><strong>Slot the campaign into every rollout:</strong> service 1–2 weeks pre-release, same calendar every time (see the <a href="/campaigns/60-day-release-plan">60-Day Release Plan</a>)</li>
-<li><strong>Build the proof kit:</strong> DJ activity, spins, published coverage, and the performance snapshot become the one-sheet for every pitch</li>
+<li><strong>Build the proof kit:</strong> DJ activity and spins — plus, on Elite, the Performance Snapshot Report and published coverage — become the one-sheet for every pitch</li>
 <li><strong>Route off the data:</strong> book the cities where DJs are reacting — rooms where the record already works are rooms that convert</li>
 <li><strong>Protect the artist:</strong> one-time campaign pricing, no contracts, nothing touching masters or royalties</li>
 </ul>`,
@@ -215,7 +214,7 @@ const AUDIENCES = [
     ],
     faq: [
       { q: 'Can I manage campaigns for multiple artists?', a: 'Yes — each record is its own submission and campaign, so a manager can run their whole roster through the same system and calendar.' },
-      { q: 'What makes the campaign useful beyond the spins?', a: 'The receipts. Published coverage, DJ feedback, and spin activity are third-party proof — the difference between a manager saying "trust me" and showing a moving record.' },
+      { q: 'What makes the campaign useful beyond the spins?', a: 'The receipts. DJ feedback and spin activity — and on Elite, the Performance Snapshot Report and published coverage — are third-party proof, the difference between a manager saying "trust me" and showing a moving record.' },
     ],
     related: ['music-promotion-for-record-labels', 'get-booked-for-shows', '60-day-release-plan', 'im-getting-traction'],
   },
@@ -231,7 +230,7 @@ const AUDIENCES = [
 <li><strong>Campaign your placements:</strong> when a record you produced gets serviced, your credit rides 30,000+ crates — make sure metadata carries your name</li>
 <li><strong>Instrumentals are currency:</strong> DJs use them for blends, edits, and freestyle sessions; every use is your sound in a room</li>
 <li><strong>Producer-artist joint campaigns:</strong> split a campaign with the artist you produced — same record, both names build</li>
-<li><strong>The coverage layer:</strong> an SEO-indexed feature about the record includes the story of who made it</li>
+<li><strong>The Elite coverage layer:</strong> an SEO-indexed write-up about the record includes the story of who made it</li>
 </ul>`,
       },
     ],

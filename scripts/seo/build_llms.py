@@ -32,8 +32,9 @@ HEADER = """# Digiwaxx
 
 > Digiwaxx is a record pool and music promotion service operating since 1998,
 > connecting artists' records to a network of 30,000+ working DJs (club,
-> mixshow, radio, mobile), plus radio rotation, playlist placement, and
-> published artist coverage. One-time campaigns: Starter $99, Pro $149,
+> mixshow, radio, mobile), plus a Digiwaxx Radio "Make It or Break It"
+> feature, and published artist coverage on the top tier. One-time
+> campaigns: Starter $99, Pro $149,
 > Elite $199. Main site: https://promote.digiwaxx.com, start at https://promote.digiwaxx.com/university.
 
 ## Section Indexes

@@ -39,7 +39,7 @@ DESC_OVERRIDES = {
     "guides/how-to-get-djs-to-play-my-song.html":
         "What working DJs need before they play your record: proper files, easy delivery, and the record pool system that reaches thousands of DJs at once.",
     "promote/independent-music-promotion.html":
-        "Independent music promotion that rents you the label machine: DJ servicing to 30,000+ DJs, radio, playlists, and published coverage, while you keep 100%.",
+        "Independent music promotion that rents you the label machine: DJ servicing to 30,000+ DJs, Digiwaxx Radio, and published coverage, while you keep 100%.",
     "promote/music-promotion-for-record-labels.html":
         "How indie labels use Digiwaxx: DJ servicing for the whole roster, per-release campaigns without the infrastructure, and reaction data for A&amp;R calls.",
     "promotion/youtube-music-promotion.html":

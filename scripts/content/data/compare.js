@@ -19,7 +19,7 @@ module.exports = [
         h2: 'What Each Actually Does',
         html: `<ul>
 <li><strong>Playlist Push:</strong> a campaign platform that pitches your song to networks of independent playlist curators (and, in its creator product, TikTok creators), who review and optionally add/use it. Campaign budgets typically run into the hundreds of dollars, priced by reach.</li>
-<li><strong>Digiwaxx:</strong> a record pool operating since 1998 — your record packaged DJ-ready and serviced to ${'30,000+'} working DJs (club, mixshow, radio), plus radio rotation, playlist placement, and published artist coverage in one one-time-fee campaign ($99–$199).</li>
+<li><strong>Digiwaxx:</strong> a record pool operating since 1998 — your record packaged DJ-ready and serviced to ${'30,000+'} working DJs (club, mixshow, radio), plus a Digiwaxx Radio “Make It or Break It” feature, and published artist coverage on the top tier, in one one-time-fee campaign ($99–$199).</li>
 </ul>`,
       },
       {
@@ -56,7 +56,7 @@ module.exports = [
         h2: 'What Each Actually Does',
         html: `<ul>
 <li><strong>SubmitHub:</strong> a marketplace where you spend credits (a few dollars each) to pitch individual curators, bloggers, radio hosts, and labels. Premium submissions guarantee a listen and a response — the honest-feedback mechanism is the product.</li>
-<li><strong>Digiwaxx:</strong> a record pool since 1998 — one campaign packages your record DJ-ready and services it to ${'30,000+'} club, mixshow, and radio DJs at once, with radio rotation, playlist placement, and published coverage layered in ($99–$199 one-time).</li>
+<li><strong>Digiwaxx:</strong> a record pool since 1998 — one campaign packages your record DJ-ready and services it to ${'30,000+'} club, mixshow, and radio DJs at once, with a Digiwaxx Radio “Make It or Break It” feature layered in, and published coverage on the top tier ($99–$199 one-time).</li>
 </ul>`,
       },
       {
@@ -90,7 +90,7 @@ module.exports = [
         h2: 'What Each Actually Does',
         html: `<ul>
 <li><strong>Groover:</strong> pay per pitch (small per-contact fees) to reach curators, blogs, radio shows, and label scouts — heavily European network — with a listen and written feedback guaranteed within days.</li>
-<li><strong>Digiwaxx:</strong> a record pool since 1998, rooted in US DJ culture — one campaign services your record DJ-ready to ${'30,000+'} club, mixshow, and radio DJs, plus radio rotation, playlist placement, and published coverage ($99–$199 one-time).</li>
+<li><strong>Digiwaxx:</strong> a record pool since 1998, rooted in US DJ culture — one campaign services your record DJ-ready to ${'30,000+'} club, mixshow, and radio DJs, plus a Digiwaxx Radio “Make It or Break It” feature, and published coverage on the top tier ($99–$199 one-time).</li>
 </ul>`,
       },
       {
