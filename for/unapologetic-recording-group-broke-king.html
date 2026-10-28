@@ -22,6 +22,8 @@
 .calc-field textarea { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; color: #fff; font-family: inherit; font-size: 0.95rem; padding: 0.6rem 0.7rem; min-height: 90px; }
 .cf-opt { color: var(--text-muted); font-weight: 400; text-transform: none; letter-spacing: 0; }
 .cf-btn { margin-top: 1.2rem; }
+.cta-btn.cf-agree-btn { background: #1f9d55; border-color: #1f9d55; color: #fff; }
+.cta-btn.cf-agree-btn:hover { background: #17834a; border-color: #17834a; color: #fff; }
 .cf-note { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.7rem; }
 .cf-hp { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; opacity: 0; pointer-events: none; }
 .prep-for { font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; color: var(--accent); margin: 0 0 0.6rem; }
@@ -220,7 +222,7 @@
       </div>
     </div>
     <input class="cf-hp" type="text" name="company_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <button class="cta-btn cf-btn" type="submit">Request My Quote &rarr;</button>
+    <button class="cta-btn cf-btn cf-agree-btn" type="submit">I Agree</button>
     <p class="cf-note" id="cf-note">We reply within two business days.</p>
   </form>
 </section>
