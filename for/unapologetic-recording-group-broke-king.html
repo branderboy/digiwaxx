@@ -39,6 +39,39 @@
 @media (max-width: 640px) { .mix-checks { grid-template-columns: 1fr; } .mix-table th:nth-child(2), .mix-table td:nth-child(2) { display: none; } }
 .mix-checks label { display: flex; gap: 0.5rem; align-items: center; justify-content: flex-start; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 0.95rem; margin: 0; cursor: pointer; }
 .calc-field .mix-checks input[type=checkbox] { width: auto; flex: 0 0 auto; margin: 0; padding: 0; accent-color: var(--accent); }
+
+/* Funnel elements */
+.fn-green { background: #1f9d55; border: 0; color: #fff; }
+.fn-green:hover { background: #17834a; color: #fff; }
+.cnav .cnav-cta.fn-green { background: #1f9d55; color: #fff; }
+.cnav .cnav-cta.fn-green:hover { background: #17834a; color: #fff; }
+.fn-hero { background: linear-gradient(135deg, #1a0a18 0%, #3a0e2a 100%); color: #fff; text-align: center; padding: 3.2rem 16px 2.6rem; }
+.fn-hero-inner { max-width: 820px; margin: 0 auto; }
+.fn-hero .prep-for { color: #f3b6cf; }
+.fn-hero h1 { color: #fff; font-size: clamp(2rem, 5.5vw, 3.4rem); margin: 0 0 0.8rem; }
+.fn-hero .fn-sub { font-size: 1.15rem; color: #e9dbe3; max-width: 640px; margin: 0 auto 1.6rem; }
+.fn-btn { display: inline-block; font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 1rem 2.4rem; border-radius: 10px; text-decoration: none; box-shadow: 0 6px 18px rgba(31,157,85,0.35); }
+.fn-reply { font-size: 0.85rem; color: #cbb6c2; margin: 0.8rem 0 0; }
+.fn-steps { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem 1.4rem; margin: 2rem auto 0; padding: 0; list-style: none; }
+.fn-steps li { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.9rem; color: #fff; }
+.fn-steps b { display: inline-flex; align-items: center; justify-content: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: #1f9d55; color: #fff; font-size: 0.9rem; }
+.body-section ul.fn-checks { list-style: none; padding-left: 0; }
+.body-section ul.fn-checks li { position: relative; padding-left: 2rem; }
+.body-section ul.fn-checks li::before { content: "\2713"; position: absolute; left: 0; top: 0.1rem; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: #1f9d55; color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.fn-cta { text-align: center; margin: 2.2rem 0; }
+.fn-cta p { font-size: 0.85rem; color: var(--text-muted); margin: 0.6rem 0 0; }
+.fn-proof { border: 2px solid #1f9d55; border-radius: 12px; padding: 1.4rem 1.4rem 0.6rem; background: #f3fbf6; }
+.fn-badge { display: inline-block; background: #1f9d55; color: #fff; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.6rem; }
+#quote { border: 2px solid #1f9d55; border-radius: 12px; padding: 1.6rem; }
+.fn-arrow { font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #1f9d55; margin: 0 0 0.4rem; }
+.fn-sticky { display: none; }
+@media (max-width: 760px) {
+  .fn-sticky { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 16px; background: rgba(26,10,24,0.95); transition: transform 0.2s; }
+  .fn-sticky.fn-hide { transform: translateY(110%); }
+  .fn-sticky .fn-btn { display: block; text-align: center; font-size: 1.1rem; padding: 0.8rem 1rem; }
+  body.light-page { padding-bottom: 72px; }
+  #quote { padding: 1rem; }
+}
 </style>
 </head>
 <body class="light-page">
@@ -46,15 +79,25 @@
 <nav class="cnav">
   <div class="cnav-inner">
     <a class="cnav-logo" href="/" aria-label="Digiwaxx home"><img src="/assets/logo.png" alt="Digiwaxx" width="150" height="25" decoding="async"></a>
-    <a class="cnav-cta" href="#quote">Request Your Quote &rarr;</a>
+    <a class="cnav-cta fn-green" href="#quote">Get My Quote &rarr;</a>
   </div>
 </nav>
-<main class="cmain">
-  <article>
-
+<header class="fn-hero">
+  <div class="fn-hero-inner">
     <p class="prep-for">Prepared for Jermaine, Unapologetic Recording Group</p>
     <h1>Broke King by Tanya G: Your U.S. DJ, Club and Tastemaker Campaign</h1>
-    <p class="page-question">How Broke King reaches American DJ booths, clubs and mixshows.</p>
+    <p class="fn-sub">How Broke King reaches American DJ booths, clubs and mixshows.</p>
+    <a class="fn-btn fn-green" href="#quote">Get My Quote &rarr;</a>
+    <p class="fn-reply">We reply within two business days.</p>
+    <ol class="fn-steps">
+      <li><b>1</b> Pick Your Mixes</li>
+      <li><b>2</b> Get Your Quote</li>
+      <li><b>3</b> Campaign Goes Live</li>
+    </ol>
+  </div>
+</header>
+<main class="cmain">
+  <article>
 
 <div class="quick-answer">
   <p class="qa-label">The Short Version</p>
@@ -95,14 +138,14 @@
 <section class="body-section">
   <h2>What the Campaign Includes</h2>
 <h3>Initial Servicing</h3>
-<ul>
+<ul class="fn-checks">
 <li><b>Digital delivery:</b> WAV or 320kbps MP3 with artwork, the way U.S. DJs take music</li>
 <li><b>Targeted servicing:</b> each mix sent to the DJs who play that sound, not one blast to everyone</li>
 <li><b>Mixshow and radio servicing:</b> clean versions to the DJs who bridge the club and the air</li>
 <li><b>Feedback on Digiwaxx.com:</b> your artist&rsquo;s songs on the Digiwaxx.com platform for DJ feedback</li>
 </ul>
 <h3>Follow Up After the Initial Servicing</h3>
-<ul>
+<ul class="fn-checks">
 <li><b>New Music Wednesdays:</b> Tanya G featured on New Music Wednesdays featuring Unapologetic Recording Group, live on Twitch and Zoom with our DJ members and engagement group</li>
 <li><b>Playlists and live feedback:</b> DJs can add Broke King to their Spotify playlists once it is released, and hear unreleased music through SoundCloud. DJs heart, share and give live feedback</li>
 <li><b>Newsletter and Substack:</b> your songs packaged in our label newsletter to 50,000+ members and influencers, and on Substack, across 4 send outs</li>
@@ -111,9 +154,14 @@
 <p>Campaign length and the timing of each follow up are set out in your quote, matched to your release date and to how many mixes go out.</p>
 </section>
 
+<div class="fn-cta">
+  <a class="fn-btn fn-green" href="#quote">Get My Quote for Broke King &rarr;</a>
+  <p>We reply within two business days.</p>
+</div>
+
 <section class="body-section">
   <h2>DJ Feedback and Reporting</h2>
-<ul>
+<ul class="fn-checks">
 <li><b>Campaign reporting:</b> delivery and response for each mix, written for a label meeting in the UK</li>
 <li><b>Performance Snapshot Report:</b> a summary of how the release performed across the campaign</li>
 <li><b>DJ feedback:</b> collected and passed back where available, so you hear what the booth thinks of each mix</li>
@@ -138,7 +186,8 @@
 <p>The second wave goes out once the lead mixes have had their first round of response, so each version gets its own moment rather than six versions competing in one week. If you would rather service all six at once, we will quote it that way.</p>
 </section>
 
-<section class="body-section">
+<section class="body-section fn-proof">
+  <span class="fn-badge">Proof</span>
   <h2>Recent Campaign: Glitching by SAINt JHN for Roc Nation</h2>
 <p><b>The brief:</b> Roc Nation wanted &ldquo;Glitching&rdquo; by SAINt JHN in front of stadium DJs and EDM DJs, rooms outside our core hip hop audience.</p>
 <ul>
@@ -153,6 +202,11 @@
   <div class="stat"><div class="stat-n">10,000+</div><div class="stat-l">Newsletter opens</div></div>
   <div class="stat"><div class="stat-n">650+</div><div class="stat-l">DJ downloads</div></div>
   <div class="stat"><div class="stat-n">3.5 / 5</div><div class="stat-l">Average DJ feedback rating</div></div>
+</div>
+
+<div class="fn-cta">
+  <a class="fn-btn fn-green" href="#quote">Get My Quote for Broke King &rarr;</a>
+  <p>We reply within two business days.</p>
 </div>
 
 <section class="body-section">
@@ -173,6 +227,7 @@
 </div>
 
 <section class="body-section" id="quote">
+  <p class="fn-arrow">Step 1: Tick your mixes below &darr;</p>
   <h2>Request Your Quote</h2>
   <p>Tick the mixes you want serviced and your release timing. We will send pricing for Broke King and set out what further releases would look like.</p>
   <form id="cf" novalidate>
@@ -254,6 +309,13 @@
 
   </article>
 </main>
+
+<div class="fn-sticky" id="fn-sticky"><a class="fn-btn fn-green" href="#quote">Get My Quote &rarr;</a></div>
+<script>(function(){
+  var bar=document.getElementById('fn-sticky'),q=document.getElementById('quote');
+  if(!bar||!q||!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(es){es.forEach(function(e){bar.classList.toggle('fn-hide',e.isIntersecting);});}).observe(q);
+})();</script>
 
 <footer class="cfooter">
   <div class="cfooter-inner">
