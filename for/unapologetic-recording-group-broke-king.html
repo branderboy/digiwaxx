@@ -41,29 +41,38 @@
 .calc-field .mix-checks input[type=checkbox] { width: auto; flex: 0 0 auto; margin: 0; padding: 0; accent-color: var(--accent); }
 
 /* Funnel elements */
-.fn-green { background: #1f9d55; border: 0; color: #fff; }
-.fn-green:hover { background: #17834a; color: #fff; }
-.cnav .cnav-cta.fn-green { background: #1f9d55; color: #fff; }
-.cnav .cnav-cta.fn-green:hover { background: #17834a; color: #fff; }
-.fn-hero { background: linear-gradient(135deg, #1a0a18 0%, #3a0e2a 100%); color: #fff; text-align: center; padding: 3.2rem 16px 2.6rem; }
+.fn-green { background: linear-gradient(180deg, #FFE066 0%, var(--cta-yellow) 100%); border: 0; color: #1a0a18; }
+.fn-green:hover { background: var(--cta-yellow-hover); color: #1a0a18; }
+.fn-hero { background: radial-gradient(ellipse at top, #6b0a3d 0%, #3a0e2a 55%, #1a0a18 100%); color: #fff; text-align: center; padding: 3.2rem 16px 2.6rem; }
 .fn-hero-inner { max-width: 820px; margin: 0 auto; }
 .fn-hero .prep-for { color: #f3b6cf; }
 .fn-hero h1 { color: #fff; font-size: clamp(2rem, 5.5vw, 3.4rem); margin: 0 0 0.8rem; }
 .fn-hero .fn-sub { font-size: 1.15rem; color: #e9dbe3; max-width: 640px; margin: 0 auto 1.6rem; }
-.fn-btn { display: inline-block; font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 1rem 2.4rem; border-radius: 10px; text-decoration: none; box-shadow: 0 6px 18px rgba(31,157,85,0.35); }
+.fn-btn { display: inline-block; font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 1rem 2.4rem; border-radius: 10px; text-decoration: none; box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
 .fn-reply { font-size: 0.85rem; color: #cbb6c2; margin: 0.8rem 0 0; }
 .fn-steps { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem 1.4rem; margin: 2rem auto 0; padding: 0; list-style: none; }
 .fn-steps li { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.9rem; color: #fff; }
-.fn-steps b { display: inline-flex; align-items: center; justify-content: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: #1f9d55; color: #fff; font-size: 0.9rem; }
+.fn-steps li:nth-child(2) b { background: #D4A017; color: #1a0a18; }
+.fn-steps li:nth-child(3) b { background: #d4a0a0; color: #1a0a18; }
+.fn-steps b { display: inline-flex; align-items: center; justify-content: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: #9c2b5a; color: #fff; font-size: 0.9rem; }
 .body-section ul.fn-checks { list-style: none; padding-left: 0; }
 .body-section ul.fn-checks li { position: relative; padding-left: 2rem; }
-.body-section ul.fn-checks li::before { content: "\2713"; position: absolute; left: 0; top: 0.1rem; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: #1f9d55; color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.body-section ul.fn-checks li::before { content: "\2713"; position: absolute; left: 0; top: 0.1rem; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: #9c2b5a; color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 .fn-cta { text-align: center; margin: 2.2rem 0; }
 .fn-cta p { font-size: 0.85rem; color: var(--text-muted); margin: 0.6rem 0 0; }
-.fn-proof { border: 2px solid #1f9d55; border-radius: 12px; padding: 1.4rem 1.4rem 0.6rem; background: #f3fbf6; }
-.fn-badge { display: inline-block; background: #1f9d55; color: #fff; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.6rem; }
-#quote { border: 2px solid #1f9d55; border-radius: 12px; padding: 1.6rem; }
-.fn-arrow { font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #1f9d55; margin: 0 0 0.4rem; }
+.body-section ul.fn-checks.fn-gold li::before { background: #D4A017; color: #1a0a18; }
+.body-section ul.fn-checks.fn-rose li::before { background: #d4a0a0; color: #1a0a18; }
+.fn-brief { background: #fff8e1; border-left: 4px solid #D4A017; border-radius: 0 12px 12px 0; padding: 1.2rem 1.4rem 0.4rem; }
+.fn-band { background: linear-gradient(135deg, #5c1440 0%, #3a0e2a 100%); border-radius: 14px; padding: 1.5rem 1.5rem 0.6rem; }
+.fn-band h2, .fn-band b { color: #fff; }
+.fn-band p, .fn-band li { color: rgba(255,255,255,0.86); }
+.fn-band li::marker { color: #FFB800; }
+.fn-proof { border: 1px solid #f0d78a; border-radius: 14px; padding: 1.5rem 1.5rem 0.6rem; background: linear-gradient(135deg, #fff8e1 0%, #faf3f7 100%); }
+.fn-badge { display: inline-block; background: #D4A017; color: #1a0a18; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.6rem; }
+#quote { border: 2px solid #D4A017; border-radius: 14px; padding: 1.6rem; background: #fffdf6; }
+.stats-row .stat:nth-child(2) .stat-n { color: #CC9200; }
+.stats-row .stat:nth-child(3) .stat-n { color: #a82e5e; }
+.fn-arrow { font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9c2b5a; margin: 0 0 0.4rem; }
 .fn-sticky { display: none; }
 @media (max-width: 760px) {
   .fn-sticky { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 16px; background: rgba(26,10,24,0.95); transition: transform 0.2s; }
@@ -79,7 +88,7 @@
 <nav class="cnav">
   <div class="cnav-inner">
     <a class="cnav-logo" href="/" aria-label="Digiwaxx home"><img src="/assets/logo.png" alt="Digiwaxx" width="150" height="25" decoding="async"></a>
-    <a class="cnav-cta fn-green" href="#quote">Get My Quote &rarr;</a>
+    <a class="cnav-cta" href="#quote">Get My Quote &rarr;</a>
   </div>
 </nav>
 <header class="fn-hero">
@@ -111,7 +120,7 @@
   <div><b>Label</b>Unapologetic Recording Group</div>
 </div>
 
-<section class="body-section">
+<section class="body-section fn-brief">
   <h2>Your Brief</h2>
 <ul>
 <li><b>The goal:</b> a U.S. promotional partner for DJ, club and tastemaker outreach as Unapologetic Recording Group breaks into the American market</li>
@@ -122,7 +131,7 @@
 </ul>
 </section>
 
-<section class="body-section">
+<section class="body-section fn-band">
   <h2>Our U.S. DJ, Club and Radio Network</h2>
 <p>The Digiwaxx record pool has been serving records to DJs since 1998. Your release goes to a network of 30,000+ U.S. DJs working across four settings:</p>
 <ul>
@@ -145,7 +154,7 @@
 <li><b>Feedback on Digiwaxx.com:</b> your artist&rsquo;s songs on the Digiwaxx.com platform for DJ feedback</li>
 </ul>
 <h3>Follow Up After the Initial Servicing</h3>
-<ul class="fn-checks">
+<ul class="fn-checks fn-gold">
 <li><b>New Music Wednesdays:</b> Tanya G featured on New Music Wednesdays featuring Unapologetic Recording Group, live on Twitch and Zoom with our DJ members and engagement group</li>
 <li><b>Playlists and live feedback:</b> DJs can add Broke King to their Spotify playlists once it is released, and hear unreleased music through SoundCloud. DJs heart, share and give live feedback</li>
 <li><b>Newsletter and Substack:</b> your songs packaged in our label newsletter to 50,000+ members and influencers, and on Substack, across 4 send outs</li>
@@ -161,7 +170,7 @@
 
 <section class="body-section">
   <h2>DJ Feedback and Reporting</h2>
-<ul class="fn-checks">
+<ul class="fn-checks fn-rose">
 <li><b>Campaign reporting:</b> delivery and response for each mix, written for a label meeting in the UK</li>
 <li><b>Performance Snapshot Report:</b> a summary of how the release performed across the campaign</li>
 <li><b>DJ feedback:</b> collected and passed back where available, so you hear what the booth thinks of each mix</li>
