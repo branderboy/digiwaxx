@@ -50,6 +50,7 @@ PLATFORMS = {
     "audiomack-promotion": "Audiomack",
     "tidal-promotion": "TIDAL",
     "youtube-music-promotion": "YouTube",
+    "soundcloud-promotion": "SoundCloud",
 }
 GENRE_HUBS = {
     "hip-hop-promotion": "hip-hop",

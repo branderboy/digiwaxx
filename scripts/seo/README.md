@@ -36,6 +36,8 @@ titles, so metadata is fixed first; the mesh and sitemap read the hubs.
 | Script | What it does |
 |---|---|
 | `lib.py` | Shared constants, the `/promotion` slug → (genre, city) taxonomy, page catalog, and the nav/footer chrome lifted from existing pages |
+| `meta_records.py` | Hand-written title and description records for pages Search Console shows ranking with no clicks (title ≤60, description 150-160, no prices, no duplicates; refuses to write otherwise) |
+| `build_question_pages.py` | Builds the pages answering Search Console and Keyword Planner questions: `/answers/is-digiwaxx-still-in-service`, `/guides/how-to-promote-your-music`, `/promotion/soundcloud-promotion` |
 | `fix_meta.py` | Trims titles to ≤60 and descriptions to ≤160 chars at clause boundaries, keeping `og:`/`twitter:` in sync |
 | `build_hubs.py` | Generates `/{section}/index.html` for all 9 sections |
 | `rewire_links.py` | Repoints `/university#anchor` links at the real hub pages |
@@ -65,7 +67,10 @@ limited to `JobPosting` and `BroadcastEvent`. What actually moves URLs out of
    everything under it, which is worth far more than requesting 10 leaf pages.
    `python3 scripts/seo/submit_urls.py list --stuck Table.csv` prints them in
    that order.
-3. **IndexNow** covers Bing, Yandex, Seznam and Naver, usually within hours:
+3. **IndexNow** covers Bing, Yandex, Seznam and Naver, usually within hours.
+   `.github/workflows/submit-urls.yml` does this automatically after every
+   production deploy and daily, sending only URLs whose sitemap `lastmod` moved
+   in the last two days (`--since-days 2`). To run it by hand:
    ```bash
    python3 scripts/seo/submit_urls.py indexnow
    ```

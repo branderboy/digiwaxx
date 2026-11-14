@@ -101,8 +101,8 @@ async function initDB() {
       ('bg_color', '#1a0a18'),
       ('heading_font_size', '100'),
       ('body_font_size', '100'),
-      ('meta_title', 'DIGIWAXX | New Music Boost | Get Your Record to DJs'),
-      ('meta_description', 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Digiwaxx Radio features, and official artist coverage.'),
+      ('meta_title', 'Digiwaxx Record Pool: Get Your Music to 30,000+ DJs'),
+      ('meta_description', 'Digiwaxx is still servicing new records to DJs in 2026. Send your song to 30,000+ club, mixshow and radio DJs, plus Digiwaxx Radio. Running since 1998.'),
       ('og_image_url', ''),
       ('hero_eyebrow', 'The New Music Boost'),
       ('hero_h3', 'YOUR RECORD DESERVES MORE THAN STREAMS.'),
@@ -180,7 +180,9 @@ async function initDB() {
     UPDATE settings SET value = 'One submission puts your record in front of 30,000+ DJs, no contracts, no gatekeepers, reviewed within 72 hours.' WHERE key = 'final_cta_body' AND value IN ('If your song is ready, it deserves to reach the DJs who matter.', 'Get your music into the Digiwaxx DJ network today.', 'One submission puts your record in front of 30,000+ DJs — no contracts, no gatekeepers, reviewed within 72 hours.');
     UPDATE settings SET value = 'Select the tier that fits your goals. One-time payment, no contracts, secure PayPal checkout, backed by a DJ network trusted since 1998.' WHERE key = 'pricing_subtitle' AND value IN ('Every tier gets your record into the Digiwaxx DJ network. Choose how loud you want to go.', 'Select the tier that fits your goals. Every plan includes DJ network access.', 'Select the tier that fits your goals. One-time payment, no contracts, secure PayPal checkout — backed by a DJ network trusted since 1998.');
     UPDATE settings SET value = 'WHY CHOOSE DIGIWAXX?' WHERE key = 'video_heading' AND value IN ('SEE DIGIWAXX IN ACTION', 'WHY DIGIWAXX EXISTS!');
-    UPDATE settings SET value = 'DIGIWAXX | New Music Boost | Get Your Record to DJs' WHERE key = 'meta_title' AND value = 'DIGIWAXX | New Music Boost — Get Your Record to DJs';
+    -- Nov 2026 search meta (scripts/seo/meta_records.py): only the shipped defaults move.
+    UPDATE settings SET value = 'Digiwaxx Record Pool: Get Your Music to 30,000+ DJs' WHERE key = 'meta_title' AND value IN ('DIGIWAXX | New Music Boost | Get Your Record to DJs', 'DIGIWAXX | New Music Boost — Get Your Record to DJs');
+    UPDATE settings SET value = 'Digiwaxx is still servicing new records to DJs in 2026. Send your song to 30,000+ club, mixshow and radio DJs, plus Digiwaxx Radio. Running since 1998.' WHERE key = 'meta_description' AND value = 'Digiwaxx connects your music to 30,000+ DJs worldwide. Record pool placement, Digiwaxx Radio features, and official artist coverage.';
     UPDATE settings SET value = 'Limited slots available. Serious artists only' WHERE key = 'hero_cta_subtext' AND value = 'Limited slots available — serious artists only';
     UPDATE settings SET value = 'Go to Instagram<br>and visit <span class="boost-word">@digiwaxx</span>' WHERE key = 'boost_cta_heading' AND value = 'If on IG<br>DM @Digiwaxx "BOOST"';
     -- Sept 2026 repackaging: Starter/Pro/Elite are the only products sold, with

@@ -4,6 +4,8 @@
 #   ./scripts/seo/build.sh           # dry run, changes nothing
 #   ./scripts/seo/build.sh --apply   # write changes
 #
+# meta_records and build_question_pages write the hand-written records and
+# the November 2026 question pages first, so fix_meta never trims them.
 # Order matters: the hubs and llms.txt read page titles, so metadata is fixed
 # first; the mesh and sitemap read the hubs, so those come after. Every step is
 # idempotent, so running this twice in a row is a no-op the second time.
@@ -11,7 +13,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 ARG="${1:-}"
 
-for step in fix_meta build_hubs rewire_links build_mesh enrich_schema build_llms build_sitemap; do
+for step in meta_records build_question_pages fix_meta build_hubs rewire_links build_mesh enrich_schema build_llms build_sitemap; do
   echo "=== $step ==="
   python3 "$step.py" ${ARG:+"$ARG"}
 done
