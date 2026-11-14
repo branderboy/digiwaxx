@@ -408,8 +408,8 @@ const PAGES = [
   /* ---- /labels : the English international page, x-default of the trio */
   {
     slug: 'labels', file: 'labels.html', lang: 'en', family: 'trio',
-    title: 'U.S. DJ Promotion for International Labels | Digiwaxx',
-    description: 'Digiwaxx services releases from international labels, management companies and distributors to 30,000+ U.S. DJs, with campaign reporting.',
+    title: 'U.S. DJ Promotion for International Labels and Distributors',
+    description: "Get your label's releases to 30,000+ U.S. club, mixshow, radio and mobile DJs, with campaign reporting back to your team. Breaking records since 1998.",
     serviceName: 'U.S. DJ Promotion for International Labels',
     audience: 'International record labels, management companies and distributors',
     crumb: ['For International Labels', '/labels'],

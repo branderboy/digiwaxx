@@ -1,0 +1,50 @@
+name: Submit changed URLs to IndexNow
+
+# After every successful production deploy, and once a day, tell IndexNow
+# (Bing, Yandex, Seznam, Naver) about the pages whose sitemap lastmod moved in
+# the last two days. Google does not take IndexNow; Search Console still needs
+# the sitemap and manual URL Inspection (see scripts/seo/README.md).
+#
+# Nothing is committed, so this never starts another deploy.
+
+on:
+  deployment_status:
+  schedule:
+    - cron: "17 14 * * *"
+  workflow_dispatch:
+    inputs:
+      since_days:
+        description: "Submit URLs changed in the last N days"
+        default: "2"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: submit-urls
+  cancel-in-progress: false
+
+jobs:
+  indexnow:
+    if: >-
+      github.event_name != 'deployment_status' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha || github.sha }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check the IndexNow key file is live
+        run: |
+          key=$(tr -d '[:space:]' < indexnow-key.txt)
+          served=$(curl -fsS "https://promote.digiwaxx.com/${key}.txt" | tr -d '[:space:]')
+          test "$served" = "$key" || { echo "Key file not served yet"; exit 1; }
+
+      - name: Submit
+        run: python3 scripts/seo/submit_urls.py indexnow --since-days "${{ inputs.since_days || '2' }}"

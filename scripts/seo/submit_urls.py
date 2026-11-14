@@ -18,7 +18,7 @@ letting Google recrawl. This script handles the parts that *are* automatable:
 
 Usage:
   submit_urls.py list [--stuck path/to/Table.csv]
-  submit_urls.py indexnow [--limit N] [--dry-run]
+  submit_urls.py indexnow [--limit N] [--since-days N] [--dry-run]
   submit_urls.py google --credentials sa.json [--limit N] [--dry-run]
 """
 import os, re, sys, csv, json, glob, signal, argparse, urllib.request, urllib.error
@@ -38,6 +38,23 @@ def sitemap_urls():
     for f in sorted(glob.glob(f"{ROOT}/sitemaps/*.xml")):
         urls += re.findall(r"<loc>(.*?)</loc>", open(f, encoding="utf-8").read())
     return sorted(set(urls))
+
+
+def changed_urls(days):
+    """URLs whose sitemap <lastmod> falls within the last `days` days.
+
+    The sitemaps carry real per-page lastmod dates, so this is the set of new
+    or changed pages: what IndexNow should hear about after a deploy.
+    """
+    import datetime
+    cutoff = (datetime.date.today() - datetime.timedelta(days=days)).isoformat()
+    urls = set()
+    for f in sorted(glob.glob(f"{ROOT}/sitemaps/*.xml")):
+        for loc, mod in re.findall(r"<loc>(.*?)</loc>\s*<lastmod>(.*?)</lastmod>",
+                                   open(f, encoding="utf-8").read()):
+            if mod[:10] >= cutoff:
+                urls.add(loc)
+    return sorted(urls)
 
 
 def indexnow_key():
@@ -92,7 +109,11 @@ def post(url, payload):
 
 def cmd_indexnow(args):
     key = indexnow_key()
-    urls = sitemap_urls()[: args.limit] if args.limit else sitemap_urls()
+    urls = changed_urls(args.since_days) if args.since_days is not None else sitemap_urls()
+    urls = urls[: args.limit] if args.limit else urls
+    if not urls:
+        print("IndexNow: nothing changed in that window, nothing to send")
+        return
     payload = {"host": HOST, "key": key,
                "keyLocation": f"{SITE}/{key}.txt", "urlList": urls}
     print(f"IndexNow: {len(urls)} urls, key {key[:8]}...")
@@ -105,6 +126,7 @@ def cmd_indexnow(args):
         print(f"HTTP {status} {body}")
     except urllib.error.HTTPError as e:
         print(f"HTTP {e.code}: {e.read().decode()[:400]}")
+        sys.exit(1)
 
 
 def cmd_google(args):
@@ -144,6 +166,8 @@ def main():
 
     p = sub.add_parser("indexnow", help="submit to IndexNow (Bing/Yandex/Seznam/Naver)")
     p.add_argument("--limit", type=int)
+    p.add_argument("--since-days", type=int,
+                   help="only URLs whose sitemap lastmod is within the last N days")
     p.add_argument("--dry-run", action="store_true")
     p.set_defaults(func=cmd_indexnow)
 
