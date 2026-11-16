@@ -13,6 +13,8 @@ import os, re, sys, glob, html
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BRAND = " | Digiwaxx"
 TITLE_MAX, DESC_MAX = 60, 160
+# Titles Kawani supplied word for word (meta_records.EXACT_TITLES); never trimmed.
+TITLE_KEEP = {"compare/best-record-pools.html"}
 TITLE_MIN, DESC_MIN = 30, 120
 SPLITS = [": ", ", ", " & ", " and ", " - ", " – "]
 
@@ -116,7 +118,7 @@ def process(path, apply):
     m = re.search(r"(<title[^>]*>)(.*?)(</title>)", s, re.I | re.S)
     if m:
         old = m.group(2).strip()
-        if vlen(old) > TITLE_MAX:
+        if vlen(old) > TITLE_MAX and rel not in TITLE_KEEP:
             new = fit_title(old)
             if new != old:
                 changes.append(("title", old, new))
