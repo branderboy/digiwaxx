@@ -54,11 +54,12 @@ RECORDS = {
         "118 impressions, position 2.41, 0 clicks",
     ),
     "compare/best-record-pools.html": (
-        "What is the best record pool?",
-        "Best Record Pools in 2026: For DJs and For Artists",
-        "The best record pool depends on your side. See the pools DJs rate, like "
-        "DJcity and BPM Supreme, and how you as an artist pick one that reaches real DJs.",
-        "131 impressions, position 7.54, 0 clicks",
+        "What is the best DJ pool in 2026?",
+        "Best DJ Pool 2026: The Digiwaxx Record Pool For DJs And Labels",
+        "Looking for the best DJ pool in 2026? See the pools DJs rate, like DJcity and "
+        "BPM Supreme, and how artists and labels get records into the Digiwaxx pool.",
+        "131 impressions, position 7.54, 0 clicks; Fix List 2026-11-16: "
+        "'best dj pool 2026' 5 impressions at 16.8, 'indie label record pool' at 20",
     ),
     "answers/how-record-pools-work.html": (
         "How does a record pool actually work?",
@@ -133,6 +134,9 @@ RECORDS = {
 }
 
 TITLE_MAX = 60
+# Titles Kawani supplied word for word (The Fix List, 2026-11-16). Kept
+# exactly as given even past 60 characters, because the supplied file wins.
+EXACT_TITLES = {"compare/best-record-pools.html"}
 DESC_MIN, DESC_MAX = 150, 160
 PRICE = re.compile(r"\$\s?\d")
 
@@ -146,7 +150,7 @@ def check():
     for path, (_, title, desc, _) in RECORDS.items():
         if not os.path.exists(os.path.join(ROOT, path)):
             errors.append(f"{path}: file not found")
-        if vlen(title) > TITLE_MAX:
+        if vlen(title) > TITLE_MAX and path not in EXACT_TITLES:
             errors.append(f"{path}: title {vlen(title)} chars > {TITLE_MAX}")
         if not DESC_MIN <= vlen(desc) <= DESC_MAX:
             errors.append(f"{path}: description {vlen(desc)} chars, need {DESC_MIN}-{DESC_MAX}")
